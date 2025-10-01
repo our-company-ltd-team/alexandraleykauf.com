@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Block",
+  "description": "Content blocks for Sanity CMS",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Sanity document ID"
+    },
+    "_type": {
+      "type": "string",
+      "enum": ["contact", "info", "empty"],
+      "description": "Block type following Sanity conventions"
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Sanity revision ID"
+    },
+    "_createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Sanity creation timestamp"
+    },
+    "_updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Sanity update timestamp"
+    },
+    "title": {
+      "type": "string",
+      "description": "Block title (required for contact and info blocks)"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email (required for contact blocks)"
+    },
+    "components": {
+      "type": "array",
+      "description": "Array of content components for info blocks",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "_type": {
+                "const": "textComponent"
+              },
+              "_key": {
+                "type": "string",
+                "description": "Unique key for this component"
+              },
+              "content": {
+                "type": "string",
+                "description": "Text content"
+              },
+              "style": {
+                "type": "string",
+                "enum": ["normal", "h1", "h2", "h3", "h4", "blockquote"],
+                "default": "normal"
+              }
+            },
+            "required": ["_type", "_key", "content"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_type": {
+                "const": "imageComponent"
+              },
+              "_key": {
+                "type": "string",
+                "description": "Unique key for this component"
+              },
+              "images": {
+                "type": "array",
+                "description": "Array of images with legends and facts",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_key": {
+                      "type": "string",
+                      "description": "Unique key for this image"
+                    },
+                    "asset": {
+                      "type": "object",
+                      "properties": {
+                        "_ref": {
+                          "type": "string",
+                          "description": "Sanity asset reference"
+                        },
+                        "_type": {
+                          "const": "reference"
+                        }
+                      },
+                      "required": ["_ref", "_type"],
+                      "additionalProperties": false
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Alternative text for accessibility"
+                    },
+                    "legend": {
+                      "type": "string",
+                      "description": "Legend/caption for the image"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "description": "Array of facts about this image",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_key": {
+                            "type": "string",
+                            "description": "Unique key for this fact"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Fact label (e.g., 'Year', 'Medium', 'Dimensions')"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "Fact value"
+                          }
+                        },
+                        "required": ["_key", "label", "value"],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": ["_key", "asset", "alt"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["_type", "_key", "images"],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "_type": {
+                "const": "videoComponent"
+              },
+              "_key": {
+                "type": "string",
+                "description": "Unique key for this component"
+              },
+              "videos": {
+                "type": "array",
+                "description": "Array of videos with legends and facts",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "_key": {
+                      "type": "string",
+                      "description": "Unique key for this video"
+                    },
+                    "url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "Video URL (YouTube, Vimeo, etc.)"
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "Video title"
+                    },
+                    "thumbnail": {
+                      "type": "object",
+                      "properties": {
+                        "_ref": {
+                          "type": "string",
+                          "description": "Sanity asset reference for thumbnail"
+                        },
+                        "_type": {
+                          "const": "reference"
+                        }
+                      },
+                      "required": ["_ref", "_type"],
+                      "additionalProperties": false
+                    },
+                    "legend": {
+                      "type": "string",
+                      "description": "Legend/caption for the video"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "description": "Array of facts about this video",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_key": {
+                            "type": "string",
+                            "description": "Unique key for this fact"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Fact label (e.g., 'Duration', 'Format', 'Date')"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "Fact value"
+                          }
+                        },
+                        "required": ["_key", "label", "value"],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": ["_key", "url", "title"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["_type", "_key", "videos"],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": ["_type"],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "_type": {
+            "const": "contact"
+          }
+        }
+      },
+      "then": {
+        "required": ["_type", "title", "email"],
+        "properties": {
+          "components": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "_type": {
+            "const": "info"
+          }
+        }
+      },
+      "then": {
+        "required": ["_type", "title"],
+        "properties": {
+          "email": false
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "_type": {
+            "const": "empty"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "title": false,
+          "email": false,
+          "components": false
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

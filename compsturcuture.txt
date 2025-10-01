@@ -1,0 +1,9 @@
+Header
+Nav
+Footer
+
+In Nav
+NavItem
+
+In NavItem
+can have Video gallery, photo gallery and text box
