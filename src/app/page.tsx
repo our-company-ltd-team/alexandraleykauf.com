@@ -1,4 +1,30 @@
-import Image from "next/image";
+import {MockBlocks} from "@/MockData/fake_data";
+import ContactBlock from "@/components/ContactBlock";
+import InfoBlock from "@/components/InfoBlock";
+import EmptyBlock from "@/components/EmptyBlock";
+
+
+
+function buildBlock(type: string, data: any){
+  switch(type){
+    case "contact":
+      return <ContactBlock key={data._id} data={data} />
+    case "info":
+      return <InfoBlock key={data._id} data={data} />
+    case "empty":
+      return <EmptyBlock key={data._id}  />
+    default:
+      return <div>Unknown Block</div>
+  }
+}
+
+function buildBlockList(Blocks: any){
+  let blockList = []
+  for (const block of Blocks) {
+    blockList.push(buildBlock(block._type, block))
+  }   
+  return blockList
+}
 
 export default function Home() {
   return (
@@ -10,6 +36,7 @@ export default function Home() {
 
       </header>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        {buildBlockList(MockBlocks)}
       <a href="/text">Text</a>
       </main>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
