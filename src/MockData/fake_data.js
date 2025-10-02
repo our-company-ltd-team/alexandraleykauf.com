@@ -5,7 +5,7 @@ export const MockBlocks = [
   // Contact Block
   {
     "_id": "contact-block-1",
-    "_type": "contact",
+    "_type": "link",
     "_rev": "abc123def456",
     "_createdAt": "2025-10-01T09:00:00Z",
     "_updatedAt": "2025-10-01T10:30:00Z",
@@ -274,11 +274,11 @@ export const MockBlocks = [
   // Another Contact Block
   {
     "_id": "contact-block-2",
-    "_type": "contact",
+    "_type": "link",
     "_rev": "pqr678stu901",
     "_createdAt": "2025-09-30T10:00:00Z",
     "_updatedAt": "2025-10-01T09:00:00Z",
     "title": "Studio Visits",
-    "email": "studio@leykauf.com"
+    "url": "https://leykauf.com/studio-visits"
   }
 ];

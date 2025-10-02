@@ -10,7 +10,7 @@
     },
     "_type": {
       "type": "string",
-      "enum": ["contact", "info", "empty"],
+      "enum": ["link", "info", "empty"],
       "description": "Block type following Sanity conventions"
     },
     "_rev": {
@@ -29,12 +29,17 @@
     },
     "title": {
       "type": "string",
-      "description": "Block title (required for contact and info blocks)"
+      "description": "Block title (required for link and info blocks)"
     },
     "email": {
       "type": "string",
       "format": "email",
-      "description": "Contact email (required for contact blocks)"
+      "description": "Contact email (for link blocks as an alternative to url)"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "External link URL (for link blocks as an alternative to email)"
     },
     "components": {
       "type": "array",
@@ -229,15 +234,23 @@
       "if": {
         "properties": {
           "_type": {
-            "const": "contact"
+            "const": "link"
           }
         }
       },
       "then": {
-        "required": ["_type", "title", "email"],
+        "required": ["_type", "title"],
         "properties": {
           "components": false
-        }
+        },
+        "oneOf": [
+          {
+            "required": ["email"]
+          },
+          {
+            "required": ["url"]
+          }
+        ]
       }
     },
     {
