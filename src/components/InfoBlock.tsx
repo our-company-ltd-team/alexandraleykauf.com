@@ -1,33 +1,37 @@
 "use client";
 
+import React from "react";
+
 function buildInfoBlock(type: string, data: any){
   switch(type){
     case "textComponent":
-      return <div key={data._id}>textComponent</div>
+      return <div>textComponent</div>
     case "imageComponent":
-      return <div key={data._id}>imageComponent</div>
+      return <div>imageComponent</div>
     case "videoComponent":
-        return <div key={data._id}>videoComponent</div>
+      return <div>videoComponent</div>
     default:
       return <div>Unknown Block</div>
   }
 }
 
 function buildInfoBlockList(Blocks: any){
-  let blockList = []
-  for (const block of Blocks.components) {
-    blockList.push(buildInfoBlock(block._type, block))
-  }   
-  return blockList
+  if (!Blocks?.components) return null;
+  return Blocks.components.map((block: any, idx: number) => (
+    <React.Fragment key={block._id ?? idx}>
+      {buildInfoBlock(block._type, block)}
+    </React.Fragment>
+  ));
 }
 
 export default function InfoBlock({ data }: { data: any }) {
-    return (
-        <div key={data._id}>
-            <h2 onClick={() => console.log(data)} >{data.title}</h2>
-            <p>{data.description}</p>
-            {buildInfoBlockList(data)}
-            
-        </div>
-    );
+  const [showBlocks, setShowBlocks] = React.useState(false);
+
+  return (
+      <li>
+          <h2 onClick={() => setShowBlocks(!showBlocks)}>{data.title}</h2>
+          {showBlocks && buildInfoBlockList(data)}
+      </li>
+  );
 }
+// ...existing code...
