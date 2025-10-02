@@ -38,7 +38,6 @@ export default function Home() {
       <section id="list" className="list">
         <ul className="list">
           {buildBlockList(MockBlocks)}
-          <a href="/text">Text</a>
         </ul>
       </section>
       <footer >

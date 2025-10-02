@@ -5,13 +5,13 @@ import React from "react";
 function buildInfoBlock(type: string, data: any){
   switch(type){
     case "textComponent":
-      return <div>textComponent</div>
+      return <article>textComponent</article>
     case "imageComponent":
-      return <div>imageComponent</div>
+      return <article>imageComponent</article>
     case "videoComponent":
-      return <div>videoComponent</div>
+      return <article>videoComponent</article>
     default:
-      return <div>Unknown Block</div>
+      return <article>Unknown Block</article>
   }
 }
 
@@ -26,11 +26,19 @@ function buildInfoBlockList(Blocks: any){
 
 export default function InfoBlock({ data }: { data: any }) {
   const [showBlocks, setShowBlocks] = React.useState(false);
-
+  data.date = 2024; // temporary
   return (
       <li>
-          <h2 onClick={() => setShowBlocks(!showBlocks)}>{data.title}</h2>
+        <header className="list-item-header">
+          <a onClick={() => setShowBlocks(!showBlocks)} className="list-item-link to-transform"></a>
+          <span className="list-item-center">{data.title}</span>
+          <div className="list-item-left">{data.date}</div>
+          <div className="media-phone-hidden media-small-hidden list-item-right"></div>
+        </header>
+        <div className="list-item-details">
           {showBlocks && buildInfoBlockList(data)}
+        </div>
+        
       </li>
   );
 }
