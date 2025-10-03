@@ -35,9 +35,9 @@ export default function InfoBlock({ data }: { data: any }) {
           <div className="list-item-left">{data.date}</div>
           <div className="media-phone-hidden media-small-hidden list-item-right"></div>
         </header>
-        <div className="list-item-details">
-          {showBlocks && buildInfoBlockList(data)}
-        </div>
+        {showBlocks &&  <div className="list-item-details">
+          { buildInfoBlockList(data)}
+        </div>}
         
       </li>
   );

@@ -1,4 +1,4 @@
-import {MockBlocks} from "@/MockData/fake_data";
+import {MockProjects} from "@/MockData/fake_data";
 import LinkBlock from "@/components/LinkBlock";
 import InfoBlock from "@/components/InfoBlock";
 import EmptyBlock from "@/components/EmptyBlock";
@@ -9,9 +9,9 @@ function buildBlock(type: string, data: any){
   switch(type){
     case "link":
       return <LinkBlock key={data._id} data={data} />
-    case "info":
+    case "project":
       return <InfoBlock key={data._id} data={data} />
-    case "empty":
+    case "seperator":
       return <EmptyBlock key={data._id}  />
     default:
       return <div>Unknown Block</div>
@@ -28,7 +28,7 @@ function buildBlockList(Blocks: any){
 
 export default function Home() {
   return (
-    <div id="container">
+    <div id="container" key={"container"}>
       <header className="clearfix main-header">
         <h1 className="main-title">
           <a href="/">ALEXANDRA LEYKAUF</a>
@@ -36,8 +36,8 @@ export default function Home() {
 
       </header>
       <section id="list" className="list">
-        <ul className="list">
-          {buildBlockList(MockBlocks)}
+        <ul className="list" key={"list-ul"}>
+          {buildBlockList(MockProjects)}
         </ul>
       </section>
       <footer >
