@@ -1,9 +1,57 @@
-Header
-Nav
-Footer
+General Config (block)
+	general page title (txt)
+	google keywords (txt)
+	google description (txt)
+	google analytics code (txt)
+ 	language (txt)
+ 	small page icon image (img)
+ 	big page icon image (img)
+ 	apple icon image (img)
+ 	apple icon image precomposed (img)
+ 	hover color (txt/rgb)
+ 	active color (txt/rgb)
+ 	details background color (txt/rgb)
+ 	footer (txt)
+Category (block)
+ 	Title (txt)
+ 	Show On start page (bool)
+ 	Color (txt/rgb)
+Projects (block)
+ 	project (block)
+		title (txt)
+		year (int)
+		category (Enum) from categories
+		place (txt)
+		paragraph (block)
+			title (txt)
+			images (block)
+				title (txt)
+				image (img)
+				description (txt)
+			texts (block)
+				text (block)
+					text (txt)
+				text page (block)
+					title (txt)
+					text (txt)
+			videos (block)
+				video (block)
+					title (txt)
+					preview image (img)
+					video (url)
+					autorotate (bool)
+					description (txt)
+	link (block)
+		title (txt)
+		category (Enum) from categories
+		type (Enum)
+	separator (block)
+		Category (Enum)
 
-In Nav
-NavItem
 
-In NavItem
-can have Video gallery, photo gallery and text box
+
+
+
+
+			
+		
