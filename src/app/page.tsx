@@ -1,7 +1,7 @@
 import {MockProjects} from "@/MockData/fake_data";
 import LinkBlock from "@/components/LinkBlock";
-import InfoBlock from "@/components/InfoBlock";
-import EmptyBlock from "@/components/EmptyBlock";
+import ProjectBlock from "@/components/ProjectBlock";
+import SeparatorBlock from "@/components/SeparatorBlock";
 
 
 
@@ -10,9 +10,9 @@ function buildBlock(type: string, data: any){
     case "link":
       return <LinkBlock key={data._id} data={data} />
     case "project":
-      return <InfoBlock key={data._id} data={data} />
-    case "seperator":
-      return <EmptyBlock key={data._id}  />
+      return <ProjectBlock key={data._id} data={data} />
+    case "separator":
+      return <SeparatorBlock key={data._id}  />
     default:
       return <div>Unknown Block</div>
   }
