@@ -48,13 +48,15 @@ interface ProjectItem {
 interface Paragraph {
   _key: string;
   title?: string;
-  images?: ImageBlock[];
-  texts?: TextBlock[];
-  videos?: VideoBlock[];
+  content?: ParagraphContent[]; // single ordered array of mixed blocks
 }
+
+// Union type for all paragraph content blocks
+type ParagraphContent = ImageBlock | TextBlock | VideoBlock;
 
 interface ImageBlock {
   _key: string;
+  _type: "image";
   title?: string;
   image: ImageAsset;
   description?: string; // HTML
@@ -64,11 +66,14 @@ interface TextBlock {
   _key: string;
   _type: "text" | "textPage";
   title?: string; // only for textPage
-  text: string; // HTML
+  text: string; // plain text
+  navigation: boolean; // only for textPage
+  showTitle: boolean; // only for textPage
 }
 
 interface VideoBlock {
   _key: string;
+  _type: "video";
   title?: string;
   previewImage?: ImageAsset;
   video: string; // URL or vimeo,ID format
