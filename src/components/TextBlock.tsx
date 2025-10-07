@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 function buildParagraph(textBlock: any, projectId: string) {
     switch(textBlock._type){
@@ -6,11 +7,11 @@ function buildParagraph(textBlock: any, projectId: string) {
             return <div className="text" >{textBlock.text} </div>;
         case "textPage":
             return (
-              <a href={`/t/${projectId}/${textBlock._key}`} className="textpage-link">
+              <Link href={`/t/${projectId}/${textBlock._key}`} className="textpage-link">
                 {textBlock.title}
                 <br />
                 {textBlock.text}
-              </a>
+              </Link>
             );
         default:
             return <>unknown text block</>;

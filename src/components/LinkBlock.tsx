@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 
 export default function LinkBlock({ data }: { data: any }) {
 
@@ -18,7 +18,7 @@ export default function LinkBlock({ data }: { data: any }) {
     return (
         <li className="list-item Kontakt" data-visible="true">
             <div className="list-item-header">
-                <a target="_blank" href={getLink()} className="list-item-link"></a>
+                <Link target="_blank" href={getLink()} className="list-item-link"></Link>
                 <div className="list-item-center">
                     {data.title}
                 </div>

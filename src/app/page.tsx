@@ -2,7 +2,7 @@ import {MockProjects} from "@/MockData/fake_data";
 import LinkBlock from "@/components/LinkBlock";
 import ProjectBlock from "@/components/ProjectBlock";
 import SeparatorBlock from "@/components/SeparatorBlock";
-
+import Link from "next/link";
 
 
 function buildBlock(type: string, data: any){
@@ -10,7 +10,7 @@ function buildBlock(type: string, data: any){
     case "link":
       return <LinkBlock key={data._id} data={data} />
     case "project":
-      return <ProjectBlock key={data._id} data={data} />
+      return <ProjectBlock key={data._id} data={data}  />
     case "separator":
       return <SeparatorBlock key={data._id}  />
     default:
@@ -27,11 +27,12 @@ function buildBlockList(Blocks: any){
 }
 
 export default function Home() {
+
   return (
     <div id="container" key={"container"}>
       <header className="clearfix main-header">
         <h1 className="main-title">
-          <a href="/">ALEXANDRA LEYKAUF</a>
+          <Link href="/">ALEXANDRA LEYKAUF</Link>
         </h1>
 
       </header>
@@ -41,13 +42,13 @@ export default function Home() {
         </ul>
       </section>
       <footer >
-        <a
+        <Link
           href="https://www.ourcompany.ch/"
           target="_blank"
           rel="noopener noreferrer"
         >
           Our Company Ltd. / © A.L. 2025
-        </a>
+        </Link>
  
       </footer>
     </div>
