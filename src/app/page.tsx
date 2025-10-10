@@ -3,14 +3,14 @@ import LinkBlock from "@/components/LinkBlock";
 import ProjectBlock from "@/components/ProjectBlock";
 import SeparatorBlock from "@/components/SeparatorBlock";
 import Link from "next/link";
+import {Project, ProjectLink, ProjectItem} from "@/types";
 
-
-function buildBlock(type: string, data: any){
+function buildBlock(type: string, data: Project){
   switch(type){
     case "link":
-      return <LinkBlock key={data._id} data={data} />
+      return <LinkBlock key={data._id} data={data as ProjectLink} />
     case "project":
-      return <ProjectBlock key={data._id} data={data}  />
+      return <ProjectBlock key={data._id} data={data as ProjectItem}  />
     case "separator":
       return <SeparatorBlock key={data._id}  />
     default:
@@ -18,7 +18,7 @@ function buildBlock(type: string, data: any){
   }
 }
 
-function buildBlockList(Blocks: any){
+function buildBlockList(Blocks: Project[]){
   let blockList = []
   for (const block of Blocks) {
     blockList.push(buildBlock(block._type, block))

@@ -1,17 +1,19 @@
 "use client";
 import Link from "next/link";
+import {ProjectLink} from "@/types";
 
-export default function LinkBlock({ data }: { data: any }) {
+export default function LinkBlock({ data }: { data: ProjectLink }) {
 
     function getLink() {
-        if (data.email) {
-            return `mailto:${data.email}`;
-        }
-        if (data.url) {
-            return data.url;
-        }
-        if (data.file) {
-            return data.file.asset._ref;
+        switch (data.linkType) {
+            case "email":
+                return `mailto:${data.email}`;
+            case "url":
+                return data.url || "#";
+            case "file":
+                return data.file?.asset._ref || "#";
+            default:
+                return "#";
         }
     }
 

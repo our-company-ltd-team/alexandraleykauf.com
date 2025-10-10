@@ -3,10 +3,11 @@ import React from "react";
 import TextBlock from "./TextBlock";
 import {usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { ProjectItem, Paragraph, ParagraphContent } from "@/types";
 
-function buildContent(content: any[] = [], projectId: string) {
-  return content.map((contentBlock: any) => {
-    const key = contentBlock._key || contentBlock._id || Math.random();
+function buildContent(content: ParagraphContent[] = [], projectId: string) {
+  return content.map((contentBlock: ParagraphContent) => {
+    const key = contentBlock._key || contentBlock._key || Math.random();
 
     switch (contentBlock._type) {
       case "image":
@@ -37,12 +38,12 @@ function buildContent(content: any[] = [], projectId: string) {
   });
 }
 
-function buildProjectBlockList(paragraphs: any, projectId: string) {
+function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
   if (!paragraphs) return null;
   return (
     <div className="list-item-details">
-      {paragraphs.map((p: any) => (
-        <article key={p._key || p._id} className="paragraph clearfix">
+      {paragraphs.map((p: Paragraph) => (
+        <article key={p._key} className="paragraph clearfix">
           <div className="paragraph-title details-left">{p.title}</div>
           {buildContent(p.content, projectId)}
         </article>
@@ -59,7 +60,28 @@ function parseOpenParam(param: string | null) {
     .filter(Boolean);
 }
 
-export default function ProjectBlock({ data }: { data: any }) {
+function scrollToElementEdge(element: HTMLElement) {
+  const elementRect = element.getBoundingClientRect();
+  const elementTop = elementRect.top + window.scrollY;
+  
+  const viewportHeight = window.innerHeight;
+  const currentScroll = window.scrollY;
+  
+  let targetScroll = elementTop;
+  
+  
+  // Only scroll if target is different from current
+  if (targetScroll !== currentScroll) {
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth'
+    });
+  }
+}
+
+
+
+export default function ProjectBlock({ data }: { data: ProjectItem }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const openParam = searchParams?.get("open") ?? "";
@@ -70,9 +92,20 @@ export default function ProjectBlock({ data }: { data: any }) {
 
   // scroll to the top of this <li> when it becomes open
   const liRef = React.useRef<HTMLLIElement | null>(null);
+
+
+
   React.useEffect(() => {
     if (showParagraphs && liRef.current) {
-      liRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Small delay to ensure content is rendered
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      setTimeout(() => {
+        if (liRef.current) {
+          scrollToElementEdge(liRef.current);
+        }
+      }, 100);
     }
   }, [showParagraphs]);
 
@@ -101,6 +134,7 @@ export default function ProjectBlock({ data }: { data: any }) {
           href={href}
           className="list-item-link to-transform"
           aria-expanded={showParagraphs}
+          scroll={false}
         >
           <span aria-hidden />
         </Link>

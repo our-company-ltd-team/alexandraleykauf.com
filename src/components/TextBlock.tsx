@@ -1,16 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 
+
+
+
+
 function buildParagraph(textBlock: any, projectId: string) {
     switch(textBlock._type){
         case "text":
             return <div className="text" >{textBlock.text} </div>;
         case "textPage":
             return (
-              <Link href={`/t/${projectId}/${textBlock._key}`} className="textpage-link">
+              <Link href={`/t/${projectId}/${textBlock._key}#back=${projectId}`} className="textpage-link">
                 {textBlock.title}
-                <br />
-                {textBlock.text}
               </Link>
             );
         default:
