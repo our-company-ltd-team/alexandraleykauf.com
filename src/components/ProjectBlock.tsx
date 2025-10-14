@@ -7,7 +7,7 @@ import { ProjectItem, Paragraph, ParagraphContent } from "@/types";
 
 function buildContent(content: ParagraphContent[] = [], projectId: string) {
   return content.map((contentBlock: ParagraphContent) => {
-    const key = contentBlock._key || contentBlock._key || Math.random();
+    const key = contentBlock._key || Math.random();
 
     switch (contentBlock._type) {
       case "image":
