@@ -52,9 +52,7 @@ export type ParagraphContent = ImagesBlock | TextBlock | VideoBlock;
 export interface ImagesBlock {
   _key: string;
   _type: "image";
-  title?: string;
-  images: ImageAsset[];
-  description?: string;
+  images: ImageItem[];  // changed from ImageAsset[]
 }
 
 export interface TextBlock {
@@ -69,11 +67,16 @@ export interface TextBlock {
 export interface VideoBlock {
   _key: string;
   _type: "video";
-  title?: string;
-  previewImage?: ImageAsset;
-  video: string;
-  autorotate?: boolean;
-  description?: string;
+  videos: VideoItem[];  // changed from single video to array
+}
+
+export interface VideoItem {
+  _key: string;          
+  title?: string;        
+  description?: string;  
+  previewImage?: ImageAsset;  
+  video: string;         
+  autorotate?: boolean;  
 }
 
 export interface ProjectLink {
@@ -91,6 +94,13 @@ export interface ProjectSeparator {
   _id: string;
   _type: "separator";
   category: string;
+}
+
+export interface ImageItem {
+  _key: string;          
+  asset: ImageAsset;     
+  title?: string;        
+  description?: string;  
 }
 
 export interface ImageAsset {

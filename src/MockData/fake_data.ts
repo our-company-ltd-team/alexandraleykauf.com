@@ -65,19 +65,22 @@ export const MockProjects: Project[] = [
     paragraphs: [
       {
         _key: "para-1",
-        title: "Installation11111111111111111111 View",
+        title: "Installation View",
         content: [
           {
             _key: "img-1",
             _type: "image",
-            title: "Main Gallery",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" }
+                _key: "img-1-0",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" }
+                },
+                title: "Main Gallery",
+                description: "Kunstmuseum Wolfsburg, 2020"
               }
-            ],
-            description: "Kunstmuseum Wolfsburg, 2020"
+            ]
           },
           {
             _key: "text-1",
@@ -92,23 +95,31 @@ export const MockProjects: Project[] = [
             _type: "image",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" }
+                _key: "img-2-0",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" }
+                },
+                description: "Detail view, Wassily K., 2020"
               }
-            ],
-            description: "Detail view, Wassily K., 2020"
+            ]
           },
           {
             _key: "vid-1",
             _type: "video",
-            title: "Process Documentation",
-            previewImage: {
-              _type: "image",
-              asset: { _ref: "/dropbox/2_de_Aubette__cine_dancing___3min___16mm__2009.jpg", _type: "reference" }
-            },
-            video: "vimeo,123456789",
-            autorotate: false,
-            description: "3min, 16mm, 2009"
+            videos: [
+              {
+                _key: "vid-1-0",
+                title: "Process Documentation",
+                description: "3min, 16mm, 2009",
+                previewImage: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/2_de_Aubette__cine_dancing___3min___16mm__2009.jpg", _type: "reference" }
+                },
+                video: "vimeo,123456789",
+                autorotate: false
+              }
+            ]
           },
           {
             _key: "text-2",
@@ -126,22 +137,28 @@ export const MockProjects: Project[] = [
             _type: "image",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+                _key: "img-3-0",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+                },
+                description: "Ferdinand H., 2020"
               }
-            ],
-            description: "Ferdinand H., 2020"
+            ]
           },
           {
             _key: "img-4",
             _type: "image",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
+                _key: "img-4-0",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
+                },
+                description: "Marsden H., 2020"
               }
-            ],
-            description: "Marsden H., 2020"
+            ]
           }
         ]
       }
@@ -165,8 +182,11 @@ export const MockProjects: Project[] = [
             _type: "image",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                _key: "img-5-0",  // added _key
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                }
               }
             ]
           },
@@ -194,12 +214,16 @@ export const MockProjects: Project[] = [
         _key: "para-4",
         content: [
           {
-            _key: "img-5",
+            _key: "img-6",  // changed from img-5 to avoid collision
             _type: "image",
-            images: [{
-              _type: "image",
-              asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }
+            images: [
+              {
+                _key: "img-6-0",  // added _key
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                }
+              }
             ]
           },
           {
@@ -226,12 +250,17 @@ export const MockProjects: Project[] = [
         _key: "para-5",
         content: [
           {
-            _key: "img-5",
+            _key: "img-7",  // changed from img-5 to avoid collision
             _type: "image",
-            images: [{
-              _type: "image",
-              asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }],
+            images: [
+              {
+                _key: "img-7-0",  // added _key
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                }
+              }
+            ]
           },
           {
             _key: "text-5",
@@ -306,12 +335,17 @@ export const MockProjects: Project[] = [
         _key: "para-6",
         content: [
           {
-            _key: "img-6",
+            _key: "img-9",  // changed from img-6 to avoid collision with proj-3
             _type: "image",
-            images: [{
-              _type: "image",
-              asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }]
+            images: [
+              {
+                _key: "img-9-0",  // added _key
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                }
+              }
+            ]
           },
           {
             _key: "text-6",
@@ -341,74 +375,31 @@ export const MockProjects: Project[] = [
             _type: "image",
             images: [
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                _key: "img-8-0",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                },
+                title: "Landscape 1"
               },
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                _key: "img-8-1",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                },
+                title: "Landscape 2"
               },
               {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-                            {
-                _type: "image",
-                asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
-
-              {
-                _type: "image",
-                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-              },
+                _key: "img-8-2",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+                },
+                title: "Ferdinand H.",
+                description: "Detail view"
+              }
+              // ... add more with unique _key and metadata
             ]
           },
           {
