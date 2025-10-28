@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import TextBlock from "./TextBlock";
+import ImageBlock from "./ImageBlock";
 import {usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ProjectItem, Paragraph, ParagraphContent } from "@/types";
@@ -12,9 +13,7 @@ function buildContent(content: ParagraphContent[] = [], projectId: string) {
     switch (contentBlock._type) {
       case "image":
         return (
-          <div key={key} className="paragraph-image details-right">
-            image block
-          </div>
+          <ImageBlock key={key} imageBlock={contentBlock} projectId={projectId} />
         );
 
       case "text":
