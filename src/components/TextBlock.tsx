@@ -1,11 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import type { TextBlock as TextBlockType } from "@/types";
 
 
-
-
-
-function buildParagraph(textBlock: any, projectId: string) {
+function buildParagraph(textBlock: TextBlockType, projectId: string) {
     switch(textBlock._type){
         case "text":
             return <div className="text" >{textBlock.text} </div>;
@@ -20,7 +18,7 @@ function buildParagraph(textBlock: any, projectId: string) {
     }
 }
 
-export default function TextBlock({ textBlock, projectId }: { textBlock: any; projectId: string }) {
+export default function TextBlock({ textBlock, projectId }: { textBlock: TextBlockType; projectId: string }) {
   return (
     <div className="paragraph-texts details-right">
         {buildParagraph(textBlock, projectId)}
