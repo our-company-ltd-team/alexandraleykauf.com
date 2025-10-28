@@ -65,16 +65,18 @@ export const MockProjects: Project[] = [
     paragraphs: [
       {
         _key: "para-1",
-        title: "Installation View",
+        title: "Installation11111111111111111111 View",
         content: [
           {
             _key: "img-1",
             _type: "image",
             title: "Main Gallery",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" }
-            },
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" }
+              }
+            ],
             description: "Kunstmuseum Wolfsburg, 2020"
           },
           {
@@ -88,10 +90,12 @@ export const MockProjects: Project[] = [
           {
             _key: "img-2",
             _type: "image",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" }
-            },
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" }
+              }
+            ],
             description: "Detail view, Wassily K., 2020"
           },
           {
@@ -120,26 +124,30 @@ export const MockProjects: Project[] = [
           {
             _key: "img-3",
             _type: "image",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
-            },
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+              }
+            ],
             description: "Ferdinand H., 2020"
           },
           {
             _key: "img-4",
             _type: "image",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
-            },
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
+              }
+            ],
             description: "Marsden H., 2020"
           }
         ]
       }
     ]
   },
-  
+
   // Another project
   {
     _id: "proj-2",
@@ -155,10 +163,12 @@ export const MockProjects: Project[] = [
           {
             _key: "img-5",
             _type: "image",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              }
+            ]
           },
           {
             _key: "text-3",
@@ -186,10 +196,11 @@ export const MockProjects: Project[] = [
           {
             _key: "img-5",
             _type: "image",
-            image: {
+            images: [{
               _type: "image",
               asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
             }
+            ]
           },
           {
             _key: "text-4",
@@ -217,10 +228,10 @@ export const MockProjects: Project[] = [
           {
             _key: "img-5",
             _type: "image",
-            image: {
+            images: [{
               _type: "image",
               asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }
+            }],
           },
           {
             _key: "text-5",
@@ -235,49 +246,49 @@ export const MockProjects: Project[] = [
     ]
   },
 
-    // Separator
+  // Separator
   {
     _id: "sep-1",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-2",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-3",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-4",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-5",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-6",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-7",
     _type: "separator",
     category: "cat-work"
   },
-    // Separator
+  // Separator
   {
     _id: "sep-8",
     _type: "separator",
@@ -297,10 +308,10 @@ export const MockProjects: Project[] = [
           {
             _key: "img-6",
             _type: "image",
-            image: {
+            images: [{
               _type: "image",
               asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }
+            }]
           },
           {
             _key: "text-6",
@@ -328,10 +339,77 @@ export const MockProjects: Project[] = [
           {
             _key: "img-8",
             _type: "image",
-            image: {
-              _type: "image",
-              asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-            }
+            images: [
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+                            {
+                _type: "image",
+                asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+
+              {
+                _type: "image",
+                asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+              },
+            ]
           },
           {
             _key: "text-8",
@@ -345,7 +423,7 @@ export const MockProjects: Project[] = [
       }
     ]
   },
-  
+
   // Link project (email)
   {
     _id: "link-1",
@@ -355,7 +433,7 @@ export const MockProjects: Project[] = [
     linkType: "email",
     email: "info@alexandraleykauf.com"
   },
-  
+
   // Link project (file)
   {
     _id: "link-2",
@@ -368,7 +446,7 @@ export const MockProjects: Project[] = [
       asset: { _ref: "/assets/cv.pdf", _type: "reference" }
     }
   },
-  
+
   // Link project (URL)
   {
     _id: "link-3",
@@ -378,49 +456,49 @@ export const MockProjects: Project[] = [
     linkType: "url",
     url: "https://instagram.com/alexandraleykauf"
   },
-  
+
   // Separator
   {
     _id: "sep-9",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-91",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-92",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-93",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-94",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-95",
     _type: "separator",
     category: "cat-work"
   },
-  
+
   // Separator
   {
     _id: "sep-96",

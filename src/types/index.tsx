@@ -47,13 +47,13 @@ export interface Paragraph {
   content?: ParagraphContent[];
 }
 
-export type ParagraphContent = ImageBlock | TextBlock | VideoBlock;
+export type ParagraphContent = ImagesBlock | TextBlock | VideoBlock;
 
-export interface ImageBlock {
+export interface ImagesBlock {
   _key: string;
   _type: "image";
   title?: string;
-  image: ImageAsset;
+  images: ImageAsset[];
   description?: string;
 }
 
