@@ -1,12 +1,13 @@
+import { MockProjects } from "@/MockData/fake_data";
 import Link from "next/link";
 
 export default async function ImagePage({
   params,
 
 }: {
-  params: { project: string; image: string };
+  params: { project: string; id: string };
 }) {
-    const { project: projectId, image } = await params;
+    const { project: projectId, id } = await params;
 
 
 
