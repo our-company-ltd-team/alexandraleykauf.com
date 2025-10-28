@@ -41,6 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 
+/public/dropbox/
 
 # Ignore old website folder
 /old_website/
