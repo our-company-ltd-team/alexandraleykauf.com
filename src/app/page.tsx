@@ -29,7 +29,7 @@ function buildBlockList(Blocks: Project[]){
 export default function Home() {
 
   return (
-    <div id="container" key={"container"}>
+    <div id="container">
       <header className="clearfix main-header">
         <h1 className="main-title">
           <Link href="/">ALEXANDRA LEYKAUF</Link>
