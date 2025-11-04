@@ -52,6 +52,8 @@ export type ParagraphContent = ImagesBlock | TextBlock | VideoBlock;
 export interface ImagesBlock {
   _key: string;
   _type: "image";
+  title?: string;
+  description?: string;
   images: ImageItem[];  // changed from ImageAsset[]
 }
 
