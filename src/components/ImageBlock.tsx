@@ -17,7 +17,7 @@ function buildThumbnails(imageBlock: ImageBlockType): Thumbnail[] {
     const altBase = imageBlock.title || imageBlock.description || "";
 
     return imageBlock.images.map((img, idx) => {
-        const ref = img?.asset?._ref ?? "";
+        const ref = img?.asset?.asset._ref ?? "";
         if (!ref) return null;
         const thumbSrc = `${ref}?height=${THUMB_HEIGHT}`;
         return {
@@ -35,7 +35,7 @@ export default function ImageBlock({ imageBlock, projectId }: { imageBlock: Imag
     if (!thumbs.length) return null;
 
     return (
-        <div className="paragraph-images details-right" style={{ display: "flex" , flexWrap: "wrap" , alignItems: "flex-start"}}>
+        <div className="paragraph-images details-right" >
             {thumbs.map((t) => (
                 <Link
                     key={t.id ?? t.src}
