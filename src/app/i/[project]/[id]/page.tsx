@@ -13,7 +13,7 @@ export default async function ImagePage({
 
     const backHref = `/?open=${projectId}`;
     return (
-        <div id="container">
+        <div >
             <article className="detail-page">
                 <header className="clearfix">
                     <h1 className="hidden"></h1>
