@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ProjectItem, Paragraph, ParagraphContent } from "@/types";
 
 function buildContent(content: ParagraphContent[] = [], projectId: string) {
+  if (content.length === 0) return <div className="paragraph-unknown details-right">You need to add content for {projectId} </div>;
   return content.map((contentBlock: ParagraphContent) => {
     const key = contentBlock._key || Math.random();
 
@@ -39,6 +40,7 @@ function buildContent(content: ParagraphContent[] = [], projectId: string) {
 
 function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
   if (!paragraphs) return null;
+
   return (
     <div className="list-item-details">
       {paragraphs.map((p: Paragraph) => (
