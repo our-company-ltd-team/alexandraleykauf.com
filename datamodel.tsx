@@ -1,10 +1,11 @@
-interface FooterLink {
+/* eslint-disable unused-imports/no-unused-vars */
+type FooterLink = {
   text: string;
   url: string;
-}
+};
 
 // General Config (singleton)
-interface GeneralConfig {
+type GeneralConfig = {
   _id: string;
   _type: "generalConfig";
   pageTitle: string;
@@ -20,22 +21,22 @@ interface GeneralConfig {
   activeColor?: string;
   detailsBackgroundColor?: string;
   footer?: FooterLink; // HTML
-}
+};
 
 // Category
-interface Category {
+type Category = {
   _id: string;
   _type: "category";
   title: string;
   showOnStartPage: boolean;
   color?: string; // RGB format
-}
+};
 
 // Projects - 3 types
 type Project = ProjectItem | ProjectLink | ProjectSeparator;
 
 // Project Item (full project with paragraphs)
-interface ProjectItem {
+type ProjectItem = {
   _id: string;
   _type: "project";
   title: string;
@@ -43,35 +44,35 @@ interface ProjectItem {
   category: string; // reference to Category._id
   place?: string;
   paragraphs?: Paragraph[];
-}
+};
 
-interface Paragraph {
+type Paragraph = {
   _key: string;
   title?: string;
   content?: ParagraphContent[]; // single ordered array of mixed blocks
-}
+};
 
 // Union type for all paragraph content blocks
 type ParagraphContent = ImageBlock | TextBlock | VideoBlock;
 
-interface ImageBlock {
+type ImageBlock = {
   _key: string;
   _type: "image";
   title?: string;
   image: ImageAsset;
   description?: string; // HTML
-}
+};
 
-interface TextBlock {
+type TextBlock = {
   _key: string;
   _type: "text" | "textPage";
   title?: string; // only for textPage
   text: string; // plain text
   navigation: boolean; // only for textPage
   showTitle: boolean; // only for textPage
-}
+};
 
-interface VideoBlock {
+type VideoBlock = {
   _key: string;
   _type: "video";
   title?: string;
@@ -79,10 +80,10 @@ interface VideoBlock {
   video: string; // URL or vimeo,ID format
   autorotate?: boolean;
   description?: string; // HTML
-}
+};
 
 // Project Link
-interface ProjectLink {
+type ProjectLink = {
   _id: string;
   _type: "link";
   title: string;
@@ -91,28 +92,28 @@ interface ProjectLink {
   url?: string;
   email?: string;
   file?: FileAsset;
-}
+};
 
 // Project Separator
-interface ProjectSeparator {
+type ProjectSeparator = {
   _id: string;
   _type: "separator";
   category: string; // reference to Category._id
-}
+};
 
 // Shared types
-interface ImageAsset {
+type ImageAsset = {
   _type: "image";
   asset: {
     _ref: string;
     _type: "reference";
   };
-}
+};
 
-interface FileAsset {
+type FileAsset = {
   _type: "file";
   asset: {
     _ref: string;
     _type: "reference";
   };
-}
+};

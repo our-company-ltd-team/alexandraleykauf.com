@@ -1,9 +1,9 @@
-export interface FooterLink {
+export type FooterLink = {
   text: string;
   url: string;
-}
+};
 
-export interface GeneralConfig {
+export type GeneralConfig = {
   _id: string;
   _type: "generalConfig";
   pageTitle: string;
@@ -19,19 +19,19 @@ export interface GeneralConfig {
   activeColor?: string;
   detailsBackgroundColor?: string;
   footer?: FooterLink;
-}
+};
 
-export interface Category {
+export type Category = {
   _id: string;
   _type: "category";
   title: string;
   showOnStartPage: boolean;
   color?: string;
-}
+};
 
 export type Project = ProjectItem | ProjectLink | ProjectSeparator;
 
-export interface ProjectItem {
+export type ProjectItem = {
   _id: string;
   _type: "project";
   title: string;
@@ -39,49 +39,49 @@ export interface ProjectItem {
   category: string;
   place?: string;
   paragraphs?: Paragraph[];
-}
+};
 
-export interface Paragraph {
+export type Paragraph = {
   _key: string;
   title?: string;
   content?: ParagraphContent[];
-}
+};
 
 export type ParagraphContent = ImagesBlock | TextBlock | VideoBlock;
 
-export interface ImagesBlock {
+export type ImagesBlock = {
   _key: string;
   _type: "image";
   title?: string;
   description?: string;
-  images: ImageItem[];  // changed from ImageAsset[]
-}
+  images: ImageItem[]; // changed from ImageAsset[]
+};
 
-export interface TextBlock {
+export type TextBlock = {
   _key: string;
   _type: "text" | "textPage";
   title?: string;
   text: string;
   navigation?: boolean;
   showTitle?: boolean;
-}
+};
 
-export interface VideoBlock {
+export type VideoBlock = {
   _key: string;
   _type: "video";
-  videos: VideoItem[];  // changed from single video to array
-}
+  videos: VideoItem[]; // changed from single video to array
+};
 
-export interface VideoItem {
-  _key: string;          
-  title?: string;        
-  description?: string;  
-  previewImage?: ImageAsset;  
-  video: string;         
-  autorotate?: boolean;  
-}
+export type VideoItem = {
+  _key: string;
+  title?: string;
+  description?: string;
+  previewImage?: ImageAsset;
+  video: string;
+  autorotate?: boolean;
+};
 
-export interface ProjectLink {
+export type ProjectLink = {
   _id: string;
   _type: "link";
   title: string;
@@ -90,33 +90,33 @@ export interface ProjectLink {
   url?: string;
   email?: string;
   file?: FileAsset;
-}
+};
 
-export interface ProjectSeparator {
+export type ProjectSeparator = {
   _id: string;
   _type: "separator";
   category: string;
-}
+};
 
-export interface ImageItem {
-  _key: string;          
-  asset: ImageAsset;     
-  title?: string;        
-  description?: string;  
-}
+export type ImageItem = {
+  _key: string;
+  asset: ImageAsset;
+  title?: string;
+  description?: string;
+};
 
-export interface ImageAsset {
+export type ImageAsset = {
   _type: "image";
   asset: {
     _ref: string;
     _type: "reference";
   };
-}
+};
 
-export interface FileAsset {
+export type FileAsset = {
   _type: "file";
   asset: {
     _ref: string;
     _type: "reference";
   };
-}
+};
