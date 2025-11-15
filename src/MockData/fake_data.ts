@@ -143,6 +143,14 @@ export const MockProjects: Project[] = [
                   asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
                 },
                 description: "Ferdinand H., 2020"
+              },
+              {
+                _key: "img-4--1",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
+                },
+                description: "Marsden H., 2020"
               }
             ]
           },
