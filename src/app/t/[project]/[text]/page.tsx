@@ -28,7 +28,7 @@ export default async function TextPage({
 
 
   return (
-    <div id="container">
+    <div >
       <article className="detail-page">
         <header className="clearfix main-header">
           {textBlock.title && <h2 className="hidden">{textBlock.title}</h2>}

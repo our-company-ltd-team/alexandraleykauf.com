@@ -131,7 +131,7 @@ export const MockProjects: Project[] = [
       {
         _key: "para-2",
         title: "Details",
-        content: [
+        content: []/*[
           {
             _key: "img-3",
             _type: "image",
@@ -160,7 +160,7 @@ export const MockProjects: Project[] = [
               }
             ]
           }
-        ]
+        ]*/
       }
     ]
   },
