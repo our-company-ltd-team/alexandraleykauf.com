@@ -8,8 +8,11 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
+    "typecheck": "tsc --noEmit",
+    "pre-commit": "lint-staged && pnpm run typecheck",
     "build:legacy-css": "lessc ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map",
-    "watch:legacy-css": "lessc --watch ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map"
+    "watch:legacy-css": "lessc --watch ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "16.0.3",
@@ -30,13 +33,18 @@
     "eslint-config-next": "16.0.3",
     "eslint-plugin-format": "^1.0.2",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "husky": "^9.1.7",
     "less": "^4.4.1",
     "less-plugin-clean-css": "^1.6.0",
+    "lint-staged": "^16.2.6",
     "sass": "^1.93.2",
     "typescript": "^5"
   },
   "overrides": {
     "@types/react": "19.2.5",
     "@types/react-dom": "19.2.3"
+  },
+  "lint-staged": {
+    "*": "pnpm lint:fix"
   }
 }
