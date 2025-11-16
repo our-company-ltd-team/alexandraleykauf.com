@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
 import "./globals.scss";
 import "../styles/legacy.clean.css";
-import {MockGeneralConfig} from "../MockData/fake_data"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import { MockGeneralConfig } from "@/MockData/fake-data";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
+
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className=" js no-flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
       <head>
-        <link rel="icon" href={smallPageIcon.asset._ref} sizes="any" />
+        <link rel="icon" href={smallPageIcon?.asset._ref} sizes="any" />
         <style
           precedence="default"
           href="theme-colors"
@@ -38,14 +39,16 @@ export default function RootLayout({
               --hover-color: ${MockGeneralConfig.hoverColor};
               --active-color: ${MockGeneralConfig.activeColor};
               --details-background-color: ${MockGeneralConfig.detailsBackgroundColor};
-            }`
+            }`,
           }}
         />
       </head>
       <body
         id="body"
       >
-        {children}
+        <div id="container">
+          {children}
+        </div>
       </body>
     </html>
   );

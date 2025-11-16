@@ -1,4 +1,4 @@
-import { Project, GeneralConfig, Category } from "@/types";
+import type { Category, GeneralConfig, Project } from "@/types";
 
 export const MockGeneralConfig: GeneralConfig = {
   _id: "general-config",
@@ -10,23 +10,23 @@ export const MockGeneralConfig: GeneralConfig = {
   language: "en",
   smallPageIcon: {
     _type: "image",
-    asset: { _ref: "/favicon.ico", _type: "reference" }
+    asset: { _ref: "/favicon.ico", _type: "reference" },
   },
   bigPageIcon: {
     _type: "image",
-    asset: { _ref: "/favicon-big.png", _type: "reference" }
+    asset: { _ref: "/favicon-big.png", _type: "reference" },
   },
   appleIcon: {
     _type: "image",
-    asset: { _ref: "/apple-touch-icon.png", _type: "reference" }
+    asset: { _ref: "/apple-touch-icon.png", _type: "reference" },
   },
   hoverColor: "rgb(221,199,205)",
   activeColor: "rgb(198,212,219)",
   detailsBackgroundColor: "rgb(241,245,247)",
   footer: {
     text: "Imprint",
-    url: "/imprint"
-  }
+    url: "/imprint",
+  },
 };
 
 export const MockCategories: Category[] = [
@@ -35,22 +35,22 @@ export const MockCategories: Category[] = [
     _type: "category",
     title: "Work",
     showOnStartPage: true,
-    color: "rgb(207,221,238)"
+    color: "rgb(207,221,238)",
   },
   {
     _id: "cat-cv",
     _type: "category",
     title: "CV",
     showOnStartPage: false,
-    color: "rgb(221,199,205)"
+    color: "rgb(221,199,205)",
   },
   {
     _id: "cat-contact",
     _type: "category",
     title: "Contact",
     showOnStartPage: false,
-    color: "rgb(198,212,219)"
-  }
+    color: "rgb(198,212,219)",
+  },
 ];
 
 export const MockProjects: Project[] = [
@@ -75,12 +75,12 @@ export const MockProjects: Project[] = [
                 _key: "img-1-0",
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/2_KM_Leykauf_I_ve_looked_at_clouds_2020_installation_view_Web.jpg", _type: "reference" },
                 },
                 title: "Main Gallery",
-                description: "Kunstmuseum Wolfsburg, 2020"
-              }
-            ]
+                description: "Kunstmuseum Wolfsburg, 2020",
+              },
+            ],
           },
           {
             _key: "text-1",
@@ -88,7 +88,7 @@ export const MockProjects: Project[] = [
             title: "About the Work",
             text: "This installation explores the ephemeral nature of clouds and their representation in art history.",
             navigation: true,
-            showTitle: true
+            showTitle: true,
           },
           {
             _key: "img-2",
@@ -98,11 +98,11 @@ export const MockProjects: Project[] = [
                 _key: "img-2-0",
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/11_KM_Leykauf_Wassily_K__2020_Web.jpg", _type: "reference" },
                 },
-                description: "Detail view, Wassily K., 2020"
-              }
-            ]
+                description: "Detail view, Wassily K., 2020",
+              },
+            ],
           },
           {
             _key: "vid-1",
@@ -114,24 +114,24 @@ export const MockProjects: Project[] = [
                 description: "3min, 16mm, 2009",
                 previewImage: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/2_de_Aubette__cine_dancing___3min___16mm__2009.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/2_de_Aubette__cine_dancing___3min___16mm__2009.jpg", _type: "reference" },
                 },
                 video: "vimeo,123456789",
-                autorotate: false
-              }
-            ]
+                autorotate: false,
+              },
+            ],
           },
           {
             _key: "text-2",
             _type: "text",
-            text: "Additional context about the work and its relationship to landscape painting."
-          }
-        ]
+            text: "Additional context about the work and its relationship to landscape painting.",
+          },
+        ],
       },
       {
         _key: "para-2",
         title: "Details",
-        content: [
+        content: [], /* [
           {
             _key: "img-3",
             _type: "image",
@@ -143,6 +143,14 @@ export const MockProjects: Project[] = [
                   asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
                 },
                 description: "Ferdinand H., 2020"
+              },
+              {
+                _key: "img-4--1",
+                asset: {
+                  _type: "image",
+                  asset: { _ref: "/dropbox/21_KM_Leykauf_Marsden_H__2020_Web.jpg", _type: "reference" }
+                },
+                description: "Marsden H., 2020"
               }
             ]
           },
@@ -160,9 +168,9 @@ export const MockProjects: Project[] = [
               }
             ]
           }
-        ]
-      }
-    ]
+        ] */
+      },
+    ],
   },
 
   // Another project
@@ -182,13 +190,13 @@ export const MockProjects: Project[] = [
             _type: "image",
             images: [
               {
-                _key: "img-5-0",  // added _key
+                _key: "img-5-0", // added _key
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-                }
-              }
-            ]
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
+                },
+              },
+            ],
           },
           {
             _key: "text-3",
@@ -196,11 +204,11 @@ export const MockProjects: Project[] = [
             title: "About the Series",
             text: "A series exploring urban and natural landscapes through photographic intervention.",
             navigation: true,
-            showTitle: true
-          }
-        ]
-      }
-    ]
+            showTitle: true,
+          },
+        ],
+      },
+    ],
   },
   {
     _id: "proj-3",
@@ -214,17 +222,17 @@ export const MockProjects: Project[] = [
         _key: "para-4",
         content: [
           {
-            _key: "img-6",  // changed from img-5 to avoid collision
+            _key: "img-6", // changed from img-5 to avoid collision
             _type: "image",
             images: [
               {
-                _key: "img-6-0",  // added _key
+                _key: "img-6-0", // added _key
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-                }
-              }
-            ]
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
+                },
+              },
+            ],
           },
           {
             _key: "text-4",
@@ -232,11 +240,11 @@ export const MockProjects: Project[] = [
             title: "About the Series",
             text: "A series exploring urban and natural landscapes through photographic intervention.",
             navigation: true,
-            showTitle: true
-          }
-        ]
-      }
-    ]
+            showTitle: true,
+          },
+        ],
+      },
+    ],
   },
   {
     _id: "proj-4",
@@ -250,17 +258,17 @@ export const MockProjects: Project[] = [
         _key: "para-5",
         content: [
           {
-            _key: "img-7",  // changed from img-5 to avoid collision
+            _key: "img-7", // changed from img-5 to avoid collision
             _type: "image",
             images: [
               {
-                _key: "img-7-0",  // added _key
+                _key: "img-7-0", // added _key
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-                }
-              }
-            ]
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
+                },
+              },
+            ],
           },
           {
             _key: "text-5",
@@ -268,60 +276,60 @@ export const MockProjects: Project[] = [
             title: "About the Series",
             text: "A series exploring urban and natural landscapes through photographic intervention.",
             navigation: true,
-            showTitle: true
-          }
-        ]
-      }
-    ]
+            showTitle: true,
+          },
+        ],
+      },
+    ],
   },
 
   // Separator
   {
     _id: "sep-1",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-2",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-3",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-4",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-5",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-6",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-7",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   // Separator
   {
     _id: "sep-8",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "proj-5",
@@ -335,17 +343,17 @@ export const MockProjects: Project[] = [
         _key: "para-6",
         content: [
           {
-            _key: "img-9",  // changed from img-6 to avoid collision with proj-3
+            _key: "img-9", // changed from img-6 to avoid collision with proj-3
             _type: "image",
             images: [
               {
-                _key: "img-9-0",  // added _key
+                _key: "img-9-0", // added _key
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
-                }
-              }
-            ]
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
+                },
+              },
+            ],
           },
           {
             _key: "text-6",
@@ -353,11 +361,11 @@ export const MockProjects: Project[] = [
             title: "About the Series",
             text: "A series exploring urban and natural landscapes through photographic intervention.",
             navigation: true,
-            showTitle: true
-          }
-        ]
-      }
-    ]
+            showTitle: true,
+          },
+        ],
+      },
+    ],
   },
   {
     _id: "proj-7",
@@ -378,29 +386,29 @@ export const MockProjects: Project[] = [
                 _key: "img-8-0",
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
                 },
-                title: "Landscape 1"
+                title: "Landscape 1",
               },
               {
                 _key: "img-8-1",
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/12_landscapes.jpg", _type: "reference" },
                 },
-                title: "Landscape 2"
+                title: "Landscape 2",
               },
               {
                 _key: "img-8-2",
                 asset: {
                   _type: "image",
-                  asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" }
+                  asset: { _ref: "/dropbox/14_KM_Leykauf_Ferdinand_H__2020_Web.jpg", _type: "reference" },
                 },
                 title: "Ferdinand H.",
-                description: "Detail view"
-              }
+                description: "Detail view",
+              },
               // ... add more with unique _key and metadata
-            ]
+            ],
           },
           {
             _key: "text-8",
@@ -408,11 +416,11 @@ export const MockProjects: Project[] = [
             title: "About the Series",
             text: "A series exploring urban and natural landscapes through photographic intervention.",
             navigation: true,
-            showTitle: true
-          }
-        ]
-      }
-    ]
+            showTitle: true,
+          },
+        ],
+      },
+    ],
   },
 
   // Link project (email)
@@ -422,7 +430,7 @@ export const MockProjects: Project[] = [
     title: "Contact",
     category: "cat-contact",
     linkType: "email",
-    email: "info@alexandraleykauf.com"
+    email: "info@alexandraleykauf.com",
   },
 
   // Link project (file)
@@ -434,8 +442,8 @@ export const MockProjects: Project[] = [
     linkType: "file",
     file: {
       _type: "file",
-      asset: { _ref: "/assets/cv.pdf", _type: "reference" }
-    }
+      asset: { _ref: "/assets/cv.pdf", _type: "reference" },
+    },
   },
 
   // Link project (URL)
@@ -445,160 +453,160 @@ export const MockProjects: Project[] = [
     title: "Instagram",
     category: "cat-contact",
     linkType: "url",
-    url: "https://instagram.com/alexandraleykauf"
+    url: "https://instagram.com/alexandraleykauf",
   },
 
   // Separator
   {
     _id: "sep-9",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-91",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-92",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-93",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-94",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-95",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 
   // Separator
   {
     _id: "sep-96",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-97",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-98",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-99",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-80",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-296",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-396",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-496",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-596",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-696",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-796",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-896",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-996",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-1196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-2196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-3196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-4196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-5196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-6196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-7196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
   {
     _id: "sep-8196",
     _type: "separator",
-    category: "cat-work"
+    category: "cat-work",
   },
 ];

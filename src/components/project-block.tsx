@@ -1,12 +1,22 @@
 "use client";
-import React from "react";
-import TextBlock from "./TextBlock";
-import ImageBlock from "./ImageBlock";
-import {usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { ProjectItem, Paragraph, ParagraphContent } from "@/types";
+import { usePathname, useSearchParams } from "next/navigation";
+import React, { useEffect } from "react";
+
+import type { Paragraph, ParagraphContent, ProjectItem } from "@/types";
+
+import ImageBlock from "./image-block";
+import TextBlock from "./text-block";
 
 function buildContent(content: ParagraphContent[] = [], projectId: string) {
+  if (content.length === 0) {
+    return (
+      <div className="paragraph-unknown details-right">
+        You need to add content for
+        {projectId}
+      </div>
+    );
+  }
   return content.map((contentBlock: ParagraphContent) => {
     const key = contentBlock._key || Math.random();
 
@@ -38,7 +48,9 @@ function buildContent(content: ParagraphContent[] = [], projectId: string) {
 }
 
 function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
-  if (!paragraphs) return null;
+  if (!paragraphs)
+    return null;
+
   return (
     <div className="list-item-details">
       {paragraphs.map((p: Paragraph) => (
@@ -52,33 +64,31 @@ function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: s
 }
 
 function parseOpenParam(param: string | null) {
-  if (!param) return [];
+  if (!param)
+    return [];
   return String(param)
     .split(",")
-    .map((s) => s.trim())
+    .map(s => s.trim())
     .filter(Boolean);
 }
 
 function scrollToElementEdge(element: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const elementTop = elementRect.top + window.scrollY;
-  
-  const viewportHeight = window.innerHeight;
+
+  // const viewportHeight = window.innerHeight;
   const currentScroll = window.scrollY;
-  
-  let targetScroll = elementTop;
-  
-  
+
+  const targetScroll = elementTop;
+
   // Only scroll if target is different from current
   if (targetScroll !== currentScroll) {
     window.scrollTo({
       top: targetScroll,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 }
-
-
 
 export default function ProjectBlock({ data }: { data: ProjectItem }) {
   const pathname = usePathname();
@@ -92,19 +102,18 @@ export default function ProjectBlock({ data }: { data: ProjectItem }) {
   // scroll to the top of this <li> when it becomes open
   const liRef = React.useRef<HTMLLIElement | null>(null);
 
-
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (showParagraphs && liRef.current) {
       // Small delay to ensure content is rendered
-      if ('scrollRestoration' in window.history) {
-        window.history.scrollRestoration = 'manual';
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
       }
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         if (liRef.current) {
           scrollToElementEdge(liRef.current);
         }
       }, 100);
+      return () => clearTimeout(timeout);
     }
   }, [showParagraphs]);
 
@@ -114,10 +123,12 @@ export default function ProjectBlock({ data }: { data: ProjectItem }) {
     const current = parseOpenParam(params.get("open"));
     const idx = current.indexOf(data._id);
     const newList = [...current];
-    if (idx === -1) newList.push(data._id);
+    if (idx === -1)
+      newList.push(data._id);
     else newList.splice(idx, 1);
 
-    if (newList.length) params.set("open", newList.join(","));
+    if (newList.length)
+      params.set("open", newList.join(","));
     else params.delete("open");
 
     const q = params.toString();
