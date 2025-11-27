@@ -1,0 +1,43 @@
+{
+  // Inherit all base TypeScript settings from root
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // Enable incremental compilation for faster rebuilds (Next.js optimization)
+    "incremental": true,
+    // Keep JSX as-is, let Next.js transform it (enables React Fast Refresh)
+    "jsx": "preserve",
+    // Browser-specific type definitions (DOM APIs + latest ESNext features)
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // Base directory for resolving non-relative module imports (enables path aliases)
+    "baseUrl": ".",
+    // Use latest ESNext module syntax (import/export)
+    "module": "ESNext",
+    // Bundler-aware module resolution (optimized for webpack/turbopack)
+    "moduleResolution": "Bundler",
+    // Path aliases for cleaner imports (e.g., import "@/components/Button" instead of "../../components/Button")
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/types/*": ["./src/types/*"]
+    },
+    // Allow JavaScript files to be imported and type-checked (Next.js requirement for .js config files)
+    "allowJs": true,
+    // Override root: Next.js handles compilation, TypeScript only does type checking
+    "noEmit": true,
+    // Next.js TypeScript plugin (provides enhanced type checking for Next.js features)
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "next.config.js",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

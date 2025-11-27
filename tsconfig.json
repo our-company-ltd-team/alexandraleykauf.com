@@ -1,45 +1,35 @@
 {
+  // Provides IDE autocomplete for tsconfig properties
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "incremental": true,
-    "target": "ES2017",
-    "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "baseUrl": ".",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/types/*": [
-        "./src/types/*"
-      ]
-    },
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "strict": true,
-    "noEmit": true,
+    // Generate .d.ts declaration files for type checking across packages
+    "declaration": true,
+    // Generate sourcemap files for .d.ts files (helps with go-to-definition in monorepos)
+    "declarationMap": true,
+    // Allows default imports from CommonJS modules (import React from 'react' instead of import * as React)
     "esModuleInterop": true,
+    // Disable incremental compilation (each package controls its own incremental builds)
+    "incremental": false,
+    // Ensures each file can be transpiled independently (required for fast transpilers like esbuild, swc)
     "isolatedModules": true,
+    // Type definitions to include (ES2022 features + DOM APIs for browser compatibility)
+    "lib": ["es2022", "DOM", "DOM.Iterable"],
+    // Use Node.js native ESM resolution (supports package.json "exports" field)
+    "module": "NodeNext",
+    // Treat all files as modules even without import/export (prevents global scope pollution)
+    "moduleDetection": "force",
+    // How TypeScript resolves module imports (NodeNext = modern Node.js resolution with ESM support)
+    "moduleResolution": "NodeNext",
+    // Don't emit compiled JavaScript files (each package/bundler handles compilation)
+    "noEmit": true,
+    // Allow importing .json files as modules
+    "resolveJsonModule": true,
+    // Skip type checking of external .d.ts files (faster compilation, assumes dependencies are correct)
     "skipLibCheck": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    // Enable all strict type checking options (noImplicitAny, strictNullChecks, etc.)
+    "strict": true,
+    // Compile to ES2022 JavaScript (modern features like top-level await, class fields)
+    "target": "ES2022"
+  }
 }
+

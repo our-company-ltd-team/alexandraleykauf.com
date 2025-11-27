@@ -15,11 +15,11 @@ package-lock.json
 /coverage
 
 # next.js
-**/.next/
-**/out/
+/.next/
+/out/
 
 # production
-**/build
+/build
 
 # misc
 .DS_Store
@@ -34,12 +34,15 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# vercel
+.vercel
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
-.turbo
 
-# old website
-info.xml
-schema.xml
+/public/dropbox/
+
+# Ignore old website folder
+/old_website/
