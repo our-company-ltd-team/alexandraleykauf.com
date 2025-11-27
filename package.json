@@ -1,31 +1,37 @@
 {
-  "name": "alexandra-leykauf-clone",
-  "version": "0.1.0",
   "private": true,
+  "name": "alexandraleykauf.com",
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
-    "start": "next start",
-    "lint": "eslint",
-    "build:legacy-css": "lessc ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map",
-    "watch:legacy-css": "lessc --watch ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "lint:fix": "turbo lint:fix",
+    "typecheck": "turbo typecheck",
+    "pre-commit": "lint-staged && turbo typecheck",
+    "prepare": "husky",
+    "migrate:generate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:generate",
+    "migrate:run": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:run",
+    "migrate:one-off": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:one-off",
+    "migrate:status": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:status",
+    "migrate:validate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:validate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.1",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "turbo": "^2.6.1"
   },
   "dependencies": {
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "@antfu/eslint-config": "^6.2.0"
   },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.4",
-    "less": "^4.4.1",
-    "less-plugin-clean-css": "^1.6.0",
-    "sass": "^1.93.2",
-    "typescript": "^5"
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }
