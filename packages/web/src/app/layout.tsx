@@ -28,7 +28,7 @@ export default function RootLayout({
   const smallPageIcon = MockGeneralConfig.smallPageIcon;
 
   return (
-    <html lang="en" className=" js no-flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+    <html lang="en">
       <head>
         <link rel="icon" href={smallPageIcon?.asset._ref} sizes="any" />
         <style

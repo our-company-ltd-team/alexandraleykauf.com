@@ -1,0 +1,34 @@
+{
+  "name": "@alexandraleykauf/contentful-migrations",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "migrate": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "migrate:generate": "tsx src/cli.ts generate",
+    "migrate:run": "tsx src/cli.ts run",
+    "migrate:one-off": "tsx src/cli.ts one-off",
+    "migrate:status": "tsx src/cli.ts status",
+    "migrate:validate": "tsx src/cli.ts validate"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "contentful-management": "^11.47.2",
+    "contentful-migration": "^4.28.3",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "eslint": "^9",
+    "tsx": "^4.19.4",
+    "typescript": "^5"
+  }
+}
