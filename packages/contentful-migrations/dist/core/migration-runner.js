@@ -1,9 +1,9 @@
-import { spawn } from "node:child_process";
+import { runMigration } from "contentful-migration";
 import { logger } from "../utils/logger.js";
 import { ContentfulClient } from "./contentful-client.js";
 import { MigrationTracker } from "./migration-tracker.js";
 /**
- * Runs migrations using the contentful-migration CLI
+ * Runs migrations using the contentful-migration API
  */
 export class MigrationRunner {
     config;
@@ -26,7 +26,7 @@ export class MigrationRunner {
     async runMigration(migration) {
         const startTime = Date.now();
         // Check if already applied
-        const isApplied = await this.tracker.isApplied(migration.name, migration.type);
+        const isApplied = await this.tracker.isApplied(migration.name);
         if (isApplied) {
             return {
                 success: false,
@@ -37,10 +37,10 @@ export class MigrationRunner {
         }
         logger.migration(migration.name, "running");
         try {
-            // Run the migration using contentful-migration CLI via tsx
+            // Run the migration using contentful-migration API
             await this.executeMigration(migration.path);
             // Record the migration as applied
-            await this.tracker.recordMigration(migration.name, migration.type);
+            await this.tracker.recordMigration(migration.name);
             logger.migration(migration.name, "applied");
             return {
                 success: true,
@@ -59,51 +59,16 @@ export class MigrationRunner {
         }
     }
     /**
-     * Execute a migration file using contentful-migration CLI
+     * Execute a migration file using contentful-migration API
      */
-    executeMigration(filePath) {
-        return new Promise((resolve, reject) => {
-            // Use npx to run contentful-migration with tsx for TypeScript support
-            const args = [
-                "contentful-migration",
-                "--space-id",
-                this.config.spaceId,
-                "--access-token",
-                this.config.managementToken,
-                "--environment-id",
-                this.config.environment,
-                "--yes", // Skip confirmation prompts
-                filePath,
-            ];
-            const child = spawn("npx", args, {
-                stdio: ["inherit", "pipe", "pipe"],
-                shell: true,
-                env: {
-                    // eslint-disable-next-line node/no-process-env
-                    ...process.env,
-                    // Enable tsx for TypeScript migration files
-                    NODE_OPTIONS: "--import tsx",
-                },
-            });
-            let stdout = "";
-            let stderr = "";
-            child.stdout?.on("data", (data) => {
-                stdout += data.toString();
-            });
-            child.stderr?.on("data", (data) => {
-                stderr += data.toString();
-            });
-            child.on("close", (code) => {
-                if (code === 0) {
-                    resolve();
-                }
-                else {
-                    reject(new Error(stderr || stdout || `Migration failed with exit code ${code}`));
-                }
-            });
-            child.on("error", (error) => {
-                reject(error);
-            });
+    async executeMigration(filePath) {
+        const { default: migrationFunction } = await import(filePath);
+        await runMigration({
+            spaceId: this.config.spaceId,
+            accessToken: this.config.managementToken,
+            environmentId: this.config.environment,
+            yes: true,
+            migrationFunction,
         });
     }
 }

@@ -30,6 +30,14 @@ export declare class ContentfulClient {
      */
     createEntry(contentTypeId: string, fields: Record<string, unknown>): Promise<contentful.Entry>;
     /**
+     * Get a single entry by ID
+     */
+    getEntry(entryId: string): Promise<contentful.Entry>;
+    /**
+     * Create an entry with a specific ID
+     */
+    createEntryWithId(contentTypeId: string, entryId: string, fields: Record<string, unknown>): Promise<contentful.Entry>;
+    /**
      * Get the current environment name
      */
     getEnvironmentName(): string;

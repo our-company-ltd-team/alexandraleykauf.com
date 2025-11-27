@@ -1,30 +1,32 @@
-import type { AppliedMigration, MigrationType } from "../types/index.js";
 import type { ContentfulClient } from "./contentful-client.js";
 /**
- * Tracks applied migrations in Contentful
+ * Tracks applied migrations in Contentful.
+ *
+ * Assumes the `contentModelVersion` content type already exists.
+ * Run `0001-init-content-model-version` migration first on new environments.
  */
 export declare class MigrationTracker {
     private client;
     constructor(client: ContentfulClient);
     /**
-     * Ensure the MigrationHistory content type exists
+     * Ensure the content type and version entry exist
      */
     ensureContentTypeExists(): Promise<void>;
     /**
-     * Create the MigrationHistory content type
+     * Get the version entry, or null if it doesn't exist
      */
-    private createMigrationHistoryContentType;
+    private getVersionEntry;
     /**
-     * Get all applied migrations
+     * Get all applied migration names
      */
-    getAppliedMigrations(type?: MigrationType): Promise<AppliedMigration[]>;
+    getAppliedMigrations(): Promise<string[]>;
     /**
      * Check if a migration has been applied
      */
-    isApplied(migrationName: string, type: MigrationType): Promise<boolean>;
+    isApplied(migrationName: string): Promise<boolean>;
     /**
      * Record a migration as applied
      */
-    recordMigration(migrationName: string, type: MigrationType): Promise<void>;
+    recordMigration(migrationName: string): Promise<void>;
 }
 //# sourceMappingURL=migration-tracker.d.ts.map

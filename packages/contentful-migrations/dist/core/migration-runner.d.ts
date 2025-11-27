@@ -1,7 +1,7 @@
 import type { MigrationConfig, MigrationFile, MigrationResult } from "../types/index.js";
 import { MigrationTracker } from "./migration-tracker.js";
 /**
- * Runs migrations using the contentful-migration CLI
+ * Runs migrations using the contentful-migration API
  */
 export declare class MigrationRunner {
     private config;
@@ -17,7 +17,7 @@ export declare class MigrationRunner {
      */
     runMigration(migration: MigrationFile): Promise<MigrationResult>;
     /**
-     * Execute a migration file using contentful-migration CLI
+     * Execute a migration file using contentful-migration API
      */
     private executeMigration;
 }

@@ -15,10 +15,21 @@ export async function status() {
     logger.header("Migration Status");
     logger.info(`Environment: ${config.environment}`);
     logger.newline();
+    // Get applied migrations from tracker
+    const appliedMigrations = await tracker.getAppliedMigrations();
+    const appliedSet = new Set(appliedMigrations);
     // Get regular migrations status
-    const regularStatus = await getMigrationStatus(config.migrationsDir, "regular", tracker);
+    const regularFiles = await getMigrationFiles(config.migrationsDir, "regular");
+    const regularStatus = regularFiles.map(file => ({
+        name: file.name,
+        applied: appliedSet.has(file.name),
+    }));
     // Get one-off migrations status
-    const oneOffStatus = await getMigrationStatus(config.oneOffsDir, "once", tracker);
+    const oneOffFiles = await getMigrationFiles(config.oneOffsDir, "once");
+    const oneOffStatus = oneOffFiles.map(file => ({
+        name: file.name,
+        applied: appliedSet.has(file.name),
+    }));
     // Display regular migrations
     logger.header("Regular Migrations");
     if (regularStatus.length === 0) {
@@ -50,35 +61,15 @@ export async function status() {
     }
 }
 /**
- * Get migration status by comparing files on disk with applied migrations
- */
-async function getMigrationStatus(directory, type, tracker) {
-    const files = await getMigrationFiles(directory, type);
-    const applied = await tracker.getAppliedMigrations(type);
-    const appliedMap = new Map(applied.map(m => [m.migrationName, m]));
-    return files.map((file) => {
-        const appliedMigration = appliedMap.get(file.name);
-        return {
-            name: file.name,
-            type,
-            applied: !!appliedMigration,
-            appliedAt: appliedMigration?.appliedAt,
-        };
-    });
-}
-/**
  * Display migration status as a table
  */
 function displayMigrationTable(migrations) {
-    const headers = ["Status", "Name", "Applied At"];
+    const headers = ["Status", "Name"];
     const rows = migrations.map((m) => {
         const status = m.applied
             ? chalk.green("✓ Applied")
             : chalk.yellow("○ Pending");
-        const appliedAt = m.appliedAt
-            ? new Date(m.appliedAt).toLocaleString()
-            : "-";
-        return [status, m.name, appliedAt];
+        return [status, m.name];
     });
     logger.table(headers, rows);
 }

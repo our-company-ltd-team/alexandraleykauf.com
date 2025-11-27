@@ -5,6 +5,19 @@ import path from "node:path";
  */
 const MIGRATION_PATTERN = /^(\d{4})-(.+)\.ts$/;
 /**
+ * Format a date as "YYYY-MM-DD HH:mm"
+ */
+function formatDate(date) {
+    return new Intl.DateTimeFormat("sv-SE", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+    }).format(date);
+}
+/**
  * Get all migration files from a directory
  */
 export async function getMigrationFiles(directory, type) {
@@ -61,7 +74,7 @@ export async function createMigrationFile(directory, name, template) {
     // Replace template placeholders
     const content = template
         .replace(/\{\{MIGRATION_NAME\}\}/g, `${formatMigrationNumber(number)}-${name}`)
-        .replace(/\{\{DATE\}\}/g, new Date().toISOString());
+        .replace(/\{\{DATE\}\}/g, formatDate(new Date()));
     await fs.writeFile(filePath, content, "utf-8");
     return filePath;
 }

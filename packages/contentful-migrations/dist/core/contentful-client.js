@@ -63,6 +63,21 @@ export class ContentfulClient {
         return entry.publish();
     }
     /**
+     * Get a single entry by ID
+     */
+    async getEntry(entryId) {
+        const environment = await this.getEnvironment();
+        return environment.getEntry(entryId);
+    }
+    /**
+     * Create an entry with a specific ID
+     */
+    async createEntryWithId(contentTypeId, entryId, fields) {
+        const environment = await this.getEnvironment();
+        const entry = await environment.createEntryWithId(contentTypeId, entryId, { fields });
+        return entry.publish();
+    }
+    /**
      * Get the current environment name
      */
     getEnvironmentName() {

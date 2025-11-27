@@ -16,34 +16,6 @@ export type MigrationFile = {
     type: MigrationType;
 };
 /**
- * Represents an applied migration record stored in Contentful
- */
-export type AppliedMigration = {
-    /** Contentful entry ID */
-    id: string;
-    /** Migration name (e.g., "0001-initial-content-model") */
-    migrationName: string;
-    /** When the migration was applied */
-    appliedAt: string;
-    /** Target environment */
-    environment: string;
-    /** Type of migration */
-    type: MigrationType;
-};
-/**
- * Migration status for display
- */
-export type MigrationStatus = {
-    /** Migration name */
-    name: string;
-    /** Type of migration */
-    type: MigrationType;
-    /** Whether the migration has been applied */
-    applied: boolean;
-    /** When the migration was applied (if applied) */
-    appliedAt?: string;
-};
-/**
  * Configuration for the migration runner
  */
 export type MigrationConfig = {

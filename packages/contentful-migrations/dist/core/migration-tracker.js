@@ -2,9 +2,16 @@ import { logger } from "../utils/logger.js";
 /**
  * Content type ID for tracking migrations
  */
-const MIGRATION_HISTORY_CONTENT_TYPE = "migrationHistory";
+const CONTENT_MODEL_VERSION_TYPE = "contentModelVersion";
 /**
- * Tracks applied migrations in Contentful
+ * Entry ID for the version tracking entry (one per environment)
+ */
+const VERSION_ENTRY_ID = "contentModelVersionEntry";
+/**
+ * Tracks applied migrations in Contentful.
+ *
+ * Assumes the `contentModelVersion` content type already exists.
+ * Run `0001-init-content-model-version` migration first on new environments.
  */
 export class MigrationTracker {
     client;
@@ -12,101 +19,74 @@ export class MigrationTracker {
         this.client = client;
     }
     /**
-     * Ensure the MigrationHistory content type exists
+     * Ensure the content type and version entry exist
      */
     async ensureContentTypeExists() {
-        const exists = await this.client.contentTypeExists(MIGRATION_HISTORY_CONTENT_TYPE);
+        const exists = await this.client.contentTypeExists(CONTENT_MODEL_VERSION_TYPE);
         if (!exists) {
-            logger.info("Creating MigrationHistory content type...");
-            await this.createMigrationHistoryContentType();
-            logger.success("MigrationHistory content type created");
+            logger.error("Content Model Version content type does not exist");
+            throw new Error("Content Model Version content type does not exist");
         }
     }
     /**
-     * Create the MigrationHistory content type
+     * Get the version entry, or null if it doesn't exist
      */
-    async createMigrationHistoryContentType() {
-        const environment = await this.client.getEnvironment();
-        const contentType = await environment.createContentTypeWithId(MIGRATION_HISTORY_CONTENT_TYPE, {
-            name: "Migration History",
-            description: "Tracks applied database migrations",
-            displayField: "migrationName",
-            fields: [
-                {
-                    id: "migrationName",
-                    name: "Migration Name",
-                    type: "Symbol",
-                    required: true,
-                    localized: false,
-                },
-                {
-                    id: "appliedAt",
-                    name: "Applied At",
-                    type: "Date",
-                    required: true,
-                    localized: false,
-                },
-                {
-                    id: "environment",
-                    name: "Environment",
-                    type: "Symbol",
-                    required: true,
-                    localized: false,
-                },
-                {
-                    id: "type",
-                    name: "Type",
-                    type: "Symbol",
-                    required: true,
-                    localized: false,
-                    validations: [
-                        {
-                            in: ["regular", "once"],
-                        },
-                    ],
-                },
-            ],
-        });
-        await contentType.publish();
+    async getVersionEntry() {
+        try {
+            const entry = await this.client.getEntry(VERSION_ENTRY_ID);
+            return {
+                updatedAt: entry.fields.updatedAt?.["en-US"],
+                lastMigration: entry.fields.lastMigration?.["en-US"],
+                migrations: entry.fields.migrations?.["en-US"] || [],
+            };
+        }
+        catch (error) {
+            if (error.name === "NotFound") {
+                return null;
+            }
+            throw error;
+        }
     }
     /**
-     * Get all applied migrations
+     * Get all applied migration names
      */
-    async getAppliedMigrations(type) {
-        await this.ensureContentTypeExists();
-        const query = {
-            "fields.environment": this.client.getEnvironmentName(),
-            "order": "fields.appliedAt",
-        };
-        if (type) {
-            query["fields.type"] = type;
-        }
-        const entries = await this.client.getEntries(MIGRATION_HISTORY_CONTENT_TYPE, query);
-        return entries.items.map((entry) => ({
-            id: entry.sys.id,
-            migrationName: entry.fields.migrationName?.["en-US"],
-            appliedAt: entry.fields.appliedAt?.["en-US"],
-            environment: entry.fields.environment?.["en-US"],
-            type: entry.fields.type?.["en-US"],
-        }));
+    async getAppliedMigrations() {
+        // await this.ensureContentTypeExists();
+        const entry = await this.getVersionEntry();
+        return entry?.migrations ?? [];
     }
     /**
      * Check if a migration has been applied
      */
-    async isApplied(migrationName, type) {
-        const applied = await this.getAppliedMigrations(type);
-        return applied.some(m => m.migrationName === migrationName);
+    async isApplied(migrationName) {
+        const migrations = await this.getAppliedMigrations();
+        return migrations.includes(migrationName);
     }
     /**
      * Record a migration as applied
      */
-    async recordMigration(migrationName, type) {
-        await this.ensureContentTypeExists();
-        await this.client.createEntry(MIGRATION_HISTORY_CONTENT_TYPE, {
-            migrationName: { "en-US": migrationName },
-            appliedAt: { "en-US": new Date().toISOString() },
-            environment: { "en-US": this.client.getEnvironmentName() },
-            type: { "en-US": type },
-        });
+    async recordMigration(migrationName) {
+        // await this.ensureContentTypeExists();
+        const now = new Date().toISOString();
+        const existingEntry = await this.getVersionEntry();
+        if (existingEntry) {
+            // Update existing entry
+            const entry = await this.client.getEntry(VERSION_ENTRY_ID);
+            entry.fields.contentfulDescription = { "en-US": "Content Model Version" };
+            entry.fields.updatedAt = { "en-US": now };
+            entry.fields.lastMigration = { "en-US": migrationName };
+            entry.fields.migrations = { "en-US": [...existingEntry.migrations, migrationName] };
+            const updated = await entry.update();
+            await updated.publish();
+        }
+        else {
+            // Create new entry
+            await this.client.createEntryWithId(CONTENT_MODEL_VERSION_TYPE, VERSION_ENTRY_ID, {
+                contentfulDescription: { "en-US": "Content Model Version" },
+                updatedAt: { "en-US": now },
+                lastMigration: { "en-US": migrationName },
+                migrations: { "en-US": [migrationName] },
+            });
+        }
     }
 }
