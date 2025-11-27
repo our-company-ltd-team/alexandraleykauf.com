@@ -19,11 +19,13 @@
     "migrate:validate": "tsx src/cli.ts validate"
   },
   "dependencies": {
+    "@alexandraleykauf/env-schemas": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "contentful-management": "^11.47.2",
     "contentful-migration": "^4.28.3",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^20",

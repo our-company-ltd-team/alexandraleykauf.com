@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "incremental": true,
+    "rootDir": "."
+  },
+  "include": ["src/**/*", "generated/**/*", "getContentfulEnvironment.ts"],
+  "exclude": ["node_modules"]
+}
