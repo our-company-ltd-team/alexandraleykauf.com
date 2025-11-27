@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/filename-case */
 /**
  * Configuration file required by contentful-typescript-codegen.
  *

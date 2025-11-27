@@ -58,6 +58,7 @@ export default antfu(
     rules: {
       "ts/no-require-imports": "off",
       "unicorn/prefer-module": "off",
+      "unicorn/filename-case": "off",
     },
   },
 );
