@@ -2,12 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "rootDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "rootDir": "./src",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    // Don't generate declarations - consumers import raw .ts
     "declaration": false,
-    "declarationMap": false,
-    "noEmit": true
+    "declarationMap": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

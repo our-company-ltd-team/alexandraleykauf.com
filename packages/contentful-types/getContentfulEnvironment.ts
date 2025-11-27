@@ -37,7 +37,7 @@ module.exports = function getContentfulEnvironment() {
 
   if (!result.success) {
     const errors = result.error.issues
-      .map(issue => `  - ${issue.path.join(".")}: ${issue.message}`)
+      .map((issue: { path: (string | number)[]; message: string }) => `  - ${issue.path.join(".")}: ${issue.message}`)
       .join("\n");
     throw new Error(`Environment validation failed:\n${errors}`);
   }
@@ -50,5 +50,5 @@ module.exports = function getContentfulEnvironment() {
 
   return client
     .getSpace(env.CONTENTFUL_SPACE_ID)
-    .then(space => space.getEnvironment(env.CONTENTFUL_ENVIRONMENT));
+    .then((space: { getEnvironment: (env: string) => Promise<unknown> }) => space.getEnvironment(env.CONTENTFUL_ENVIRONMENT));
 };

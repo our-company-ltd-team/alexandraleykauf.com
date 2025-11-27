@@ -1,57 +1,74 @@
 # @alexandraleykauf/env-schemas
 
-Shared Zod schemas for environment variable validation across the monorepo.
+Shared Zod schemas and utilities for environment variable validation across the monorepo.
 
 ## Purpose
 
-This package provides reusable Zod schemas for environment variables that are shared across multiple packages. It enables:
+This package provides:
+
+- **Reusable Zod schemas** for environment variables shared across packages
+- **`createEnv()`** - A custom type-safe environment validation function
+
+Benefits:
 
 - **Type safety** - Full TypeScript inference for env vars
 - **Consistent validation** - Same validation rules everywhere
-- **Easy maintenance** - Update schema once, applies everywhere
+- **Zero external dependencies** - Only relies on Zod
+- **Browser/Node compatible** - Works in Next.js, Node.js, and other environments
 - **Portability** - If a package is externalized, the schema can be inlined
 
 ## Usage
 
-### In Node.js packages (with @t3-oss/env-core)
+### Basic Usage (Node.js)
+
+<!-- eslint-disable node/no-process-env -->
 
 ```typescript
-import { createEnv } from "@t3-oss/env-core";
-
-import { contentfulServerSchema } from "@alexandraleykauf/env-schemas";
+import { contentfulServerSchema, createEnv } from "@alexandraleykauf/env-schemas";
 
 export const env = createEnv({
   server: contentfulServerSchema,
-  // eslint-disable-next-line node/no-process-env
   runtimeEnv: process.env,
 });
 
 // Type-safe access
-console.log(env.CONTENTFUL_SPACE_ID);
+console.error(env.CONTENTFUL_SPACE_ID);
 ```
 
-### In Next.js (with @t3-oss/env-nextjs)
+### Next.js Usage
+
+<!-- eslint-disable node/no-process-env -->
 
 ```typescript
-import { createEnv } from "@t3-oss/env-nextjs";
-
-import { contentfulDeliverySchema, contentfulServerSchema } from "@alexandraleykauf/env-schemas";
+import {
+  contentfulDeliverySchema,
+  contentfulServerSchema,
+  createEnv,
+} from "@alexandraleykauf/env-schemas";
 
 export const env = createEnv({
   server: {
     ...contentfulServerSchema,
     ...contentfulDeliverySchema,
   },
-  client: {},
-  runtimeEnv: {
-    // eslint-disable-next-line node/no-process-env
-    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
-    // ... other vars
+  client: {
+    // Add NEXT_PUBLIC_* vars here
   },
+  runtimeEnv: {
+    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
+    CONTENTFUL_MANAGEMENT_TOKEN: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
+    CONTENTFUL_ENVIRONMENT: process.env.CONTENTFUL_ENVIRONMENT,
+    CONTENTFUL_DELIVERY_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
+    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
+  },
+  emptyStringAsUndefined: true,
+  skipValidation: !!process.env.SKIP_ENV_VALIDATION,
 });
 ```
 
 ### In CommonJS files
+
+<!-- eslint-disable node/no-process-env -->
 
 ```javascript
 const { z } = require("zod");
@@ -63,12 +80,36 @@ const envSchema = z.object({
   CONTENTFUL_ENVIRONMENT: z.string().default("master"),
 });
 
-// eslint-disable-next-line node/no-process-env
 const result = envSchema.safeParse(process.env);
 if (!result.success) {
   throw new Error("Invalid environment");
 }
 ```
+
+## API Reference
+
+### `createEnv(options)`
+
+Creates a type-safe environment configuration with validation.
+
+#### Options
+
+| Option                   | Type                                  | Default  | Description                                            |
+| ------------------------ | ------------------------------------- | -------- | ------------------------------------------------------ |
+| `server`                 | `Record<string, ZodType>`             | `{}`     | Server-side environment variable schemas               |
+| `client`                 | `Record<string, ZodType>`             | `{}`     | Client-side schemas (NEXT_PUBLIC\_\* in Next.js)       |
+| `runtimeEnv`             | `Record<string, string \| undefined>` | Required | The runtime environment object                         |
+| `emptyStringAsUndefined` | `boolean`                             | `false`  | Treat empty strings as undefined                       |
+| `skipValidation`         | `boolean`                             | `false`  | Skip validation (for build-time when vars unavailable) |
+| `onValidationError`      | `(error: ZodError) => never`          | Throws   | Custom validation error handler                        |
+| `onInvalidAccess`        | `(variable: string) => never`         | Throws   | Custom handler for server var access on client         |
+
+#### Features
+
+- **Server variable protection**: In browser environments, accessing server-side variables throws an error
+- **Empty string handling**: Optionally treat `""` as `undefined`
+- **Skip validation**: Useful for build steps when env vars aren't available
+- **Custom error handling**: Override default error behavior
 
 ## Available Schemas
 
@@ -102,19 +143,32 @@ If you extract a package to its own repository, you can either:
 1. **Publish this package** to npm and depend on it
 2. **Inline the schema** by copying the Zod definition:
 
+<!-- eslint-disable node/no-process-env -->
+
 ```typescript
-// Inlined schema (no dependency required)
-import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
+// Custom createEnv (or copy from this package)
+function createEnv<T extends Record<string, z.ZodType>>(opts: {
+  server: T;
+  runtimeEnv: Record<string, string | undefined>;
+}) {
+  const schema = z.object(opts.server);
+  const result = schema.safeParse(opts.runtimeEnv);
+  if (!result.success) {
+    console.error("Invalid environment:", result.error.format());
+    throw new Error("Invalid environment variables");
+  }
+  return result.data;
+}
+
+// Inlined schema
 export const env = createEnv({
   server: {
-    CONTENTFUL_SPACE_ID: z.string().min(1, "CONTENTFUL_SPACE_ID is required"),
-    CONTENTFUL_MANAGEMENT_TOKEN: z.string().min(1, "CONTENTFUL_MANAGEMENT_TOKEN is required"),
+    CONTENTFUL_SPACE_ID: z.string().min(1),
+    CONTENTFUL_MANAGEMENT_TOKEN: z.string().min(1),
     CONTENTFUL_ENVIRONMENT: z.string().default("master"),
   },
-
-  // eslint-disable-next-line node/no-process-env
   runtimeEnv: process.env,
 });
 ```

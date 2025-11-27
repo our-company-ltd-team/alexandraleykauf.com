@@ -20,13 +20,12 @@
   },
   "dependencies": {
     "@alexandraleykauf/env-schemas": "workspace:*",
-    "@t3-oss/env-core": "^0.12.0",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "contentful-management": "^11.47.2",
     "contentful-migration": "^4.28.3",
     "dotenv": "^16.5.0",
-    "zod": "^3.25.76"
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^20",

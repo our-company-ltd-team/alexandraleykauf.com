@@ -2,13 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "rootDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "declaration": false,
-    "declarationMap": false,
-    "noEmit": true
+    "rootDir": "."
   },
-  "include": ["src/**/*", "generated/**/*", "getContentfulEnvironment.js"],
+  "include": ["src/**/*", "generated/**/*", "getContentfulEnvironment.ts"],
   "exclude": ["node_modules"]
 }

@@ -52,4 +52,12 @@ export default antfu(
     // Apply shared custom rules
     rules: sharedRules,
   },
+  {
+    // Allow require() in getContentfulEnvironment.ts (needed for contentful-typescript-codegen)
+    files: ["packages/contentful-types/getContentfulEnvironment.ts"],
+    rules: {
+      "ts/no-require-imports": "off",
+      "unicorn/prefer-module": "off",
+    },
+  },
 );

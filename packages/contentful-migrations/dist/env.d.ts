@@ -12,5 +12,7 @@ export declare const env: Readonly<{
     CONTENTFUL_SPACE_ID: string;
     CONTENTFUL_MANAGEMENT_TOKEN: string;
     CONTENTFUL_ENVIRONMENT: string;
+} & {
+    [x: string]: never;
 }>;
 //# sourceMappingURL=env.d.ts.map

@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 /**
  * Server-side Contentful environment variable schema.
@@ -10,11 +10,11 @@ import { z } from "zod";
  */
 export const contentfulServerSchema = {
   CONTENTFUL_SPACE_ID: z
-    .string({ required_error: "CONTENTFUL_SPACE_ID is required" })
+    .string({ error: "CONTENTFUL_SPACE_ID is required" })
     .min(1, "CONTENTFUL_SPACE_ID cannot be empty"),
 
   CONTENTFUL_MANAGEMENT_TOKEN: z
-    .string({ required_error: "CONTENTFUL_MANAGEMENT_TOKEN is required" })
+    .string({ error: "CONTENTFUL_MANAGEMENT_TOKEN is required" })
     .min(1, "CONTENTFUL_MANAGEMENT_TOKEN cannot be empty"),
 
   CONTENTFUL_ENVIRONMENT: z
@@ -30,7 +30,7 @@ export const contentfulServerSchema = {
  */
 export const contentfulDeliverySchema = {
   CONTENTFUL_DELIVERY_TOKEN: z
-    .string({ required_error: "CONTENTFUL_DELIVERY_TOKEN is required" })
+    .string({ error: "CONTENTFUL_DELIVERY_TOKEN is required" })
     .min(1, "CONTENTFUL_DELIVERY_TOKEN cannot be empty"),
 
   CONTENTFUL_PREVIEW_TOKEN: z

@@ -1,5 +1,7 @@
-import { contentfulServerSchema } from "@alexandraleykauf/env-schemas";
-import { createEnv } from "@t3-oss/env-core";
+import {
+  contentfulServerSchema,
+  createEnv,
+} from "@alexandraleykauf/env-schemas";
 import { config as dotenvConfig } from "dotenv";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

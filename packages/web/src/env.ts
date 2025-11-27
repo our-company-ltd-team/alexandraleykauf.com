@@ -2,8 +2,8 @@
 import {
   contentfulDeliverySchema,
   contentfulServerSchema,
+  createEnv,
 } from "@alexandraleykauf/env-schemas";
-import { createEnv } from "@t3-oss/env-nextjs";
 
 /**
  * Type-safe environment variables for the web package.
