@@ -1,0 +1,20 @@
+{
+  // Inherit all base TypeScript settings from root
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    // Enable incremental compilation for faster rebuilds
+    "incremental": true,
+    // Source files are in src directory
+    "rootDir": "./src",
+    // Use ESNext module syntax for modern Node.js
+    "module": "ESNext",
+    // Bundler-aware module resolution
+    "moduleResolution": "Bundler",
+    // Emit compiled JavaScript files (override root noEmit)
+    "noEmit": false,
+    // Output compiled JavaScript to dist directory
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "migrations", "one-offs"]
+}

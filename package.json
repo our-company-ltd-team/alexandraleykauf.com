@@ -10,7 +10,12 @@
     "lint:fix": "turbo lint:fix",
     "typecheck": "turbo typecheck",
     "pre-commit": "lint-staged && turbo typecheck",
-    "prepare": "husky"
+    "prepare": "husky",
+    "migrate:generate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:generate",
+    "migrate:run": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:run",
+    "migrate:one-off": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:one-off",
+    "migrate:status": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:status",
+    "migrate:validate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:validate"
   },
   "keywords": [],
   "author": "",
