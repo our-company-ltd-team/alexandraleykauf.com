@@ -11,7 +11,7 @@ import type { MigrationFunction } from "contentful-migration";
  */
 const migration: MigrationFunction = (migration) => {
   const contentModelVersion = migration.createContentType("contentModelVersion", {
-    name: "📜 Content Model Version",
+    name: "Content Model Version",
     description: "Tracks the version of the content model and applied migrations",
     displayField: "contentfulDescription",
   });

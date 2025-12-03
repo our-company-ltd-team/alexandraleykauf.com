@@ -2,7 +2,7 @@ import chalk from "chalk";
 
 import { ContentfulClient } from "../core/contentful-client.js";
 import { MigrationTracker } from "../core/migration-tracker.js";
-import { getConfig, validateConfig } from "../utils/config.js";
+import { getConfig } from "../utils/config.js";
 import { getMigrationFiles } from "../utils/file-system.js";
 import { logger } from "../utils/logger.js";
 
@@ -16,7 +16,6 @@ type MigrationStatusItem = {
  */
 export async function status(): Promise<void> {
   const config = getConfig();
-  validateConfig(config);
 
   const client = new ContentfulClient(config);
   const tracker = new MigrationTracker(client);
