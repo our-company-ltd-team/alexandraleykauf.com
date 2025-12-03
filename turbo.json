@@ -1,6 +1,13 @@
-
 {
   "$schema": "https://turborepo.com/schema.json",
+  "globalEnv": [
+    "CONTENTFUL_SPACE_ID",
+    "CONTENTFUL_MANAGEMENT_TOKEN",
+    "CONTENTFUL_ENVIRONMENT",
+    "CONTENTFUL_DELIVERY_TOKEN",
+    "CONTENTFUL_PREVIEW_TOKEN",
+    "SKIP_ENV_VALIDATION"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "typecheck", "lint"],
@@ -16,6 +23,14 @@
       "cache": false
     },
     "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "generate": {
+      "outputs": ["generated/**"],
+      "cache": false
+    },
+    "generate:watch": {
       "persistent": true,
       "cache": false
     }

@@ -84,7 +84,6 @@ export class MigrationRunner {
       accessToken: this.config.managementToken,
       environmentId: this.config.environment,
       yes: true,
-      // filePath,
       migrationFunction,
     });
   }

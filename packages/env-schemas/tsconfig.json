@@ -2,16 +2,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "incremental": true,
-    "lib": ["es2022"],
     "rootDir": "./src",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    // Don't generate declarations - consumers import raw .ts
     "declaration": false,
-    "declarationMap": false,
-    "noEmit": false,
-    "outDir": "./dist",
-    "sourceMap": true
+    "declarationMap": false
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "migrations", "one-offs"]
+  "exclude": ["node_modules"]
 }
