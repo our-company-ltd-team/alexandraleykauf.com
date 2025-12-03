@@ -18,6 +18,9 @@
     "migrate:status": "tsx src/cli.ts status",
     "migrate:validate": "tsx src/cli.ts validate",
     "migrate:all": "tsx src/cli.ts run-all",
+    "migrate:delete-all": "pnpm migrate:delete-entries && pnpm migrate:delete-assets",
+    "migrate:delete-entries": "tsx src/cli.ts delete-entries",
+    "migrate:delete-assets": "tsx src/cli.ts delete-assets",
     "migrate:old-site-data": "tsx old-site-data/import-xml-data.ts"
   },
   "dependencies": {

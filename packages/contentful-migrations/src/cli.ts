@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import { deleteAssets } from "./commands/delete-assets.js";
+import { deleteEntries } from "./commands/delete-entries.js";
 import { generate } from "./commands/generate.js";
 import { oneOff } from "./commands/one-off.js";
 import { runAll } from "./commands/run-all.js";
@@ -62,6 +64,24 @@ program
   .description("Validate migration files")
   .action(async () => {
     await validate();
+  });
+
+program
+  .command("delete-entries")
+  .description("Delete all entries from the environment")
+  .option("--dry-run", "Preview deletions without actually deleting")
+  .option("--environment <env>", "Target environment (default: from .env)")
+  .action(async (options: { dryRun?: boolean; environment?: string }) => {
+    await deleteEntries(options);
+  });
+
+program
+  .command("delete-assets")
+  .description("Delete all assets from the environment")
+  .option("--dry-run", "Preview deletions without actually deleting")
+  .option("--environment <env>", "Target environment (default: from .env)")
+  .action(async (options: { dryRun?: boolean; environment?: string }) => {
+    await deleteAssets(options);
   });
 
 program.parse();

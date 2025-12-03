@@ -34,8 +34,10 @@ const BASE_IMAGE_URL = "https://www.alexandraleykauf.com";
 const LOCALE = "en-US";
 
 // Rate limiting to avoid API limits
-const DELAY_BETWEEN_REQUESTS = 100; // ms
-const DELAY_BETWEEN_ASSETS = 500; // ms for asset processing
+// Contentful free tier: ~7 requests/second, paid: ~10 requests/second
+const DELAY_BETWEEN_REQUESTS = 300; // ms between sequential operations
+const DELAY_BETWEEN_ASSETS = 800; // ms for asset processing (heavier operations)
+const BATCH_CONCURRENCY = 3; // Reduced from 5 to stay under rate limits
 
 // =============================================================================
 // CLI Arguments
@@ -137,12 +139,62 @@ type AssetReference = {
   };
 };
 
+type UploadResult = {
+  image: XmlImage;
+  result: { assetId: string; url: string } | null;
+  index: number;
+};
+
+type SuccessfulUpload = {
+  image: XmlImage;
+  result: { assetId: string; url: string };
+  index: number;
+};
+
+function isSuccessfulUpload(upload: UploadResult): upload is SuccessfulUpload {
+  return upload.result !== null;
+}
+
 // =============================================================================
 // Utility Functions
 // =============================================================================
 
 function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Process items in parallel with concurrency limit and error isolation
+ */
+async function processInBatches<T, R>(
+  items: T[],
+  processor: (item: T, index: number) => Promise<R>,
+  concurrency: number = BATCH_CONCURRENCY,
+): Promise<R[]> {
+  const results: R[] = [];
+
+  for (let i = 0; i < items.length; i += concurrency) {
+    const batch = items.slice(i, i + concurrency);
+    const batchResults = await Promise.allSettled(
+      batch.map((item, batchIndex) => processor(item, i + batchIndex)),
+    );
+
+    for (const result of batchResults) {
+      if (result.status === "fulfilled") {
+        results.push(result.value);
+      }
+      else {
+        logger.error(`  Batch item failed: ${formatError(result.reason)}`);
+      }
+    }
+
+    // Delay between batches to avoid rate limiting
+    if (i + concurrency < items.length) {
+      await delay(DELAY_BETWEEN_REQUESTS);
+    }
+  }
+
+  return results;
 }
 
 function slugify(text: string): string {
@@ -776,10 +828,18 @@ async function getEnvironment(): Promise<Environment> {
 // Asset Upload
 // =============================================================================
 
+/**
+ * Extract filename without extension from a URL or path
+ */
+function getFilenameWithoutExtension(url: string): string {
+  const filename = url.split("/").pop() || "image";
+  const lastDotIndex = filename.lastIndexOf(".");
+  return lastDotIndex > 0 ? filename.substring(0, lastDotIndex) : filename;
+}
+
 async function uploadAsset(
   env: Environment,
   imageUrl: string,
-  title: string,
   description: string,
 ): Promise<Asset | null> {
   try {
@@ -787,12 +847,15 @@ async function uploadAsset(
       ? imageUrl
       : `${BASE_IMAGE_URL}${imageUrl}`;
 
+    // Use filename without extension as asset title
+    const assetTitle = getFilenameWithoutExtension(imageUrl);
+
     logger.info(`  Uploading asset: ${fullUrl}`);
 
     // Create the asset
     const asset = await env.createAsset({
       fields: {
-        title: localizedField(title || "Untitled"),
+        title: localizedField(assetTitle),
         description: localizedField(description || ""),
         file: localizedField({
           contentType: "image/jpeg",
@@ -837,6 +900,92 @@ async function uploadAsset(
     logger.error(`  Failed to upload asset: ${imageUrl} - ${formatError(error)}`);
     return null;
   }
+}
+
+/**
+ * Upload asset without waiting for full processing - just create and start processing
+ */
+async function uploadAssetFast(
+  env: Environment,
+  imageUrl: string,
+  description: string,
+): Promise<{ assetId: string; url: string } | null> {
+  try {
+    const fullUrl = imageUrl.startsWith("http")
+      ? imageUrl
+      : `${BASE_IMAGE_URL}${imageUrl}`;
+
+    // Use filename without extension as asset title
+    const assetTitle = getFilenameWithoutExtension(imageUrl);
+
+    const asset = await env.createAsset({
+      fields: {
+        title: localizedField(assetTitle),
+        description: localizedField(description || ""),
+        file: localizedField({
+          contentType: "image/jpeg",
+          fileName: imageUrl.split("/").pop() || "image.jpg",
+          upload: fullUrl,
+        }),
+      },
+    });
+
+    // Start processing but don't wait - log errors but don't fail
+    asset.processForAllLocales().catch((error) => {
+      logger.warn(`  Asset processing started with warning (${asset.sys.id}): ${formatError(error)}`);
+    });
+
+    logger.info(`  Uploaded asset: ${asset.sys.id}`);
+    return { assetId: asset.sys.id, url: fullUrl };
+  }
+  catch (error) {
+    logger.error(`  Failed to upload asset: ${imageUrl} - ${formatError(error)}`);
+    return null;
+  }
+}
+
+/**
+ * Wait for multiple assets to be processed and publish them
+ */
+async function waitAndPublishAssets(
+  env: Environment,
+  assetIds: string[],
+): Promise<Map<string, Asset>> {
+  const publishedAssets = new Map<string, Asset>();
+  const maxWaitTime = 30000; // 30 seconds total
+  const pollInterval = 2000; // Check every 2 seconds
+  const startTime = Date.now();
+
+  const pendingIds = new Set(assetIds);
+
+  while (pendingIds.size > 0 && Date.now() - startTime < maxWaitTime) {
+    const checkPromises = Array.from(pendingIds).map(async (id) => {
+      try {
+        const asset = await env.getAsset(id);
+        if (asset.fields.file?.[LOCALE]?.url) {
+          await asset.publish();
+          publishedAssets.set(id, asset);
+          pendingIds.delete(id);
+          logger.info(`  Asset published: ${id}`);
+        }
+      }
+      catch {
+        // Asset not ready yet
+      }
+    });
+
+    await Promise.all(checkPromises);
+
+    if (pendingIds.size > 0) {
+      await delay(pollInterval);
+    }
+  }
+
+  if (pendingIds.size > 0) {
+    logger.warn(`  ${pendingIds.size} assets timed out during processing`);
+  }
+
+  return publishedAssets;
 }
 
 // =============================================================================
@@ -983,17 +1132,12 @@ async function createImageEntry(
   projectTitle: string,
 ): Promise<Entry | null> {
   try {
-    // Store full title text in description field, truncate title to 255 chars
-    // Don't use title as altText (set to undefined)
-    const fullTitle = image.title || "";
-    const description = fullTitle || image.subtitle || image.legend || undefined;
-
     const entry = await env.createEntry("image", {
       fields: {
         contentfulDescription: localizedField(`Image ${index}: ${projectTitle.substring(0, 50)}`),
-        title: localizedField(truncateSymbol(fullTitle) || undefined),
+        title: localizedField(image.title || undefined),
         image: localizedField(createAssetRef(assetId)),
-        description: localizedField(description),
+        description: localizedField(undefined),
         altText: localizedField(undefined),
       },
     });
@@ -1272,55 +1416,72 @@ async function migrateProjects(
       projectParagraphIndex++;
       const rowPanelIds: string[] = [];
 
-      // Process images
+      // Process images in parallel
       if (paragraph.images.length > 0) {
-        logger.info(`    Processing ${paragraph.images.length} images...`);
-        const imageEntryIds: string[] = [];
+        logger.info(`    Processing ${paragraph.images.length} images in parallel...`);
+        const startImageIndex = globalImageIndex;
 
-        for (const image of paragraph.images) {
-          globalImageIndex++;
+        // Step 1: Upload all assets in parallel batches
+        const uploadResults = await processInBatches(
+          paragraph.images,
+          async (image, idx) => {
+            const result = await uploadAssetFast(
+              env,
+              image.src,
+              image.subtitle || "",
+            );
+            return { image, result, index: startImageIndex + idx + 1 };
+          },
+        );
 
-          // Upload asset
-          const asset = await uploadAsset(
-            env,
-            image.src,
-            image.title || `Image ${globalImageIndex}`,
-            image.subtitle || "",
+        // Collect successful uploads with proper type narrowing
+        const successfulUploads = uploadResults.filter(isSuccessfulUpload);
+        const assetIds = successfulUploads.map(r => r.result.assetId);
+
+        // Step 2: Wait for all assets to be processed and publish them
+        if (assetIds.length > 0) {
+          logger.info(`    Waiting for ${assetIds.length} assets to process...`);
+          const publishedAssets = await waitAndPublishAssets(env, assetIds);
+
+          // Step 3: Create image entries in parallel batches
+          const entryResults = await processInBatches(
+            successfulUploads,
+            async ({ image, result, index }) => {
+              if (!publishedAssets.has(result.assetId)) {
+                return null;
+              }
+              return createImageEntry(env, image, result.assetId, index, project.title);
+            },
           );
 
-          if (asset) {
-            // Create image entry
-            const imageEntry = await createImageEntry(
-              env,
-              image,
-              asset.sys.id,
-              globalImageIndex,
-              project.title,
-            );
-
-            if (imageEntry) {
-              imageEntryIds.push(imageEntry.sys.id);
+          const imageEntryIds: string[] = [];
+          for (const entry of entryResults) {
+            if (entry) {
+              imageEntryIds.push(entry.sys.id);
             }
           }
 
-          await delay(DELAY_BETWEEN_REQUESTS);
-        }
+          globalImageIndex += paragraph.images.length;
 
-        // Create images panel
-        if (imageEntryIds.length > 0) {
-          globalImagesPanelIndex++;
-          const imagesPanel = await createImagesPanel(
-            env,
-            imageEntryIds,
-            project.title,
-            `${slugify(project.title)}-images-${globalImagesPanelIndex}`,
-            globalImagesPanelIndex,
-            projectParagraphIndex,
-          );
+          // Create images panel
+          if (imageEntryIds.length > 0) {
+            globalImagesPanelIndex++;
+            const imagesPanel = await createImagesPanel(
+              env,
+              imageEntryIds,
+              project.title,
+              `${slugify(project.title)}-images-${globalImagesPanelIndex}`,
+              globalImagesPanelIndex,
+              projectParagraphIndex,
+            );
 
-          if (imagesPanel) {
-            rowPanelIds.push(imagesPanel.sys.id);
+            if (imagesPanel) {
+              rowPanelIds.push(imagesPanel.sys.id);
+            }
           }
+        }
+        else {
+          globalImageIndex += paragraph.images.length;
         }
       }
 
@@ -1338,7 +1499,6 @@ async function migrateProjects(
             const previewAsset = await uploadAsset(
               env,
               video.src,
-              `Preview: ${video.title || `Video ${globalVideoIndex}`}`,
               "",
             );
             if (previewAsset) {
