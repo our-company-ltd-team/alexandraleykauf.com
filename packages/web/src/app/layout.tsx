@@ -4,6 +4,7 @@ import "./globals.css";
 import "./globals.scss";
 import "../styles/legacy.clean.css";
 import { MockGeneralConfig } from "@/MockData/fake-data";
+import { QueryProvider } from "@/providers";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -47,7 +48,9 @@ export default function RootLayout({
         id="body"
       >
         <div id="container">
-          {children}
+          <QueryProvider>
+            <div id="container">{children}</div>
+          </QueryProvider>
         </div>
       </body>
     </html>

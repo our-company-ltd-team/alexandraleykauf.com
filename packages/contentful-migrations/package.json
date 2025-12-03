@@ -7,8 +7,6 @@
     "migrate": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

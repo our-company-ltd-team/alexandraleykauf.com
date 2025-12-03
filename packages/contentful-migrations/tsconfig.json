@@ -4,8 +4,9 @@
     "incremental": true,
     "lib": ["es2022"],
     "rootDir": "./src",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    // Use Bundler resolution since tsx (esbuild) is used at runtime
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "declaration": false,
     "declarationMap": false,
     "noEmit": false,

@@ -3,8 +3,9 @@
   "compilerOptions": {
     "incremental": true,
     "rootDir": "./src",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    // Use Bundler resolution since consumers (Next.js) compile the raw .ts files
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     // Don't generate declarations - consumers import raw .ts
     "declaration": false,
     "declarationMap": false

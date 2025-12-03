@@ -6,5 +6,5 @@
  * - createEnv() - a custom type-safe env validation function
  */
 
-export * from "./contentful.js";
-export { createEnv, type CreateEnvOptions } from "./create-env.js";
+export * from "./contentful";
+export { createEnv, type CreateEnvOptions } from "./create-env";

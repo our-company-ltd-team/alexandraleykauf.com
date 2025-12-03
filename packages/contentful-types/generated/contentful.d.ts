@@ -72,6 +72,78 @@ export type IContentModelVersion = {
   };
 } & Entry<IContentModelVersionFields>;
 
+export type IImageFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Title */
+  title?: string | undefined;
+
+  /** Image */
+  image: Asset;
+
+  /** Description */
+  description?: string | undefined;
+
+  /** Alt Text */
+  altText?: string | undefined;
+};
+
+/** An image is an entry that to be added to an images panel. */
+
+export type IImage = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "image";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IImageFields>;
+
+export type IImagesPanelFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Title */
+  title: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Old Slug */
+  oldSlug?: string | undefined;
+
+  /** Images */
+  images: IImage[];
+};
+
+/** An images panel is an entry that displays a list of images. */
+
+export type IImagesPanel = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "imagesPanel";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IImagesPanelFields>;
+
 export type ILinkFields = {
   /** Contentful Description */
   contentfulDescription: string;
@@ -87,6 +159,9 @@ export type ILinkFields = {
 
   /** External Link */
   externalLink?: string | undefined;
+
+  /** Email Link */
+  emailLink?: string | undefined;
 
   /** PDF Link */
   pdfLink?: Asset | undefined;
@@ -110,6 +185,78 @@ export type ILink = {
     };
   };
 } & Entry<ILinkFields>;
+
+export type IProjectFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Title */
+  title: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Old Slug */
+  oldSlug?: string | undefined;
+
+  /** Year */
+  year?: string | undefined;
+
+  /** Place */
+  place?: string | undefined;
+
+  /** Category */
+  category: ICategory;
+
+  /** Project Rows */
+  projectRows?: IProjectRow[] | undefined;
+};
+
+/** A project is an entry that represents a project. */
+
+export type IProject = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "project";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IProjectFields>;
+
+export type IProjectRowFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Row */
+  row: (ITextPage | ITextPanel | IImagesPanel | IVideosPanel)[];
+};
+
+/** A project row is organizational entry to gather project panels. */
+
+export type IProjectRow = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "projectRow";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IProjectRowFields>;
 
 export type ISeparatorFields = {
   /** Contentful Description */
@@ -149,7 +296,7 @@ export type ITextPageFields = {
   slug: string;
 
   /** Old Slug */
-  oldSlug: string;
+  oldSlug?: string | undefined;
 
   /** Text */
   text: Document;
@@ -174,19 +321,141 @@ export type ITextPage = {
   };
 } & Entry<ITextPageFields>;
 
+export type ITextPanelFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Text */
+  text: Document;
+};
+
+/** A text panel is an entry that displays a text. */
+
+export type ITextPanel = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "textPanel";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<ITextPanelFields>;
+
+export type IVideoFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Title */
+  title?: string | undefined;
+
+  /** Preview Image */
+  previewImage?: Asset | undefined;
+
+  /** Alt Text */
+  altText?: string | undefined;
+
+  /** Video */
+  video?: Asset | undefined;
+
+  /** Video URL */
+  videoUrl?: string | undefined;
+
+  /** Description */
+  description?: string | undefined;
+
+  /** Auto Start */
+  autoStart?: boolean | undefined;
+};
+
+/** A video is an entry that to be added to a videos panel. */
+
+export type IVideo = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "video";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IVideoFields>;
+
+export type IVideosPanelFields = {
+  /** Contentful Description */
+  contentfulDescription: string;
+
+  /** Title */
+  title: string;
+
+  /** Slug */
+  slug: string;
+
+  /** Old Slug */
+  oldSlug?: string | undefined;
+
+  /** Videos */
+  videos: IVideo[];
+};
+
+/** A videos panel is an entry that displays a list of videos. */
+
+export type IVideosPanel = {
+  sys: {
+    id: string;
+    type: string;
+    createdAt: string;
+    updatedAt: string;
+    locale: string;
+    contentType: {
+      sys: {
+        id: "videosPanel";
+        linkType: "ContentType";
+        type: "Link";
+      };
+    };
+  };
+} & Entry<IVideosPanelFields>;
+
 export type CONTENT_TYPE
   = | "category"
     | "contentModelVersion"
+    | "image"
+    | "imagesPanel"
     | "link"
+    | "project"
+    | "projectRow"
     | "separator"
-    | "textPage";
+    | "textPage"
+    | "textPanel"
+    | "video"
+    | "videosPanel";
 
 export type IEntry
   = | ICategory
     | IContentModelVersion
+    | IImage
+    | IImagesPanel
     | ILink
+    | IProject
+    | IProjectRow
     | ISeparator
-    | ITextPage;
+    | ITextPage
+    | ITextPanel
+    | IVideo
+    | IVideosPanel;
 
 export type LOCALE_CODE = "en-US";
 
