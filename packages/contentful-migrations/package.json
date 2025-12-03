@@ -18,6 +18,7 @@
     "migrate:status": "tsx src/cli.ts status",
     "migrate:validate": "tsx src/cli.ts validate",
     "migrate:all": "tsx src/cli.ts run-all",
+    "migrate:old-site-data": "tsx old-site-data/import-xml-data.ts"
   },
   "dependencies": {
     "@alexandraleykauf/env-schemas": "workspace:*",
