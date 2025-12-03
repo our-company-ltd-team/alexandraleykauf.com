@@ -24,14 +24,3 @@ export function getConfig(): MigrationConfig {
     oneOffsDir: path.join(packageRoot, "one-offs"),
   };
 }
-
-/**
- * Validate that all required configuration is present.
- *
- * @deprecated Validation is now handled by the env module at import time.
- * This function is kept for backwards compatibility but does nothing.
- */
-export function validateConfig(_config: MigrationConfig): void {
-  // Validation is now handled by @t3-oss/env-core at import time
-  // This function is kept for backwards compatibility
-}

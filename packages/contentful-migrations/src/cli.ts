@@ -3,6 +3,7 @@ import { Command } from "commander";
 
 import { generate } from "./commands/generate.js";
 import { oneOff } from "./commands/one-off.js";
+import { runAll } from "./commands/run-all.js";
 import { run } from "./commands/run.js";
 import { status } from "./commands/status.js";
 import { validate } from "./commands/validate.js";
@@ -30,6 +31,14 @@ program
   .option("--environment <env>", "Target environment (default: from .env)")
   .action(async (options: { name: string; environment?: string }) => {
     await run(options);
+  });
+
+program
+  .command("run-all")
+  .description("Run all pending regular migrations in order")
+  .option("--environment <env>", "Target environment (default: from .env)")
+  .action(async (options: { environment?: string }) => {
+    await runAll(options);
   });
 
 program

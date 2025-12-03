@@ -9,7 +9,7 @@ import type { MigrationFunction } from "contentful-migration";
 
 const migration: MigrationFunction = (migration) => {
   const separatorType = migration.createContentType("separator", {
-    name: "🗂️ Separator",
+    name: "Separator",
     description: "A separator for projects",
     displayField: "contentfulDescription",
   });

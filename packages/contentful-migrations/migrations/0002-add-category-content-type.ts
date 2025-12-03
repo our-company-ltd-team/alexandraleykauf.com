@@ -8,7 +8,7 @@ import type { MigrationFunction } from "contentful-migration";
  */
 const migration: MigrationFunction = (migration) => {
   const categoryType = migration.createContentType("category", {
-    name: "🏷️ Category",
+    name: "Category",
     description: "A category for projects",
     displayField: "contentfulDescription",
   });

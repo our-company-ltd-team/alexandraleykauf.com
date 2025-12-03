@@ -1,5 +1,5 @@
 import { MigrationRunner } from "../core/migration-runner.js";
-import { getConfig, validateConfig } from "../utils/config.js";
+import { getConfig } from "../utils/config.js";
 import { findMigrationByName } from "../utils/file-system.js";
 import { logger } from "../utils/logger.js";
 
@@ -13,8 +13,6 @@ export async function run(options: { name: string; environment?: string }): Prom
   if (options.environment) {
     config.environment = options.environment;
   }
-
-  validateConfig(config);
 
   // Find the migration file
   const migration = await findMigrationByName(config.migrationsDir, options.name, "regular");

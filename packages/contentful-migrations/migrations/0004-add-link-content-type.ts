@@ -9,7 +9,7 @@ import type { MigrationFunction } from "contentful-migration";
 
 const migration: MigrationFunction = (migration) => {
   const linkType = migration.createContentType("link", {
-    name: "🔗 Link",
+    name: "Link",
     description: "A link is an entry that allows to create a link for several purposes.",
     displayField: "contentfulDescription",
   });

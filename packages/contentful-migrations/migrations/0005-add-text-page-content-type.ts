@@ -9,7 +9,7 @@ import type { MigrationFunction } from "contentful-migration";
 
 const migration: MigrationFunction = (migration) => {
   const textPageType = migration.createContentType("textPage", {
-    name: "🔖 Text Page",
+    name: "Text Page",
     description: "A text page is an entry that allows to create a text page for a project.",
     displayField: "contentfulDescription",
   });
@@ -60,7 +60,7 @@ const migration: MigrationFunction = (migration) => {
   textPageType.createField("oldSlug", {
     name: "Old Slug",
     type: "Symbol",
-    required: true,
+    required: false,
     localized: false,
     omitted: false,
     disabled: true,

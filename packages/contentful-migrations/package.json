@@ -16,7 +16,8 @@
     "migrate:run": "tsx src/cli.ts run",
     "migrate:one-off": "tsx src/cli.ts one-off",
     "migrate:status": "tsx src/cli.ts status",
-    "migrate:validate": "tsx src/cli.ts validate"
+    "migrate:validate": "tsx src/cli.ts validate",
+    "migrate:all": "tsx src/cli.ts run-all",
   },
   "dependencies": {
     "@alexandraleykauf/env-schemas": "workspace:*",
