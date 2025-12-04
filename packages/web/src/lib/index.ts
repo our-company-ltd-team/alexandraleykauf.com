@@ -1,3 +1,5 @@
-export * from "./api";
-export * from "./graphql";
-export * from "./hooks";
+// Re-export graphql client
+export * from "./graphql/client";
+
+// Re-export from features for convenience
+export * from "@/features";

@@ -9,12 +9,18 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "build:legacy-css": "lessc ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map",
     "watch:legacy-css": "lessc --watch ./old_website/css/legacy.less ./src/styles/legacy.css --clean-css=\"--s1\" --source-map"
   },
   "dependencies": {
     "@alexandraleykauf/contentful-types": "workspace:*",
     "@alexandraleykauf/env-schemas": "workspace:*",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@tanstack/react-query": "^5.90.11",
+    "dotenv": "^16.6.1",
+    "graphql": "^16.12.0",
     "next": "16.0.3",
     "postcss": "^8.5.6",
     "react": "19.2.0",
@@ -23,8 +29,13 @@
     "zod": "^4.1.13"
   },
   "devDependencies": {
+    "@0no-co/graphqlsp": "^1.15.1",
     "@eslint-react/eslint-plugin": "^2.3.5",
     "@eslint/eslintrc": "^3",
+    "@graphql-codegen/cli": "^6.1.0",
+    "@graphql-codegen/client-preset": "^4.8.0",
+    "@graphql-codegen/schema-ast": "^5.0.0",
+    "@parcel/watcher": "^2.5.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.2.5",
@@ -33,10 +44,11 @@
     "eslint-config-next": "16.0.3",
     "eslint-plugin-format": "^1.0.2",
     "eslint-plugin-react-refresh": "^0.4.24",
+    "graphql-config": "^5.1.5",
     "less": "^4.4.1",
     "less-plugin-clean-css": "^1.6.0",
     "sass": "^1.93.2",
-    "typescript": "^5"
+    "typescript": "~5.7.0"
   },
   "overrides": {
     "@types/react": "19.2.5",

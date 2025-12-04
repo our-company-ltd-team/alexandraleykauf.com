@@ -1,43 +1,34 @@
-import { GraphQLClient } from "graphql-request";
-
 import { env } from "@/env";
+
+import type { TypedDocumentString } from "./generated/graphql";
 
 const CONTENTFUL_GRAPHQL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${env.CONTENTFUL_SPACE_ID}/environments/${env.CONTENTFUL_ENVIRONMENT}`;
 
 /**
- * Creates a GraphQL client for Contentful.
- * Used for client-side queries via React Query.
+ * Type-safe server-side GraphQL execute function.
+ * Uses Next.js fetch with caching for ISR benefits.
  */
-export function createGraphQLClient(): GraphQLClient {
-  return new GraphQLClient(CONTENTFUL_GRAPHQL_ENDPOINT, {
-    headers: {
-      Authorization: `Bearer ${env.CONTENTFUL_DELIVERY_TOKEN}`,
-    },
-  });
-}
-
-/**
- * Server-side GraphQL fetch function with Next.js caching.
- * Use this in Server Components for ISR and caching benefits.
- */
-export async function serverGraphQLFetch<T>(
-  query: string,
-  variables?: Record<string, unknown>,
+export async function execute<TResult, TVariables>(
+  query: TypedDocumentString<TResult, TVariables>,
   options?: {
     revalidate?: number | false;
     tags?: string[];
   },
-): Promise<T> {
+  ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
+): Promise<TResult> {
   const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${env.CONTENTFUL_DELIVERY_TOKEN}`,
     },
-    body: JSON.stringify({ query, variables }),
+    body: JSON.stringify({
+      query: query.toString(),
+      variables,
+    }),
     next: {
       revalidate: options?.revalidate ?? 3600, // Default 1 hour ISR
-      tags: options?.tags ?? ["contentful"],
+      tags: options?.tags,
     },
   });
 
@@ -55,13 +46,34 @@ export async function serverGraphQLFetch<T>(
 }
 
 /**
- * Client-side GraphQL fetch function.
- * Used by React Query hooks for client-side data fetching.
+ * Type-safe client-side GraphQL execute function.
+ * Used by React Query hooks.
  */
-export async function clientGraphQLFetch<T>(
-  query: string,
-  variables?: Record<string, unknown>,
-): Promise<T> {
-  const client = createGraphQLClient();
-  return client.request<T>(query, variables);
+export async function clientExecute<TResult, TVariables>(
+  query: TypedDocumentString<TResult, TVariables>,
+  ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
+): Promise<TResult> {
+  const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${env.CONTENTFUL_DELIVERY_TOKEN}`,
+    },
+    body: JSON.stringify({
+      query: query.toString(),
+      variables,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`GraphQL request failed: ${response.statusText}`);
+  }
+
+  const json = await response.json();
+
+  if (json.errors) {
+    throw new Error(`GraphQL errors: ${JSON.stringify(json.errors)}`);
+  }
+
+  return json.data;
 }

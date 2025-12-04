@@ -47,11 +47,11 @@ export default function RootLayout({
       <body
         id="body"
       >
-        <div id="container">
-          <QueryProvider>
+        <QueryProvider>
+          <div id="container">
             <div id="container">{children}</div>
-          </QueryProvider>
-        </div>
+          </div>
+        </QueryProvider>
       </body>
     </html>
   );

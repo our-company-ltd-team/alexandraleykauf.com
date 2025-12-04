@@ -1,34 +1,13 @@
 import Link from "next/link";
 
-import type { Project, ProjectItem, ProjectLink } from "@/types";
+import { getHomePageData } from "@/lib";
 
-import LinkBlock from "@/components/link-block";
-import ProjectBlock from "@/components/project-block";
-import SeparatorBlock from "@/components/separator-block";
-import { MockProjects } from "@/MockData/fake-data";
+export default async function Page() {
+  const { projectCollection } = await getHomePageData();
 
-function buildBlock(type: string, data: Project) {
-  switch (type) {
-    case "link":
-      return <LinkBlock key={data._id} data={data as ProjectLink} />;
-    case "project":
-      return <ProjectBlock key={data._id} data={data as ProjectItem} />;
-    case "separator":
-      return <SeparatorBlock key={data._id} />;
-    default:
-      return <div>Unknown Block</div>;
-  }
-}
+  // eslint-disable-next-line no-console
+  console.info(projectCollection);
 
-function buildBlockList(Blocks: Project[]) {
-  const blockList = [];
-  for (const block of Blocks) {
-    blockList.push(buildBlock(block._type, block));
-  }
-  return blockList;
-}
-
-export default function Home() {
   return (
     <div>
       <header className="clearfix main-header">
@@ -39,7 +18,7 @@ export default function Home() {
       </header>
       <section id="list" className="list">
         <ul className="list" key="list-ul">
-          {buildBlockList(MockProjects)}
+          {/* {buildBlockList(MockProjects)} */}
         </ul>
       </section>
       <footer>

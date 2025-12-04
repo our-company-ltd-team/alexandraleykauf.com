@@ -1,33 +1,36 @@
 "use client";
 
+/**
+ * Client-side hooks for project data.
+ * Use these hooks in Client Components.
+ */
+
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-import type { ProjectRowGraphQL } from "@/lib/graphql/types";
+import { clientExecute } from "@/lib/graphql/client";
 
-import { clientGraphQLFetch } from "@/lib/graphql/client";
-import { GET_PROJECT_PANELS } from "@/lib/graphql/queries/panels";
+import { GetProjectPanelsDocument } from "./queries";
 
-import { projectKeys } from "./use-projects";
-
-type ProjectPanelsResponse = {
-  projectCollection: {
-    items: Array<{
-      projectRowsCollection: { items: ProjectRowGraphQL[] } | null;
-    }>;
-  };
+/**
+ * Query key factory for projects.
+ */
+export const projectKeys = {
+  all: ["projects"] as const,
+  lists: () => [...projectKeys.all, "list"] as const,
+  list: (filters?: Record<string, unknown>) =>
+    [...projectKeys.lists(), filters] as const,
+  details: () => [...projectKeys.all, "detail"] as const,
+  detail: (slug: string) => [...projectKeys.details(), slug] as const,
+  panels: (slug: string) => [...projectKeys.all, "panels", slug] as const,
 };
 
 /**
  * Fetches project panels by slug.
  * Used internally by useProjectPanels and usePrefetchProjectPanels.
  */
-async function fetchProjectPanels(slug: string): Promise<ProjectRowGraphQL[]> {
-  const response = await clientGraphQLFetch<ProjectPanelsResponse>(
-    GET_PROJECT_PANELS,
-    { slug },
-  );
-
-  const project = response.projectCollection.items[0];
+async function fetchProjectPanels(slug: string) {
+  const response = await clientExecute(GetProjectPanelsDocument, { slug });
+  const project = response.projectCollection?.items[0];
   return project?.projectRowsCollection?.items ?? [];
 }
 
@@ -38,10 +41,7 @@ async function fetchProjectPanels(slug: string): Promise<ProjectRowGraphQL[]> {
  * @param options - Query options
  * @param options.enabled - Whether the query should run (default: true)
  */
-export function useProjectPanels(
-  slug: string,
-  options?: { enabled?: boolean },
-) {
+export function useProjectPanels(slug: string, options?: { enabled?: boolean }) {
   return useQuery({
     queryKey: projectKeys.panels(slug),
     queryFn: () => fetchProjectPanels(slug),

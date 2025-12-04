@@ -28,6 +28,7 @@
       {
         "name": "next"
       }
+      // graphqlsp disabled - use VSCode GraphQL extension instead
     ]
   },
   "include": [

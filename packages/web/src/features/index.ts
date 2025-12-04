@@ -1,2 +1,2 @@
-export * from "./panels";
+export * from "./home";
 export * from "./projects";

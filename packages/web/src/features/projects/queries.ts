@@ -1,83 +1,13 @@
 /**
- * GraphQL queries for projects and home page data.
+ * GraphQL queries for projects.
  */
 
-export const GET_HOME_PAGE_DATA = /* GraphQL */ `
-  query GetHomePageData {
-    projectCollection(order: sys_firstPublishedAt_DESC) {
-      items {
-        sys {
-          id
-        }
-        title
-        slug
-        year
-        place
-        category {
-          sys {
-            id
-          }
-          title
-          slug
-          showOnStartPage
-          color
-        }
-      }
-    }
-    linkCollection {
-      items {
-        sys {
-          id
-        }
-        title
-        place
-        category {
-          sys {
-            id
-          }
-          title
-          slug
-          showOnStartPage
-          color
-        }
-        externalLink
-        emailLink
-        pdfLink {
-          url
-        }
-      }
-    }
-    separatorCollection {
-      items {
-        sys {
-          id
-        }
-        category {
-          sys {
-            id
-          }
-          title
-          slug
-          showOnStartPage
-          color
-        }
-      }
-    }
-    categoryCollection {
-      items {
-        sys {
-          id
-        }
-        title
-        slug
-        showOnStartPage
-        color
-      }
-    }
-  }
-`;
+import { graphql } from "@/lib/graphql/generated";
 
-export const GET_PROJECTS_LIST = /* GraphQL */ `
+/**
+ * Fetches a list of all projects.
+ */
+export const GetProjectsListDocument = graphql(`
   query GetProjectsList {
     projectCollection(order: sys_firstPublishedAt_DESC) {
       items {
@@ -100,9 +30,12 @@ export const GET_PROJECTS_LIST = /* GraphQL */ `
       }
     }
   }
-`;
+`);
 
-export const GET_PROJECT_BY_SLUG = /* GraphQL */ `
+/**
+ * Fetches a single project by slug with all panel data.
+ */
+export const GetProjectBySlugDocument = graphql(`
   query GetProjectBySlug($slug: String!) {
     projectCollection(where: { slug: $slug }, limit: 1) {
       items {
@@ -213,4 +146,104 @@ export const GET_PROJECT_BY_SLUG = /* GraphQL */ `
       }
     }
   }
-`;
+`);
+
+/**
+ * Fetches project panels for prefetching on hover.
+ */
+export const GetProjectPanelsDocument = graphql(`
+  query GetProjectPanels($slug: String!) {
+    projectCollection(where: { slug: $slug }, limit: 1) {
+      items {
+        projectRowsCollection {
+          items {
+            sys {
+              id
+            }
+            rowCollection {
+              items {
+                __typename
+                ... on ImagesPanel {
+                  sys {
+                    id
+                  }
+                  title
+                  slug
+                  imagesCollection {
+                    items {
+                      sys {
+                        id
+                      }
+                      title
+                      description
+                      altText
+                      image {
+                        sys {
+                          id
+                        }
+                        url
+                        title
+                        description
+                        width
+                        height
+                      }
+                    }
+                  }
+                }
+                ... on VideosPanel {
+                  sys {
+                    id
+                  }
+                  title
+                  slug
+                  videosCollection {
+                    items {
+                      sys {
+                        id
+                      }
+                      title
+                      description
+                      altText
+                      previewImage {
+                        sys {
+                          id
+                        }
+                        url
+                        title
+                        width
+                        height
+                      }
+                      video {
+                        url
+                      }
+                      videoUrl
+                      autoStart
+                    }
+                  }
+                }
+                ... on TextPanel {
+                  sys {
+                    id
+                  }
+                  text {
+                    json
+                  }
+                }
+                ... on TextPage {
+                  sys {
+                    id
+                  }
+                  title
+                  slug
+                  text {
+                    json
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`);

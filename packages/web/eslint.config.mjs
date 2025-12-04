@@ -20,4 +20,8 @@ export default antfu(
   {
     rules: sharedRules,
   },
+  // Global ignores for generated files (must be separate config object)
+  {
+    ignores: ["**/src/lib/graphql/generated/**"],
+  },
 );
