@@ -99,6 +99,7 @@ input AssetFilter {
 
 type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
   imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ImageCollection
   linkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): LinkCollection
   videoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
@@ -431,6 +432,102 @@ enum EntryOrder {
 
 """The 'HexColor' type represents color in `rgb:ffffff` string format."""
 scalar HexColor
+
+"""
+The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage)
+"""
+type Homepage implements Entry & _Node {
+  _id: ID!
+  contentCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: HomepageContentFilter): HomepageContentCollection
+  contentfulDescription(locale: String, useFallbackLocale: Boolean): String
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): HomepageLinkingCollections
+  seoDescription(locale: String, useFallbackLocale: Boolean): String
+  seoImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  seoTitle(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+}
+
+type HomepageCollection {
+  items: [Homepage]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type HomepageContentCollection {
+  items: [HomepageContentItem]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input HomepageContentFilter {
+  AND: [HomepageContentFilter]
+  OR: [HomepageContentFilter]
+  category_exists: Boolean
+  contentfulDescription: String
+  contentfulDescription_contains: String
+  contentfulDescription_exists: Boolean
+  contentfulDescription_in: [String]
+  contentfulDescription_not: String
+  contentfulDescription_not_contains: String
+  contentfulDescription_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+}
+
+union HomepageContentItem = Link | Project | Separator
+
+input HomepageFilter {
+  AND: [HomepageFilter]
+  OR: [HomepageFilter]
+  content: cfcontentMultiTypeNestedFilter
+  contentCollection_exists: Boolean
+  contentfulDescription: String
+  contentfulDescription_contains: String
+  contentfulDescription_exists: Boolean
+  contentfulDescription_in: [String]
+  contentfulDescription_not: String
+  contentfulDescription_not_contains: String
+  contentfulDescription_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  seoDescription: String
+  seoDescription_contains: String
+  seoDescription_exists: Boolean
+  seoDescription_in: [String]
+  seoDescription_not: String
+  seoDescription_not_contains: String
+  seoDescription_not_in: [String]
+  seoImage_exists: Boolean
+  seoTitle: String
+  seoTitle_contains: String
+  seoTitle_exists: Boolean
+  seoTitle_in: [String]
+  seoTitle_not: String
+  seoTitle_not_contains: String
+  seoTitle_not_in: [String]
+  sys: SysFilter
+}
+
+type HomepageLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+}
+
+enum HomepageOrder {
+  contentfulDescription_ASC
+  contentfulDescription_DESC
+  seoTitle_ASC
+  seoTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
 
 """
 An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image)
@@ -825,6 +922,22 @@ input LinkFilter {
 
 type LinkLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [LinkLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
+}
+
+enum LinkLinkingCollectionsHomepageCollectionOrder {
+  contentfulDescription_ASC
+  contentfulDescription_DESC
+  seoTitle_ASC
+  seoTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum LinkOrder {
@@ -928,6 +1041,22 @@ input ProjectFilter {
 
 type ProjectLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [ProjectLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
+}
+
+enum ProjectLinkingCollectionsHomepageCollectionOrder {
+  contentfulDescription_ASC
+  contentfulDescription_DESC
+  seoTitle_ASC
+  seoTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ProjectOrder {
@@ -1087,6 +1216,8 @@ type Query {
   contentModelVersion(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ContentModelVersion
   contentModelVersionCollection(limit: Int = 100, locale: String, order: [ContentModelVersionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ContentModelVersionFilter): ContentModelVersionCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
+  homepage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Homepage
+  homepageCollection(limit: Int = 100, locale: String, order: [HomepageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: HomepageFilter): HomepageCollection
   image(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Image
   imageCollection(limit: Int = 100, locale: String, order: [ImageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ImageFilter): ImageCollection
   imagesPanel(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ImagesPanel
@@ -1155,6 +1286,22 @@ input SeparatorFilter {
 
 type SeparatorLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [SeparatorLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
+}
+
+enum SeparatorLinkingCollectionsHomepageCollectionOrder {
+  contentfulDescription_ASC
+  contentfulDescription_DESC
+  seoTitle_ASC
+  seoTitle_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum SeparatorOrder {
@@ -1852,6 +1999,21 @@ input cfVideoNestedFilter {
   videoUrl_not_contains: String
   videoUrl_not_in: [String]
   video_exists: Boolean
+}
+
+input cfcontentMultiTypeNestedFilter {
+  AND: [cfcontentMultiTypeNestedFilter]
+  OR: [cfcontentMultiTypeNestedFilter]
+  category_exists: Boolean
+  contentfulDescription: String
+  contentfulDescription_contains: String
+  contentfulDescription_exists: Boolean
+  contentfulDescription_in: [String]
+  contentfulDescription_not: String
+  contentfulDescription_not_contains: String
+  contentfulDescription_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
 }
 
 input cfrowMultiTypeNestedFilter {

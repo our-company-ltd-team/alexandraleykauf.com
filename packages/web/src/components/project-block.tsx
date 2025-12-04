@@ -3,65 +3,62 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
-import type { Paragraph, ParagraphContent, ProjectItem } from "@/types";
+import type { Project } from "@/lib/graphql/generated/graphql";
 
-import ImageBlock from "./image-block";
-import TextBlock from "./text-block";
+// function buildContent(content: ParagraphContent[] = [], projectId: string) {
+//   if (content.length === 0) {
+//     return (
+//       <div className="paragraph-unknown details-right">
+//         You need to add content for
+//         {projectId}
+//       </div>
+//     );
+//   }
+//   return content.map((contentBlock: ParagraphContent) => {
+//     const key = contentBlock._key || Math.random();
 
-function buildContent(content: ParagraphContent[] = [], projectId: string) {
-  if (content.length === 0) {
-    return (
-      <div className="paragraph-unknown details-right">
-        You need to add content for
-        {projectId}
-      </div>
-    );
-  }
-  return content.map((contentBlock: ParagraphContent) => {
-    const key = contentBlock._key || Math.random();
+//     switch (contentBlock._type) {
+//       case "image":
+//         return (
+//           <ImageBlock key={key} imageBlock={contentBlock} projectId={projectId} />
+//         );
 
-    switch (contentBlock._type) {
-      case "image":
-        return (
-          <ImageBlock key={key} imageBlock={contentBlock} projectId={projectId} />
-        );
+//       case "text":
+//       case "textPage":
+//         return <TextBlock key={key} textBlock={contentBlock} projectId={projectId} />;
 
-      case "text":
-      case "textPage":
-        return <TextBlock key={key} textBlock={contentBlock} projectId={projectId} />;
+//       case "video":
+//         return (
+//           <div key={key} className="paragraph-video details-right">
+//             video block
+//           </div>
+//         );
 
-      case "video":
-        return (
-          <div key={key} className="paragraph-video details-right">
-            video block
-          </div>
-        );
+//       default:
+//         return (
+//           <div key={key} className="paragraph-unknown details-right">
+//             unknown projekt block
+//           </div>
+//         );
+//     }
+//   });
+// }
 
-      default:
-        return (
-          <div key={key} className="paragraph-unknown details-right">
-            unknown projekt block
-          </div>
-        );
-    }
-  });
-}
+// function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
+//   if (!paragraphs)
+//     return null;
 
-function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
-  if (!paragraphs)
-    return null;
-
-  return (
-    <div className="list-item-details">
-      {paragraphs.map((p: Paragraph) => (
-        <article key={p._key} className="paragraph clearfix">
-          <div className="paragraph-title details-left">{p.title}</div>
-          {buildContent(p.content, projectId)}
-        </article>
-      ))}
-    </div>
-  );
-}
+//   return (
+//     <div className="list-item-details">
+//       {paragraphs.map((p: Paragraph) => (
+//         <article key={p._key} className="paragraph clearfix">
+//           <div className="paragraph-title details-left">{p.title}</div>
+//           {buildContent(p.content, projectId)}
+//         </article>
+//       ))}
+//     </div>
+//   );
+// }
 
 function parseOpenParam(param: string | null) {
   if (!param)
@@ -90,7 +87,7 @@ function scrollToElementEdge(element: HTMLElement) {
   }
 }
 
-export default function ProjectBlock({ data }: { data: ProjectItem }) {
+export default function ProjectBlock({ data }: { data: Project }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const openParam = searchParams?.get("open") ?? "";
@@ -154,7 +151,7 @@ export default function ProjectBlock({ data }: { data: ProjectItem }) {
         <div className="media-phone-hidden media-small-hidden list-item-right"></div>
       </header>
 
-      {showParagraphs && buildProjectBlockList(data.paragraphs, data._id)}
+      {/* {showParagraphs && buildProjectBlockList(data.paragraphs, data._id)} */}
     </li>
   );
 }

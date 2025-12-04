@@ -29,7 +29,10 @@ export const projectKeys = {
  * Used internally by useProjectPanels and usePrefetchProjectPanels.
  */
 async function fetchProjectPanels(slug: string) {
-  const response = await clientExecute(GetProjectPanelsDocument, { slug });
+  const response = await clientExecute({
+    query: GetProjectPanelsDocument,
+    variables: { slug },
+  });
   const project = response.projectCollection?.items[0];
   return project?.projectRowsCollection?.items ?? [];
 }

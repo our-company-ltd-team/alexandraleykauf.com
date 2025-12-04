@@ -12,11 +12,11 @@ import { GetProjectBySlugDocument, GetProjectPanelsDocument } from "./queries";
  * Uses ISR with 1 hour revalidation by default.
  */
 export async function getProjectBySlug(slug: string) {
-  const response = await execute(
-    GetProjectBySlugDocument,
-    { revalidate: 3600, tags: ["contentful", `project-${slug}`] },
-    { slug },
-  );
+  const response = await execute({
+    query: GetProjectBySlugDocument,
+    variables: { slug },
+    options: { revalidate: 3600, tags: ["contentful", `project-${slug}`] },
+  });
 
   return response.projectCollection?.items[0] ?? null;
 }
@@ -26,11 +26,11 @@ export async function getProjectBySlug(slug: string) {
  * This is used for prefetching panel data on hover.
  */
 export async function getProjectPanels(slug: string) {
-  const response = await execute(
-    GetProjectPanelsDocument,
-    { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
-    { slug },
-  );
+  const response = await execute({
+    query: GetProjectPanelsDocument,
+    variables: { slug },
+    options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
+  });
 
   const project = response.projectCollection?.items[0];
   return project?.projectRowsCollection?.items ?? [];
