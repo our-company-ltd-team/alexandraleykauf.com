@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import type { ImagesBlock as ImageBlockType } from "@/types";
 
+import styles from "./image-block.module.css";
+
 export type Thumbnail = {
   src: string;
   alt?: string;
@@ -9,7 +11,6 @@ export type Thumbnail = {
 };
 
 const THUMB_HEIGHT = 50;
-// const RADIUS = 8;
 
 function buildThumbnails(imageBlock: ImageBlockType): Thumbnail[] {
   if (!imageBlock?.images || !Array.isArray(imageBlock.images) || imageBlock.images.length === 0)
@@ -38,27 +39,21 @@ export default function ImageBlock({ imageBlock, projectId }: { imageBlock: Imag
     return null;
 
   return (
-    <div className="paragraph-images details-right">
+    <div className={styles.container}>
       {thumbs.map(t => (
         <Link
           key={t.id ?? t.src}
-          href={`/i/${projectId}/${t.id}`} // link to full image
+          href={`/i/${projectId}/${t.id}`}
           title={imageBlock.title || imageBlock.description || ""}
           rel="noopener noreferrer"
-          style={{ display: "inline-block", overflow: "hidden" }}
+          className={styles.thumbnailLink}
         >
           <img
             src={t.src}
             alt={t.alt ?? ""}
             loading="lazy"
             height={THUMB_HEIGHT}
-            style={{
-              display: "block",
-              height: THUMB_HEIGHT,
-              width: "auto",
-              maxWidth: "100%",
-              objectFit: "cover",
-            }}
+            className={styles.thumbnail}
           />
         </Link>
       ))}

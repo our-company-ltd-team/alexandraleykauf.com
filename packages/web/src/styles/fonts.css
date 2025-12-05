@@ -1,0 +1,37 @@
+/* Font declarations for Alexandra Leykauf website */
+
+@font-face {
+  font-family: "museo_regular";
+  src: url("/assets/fonts/museosans_500-webfont.eot");
+  src:
+    url("/assets/fonts/museosans_500-webfont.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/museosans_500-webfont.woff") format("woff"),
+    url("/assets/fonts/museosans_500-webfont.ttf") format("truetype"),
+    url("/assets/fonts/museosans_500-webfont.svg#museo_sans_500regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "museo_bold";
+  src: url("/assets/fonts/museosans_700-webfont.eot");
+  src:
+    url("/assets/fonts/museosans_700-webfont.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/museosans_700-webfont.woff") format("woff"),
+    url("/assets/fonts/museosans_700-webfont.ttf") format("truetype"),
+    url("/assets/fonts/museosans_700-webfont.svg#museo_sans_700regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "our_webfontregular";
+  src: url("/assets/fonts/ourwebfont-webfont.eot");
+  src:
+    url("/assets/fonts/ourwebfont-webfont.eot?#iefix") format("embedded-opentype"),
+    url("/assets/fonts/ourwebfont-webfont.woff") format("woff"),
+    url("/assets/fonts/ourwebfont-webfont.ttf") format("truetype"),
+    url("/assets/fonts/ourwebfont-webfont.svg#our_webfontregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

@@ -7,9 +7,10 @@
 
 import { useQuery } from "@tanstack/react-query";
 
+import { env } from "@/env";
 import { clientExecute } from "@/lib/graphql/client";
 
-import { GetHomePageDataDocument } from "./queries";
+import { getHomepageQuery } from "./queries";
 
 /**
  * Query key factory for home page.
@@ -28,7 +29,10 @@ export const homeKeys = {
 export function useHomePageData() {
   return useQuery({
     queryKey: homeKeys.data(),
-    queryFn: () => clientExecute(GetHomePageDataDocument),
+    queryFn: () => clientExecute({
+      query: getHomepageQuery,
+      variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
+    }),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 }

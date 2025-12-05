@@ -1,0 +1,21 @@
+.container {
+  margin: 0 0 10px 100px;
+  min-height: 16px;
+}
+
+.container img {
+  margin: 0 8px 10px 0;
+}
+
+.thumbnailLink {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.thumbnail {
+  display: block;
+  height: 50px;
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+}

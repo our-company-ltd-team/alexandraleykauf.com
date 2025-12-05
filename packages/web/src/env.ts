@@ -1,9 +1,8 @@
 /* eslint-disable node/no-process-env */
 import {
-  contentfulDeliverySchema,
-  contentfulServerSchema,
   createEnv,
 } from "@alexandraleykauf/env-schemas";
+import z from "zod/v4";
 
 /**
  * Type-safe environment variables for the web package.
@@ -20,21 +19,26 @@ import {
  */
 export const env = createEnv({
   server: {
-    ...contentfulServerSchema,
-    ...contentfulDeliverySchema,
   },
   client: {
-    // Add NEXT_PUBLIC_* vars here
-    // Example: NEXT_PUBLIC_APP_URL: z.string().url(),
+    NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string().min(1),
+    NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: z.string().min(1),
+    NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW: z
+      .enum(["true", "false"], {
+        error: "NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW must be 'true' or 'false'",
+      })
+      .transform(val => val === "true"),
+    NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string().min(1),
+    NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN: z.string().min(1),
   },
   // For Next.js, we need to explicitly list the env vars
   // that should be included in the runtime
   runtimeEnv: {
-    CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,
-    CONTENTFUL_MANAGEMENT_TOKEN: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
-    CONTENTFUL_ENVIRONMENT: process.env.CONTENTFUL_ENVIRONMENT,
-    CONTENTFUL_DELIVERY_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
-    CONTENTFUL_PREVIEW_TOKEN: process.env.CONTENTFUL_PREVIEW_TOKEN,
+    NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+    NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
+    NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW: process.env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW,
+    NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: process.env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN,
+    NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
   },
   emptyStringAsUndefined: true,
   // Skip validation during build if env vars aren't available

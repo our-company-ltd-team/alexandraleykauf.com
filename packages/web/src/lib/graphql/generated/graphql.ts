@@ -33,7 +33,7 @@ export type Scalars = {
 
 /** Represents a binary file in a space. An asset can be any file type. */
 export type Asset = {
-  __typename?: 'Asset';
+  __typename: 'Asset';
   contentType?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   description?: Maybe<Scalars['String']['output']>;
@@ -111,7 +111,7 @@ export type AssetWidthArgs = {
 };
 
 export type AssetCollection = {
-  __typename?: 'AssetCollection';
+  __typename: 'AssetCollection';
   items: Array<Maybe<Asset>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -188,8 +188,9 @@ export type AssetFilter = {
 };
 
 export type AssetLinkingCollections = {
-  __typename?: 'AssetLinkingCollections';
+  __typename: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
   imageCollection?: Maybe<ImageCollection>;
   linkCollection?: Maybe<LinkCollection>;
   videoCollection?: Maybe<VideoCollection>;
@@ -197,6 +198,15 @@ export type AssetLinkingCollections = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AssetLinkingCollectionsHomepageCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -231,32 +241,33 @@ export type AssetLinkingCollectionsVideoCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum AssetOrder {
-  ContentTypeAsc = 'contentType_ASC',
-  ContentTypeDesc = 'contentType_DESC',
-  FileNameAsc = 'fileName_ASC',
-  FileNameDesc = 'fileName_DESC',
-  HeightAsc = 'height_ASC',
-  HeightDesc = 'height_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
-  WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC'
-}
+export const AssetOrder = {
+  ContentTypeAsc: 'contentType_ASC',
+  ContentTypeDesc: 'contentType_DESC',
+  FileNameAsc: 'fileName_ASC',
+  FileNameDesc: 'fileName_DESC',
+  HeightAsc: 'height_ASC',
+  HeightDesc: 'height_DESC',
+  SizeAsc: 'size_ASC',
+  SizeDesc: 'size_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  UrlAsc: 'url_ASC',
+  UrlDesc: 'url_DESC',
+  WidthAsc: 'width_ASC',
+  WidthDesc: 'width_DESC'
+} as const;
 
+export type AssetOrder = typeof AssetOrder[keyof typeof AssetOrder];
 /** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type Category = Entry & _Node & {
-  __typename?: 'Category';
+  __typename: 'Category';
   _id: Scalars['ID']['output'];
   color?: Maybe<Scalars['String']['output']>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
@@ -310,7 +321,7 @@ export type CategoryTitleArgs = {
 };
 
 export type CategoryCollection = {
-  __typename?: 'CategoryCollection';
+  __typename: 'CategoryCollection';
   items: Array<Maybe<Category>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -356,7 +367,7 @@ export type CategoryFilter = {
 };
 
 export type CategoryLinkingCollections = {
-  __typename?: 'CategoryLinkingCollections';
+  __typename: 'CategoryLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   linkCollection?: Maybe<LinkCollection>;
   projectCollection?: Maybe<ProjectCollection>;
@@ -402,87 +413,91 @@ export type CategoryLinkingCollectionsSeparatorCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum CategoryLinkingCollectionsLinkCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  EmailLinkAsc = 'emailLink_ASC',
-  EmailLinkDesc = 'emailLink_DESC',
-  ExternalLinkAsc = 'externalLink_ASC',
-  ExternalLinkDesc = 'externalLink_DESC',
-  PlaceAsc = 'place_ASC',
-  PlaceDesc = 'place_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export const CategoryLinkingCollectionsLinkCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  EmailLinkAsc: 'emailLink_ASC',
+  EmailLinkDesc: 'emailLink_DESC',
+  ExternalLinkAsc: 'externalLink_ASC',
+  ExternalLinkDesc: 'externalLink_DESC',
+  PlaceAsc: 'place_ASC',
+  PlaceDesc: 'place_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
-export enum CategoryLinkingCollectionsProjectCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  PlaceAsc = 'place_ASC',
-  PlaceDesc = 'place_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  YearAsc = 'year_ASC',
-  YearDesc = 'year_DESC'
-}
+export type CategoryLinkingCollectionsLinkCollectionOrder = typeof CategoryLinkingCollectionsLinkCollectionOrder[keyof typeof CategoryLinkingCollectionsLinkCollectionOrder];
+export const CategoryLinkingCollectionsProjectCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  PlaceAsc: 'place_ASC',
+  PlaceDesc: 'place_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC',
+  YearAsc: 'year_ASC',
+  YearDesc: 'year_DESC'
+} as const;
 
-export enum CategoryLinkingCollectionsSeparatorCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export type CategoryLinkingCollectionsProjectCollectionOrder = typeof CategoryLinkingCollectionsProjectCollectionOrder[keyof typeof CategoryLinkingCollectionsProjectCollectionOrder];
+export const CategoryLinkingCollectionsSeparatorCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum CategoryOrder {
-  ColorAsc = 'color_ASC',
-  ColorDesc = 'color_DESC',
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  ShowOnStartPageAsc = 'showOnStartPage_ASC',
-  ShowOnStartPageDesc = 'showOnStartPage_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export type CategoryLinkingCollectionsSeparatorCollectionOrder = typeof CategoryLinkingCollectionsSeparatorCollectionOrder[keyof typeof CategoryLinkingCollectionsSeparatorCollectionOrder];
+export const CategoryOrder = {
+  ColorAsc: 'color_ASC',
+  ColorDesc: 'color_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  ShowOnStartPageAsc: 'showOnStartPage_ASC',
+  ShowOnStartPageDesc: 'showOnStartPage_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
+export type CategoryOrder = typeof CategoryOrder[keyof typeof CategoryOrder];
 /** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersion = Entry & _Node & {
-  __typename?: 'ContentModelVersion';
+  __typename: 'ContentModelVersion';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -528,7 +543,7 @@ export type ContentModelVersionUpdatedAtArgs = {
 };
 
 export type ContentModelVersionCollection = {
-  __typename?: 'ContentModelVersionCollection';
+  __typename: 'ContentModelVersionCollection';
   items: Array<Maybe<ContentModelVersion>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -568,7 +583,7 @@ export type ContentModelVersionFilter = {
 };
 
 export type ContentModelVersionLinkingCollections = {
-  __typename?: 'ContentModelVersionLinkingCollections';
+  __typename: 'ContentModelVersionLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
 };
 
@@ -581,25 +596,26 @@ export type ContentModelVersionLinkingCollectionsEntryCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum ContentModelVersionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  LastMigrationAsc = 'lastMigration_ASC',
-  LastMigrationDesc = 'lastMigration_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
-}
+export const ContentModelVersionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  LastMigrationAsc: 'lastMigration_ASC',
+  LastMigrationDesc: 'lastMigration_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  UpdatedAtAsc: 'updatedAt_ASC',
+  UpdatedAtDesc: 'updatedAt_DESC'
+} as const;
 
+export type ContentModelVersionOrder = typeof ContentModelVersionOrder[keyof typeof ContentModelVersionOrder];
 export type ContentfulMetadata = {
-  __typename?: 'ContentfulMetadata';
+  __typename: 'ContentfulMetadata';
   concepts: Array<Maybe<TaxonomyConcept>>;
   tags: Array<Maybe<ContentfulTag>>;
 };
@@ -635,7 +651,7 @@ export type ContentfulMetadataTagsFilter = {
  *       Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-tags
  */
 export type ContentfulTag = {
-  __typename?: 'ContentfulTag';
+  __typename: 'ContentfulTag';
   id?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
 };
@@ -646,7 +662,7 @@ export type Entry = {
 };
 
 export type EntryCollection = {
-  __typename?: 'EntryCollection';
+  __typename: 'EntryCollection';
   items: Array<Maybe<Entry>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -660,20 +676,175 @@ export type EntryFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
-export enum EntryOrder {
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const EntryOrder = {
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
+export type EntryOrder = typeof EntryOrder[keyof typeof EntryOrder];
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type Homepage = Entry & _Node & {
+  __typename: 'Homepage';
+  _id: Scalars['ID']['output'];
+  contentCollection?: Maybe<HomepageContentCollection>;
+  contentfulDescription?: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<HomepageLinkingCollections>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
+  seoImage?: Maybe<Asset>;
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageContentCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<HomepageContentFilter>;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageContentfulDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageSeoDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageSeoImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+export type HomepageSeoTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type HomepageCollection = {
+  __typename: 'HomepageCollection';
+  items: Array<Maybe<Homepage>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type HomepageContentCollection = {
+  __typename: 'HomepageContentCollection';
+  items: Array<Maybe<HomepageContentItem>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type HomepageContentFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HomepageContentFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HomepageContentFilter>>>;
+  category_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulDescription_not?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type HomepageContentItem = Link | Project | Separator;
+
+export type HomepageFilter = {
+  AND?: InputMaybe<Array<InputMaybe<HomepageFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<HomepageFilter>>>;
+  content?: InputMaybe<CfcontentMultiTypeNestedFilter>;
+  contentCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulDescription_not?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoDescription_not?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoTitle_not?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type HomepageLinkingCollections = {
+  __typename: 'HomepageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type HomepageLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export const HomepageOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type HomepageOrder = typeof HomepageOrder[keyof typeof HomepageOrder];
 /** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type Image = Entry & _Node & {
-  __typename?: 'Image';
+  __typename: 'Image';
   _id: Scalars['ID']['output'];
   altText?: Maybe<Scalars['String']['output']>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
@@ -728,7 +899,7 @@ export type ImageTitleArgs = {
 };
 
 export type ImageCollection = {
-  __typename?: 'ImageCollection';
+  __typename: 'ImageCollection';
   items: Array<Maybe<Image>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -771,31 +942,32 @@ export type ImageFilter = {
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export enum ImageFormat {
+export const ImageFormat = {
   /** AVIF image format. */
-  Avif = 'AVIF',
+  Avif: 'AVIF',
   /** JPG image format. */
-  Jpg = 'JPG',
+  Jpg: 'JPG',
   /**
    * Progressive JPG format stores multiple passes of an image in progressively higher detail.
    *         When a progressive image is loading, the viewer will first see a lower quality pixelated version which
    *         will gradually improve in detail, until the image is fully downloaded. This is to display an image as
    *         early as possible to make the layout look as designed.
    */
-  JpgProgressive = 'JPG_PROGRESSIVE',
+  JpgProgressive: 'JPG_PROGRESSIVE',
   /** PNG image format */
-  Png = 'PNG',
+  Png: 'PNG',
   /**
    * 8-bit PNG images support up to 256 colors and weigh less than the standard 24-bit PNG equivalent.
    *         The 8-bit PNG format is mostly used for simple images, such as icons or logos.
    */
-  Png8 = 'PNG8',
+  Png8: 'PNG8',
   /** WebP image format. */
-  Webp = 'WEBP'
-}
+  Webp: 'WEBP'
+} as const;
 
+export type ImageFormat = typeof ImageFormat[keyof typeof ImageFormat];
 export type ImageLinkingCollections = {
-  __typename?: 'ImageLinkingCollections';
+  __typename: 'ImageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   imagesPanelCollection?: Maybe<ImagesPanelCollection>;
 };
@@ -819,83 +991,87 @@ export type ImageLinkingCollectionsImagesPanelCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum ImageLinkingCollectionsImagesPanelCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export const ImageLinkingCollectionsImagesPanelCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
-export enum ImageOrder {
-  AltTextAsc = 'altText_ASC',
-  AltTextDesc = 'altText_DESC',
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export type ImageLinkingCollectionsImagesPanelCollectionOrder = typeof ImageLinkingCollectionsImagesPanelCollectionOrder[keyof typeof ImageLinkingCollectionsImagesPanelCollectionOrder];
+export const ImageOrder = {
+  AltTextAsc: 'altText_ASC',
+  AltTextDesc: 'altText_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum ImageResizeFocus {
+export type ImageOrder = typeof ImageOrder[keyof typeof ImageOrder];
+export const ImageResizeFocus = {
   /** Focus the resizing on the bottom. */
-  Bottom = 'BOTTOM',
+  Bottom: 'BOTTOM',
   /** Focus the resizing on the bottom left. */
-  BottomLeft = 'BOTTOM_LEFT',
+  BottomLeft: 'BOTTOM_LEFT',
   /** Focus the resizing on the bottom right. */
-  BottomRight = 'BOTTOM_RIGHT',
+  BottomRight: 'BOTTOM_RIGHT',
   /** Focus the resizing on the center. */
-  Center = 'CENTER',
+  Center: 'CENTER',
   /** Focus the resizing on the largest face. */
-  Face = 'FACE',
+  Face: 'FACE',
   /** Focus the resizing on the area containing all the faces. */
-  Faces = 'FACES',
+  Faces: 'FACES',
   /** Focus the resizing on the left. */
-  Left = 'LEFT',
+  Left: 'LEFT',
   /** Focus the resizing on the right. */
-  Right = 'RIGHT',
+  Right: 'RIGHT',
   /** Focus the resizing on the top. */
-  Top = 'TOP',
+  Top: 'TOP',
   /** Focus the resizing on the top left. */
-  TopLeft = 'TOP_LEFT',
+  TopLeft: 'TOP_LEFT',
   /** Focus the resizing on the top right. */
-  TopRight = 'TOP_RIGHT'
-}
+  TopRight: 'TOP_RIGHT'
+} as const;
 
-export enum ImageResizeStrategy {
+export type ImageResizeFocus = typeof ImageResizeFocus[keyof typeof ImageResizeFocus];
+export const ImageResizeStrategy = {
   /** Crops a part of the original image to fit into the specified dimensions. */
-  Crop = 'CROP',
+  Crop: 'CROP',
   /** Resizes the image to the specified dimensions, cropping the image if needed. */
-  Fill = 'FILL',
+  Fill: 'FILL',
   /** Resizes the image to fit into the specified dimensions. */
-  Fit = 'FIT',
+  Fit: 'FIT',
   /**
    * Resizes the image to the specified dimensions, padding the image if needed.
    *         Uses desired background color as padding color.
    */
-  Pad = 'PAD',
+  Pad: 'PAD',
   /** Resizes the image to the specified dimensions, changing the original aspect ratio if needed. */
-  Scale = 'SCALE',
+  Scale: 'SCALE',
   /** Creates a thumbnail from the image. */
-  Thumb = 'THUMB'
-}
+  Thumb: 'THUMB'
+} as const;
 
+export type ImageResizeStrategy = typeof ImageResizeStrategy[keyof typeof ImageResizeStrategy];
 export type ImageTransformOptions = {
   /**
    * Desired background color, used with corner radius or `PAD` resize strategy.
@@ -928,7 +1104,7 @@ export type ImageTransformOptions = {
 
 /** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanel = Entry & _Node & {
-  __typename?: 'ImagesPanel';
+  __typename: 'ImagesPanel';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -987,7 +1163,7 @@ export type ImagesPanelTitleArgs = {
 };
 
 export type ImagesPanelCollection = {
-  __typename?: 'ImagesPanelCollection';
+  __typename: 'ImagesPanelCollection';
   items: Array<Maybe<ImagesPanel>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1032,30 +1208,31 @@ export type ImagesPanelFilter = {
 };
 
 export type ImagesPanelImagesCollection = {
-  __typename?: 'ImagesPanelImagesCollection';
+  __typename: 'ImagesPanelImagesCollection';
   items: Array<Maybe<Image>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
 };
 
-export enum ImagesPanelImagesCollectionOrder {
-  AltTextAsc = 'altText_ASC',
-  AltTextDesc = 'altText_DESC',
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const ImagesPanelImagesCollectionOrder = {
+  AltTextAsc: 'altText_ASC',
+  AltTextDesc: 'altText_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
+export type ImagesPanelImagesCollectionOrder = typeof ImagesPanelImagesCollectionOrder[keyof typeof ImagesPanelImagesCollectionOrder];
 export type ImagesPanelLinkingCollections = {
-  __typename?: 'ImagesPanelLinkingCollections';
+  __typename: 'ImagesPanelLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectRowCollection?: Maybe<ProjectRowCollection>;
 };
@@ -1079,41 +1256,43 @@ export type ImagesPanelLinkingCollectionsProjectRowCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum ImagesPanelLinkingCollectionsProjectRowCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const ImagesPanelLinkingCollectionsProjectRowCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum ImagesPanelOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export type ImagesPanelLinkingCollectionsProjectRowCollectionOrder = typeof ImagesPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof ImagesPanelLinkingCollectionsProjectRowCollectionOrder];
+export const ImagesPanelOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
+export type ImagesPanelOrder = typeof ImagesPanelOrder[keyof typeof ImagesPanelOrder];
 /** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type Link = Entry & _Node & {
-  __typename?: 'Link';
+  __typename: 'Link';
   _id: Scalars['ID']['output'];
   category?: Maybe<Category>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
@@ -1186,7 +1365,7 @@ export type LinkTitleArgs = {
 };
 
 export type LinkCollection = {
-  __typename?: 'LinkCollection';
+  __typename: 'LinkCollection';
   items: Array<Maybe<Link>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1239,8 +1418,9 @@ export type LinkFilter = {
 };
 
 export type LinkLinkingCollections = {
-  __typename?: 'LinkLinkingCollections';
+  __typename: 'LinkLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
 };
 
 
@@ -1252,30 +1432,57 @@ export type LinkLinkingCollectionsEntryCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum LinkOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  EmailLinkAsc = 'emailLink_ASC',
-  EmailLinkDesc = 'emailLink_DESC',
-  ExternalLinkAsc = 'externalLink_ASC',
-  ExternalLinkDesc = 'externalLink_DESC',
-  PlaceAsc = 'place_ASC',
-  PlaceDesc = 'place_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
 
+export type LinkLinkingCollectionsHomepageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<LinkLinkingCollectionsHomepageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export const LinkLinkingCollectionsHomepageCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type LinkLinkingCollectionsHomepageCollectionOrder = typeof LinkLinkingCollectionsHomepageCollectionOrder[keyof typeof LinkLinkingCollectionsHomepageCollectionOrder];
+export const LinkOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  EmailLinkAsc: 'emailLink_ASC',
+  EmailLinkDesc: 'emailLink_DESC',
+  ExternalLinkAsc: 'externalLink_ASC',
+  ExternalLinkDesc: 'externalLink_DESC',
+  PlaceAsc: 'place_ASC',
+  PlaceDesc: 'place_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
+
+export type LinkOrder = typeof LinkOrder[keyof typeof LinkOrder];
 /** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type Project = Entry & _Node & {
-  __typename?: 'Project';
+  __typename: 'Project';
   _id: Scalars['ID']['output'];
   category?: Maybe<Category>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
@@ -1360,7 +1567,7 @@ export type ProjectYearArgs = {
 };
 
 export type ProjectCollection = {
-  __typename?: 'ProjectCollection';
+  __typename: 'ProjectCollection';
   items: Array<Maybe<Project>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1421,8 +1628,9 @@ export type ProjectFilter = {
 };
 
 export type ProjectLinkingCollections = {
-  __typename?: 'ProjectLinkingCollections';
+  __typename: 'ProjectLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
 };
 
 
@@ -1434,53 +1642,81 @@ export type ProjectLinkingCollectionsEntryCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum ProjectOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  PlaceAsc = 'place_ASC',
-  PlaceDesc = 'place_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  YearAsc = 'year_ASC',
-  YearDesc = 'year_DESC'
-}
 
+export type ProjectLinkingCollectionsHomepageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ProjectLinkingCollectionsHomepageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export const ProjectLinkingCollectionsHomepageCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type ProjectLinkingCollectionsHomepageCollectionOrder = typeof ProjectLinkingCollectionsHomepageCollectionOrder[keyof typeof ProjectLinkingCollectionsHomepageCollectionOrder];
+export const ProjectOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  PlaceAsc: 'place_ASC',
+  PlaceDesc: 'place_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC',
+  YearAsc: 'year_ASC',
+  YearDesc: 'year_DESC'
+} as const;
+
+export type ProjectOrder = typeof ProjectOrder[keyof typeof ProjectOrder];
 export type ProjectProjectRowsCollection = {
-  __typename?: 'ProjectProjectRowsCollection';
+  __typename: 'ProjectProjectRowsCollection';
   items: Array<Maybe<ProjectRow>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
 };
 
-export enum ProjectProjectRowsCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const ProjectProjectRowsCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
+export type ProjectProjectRowsCollectionOrder = typeof ProjectProjectRowsCollectionOrder[keyof typeof ProjectProjectRowsCollectionOrder];
 /** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRow = Entry & _Node & {
-  __typename?: 'ProjectRow';
+  __typename: 'ProjectRow';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -1514,7 +1750,7 @@ export type ProjectRowRowCollectionArgs = {
 };
 
 export type ProjectRowCollection = {
-  __typename?: 'ProjectRowCollection';
+  __typename: 'ProjectRowCollection';
   items: Array<Maybe<ProjectRow>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1538,7 +1774,7 @@ export type ProjectRowFilter = {
 };
 
 export type ProjectRowLinkingCollections = {
-  __typename?: 'ProjectRowLinkingCollections';
+  __typename: 'ProjectRowLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectCollection?: Maybe<ProjectCollection>;
 };
@@ -1562,44 +1798,46 @@ export type ProjectRowLinkingCollectionsProjectCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum ProjectRowLinkingCollectionsProjectCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  PlaceAsc = 'place_ASC',
-  PlaceDesc = 'place_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  YearAsc = 'year_ASC',
-  YearDesc = 'year_DESC'
-}
+export const ProjectRowLinkingCollectionsProjectCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  PlaceAsc: 'place_ASC',
+  PlaceDesc: 'place_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC',
+  YearAsc: 'year_ASC',
+  YearDesc: 'year_DESC'
+} as const;
 
-export enum ProjectRowOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export type ProjectRowLinkingCollectionsProjectCollectionOrder = typeof ProjectRowLinkingCollectionsProjectCollectionOrder[keyof typeof ProjectRowLinkingCollectionsProjectCollectionOrder];
+export const ProjectRowOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
+export type ProjectRowOrder = typeof ProjectRowOrder[keyof typeof ProjectRowOrder];
 export type ProjectRowRowCollection = {
-  __typename?: 'ProjectRowRowCollection';
+  __typename: 'ProjectRowRowCollection';
   items: Array<Maybe<ProjectRowRowItem>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1623,7 +1861,7 @@ export type ProjectRowRowFilter = {
 export type ProjectRowRowItem = ImagesPanel | TextPage | TextPanel | VideosPanel;
 
 export type Query = {
-  __typename?: 'Query';
+  __typename: 'Query';
   _node?: Maybe<_Node>;
   _nodes: Array<Maybe<_Node>>;
   asset?: Maybe<Asset>;
@@ -1633,6 +1871,8 @@ export type Query = {
   contentModelVersion?: Maybe<ContentModelVersion>;
   contentModelVersionCollection?: Maybe<ContentModelVersionCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  homepage?: Maybe<Homepage>;
+  homepageCollection?: Maybe<HomepageCollection>;
   image?: Maybe<Image>;
   imageCollection?: Maybe<ImageCollection>;
   imagesPanel?: Maybe<ImagesPanel>;
@@ -1737,6 +1977,25 @@ export type QueryEntryCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryHomepageArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryHomepageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<HomepageOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<HomepageFilter>;
 };
 
 
@@ -1934,14 +2193,14 @@ export type ResourceLink = {
 };
 
 export type ResourceSys = {
-  __typename?: 'ResourceSys';
+  __typename: 'ResourceSys';
   linkType: Scalars['String']['output'];
   urn: Scalars['String']['output'];
 };
 
 /** A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
 export type Separator = Entry & _Node & {
-  __typename?: 'Separator';
+  __typename: 'Separator';
   _id: Scalars['ID']['output'];
   category?: Maybe<Category>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
@@ -1973,7 +2232,7 @@ export type SeparatorLinkedFromArgs = {
 };
 
 export type SeparatorCollection = {
-  __typename?: 'SeparatorCollection';
+  __typename: 'SeparatorCollection';
   items: Array<Maybe<Separator>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -1997,8 +2256,9 @@ export type SeparatorFilter = {
 };
 
 export type SeparatorLinkingCollections = {
-  __typename?: 'SeparatorLinkingCollections';
+  __typename: 'SeparatorLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
 };
 
 
@@ -2010,21 +2270,48 @@ export type SeparatorLinkingCollectionsEntryCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum SeparatorOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
 
+export type SeparatorLinkingCollectionsHomepageCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<SeparatorLinkingCollectionsHomepageCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export const SeparatorLinkingCollectionsHomepageCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type SeparatorLinkingCollectionsHomepageCollectionOrder = typeof SeparatorLinkingCollectionsHomepageCollectionOrder[keyof typeof SeparatorLinkingCollectionsHomepageCollectionOrder];
+export const SeparatorOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type SeparatorOrder = typeof SeparatorOrder[keyof typeof SeparatorOrder];
 export type Sys = {
-  __typename?: 'Sys';
+  __typename: 'Sys';
   environmentId: Scalars['String']['output'];
   firstPublishedAt?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['String']['output'];
@@ -2077,13 +2364,13 @@ export type SysFilter = {
  *         Find out more here: https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference/content-concepts
  */
 export type TaxonomyConcept = {
-  __typename?: 'TaxonomyConcept';
+  __typename: 'TaxonomyConcept';
   id?: Maybe<Scalars['String']['output']>;
 };
 
 /** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPage = Entry & _Node & {
-  __typename?: 'TextPage';
+  __typename: 'TextPage';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -2137,7 +2424,7 @@ export type TextPageTitleArgs = {
 };
 
 export type TextPageCollection = {
-  __typename?: 'TextPageCollection';
+  __typename: 'TextPageCollection';
   items: Array<Maybe<TextPage>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -2183,7 +2470,7 @@ export type TextPageFilter = {
 };
 
 export type TextPageLinkingCollections = {
-  __typename?: 'TextPageLinkingCollections';
+  __typename: 'TextPageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectRowCollection?: Maybe<ProjectRowCollection>;
 };
@@ -2207,89 +2494,91 @@ export type TextPageLinkingCollectionsProjectRowCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum TextPageLinkingCollectionsProjectRowCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const TextPageLinkingCollectionsProjectRowCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum TextPageOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export type TextPageLinkingCollectionsProjectRowCollectionOrder = typeof TextPageLinkingCollectionsProjectRowCollectionOrder[keyof typeof TextPageLinkingCollectionsProjectRowCollectionOrder];
+export const TextPageOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
+export type TextPageOrder = typeof TextPageOrder[keyof typeof TextPageOrder];
 export type TextPageText = {
-  __typename?: 'TextPageText';
+  __typename: 'TextPageText';
   json: Scalars['JSON']['output'];
   links: TextPageTextLinks;
 };
 
 export type TextPageTextAssets = {
-  __typename?: 'TextPageTextAssets';
+  __typename: 'TextPageTextAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type TextPageTextEntries = {
-  __typename?: 'TextPageTextEntries';
+  __typename: 'TextPageTextEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type TextPageTextLinks = {
-  __typename?: 'TextPageTextLinks';
+  __typename: 'TextPageTextLinks';
   assets: TextPageTextAssets;
   entries: TextPageTextEntries;
   resources: TextPageTextResources;
 };
 
 export type TextPageTextResources = {
-  __typename?: 'TextPageTextResources';
+  __typename: 'TextPageTextResources';
   block: Array<TextPageTextResourcesBlock>;
   hyperlink: Array<TextPageTextResourcesHyperlink>;
   inline: Array<TextPageTextResourcesInline>;
 };
 
 export type TextPageTextResourcesBlock = ResourceLink & {
-  __typename?: 'TextPageTextResourcesBlock';
+  __typename: 'TextPageTextResourcesBlock';
   sys: ResourceSys;
 };
 
 export type TextPageTextResourcesHyperlink = ResourceLink & {
-  __typename?: 'TextPageTextResourcesHyperlink';
+  __typename: 'TextPageTextResourcesHyperlink';
   sys: ResourceSys;
 };
 
 export type TextPageTextResourcesInline = ResourceLink & {
-  __typename?: 'TextPageTextResourcesInline';
+  __typename: 'TextPageTextResourcesInline';
   sys: ResourceSys;
 };
 
 /** A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
 export type TextPanel = Entry & _Node & {
-  __typename?: 'TextPanel';
+  __typename: 'TextPanel';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -2319,7 +2608,7 @@ export type TextPanelTextArgs = {
 };
 
 export type TextPanelCollection = {
-  __typename?: 'TextPanelCollection';
+  __typename: 'TextPanelCollection';
   items: Array<Maybe<TextPanel>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -2344,7 +2633,7 @@ export type TextPanelFilter = {
 };
 
 export type TextPanelLinkingCollections = {
-  __typename?: 'TextPanelLinkingCollections';
+  __typename: 'TextPanelLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectRowCollection?: Maybe<ProjectRowCollection>;
 };
@@ -2368,77 +2657,79 @@ export type TextPanelLinkingCollectionsProjectRowCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum TextPanelLinkingCollectionsProjectRowCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const TextPanelLinkingCollectionsProjectRowCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum TextPanelOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export type TextPanelLinkingCollectionsProjectRowCollectionOrder = typeof TextPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof TextPanelLinkingCollectionsProjectRowCollectionOrder];
+export const TextPanelOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
+export type TextPanelOrder = typeof TextPanelOrder[keyof typeof TextPanelOrder];
 export type TextPanelText = {
-  __typename?: 'TextPanelText';
+  __typename: 'TextPanelText';
   json: Scalars['JSON']['output'];
   links: TextPanelTextLinks;
 };
 
 export type TextPanelTextAssets = {
-  __typename?: 'TextPanelTextAssets';
+  __typename: 'TextPanelTextAssets';
   block: Array<Maybe<Asset>>;
   hyperlink: Array<Maybe<Asset>>;
 };
 
 export type TextPanelTextEntries = {
-  __typename?: 'TextPanelTextEntries';
+  __typename: 'TextPanelTextEntries';
   block: Array<Maybe<Entry>>;
   hyperlink: Array<Maybe<Entry>>;
   inline: Array<Maybe<Entry>>;
 };
 
 export type TextPanelTextLinks = {
-  __typename?: 'TextPanelTextLinks';
+  __typename: 'TextPanelTextLinks';
   assets: TextPanelTextAssets;
   entries: TextPanelTextEntries;
   resources: TextPanelTextResources;
 };
 
 export type TextPanelTextResources = {
-  __typename?: 'TextPanelTextResources';
+  __typename: 'TextPanelTextResources';
   block: Array<TextPanelTextResourcesBlock>;
   hyperlink: Array<TextPanelTextResourcesHyperlink>;
   inline: Array<TextPanelTextResourcesInline>;
 };
 
 export type TextPanelTextResourcesBlock = ResourceLink & {
-  __typename?: 'TextPanelTextResourcesBlock';
+  __typename: 'TextPanelTextResourcesBlock';
   sys: ResourceSys;
 };
 
 export type TextPanelTextResourcesHyperlink = ResourceLink & {
-  __typename?: 'TextPanelTextResourcesHyperlink';
+  __typename: 'TextPanelTextResourcesHyperlink';
   sys: ResourceSys;
 };
 
 export type TextPanelTextResourcesInline = ResourceLink & {
-  __typename?: 'TextPanelTextResourcesInline';
+  __typename: 'TextPanelTextResourcesInline';
   sys: ResourceSys;
 };
 
@@ -2451,7 +2742,7 @@ export type TimelineFilterInput = {
 
 /** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type Video = Entry & _Node & {
-  __typename?: 'Video';
+  __typename: 'Video';
   _id: Scalars['ID']['output'];
   altText?: Maybe<Scalars['String']['output']>;
   autoStart?: Maybe<Scalars['Boolean']['output']>;
@@ -2531,7 +2822,7 @@ export type VideoVideoUrlArgs = {
 };
 
 export type VideoCollection = {
-  __typename?: 'VideoCollection';
+  __typename: 'VideoCollection';
   items: Array<Maybe<Video>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -2586,7 +2877,7 @@ export type VideoFilter = {
 };
 
 export type VideoLinkingCollections = {
-  __typename?: 'VideoLinkingCollections';
+  __typename: 'VideoLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   videosPanelCollection?: Maybe<VideosPanelCollection>;
 };
@@ -2610,47 +2901,49 @@ export type VideoLinkingCollectionsVideosPanelCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum VideoLinkingCollectionsVideosPanelCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export const VideoLinkingCollectionsVideosPanelCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
-export enum VideoOrder {
-  AltTextAsc = 'altText_ASC',
-  AltTextDesc = 'altText_DESC',
-  AutoStartAsc = 'autoStart_ASC',
-  AutoStartDesc = 'autoStart_DESC',
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  VideoUrlAsc = 'videoUrl_ASC',
-  VideoUrlDesc = 'videoUrl_DESC'
-}
+export type VideoLinkingCollectionsVideosPanelCollectionOrder = typeof VideoLinkingCollectionsVideosPanelCollectionOrder[keyof typeof VideoLinkingCollectionsVideosPanelCollectionOrder];
+export const VideoOrder = {
+  AltTextAsc: 'altText_ASC',
+  AltTextDesc: 'altText_DESC',
+  AutoStartAsc: 'autoStart_ASC',
+  AutoStartDesc: 'autoStart_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  VideoUrlAsc: 'videoUrl_ASC',
+  VideoUrlDesc: 'videoUrl_DESC'
+} as const;
 
+export type VideoOrder = typeof VideoOrder[keyof typeof VideoOrder];
 /** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanel = Entry & _Node & {
-  __typename?: 'VideosPanel';
+  __typename: 'VideosPanel';
   _id: Scalars['ID']['output'];
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
@@ -2709,7 +3002,7 @@ export type VideosPanelVideosCollectionArgs = {
 };
 
 export type VideosPanelCollection = {
-  __typename?: 'VideosPanelCollection';
+  __typename: 'VideosPanelCollection';
   items: Array<Maybe<VideosPanel>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
@@ -2754,7 +3047,7 @@ export type VideosPanelFilter = {
 };
 
 export type VideosPanelLinkingCollections = {
-  __typename?: 'VideosPanelLinkingCollections';
+  __typename: 'VideosPanelLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   projectRowCollection?: Maybe<ProjectRowCollection>;
 };
@@ -2778,65 +3071,68 @@ export type VideosPanelLinkingCollectionsProjectRowCollectionArgs = {
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export enum VideosPanelLinkingCollectionsProjectRowCollectionOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
+export const VideosPanelLinkingCollectionsProjectRowCollectionOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
 
-export enum VideosPanelOrder {
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  OldSlugAsc = 'oldSlug_ASC',
-  OldSlugDesc = 'oldSlug_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
+export type VideosPanelLinkingCollectionsProjectRowCollectionOrder = typeof VideosPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof VideosPanelLinkingCollectionsProjectRowCollectionOrder];
+export const VideosPanelOrder = {
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  OldSlugAsc: 'oldSlug_ASC',
+  OldSlugDesc: 'oldSlug_DESC',
+  SlugAsc: 'slug_ASC',
+  SlugDesc: 'slug_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
+} as const;
 
+export type VideosPanelOrder = typeof VideosPanelOrder[keyof typeof VideosPanelOrder];
 export type VideosPanelVideosCollection = {
-  __typename?: 'VideosPanelVideosCollection';
+  __typename: 'VideosPanelVideosCollection';
   items: Array<Maybe<Video>>;
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
 };
 
-export enum VideosPanelVideosCollectionOrder {
-  AltTextAsc = 'altText_ASC',
-  AltTextDesc = 'altText_DESC',
-  AutoStartAsc = 'autoStart_ASC',
-  AutoStartDesc = 'autoStart_DESC',
-  ContentfulDescriptionAsc = 'contentfulDescription_ASC',
-  ContentfulDescriptionDesc = 'contentfulDescription_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  VideoUrlAsc = 'videoUrl_ASC',
-  VideoUrlDesc = 'videoUrl_DESC'
-}
+export const VideosPanelVideosCollectionOrder = {
+  AltTextAsc: 'altText_ASC',
+  AltTextDesc: 'altText_DESC',
+  AutoStartAsc: 'autoStart_ASC',
+  AutoStartDesc: 'autoStart_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  VideoUrlAsc: 'videoUrl_ASC',
+  VideoUrlDesc: 'videoUrl_DESC'
+} as const;
 
+export type VideosPanelVideosCollectionOrder = typeof VideosPanelVideosCollectionOrder[keyof typeof VideosPanelVideosCollectionOrder];
 export type _Node = {
   _id: Scalars['ID']['output'];
 };
@@ -2977,6 +3273,21 @@ export type CfVideoNestedFilter = {
   video_exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type CfcontentMultiTypeNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfcontentMultiTypeNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfcontentMultiTypeNestedFilter>>>;
+  category_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulDescription_not?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 export type CfrowMultiTypeNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfrowMultiTypeNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfrowMultiTypeNestedFilter>>>;
@@ -2991,29 +3302,60 @@ export type CfrowMultiTypeNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
-export type GetHomePageDataQueryVariables = Exact<{ [key: string]: never; }>;
+type ContentfulSysId_Category_Fragment = { __typename: 'Category', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_ContentModelVersion_Fragment = { __typename: 'ContentModelVersion', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Homepage_Fragment = { __typename: 'Homepage', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Image_Fragment = { __typename: 'Image', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_ImagesPanel_Fragment = { __typename: 'ImagesPanel', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Link_Fragment = { __typename: 'Link', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Project_Fragment = { __typename: 'Project', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_ProjectRow_Fragment = { __typename: 'ProjectRow', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Separator_Fragment = { __typename: 'Separator', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_TextPage_Fragment = { __typename: 'TextPage', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_TextPanel_Fragment = { __typename: 'TextPanel', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_Video_Fragment = { __typename: 'Video', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_VideosPanel_Fragment = { __typename: 'VideosPanel', sys: { __typename: 'Sys', id: string } };
+
+export type ContentfulSysIdFragment = ContentfulSysId_Category_Fragment | ContentfulSysId_ContentModelVersion_Fragment | ContentfulSysId_Homepage_Fragment | ContentfulSysId_Image_Fragment | ContentfulSysId_ImagesPanel_Fragment | ContentfulSysId_Link_Fragment | ContentfulSysId_Project_Fragment | ContentfulSysId_ProjectRow_Fragment | ContentfulSysId_Separator_Fragment | ContentfulSysId_TextPage_Fragment | ContentfulSysId_TextPanel_Fragment | ContentfulSysId_Video_Fragment | ContentfulSysId_VideosPanel_Fragment;
+
+export type GetHomepageQueryQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type GetHomePageDataQuery = { __typename?: 'Query', projectCollection?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename?: 'Sys', id: string }, category?: { __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null } | null> } | null, linkCollection?: { __typename?: 'LinkCollection', items: Array<{ __typename?: 'Link', title?: string | null, place?: string | null, externalLink?: string | null, emailLink?: string | null, sys: { __typename?: 'Sys', id: string }, category?: { __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null, pdfLink?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null, separatorCollection?: { __typename?: 'SeparatorCollection', items: Array<{ __typename?: 'Separator', sys: { __typename?: 'Sys', id: string }, category?: { __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null } | null> } | null, categoryCollection?: { __typename?: 'CategoryCollection', items: Array<{ __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, seoImage?: { __typename: 'Asset', url?: string | null } | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
 export type GetProjectsListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetProjectsListQuery = { __typename?: 'Query', projectCollection?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename?: 'Sys', id: string }, category?: { __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null } | null> } | null };
+export type GetProjectsListQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename: 'Sys', id: string }, category?: { __typename: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null };
 
 export type GetProjectBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectBySlugQuery = { __typename?: 'Query', projectCollection?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename?: 'Sys', id: string }, category?: { __typename?: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename?: 'Sys', id: string } } | null, projectRowsCollection?: { __typename?: 'ProjectProjectRowsCollection', items: Array<{ __typename?: 'ProjectRow', sys: { __typename?: 'Sys', id: string }, rowCollection?: { __typename?: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, imagesCollection?: { __typename?: 'ImagesPanelImagesCollection', items: Array<{ __typename?: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename?: 'Sys', id: string }, image?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, videosCollection?: { __typename?: 'VideosPanelVideosCollection', items: Array<{ __typename?: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename?: 'Sys', id: string }, previewImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, video?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
+export type GetProjectBySlugQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename: 'Sys', id: string }, category?: { __typename: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', sys: { __typename: 'Sys', id: string }, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename: 'Sys', id: string }, image?: { __typename: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename: 'Sys', id: string }, previewImage?: { __typename: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, video?: { __typename: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectPanelsQuery = { __typename?: 'Query', projectCollection?: { __typename?: 'ProjectCollection', items: Array<{ __typename?: 'Project', projectRowsCollection?: { __typename?: 'ProjectProjectRowsCollection', items: Array<{ __typename?: 'ProjectRow', sys: { __typename?: 'Sys', id: string }, rowCollection?: { __typename?: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, imagesCollection?: { __typename?: 'ImagesPanelImagesCollection', items: Array<{ __typename?: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename?: 'Sys', id: string }, image?: { __typename?: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename?: 'Sys', id: string }, text?: { __typename?: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename?: 'Sys', id: string }, videosCollection?: { __typename?: 'VideosPanelVideosCollection', items: Array<{ __typename?: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename?: 'Sys', id: string }, previewImage?: { __typename?: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename?: 'Sys', id: string } } | null, video?: { __typename?: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
+export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', sys: { __typename: 'Sys', id: string }, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename: 'Sys', id: string }, image?: { __typename: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename: 'Sys', id: string }, previewImage?: { __typename: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, video?: { __typename: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3033,81 +3375,54 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
-
-export const GetHomePageDataDocument = new TypedDocumentString(`
-    query GetHomePageData {
-  projectCollection(order: year_DESC, limit: 10) {
-    items {
-      sys {
-        id
-      }
-      title
-      slug
-      year
-      place
-      category {
-        sys {
-          id
-        }
-        title
-        slug
-        showOnStartPage
-        color
-      }
-    }
+export const ContentfulSysIdFragmentDoc = new TypedDocumentString(`
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
   }
-  linkCollection {
+}
+    `, {"fragmentName":"ContentfulSysId"}) as unknown as TypedDocumentString<ContentfulSysIdFragment, unknown>;
+export const GetHomepageQueryDocument = new TypedDocumentString(`
+    query getHomepageQuery($preview: Boolean!, $limit: Int = 1) {
+  homepageCollection(preview: $preview, limit: $limit) {
     items {
-      sys {
-        id
-      }
-      title
-      place
-      category {
-        sys {
-          id
-        }
-        title
-        slug
-        showOnStartPage
-        color
-      }
-      externalLink
-      emailLink
-      pdfLink {
+      ...ContentfulSysId
+      seoTitle
+      seoDescription
+      seoImage {
         url
       }
-    }
-  }
-  separatorCollection {
-    items {
-      sys {
-        id
-      }
-      category {
-        sys {
-          id
+      contentCollection(preview: $preview) {
+        items {
+          __typename
+          ... on Project {
+            ...ContentfulSysId
+            title
+            slug
+            year
+          }
+          ... on Link {
+            ...ContentfulSysId
+            title
+            emailLink
+            externalLink
+            pdfLink {
+              url
+            }
+          }
+          ... on Separator {
+            ...ContentfulSysId
+          }
         }
-        title
-        slug
-        showOnStartPage
-        color
       }
-    }
-  }
-  categoryCollection {
-    items {
-      sys {
-        id
-      }
-      title
-      slug
-      showOnStartPage
-      color
     }
   }
 }
-    `) as unknown as TypedDocumentString<GetHomePageDataQuery, GetHomePageDataQueryVariables>;
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
+  }
+}`) as unknown as TypedDocumentString<GetHomepageQueryQuery, GetHomepageQueryQueryVariables>;
 export const GetProjectsListDocument = new TypedDocumentString(`
     query GetProjectsList {
   projectCollection(order: sys_firstPublishedAt_DESC) {
