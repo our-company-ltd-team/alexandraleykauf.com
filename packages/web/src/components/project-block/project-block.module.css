@@ -1,0 +1,87 @@
+.item {
+  /* Base list item styles */
+}
+
+.header {
+  position: relative;
+  padding: 5px 110px;
+  border-bottom: var(--border-dotted, 1px dotted #929292);
+}
+
+.header:hover {
+  color: var(--color-text-default, #000);
+}
+
+/* Active state styles */
+.active .header {
+  color: var(--color-text-default, #000);
+  text-transform: uppercase;
+  font-family: var(--font-bold, "museo_bold", sans-serif);
+}
+
+.center {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.left {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  padding-left: 10px;
+  z-index: 1;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+  top: 5px;
+  padding-right: 10px;
+  z-index: 1;
+}
+
+.link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 50;
+  display: block;
+}
+
+/* Details section (shown when active) */
+.details {
+  background-color: var(--details-background-color, #c1ccc6);
+}
+
+.active .details {
+  display: block;
+}
+
+.paragraph {
+  border-bottom: var(--border-dotted, 1px dotted #929292);
+  padding: 10px 10px 0 10px;
+  position: relative;
+}
+
+.paragraphTitle {
+  color: var(--color-text-default, #000);
+}
+
+.detailsLeft {
+  position: absolute;
+  width: 90px;
+  left: 10px;
+  top: 10px;
+  min-height: 16px;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.detailsRight {
+  margin: 0 0 10px 100px;
+  min-height: 16px;
+}

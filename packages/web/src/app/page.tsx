@@ -3,11 +3,12 @@ import NextLink from "next/link";
 import type { ContentItem } from "@/lib/features/home";
 import type { Link, Project } from "@/lib/graphql/generated/graphql";
 
-import LinkBlock from "@/components/link-block";
-import ProjectBlock from "@/components/project-block";
-import SeparatorBlock from "@/components/separator-block";
+import { LinkBlock } from "@/components/link-block";
+import { ProjectBlock } from "@/components/project-block";
+import { SeparatorBlock } from "@/components/separator-block";
 import { getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem, isNotNull } from "@/lib/graphql/type-utils";
+import layoutStyles from "@/styles/layout.module.css";
 
 // =============================================================================
 // Block Building
@@ -43,17 +44,17 @@ export default async function Page() {
 
   return (
     <div>
-      <header className="clearfix main-header">
-        <h1 className="main-title">
+      <header className={layoutStyles.mainHeader}>
+        <h1 className={layoutStyles.mainTitle}>
           <NextLink href="/">ALEXANDRA LEYKAUF</NextLink>
         </h1>
       </header>
-      <section id="list" className="list">
-        <ul className="list" key="list-ul">
+      <section className={layoutStyles.list}>
+        <ul className={layoutStyles.listUl}>
           {contentItems.filter(isNotNull).map(buildBlock)}
         </ul>
       </section>
-      <footer>
+      <footer className={layoutStyles.footer}>
         <NextLink
           href="https://www.ourcompany.ch/"
           target="_blank"

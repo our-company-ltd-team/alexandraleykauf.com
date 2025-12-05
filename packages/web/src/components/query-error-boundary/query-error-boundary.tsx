@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 import { QueryErrorResetBoundary } from "@tanstack/react-query";
 
-import { ErrorBoundary } from "./error-boundary";
+import { ErrorBoundary } from "../error-boundary";
 
 type QueryErrorBoundaryProps = {
   children: ReactNode;

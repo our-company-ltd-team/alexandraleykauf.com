@@ -2,18 +2,20 @@ import Link from "next/link";
 
 import type { TextBlock as TextBlockType } from "@/types";
 
+import styles from "./text-block.module.css";
+
 function buildParagraph(textBlock: TextBlockType, projectId: string) {
   switch (textBlock._type) {
     case "text":
       return (
-        <div className="text">
+        <div className={styles.text}>
           {textBlock.text}
           {" "}
         </div>
       );
     case "textPage":
       return (
-        <Link href={`/t/${projectId}/${textBlock._key}#back=${projectId}`} className="textpage-link">
+        <Link href={`/t/${projectId}/${textBlock._key}#back=${projectId}`} className={styles.textpageLink}>
           {textBlock.title}
         </Link>
       );
@@ -24,7 +26,7 @@ function buildParagraph(textBlock: TextBlockType, projectId: string) {
 
 export default function TextBlock({ textBlock, projectId }: { textBlock: TextBlockType; projectId: string }) {
   return (
-    <div className="paragraph-texts details-right">
+    <div className={styles.detailsRight}>
       {buildParagraph(textBlock, projectId)}
     </div>
   );

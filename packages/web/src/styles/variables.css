@@ -1,0 +1,33 @@
+:root {
+  /* Colors */
+  --color-text-muted: #929292;
+  --color-text-default: #000;
+  --color-background: #fff;
+  --color-selection: #fe57a1;
+  --color-details-bg: #c1ccc6;
+  --color-border: #929292;
+
+  /* Dynamic colors (set via layout.tsx) */
+  --hover-color: #c1ccc6;
+  --active-color: #000;
+  --details-background-color: #c1ccc6;
+
+  /* Typography */
+  --font-regular: "museo_regular", sans-serif;
+  --font-bold: "museo_bold", sans-serif;
+  --font-icon: "our_webfontregular", sans-serif;
+  --font-size-base: 12px;
+  --font-size-large: 20px;
+  --font-size-title: 24px;
+  --letter-spacing-base: 0.1em;
+  --letter-spacing-title: 3px;
+
+  /* Spacing */
+  --container-margin-desktop: 117px;
+  --container-margin-tablet: 50px;
+  --container-margin-mobile: 15px;
+  --container-max-width: 966px;
+
+  /* Borders */
+  --border-dotted: 1px dotted var(--color-border);
+}

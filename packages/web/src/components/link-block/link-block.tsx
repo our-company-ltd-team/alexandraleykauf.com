@@ -1,6 +1,10 @@
 "use client";
 
+import clsx from "clsx";
+
 import type { Link } from "@/lib/graphql/generated/graphql";
+
+import styles from "./link-block.module.css";
 
 export default function LinkBlock({ data }: { data: Link }) {
   // function getLink() {
@@ -17,18 +21,16 @@ export default function LinkBlock({ data }: { data: Link }) {
   // }
 
   return (
-    <li className="list-item Kontakt" data-visible="true">
-      <div className="list-item-header">
-        {/* <NextLink target="_blank" href={getLink()} className="list-item-link"></NextLink> */}
-        <div className="list-item-center">
+    <li className={styles.item} data-visible="true">
+      <div className={styles.header}>
+        {/* <NextLink target="_blank" href={getLink()} className={styles.link}></NextLink> */}
+        <div className={styles.center}>
           {data.title}
         </div>
-        <div className="list-item-left">
-          <span className="at">@</span>
+        <div className={styles.left}>
+          <span className={styles.at}>@</span>
         </div>
-        <div className="media-phone-hidden media-small-hidden list-item-right">
-
-        </div>
+        <div className={clsx(styles.right, "hidden md:block")} />
       </div>
     </li>
   );

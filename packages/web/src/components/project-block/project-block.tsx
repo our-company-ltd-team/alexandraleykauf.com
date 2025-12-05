@@ -1,64 +1,13 @@
 "use client";
+
+import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 import type { Project } from "@/lib/graphql/generated/graphql";
 
-// function buildContent(content: ParagraphContent[] = [], projectId: string) {
-//   if (content.length === 0) {
-//     return (
-//       <div className="paragraph-unknown details-right">
-//         You need to add content for
-//         {projectId}
-//       </div>
-//     );
-//   }
-//   return content.map((contentBlock: ParagraphContent) => {
-//     const key = contentBlock._key || Math.random();
-
-//     switch (contentBlock._type) {
-//       case "image":
-//         return (
-//           <ImageBlock key={key} imageBlock={contentBlock} projectId={projectId} />
-//         );
-
-//       case "text":
-//       case "textPage":
-//         return <TextBlock key={key} textBlock={contentBlock} projectId={projectId} />;
-
-//       case "video":
-//         return (
-//           <div key={key} className="paragraph-video details-right">
-//             video block
-//           </div>
-//         );
-
-//       default:
-//         return (
-//           <div key={key} className="paragraph-unknown details-right">
-//             unknown projekt block
-//           </div>
-//         );
-//     }
-//   });
-// }
-
-// function buildProjectBlockList(paragraphs: Paragraph[] | undefined, projectId: string) {
-//   if (!paragraphs)
-//     return null;
-
-//   return (
-//     <div className="list-item-details">
-//       {paragraphs.map((p: Paragraph) => (
-//         <article key={p._key} className="paragraph clearfix">
-//           <div className="paragraph-title details-left">{p.title}</div>
-//           {buildContent(p.content, projectId)}
-//         </article>
-//       ))}
-//     </div>
-//   );
-// }
+import styles from "./project-block.module.css";
 
 function parseOpenParam(param: string | null) {
   if (!param)
@@ -73,12 +22,9 @@ function scrollToElementEdge(element: HTMLElement) {
   const elementRect = element.getBoundingClientRect();
   const elementTop = elementRect.top + window.scrollY;
 
-  // const viewportHeight = window.innerHeight;
   const currentScroll = window.scrollY;
-
   const targetScroll = elementTop;
 
-  // Only scroll if target is different from current
   if (targetScroll !== currentScroll) {
     window.scrollTo({
       top: targetScroll,
@@ -93,15 +39,11 @@ export default function ProjectBlock({ data }: { data: Project }) {
   const openParam = searchParams?.get("open") ?? "";
   const openList = React.useMemo(() => parseOpenParam(openParam), [openParam]);
 
-  // derive open state directly from the URL (no router push here)
   const showParagraphs = openList.includes(data._id);
-
-  // scroll to the top of this <li> when it becomes open
   const liRef = React.useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
     if (showParagraphs && liRef.current) {
-      // Small delay to ensure content is rendered
       if ("scrollRestoration" in window.history) {
         window.history.scrollRestoration = "manual";
       }
@@ -114,7 +56,6 @@ export default function ProjectBlock({ data }: { data: Project }) {
     }
   }, [showParagraphs]);
 
-  // compute toggled href for this project (used by Link)
   const computeToggledHref = () => {
     const params = new URLSearchParams(searchParams?.toString() ?? "");
     const current = parseOpenParam(params.get("open"));
@@ -135,20 +76,20 @@ export default function ProjectBlock({ data }: { data: Project }) {
   const href = computeToggledHref();
 
   return (
-    <li id={data._id} ref={liRef}>
-      <header className="list-item-header">
+    <li id={data._id} ref={liRef} className={clsx(styles.item, showParagraphs && styles.active)}>
+      <header className={styles.header}>
         <Link
           href={href}
-          className="list-item-link to-transform"
+          className={styles.link}
           aria-expanded={showParagraphs}
           scroll={false}
         >
           <span aria-hidden />
         </Link>
 
-        <span className="list-item-center">{data.title}</span>
-        <div className="list-item-left">{data.year}</div>
-        <div className="media-phone-hidden media-small-hidden list-item-right"></div>
+        <span className={styles.center}>{data.title}</span>
+        <div className={styles.left}>{data.year}</div>
+        <div className={clsx(styles.right, "hidden md:block")} />
       </header>
 
       {/* {showParagraphs && buildProjectBlockList(data.paragraphs, data._id)} */}
