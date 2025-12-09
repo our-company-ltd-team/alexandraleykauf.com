@@ -13,6 +13,16 @@ export const contentfulSysIdFragment = graphql(`
   }
 `);
 
+export const seoFragment = graphql(`
+  fragment Seo on Homepage {
+    seoTitle
+    seoDescription
+    seoImage {
+      url
+    }
+  }
+`);
+
 /**
  * Fetches all data needed for the home page.
  */
@@ -21,21 +31,11 @@ export const getHomepageQuery = graphql(`
     homepageCollection(preview: $preview, limit: $limit) {
       items {
         ...ContentfulSysId
-        seoTitle
-        seoDescription
-        seoImage {
-          url
-        }
+        ...Seo
         contentCollection(preview: $preview) {
           items {
-            __typename
-            ... on Project {
-              ...ContentfulSysId
-              title
-              slug
-              year
-            }
             ... on Link {
+              __typename
               ...ContentfulSysId
               title
               emailLink
@@ -44,7 +44,22 @@ export const getHomepageQuery = graphql(`
                 url
               }
             }
+            ... on Project {
+              __typename
+              ...ContentfulSysId
+              title
+              slug
+              year
+              category {
+                ...ContentfulSysId
+                color
+              }
+              projectRowsCollection(preview: $preview, limit: 0) {
+                total
+              }
+            }
             ... on Separator {
+              __typename
               ...ContentfulSysId
             }
           }
@@ -53,3 +68,19 @@ export const getHomepageQuery = graphql(`
     }
   }
 `);
+
+/*
+    # projectCollection(
+    #   preview: $preview,
+    #   where: { projectRowsCollection_exists: true },
+    #   order:  year_DESC )
+    #   {
+    #   items {
+    #     __typename
+    #     ...ContentfulSysId
+    #     title
+    #     slug
+    #     year
+    #   }
+    # }
+*/

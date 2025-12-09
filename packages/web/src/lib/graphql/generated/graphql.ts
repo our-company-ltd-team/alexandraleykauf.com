@@ -190,6 +190,7 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  generalConfigCollection?: Maybe<GeneralConfigCollection>;
   homepageCollection?: Maybe<HomepageCollection>;
   imageCollection?: Maybe<ImageCollection>;
   linkCollection?: Maybe<LinkCollection>;
@@ -198,6 +199,15 @@ export type AssetLinkingCollections = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AssetLinkingCollectionsGeneralConfigCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -688,6 +698,189 @@ export const EntryOrder = {
 } as const;
 
 export type EntryOrder = typeof EntryOrder[keyof typeof EntryOrder];
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfig = Entry & _Node & {
+  __typename: 'GeneralConfig';
+  _id: Scalars['ID']['output'];
+  activeColor?: Maybe<Scalars['String']['output']>;
+  contentfulDescription?: Maybe<Scalars['String']['output']>;
+  contentfulMetadata: ContentfulMetadata;
+  detailsBackgroundColor?: Maybe<Scalars['String']['output']>;
+  googleAnalyticsCode?: Maybe<Scalars['String']['output']>;
+  hoverColor?: Maybe<Scalars['String']['output']>;
+  linkedFrom?: Maybe<GeneralConfigLinkingCollections>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
+  seoImage?: Maybe<Asset>;
+  seoTitle?: Maybe<Scalars['String']['output']>;
+  sys: Sys;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigActiveColorArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigContentfulDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigDetailsBackgroundColorArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigGoogleAnalyticsCodeArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigHoverColorArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigSeoDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigSeoImageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+export type GeneralConfigSeoTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type GeneralConfigCollection = {
+  __typename: 'GeneralConfigCollection';
+  items: Array<Maybe<GeneralConfig>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type GeneralConfigFilter = {
+  AND?: InputMaybe<Array<InputMaybe<GeneralConfigFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<GeneralConfigFilter>>>;
+  activeColor?: InputMaybe<Scalars['String']['input']>;
+  activeColor_contains?: InputMaybe<Scalars['String']['input']>;
+  activeColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  activeColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  activeColor_not?: InputMaybe<Scalars['String']['input']>;
+  activeColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  activeColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulDescription?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  contentfulDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulDescription_not?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  detailsBackgroundColor?: InputMaybe<Scalars['String']['input']>;
+  detailsBackgroundColor_contains?: InputMaybe<Scalars['String']['input']>;
+  detailsBackgroundColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  detailsBackgroundColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  detailsBackgroundColor_not?: InputMaybe<Scalars['String']['input']>;
+  detailsBackgroundColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  detailsBackgroundColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  googleAnalyticsCode?: InputMaybe<Scalars['String']['input']>;
+  googleAnalyticsCode_contains?: InputMaybe<Scalars['String']['input']>;
+  googleAnalyticsCode_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  googleAnalyticsCode_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  googleAnalyticsCode_not?: InputMaybe<Scalars['String']['input']>;
+  googleAnalyticsCode_not_contains?: InputMaybe<Scalars['String']['input']>;
+  googleAnalyticsCode_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  hoverColor?: InputMaybe<Scalars['String']['input']>;
+  hoverColor_contains?: InputMaybe<Scalars['String']['input']>;
+  hoverColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  hoverColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  hoverColor_not?: InputMaybe<Scalars['String']['input']>;
+  hoverColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  hoverColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoDescription_not?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoTitle_not?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type GeneralConfigLinkingCollections = {
+  __typename: 'GeneralConfigLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type GeneralConfigLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export const GeneralConfigOrder = {
+  ActiveColorAsc: 'activeColor_ASC',
+  ActiveColorDesc: 'activeColor_DESC',
+  ContentfulDescriptionAsc: 'contentfulDescription_ASC',
+  ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  DetailsBackgroundColorAsc: 'detailsBackgroundColor_ASC',
+  DetailsBackgroundColorDesc: 'detailsBackgroundColor_DESC',
+  GoogleAnalyticsCodeAsc: 'googleAnalyticsCode_ASC',
+  GoogleAnalyticsCodeDesc: 'googleAnalyticsCode_DESC',
+  HoverColorAsc: 'hoverColor_ASC',
+  HoverColorDesc: 'hoverColor_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
+  SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc: 'sys_firstPublishedAt_DESC',
+  SysIdAsc: 'sys_id_ASC',
+  SysIdDesc: 'sys_id_DESC',
+  SysPublishedAtAsc: 'sys_publishedAt_ASC',
+  SysPublishedAtDesc: 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+} as const;
+
+export type GeneralConfigOrder = typeof GeneralConfigOrder[keyof typeof GeneralConfigOrder];
 /** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type Homepage = Entry & _Node & {
   __typename: 'Homepage';
@@ -1266,7 +1459,9 @@ export const ImagesPanelLinkingCollectionsProjectRowCollectionOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type ImagesPanelLinkingCollectionsProjectRowCollectionOrder = typeof ImagesPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof ImagesPanelLinkingCollectionsProjectRowCollectionOrder];
@@ -1710,7 +1905,9 @@ export const ProjectProjectRowsCollectionOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type ProjectProjectRowsCollectionOrder = typeof ProjectProjectRowsCollectionOrder[keyof typeof ProjectProjectRowsCollectionOrder];
@@ -1723,6 +1920,7 @@ export type ProjectRow = Entry & _Node & {
   linkedFrom?: Maybe<ProjectRowLinkingCollections>;
   rowCollection?: Maybe<ProjectRowRowCollection>;
   sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1749,6 +1947,13 @@ export type ProjectRowRowCollectionArgs = {
   where?: InputMaybe<ProjectRowRowFilter>;
 };
 
+
+/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+export type ProjectRowTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
 export type ProjectRowCollection = {
   __typename: 'ProjectRowCollection';
   items: Array<Maybe<ProjectRow>>;
@@ -1771,6 +1976,13 @@ export type ProjectRowFilter = {
   row?: InputMaybe<CfrowMultiTypeNestedFilter>;
   rowCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type ProjectRowLinkingCollections = {
@@ -1832,7 +2044,9 @@ export const ProjectRowOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type ProjectRowOrder = typeof ProjectRowOrder[keyof typeof ProjectRowOrder];
@@ -1871,6 +2085,8 @@ export type Query = {
   contentModelVersion?: Maybe<ContentModelVersion>;
   contentModelVersionCollection?: Maybe<ContentModelVersionCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  generalConfig?: Maybe<GeneralConfig>;
+  generalConfigCollection?: Maybe<GeneralConfigCollection>;
   homepage?: Maybe<Homepage>;
   homepageCollection?: Maybe<HomepageCollection>;
   image?: Maybe<Image>;
@@ -1977,6 +2193,25 @@ export type QueryEntryCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<EntryFilter>;
+};
+
+
+export type QueryGeneralConfigArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryGeneralConfigCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<GeneralConfigOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  where?: InputMaybe<GeneralConfigFilter>;
 };
 
 
@@ -2504,7 +2739,9 @@ export const TextPageLinkingCollectionsProjectRowCollectionOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type TextPageLinkingCollectionsProjectRowCollectionOrder = typeof TextPageLinkingCollectionsProjectRowCollectionOrder[keyof typeof TextPageLinkingCollectionsProjectRowCollectionOrder];
@@ -2667,7 +2904,9 @@ export const TextPanelLinkingCollectionsProjectRowCollectionOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type TextPanelLinkingCollectionsProjectRowCollectionOrder = typeof TextPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof TextPanelLinkingCollectionsProjectRowCollectionOrder];
@@ -3081,7 +3320,9 @@ export const VideosPanelLinkingCollectionsProjectRowCollectionOrder = {
   SysPublishedAtAsc: 'sys_publishedAt_ASC',
   SysPublishedAtDesc: 'sys_publishedAt_DESC',
   SysPublishedVersionAsc: 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc: 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc: 'sys_publishedVersion_DESC',
+  TitleAsc: 'title_ASC',
+  TitleDesc: 'title_DESC'
 } as const;
 
 export type VideosPanelLinkingCollectionsProjectRowCollectionOrder = typeof VideosPanelLinkingCollectionsProjectRowCollectionOrder[keyof typeof VideosPanelLinkingCollectionsProjectRowCollectionOrder];
@@ -3224,6 +3465,13 @@ export type CfProjectRowNestedFilter = {
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   rowCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CfVideoNestedFilter = {
@@ -3302,9 +3550,19 @@ export type CfrowMultiTypeNestedFilter = {
   sys?: InputMaybe<SysFilter>;
 };
 
+export type GetGeneralConfigQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoDescription?: string | null, seoTitle?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+
 type ContentfulSysId_Category_Fragment = { __typename: 'Category', sys: { __typename: 'Sys', id: string } };
 
 type ContentfulSysId_ContentModelVersion_Fragment = { __typename: 'ContentModelVersion', sys: { __typename: 'Sys', id: string } };
+
+type ContentfulSysId_GeneralConfig_Fragment = { __typename: 'GeneralConfig', sys: { __typename: 'Sys', id: string } };
 
 type ContentfulSysId_Homepage_Fragment = { __typename: 'Homepage', sys: { __typename: 'Sys', id: string } };
 
@@ -3328,7 +3586,9 @@ type ContentfulSysId_Video_Fragment = { __typename: 'Video', sys: { __typename: 
 
 type ContentfulSysId_VideosPanel_Fragment = { __typename: 'VideosPanel', sys: { __typename: 'Sys', id: string } };
 
-export type ContentfulSysIdFragment = ContentfulSysId_Category_Fragment | ContentfulSysId_ContentModelVersion_Fragment | ContentfulSysId_Homepage_Fragment | ContentfulSysId_Image_Fragment | ContentfulSysId_ImagesPanel_Fragment | ContentfulSysId_Link_Fragment | ContentfulSysId_Project_Fragment | ContentfulSysId_ProjectRow_Fragment | ContentfulSysId_Separator_Fragment | ContentfulSysId_TextPage_Fragment | ContentfulSysId_TextPanel_Fragment | ContentfulSysId_Video_Fragment | ContentfulSysId_VideosPanel_Fragment;
+export type ContentfulSysIdFragment = ContentfulSysId_Category_Fragment | ContentfulSysId_ContentModelVersion_Fragment | ContentfulSysId_GeneralConfig_Fragment | ContentfulSysId_Homepage_Fragment | ContentfulSysId_Image_Fragment | ContentfulSysId_ImagesPanel_Fragment | ContentfulSysId_Link_Fragment | ContentfulSysId_Project_Fragment | ContentfulSysId_ProjectRow_Fragment | ContentfulSysId_Separator_Fragment | ContentfulSysId_TextPage_Fragment | ContentfulSysId_TextPanel_Fragment | ContentfulSysId_Video_Fragment | ContentfulSysId_VideosPanel_Fragment;
+
+export type SeoFragment = { __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, seoImage?: { __typename: 'Asset', url?: string | null } | null };
 
 export type GetHomepageQueryQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3336,26 +3596,14 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, seoImage?: { __typename: 'Asset', url?: string | null } | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
-
-export type GetProjectsListQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetProjectsListQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename: 'Sys', id: string }, category?: { __typename: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null };
-
-export type GetProjectBySlugQueryVariables = Exact<{
-  slug: Scalars['String']['input'];
-}>;
-
-
-export type GetProjectBySlugQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, sys: { __typename: 'Sys', id: string }, category?: { __typename: 'Category', title?: string | null, slug?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', sys: { __typename: 'Sys', id: string }, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename: 'Sys', id: string }, image?: { __typename: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename: 'Sys', id: string }, previewImage?: { __typename: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, video?: { __typename: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', sys: { __typename: 'Sys', id: string }, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, sys: { __typename: 'Sys', id: string }, image?: { __typename: 'Asset', url?: string | null, title?: string | null, description?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null } | null> } | null } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPageText', json: any } | null } | { __typename: 'TextPanel', sys: { __typename: 'Sys', id: string }, text?: { __typename: 'TextPanelText', json: any } | null } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string }, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, altText?: string | null, videoUrl?: string | null, autoStart?: boolean | null, sys: { __typename: 'Sys', id: string }, previewImage?: { __typename: 'Asset', url?: string | null, title?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, video?: { __typename: 'Asset', url?: string | null } | null } | null> } | null } | null> } | null } | null> } | null } | null> } | null };
+export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPanel', text?: { __typename: 'TextPanelText', json: any } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', altText?: string | null, previewImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3382,26 +3630,45 @@ export const ContentfulSysIdFragmentDoc = new TypedDocumentString(`
   }
 }
     `, {"fragmentName":"ContentfulSysId"}) as unknown as TypedDocumentString<ContentfulSysIdFragment, unknown>;
+export const SeoFragmentDoc = new TypedDocumentString(`
+    fragment Seo on Homepage {
+  seoTitle
+  seoDescription
+  seoImage {
+    url
+  }
+}
+    `, {"fragmentName":"Seo"}) as unknown as TypedDocumentString<SeoFragment, unknown>;
+export const GetGeneralConfigDocument = new TypedDocumentString(`
+    query getGeneralConfig($preview: Boolean!, $limit: Int = 1) {
+  generalConfigCollection(preview: $preview, limit: $limit) {
+    items {
+      sys {
+        id
+      }
+      activeColor
+      detailsBackgroundColor
+      googleAnalyticsCode
+      hoverColor
+      seoDescription
+      seoImage {
+        url
+      }
+      seoTitle
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetGeneralConfigQuery, GetGeneralConfigQueryVariables>;
 export const GetHomepageQueryDocument = new TypedDocumentString(`
     query getHomepageQuery($preview: Boolean!, $limit: Int = 1) {
   homepageCollection(preview: $preview, limit: $limit) {
     items {
       ...ContentfulSysId
-      seoTitle
-      seoDescription
-      seoImage {
-        url
-      }
+      ...Seo
       contentCollection(preview: $preview) {
         items {
-          __typename
-          ... on Project {
-            ...ContentfulSysId
-            title
-            slug
-            year
-          }
           ... on Link {
+            __typename
             ...ContentfulSysId
             title
             emailLink
@@ -3410,7 +3677,22 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
               url
             }
           }
+          ... on Project {
+            __typename
+            ...ContentfulSysId
+            title
+            slug
+            year
+            category {
+              ...ContentfulSysId
+              color
+            }
+            projectRowsCollection(preview: $preview, limit: 0) {
+              total
+            }
+          }
           ... on Separator {
+            __typename
             ...ContentfulSysId
           }
         }
@@ -3422,176 +3704,42 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
   sys {
     id
   }
+}
+fragment Seo on Homepage {
+  seoTitle
+  seoDescription
+  seoImage {
+    url
+  }
 }`) as unknown as TypedDocumentString<GetHomepageQueryQuery, GetHomepageQueryQueryVariables>;
-export const GetProjectsListDocument = new TypedDocumentString(`
-    query GetProjectsList {
-  projectCollection(order: sys_firstPublishedAt_DESC) {
-    items {
-      sys {
-        id
-      }
-      title
-      slug
-      year
-      place
-      category {
-        sys {
-          id
-        }
-        title
-        slug
-        showOnStartPage
-        color
-      }
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<GetProjectsListQuery, GetProjectsListQueryVariables>;
-export const GetProjectBySlugDocument = new TypedDocumentString(`
-    query GetProjectBySlug($slug: String!) {
-  projectCollection(where: {slug: $slug}, limit: 1) {
-    items {
-      sys {
-        id
-      }
-      title
-      slug
-      year
-      place
-      category {
-        sys {
-          id
-        }
-        title
-        slug
-        showOnStartPage
-        color
-      }
-      projectRowsCollection {
-        items {
-          sys {
-            id
-          }
-          rowCollection {
-            items {
-              __typename
-              ... on ImagesPanel {
-                sys {
-                  id
-                }
-                title
-                slug
-                imagesCollection {
-                  items {
-                    sys {
-                      id
-                    }
-                    title
-                    description
-                    altText
-                    image {
-                      sys {
-                        id
-                      }
-                      url
-                      title
-                      description
-                      width
-                      height
-                    }
-                  }
-                }
-              }
-              ... on VideosPanel {
-                sys {
-                  id
-                }
-                title
-                slug
-                videosCollection {
-                  items {
-                    sys {
-                      id
-                    }
-                    title
-                    description
-                    altText
-                    previewImage {
-                      sys {
-                        id
-                      }
-                      url
-                      title
-                      width
-                      height
-                    }
-                    video {
-                      url
-                    }
-                    videoUrl
-                    autoStart
-                  }
-                }
-              }
-              ... on TextPanel {
-                sys {
-                  id
-                }
-                text {
-                  json
-                }
-              }
-              ... on TextPage {
-                sys {
-                  id
-                }
-                title
-                slug
-                text {
-                  json
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<GetProjectBySlugQuery, GetProjectBySlugQueryVariables>;
 export const GetProjectPanelsDocument = new TypedDocumentString(`
     query GetProjectPanels($slug: String!) {
   projectCollection(where: {slug: $slug}, limit: 1) {
     items {
-      projectRowsCollection {
+      category {
+        ...ContentfulSysId
+        color
+      }
+      projectRowsCollection(limit: 8) {
         items {
-          sys {
-            id
-          }
-          rowCollection {
+          ...ContentfulSysId
+          rowCollection(limit: 8) {
             items {
               __typename
               ... on ImagesPanel {
-                sys {
-                  id
-                }
+                ...ContentfulSysId
                 title
                 slug
-                imagesCollection {
+                imagesCollection(limit: 30) {
                   items {
-                    sys {
-                      id
-                    }
-                    title
-                    description
+                    ...ContentfulSysId
+                    __typename
                     altText
                     image {
                       sys {
                         id
                       }
                       url
-                      title
-                      description
                       width
                       height
                     }
@@ -3599,53 +3747,37 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
                 }
               }
               ... on VideosPanel {
-                sys {
-                  id
-                }
+                ...ContentfulSysId
                 title
                 slug
-                videosCollection {
+                videosCollection(limit: 15) {
                   items {
-                    sys {
-                      id
-                    }
-                    title
-                    description
+                    ...ContentfulSysId
+                    __typename
                     altText
                     previewImage {
                       sys {
                         id
                       }
                       url
-                      title
                       width
                       height
                     }
-                    video {
-                      url
-                    }
-                    videoUrl
-                    autoStart
                   }
                 }
               }
               ... on TextPanel {
-                sys {
-                  id
-                }
+                ...ContentfulSysId
+                __typename
                 text {
                   json
                 }
               }
               ... on TextPage {
-                sys {
-                  id
-                }
+                ...ContentfulSysId
+                __typename
                 title
                 slug
-                text {
-                  json
-                }
               }
             }
           }
@@ -3654,4 +3786,8 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
     }
   }
 }
-    `) as unknown as TypedDocumentString<GetProjectPanelsQuery, GetProjectPanelsQueryVariables>;
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
+  }
+}`) as unknown as TypedDocumentString<GetProjectPanelsQuery, GetProjectPanelsQueryVariables>;

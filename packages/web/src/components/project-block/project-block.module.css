@@ -1,3 +1,7 @@
+:root {
+  --project-color: transparent;
+}
+
 .item {
   /* Base list item styles */
 }
@@ -10,6 +14,7 @@
 
 .header:hover {
   color: var(--color-text-default, #000);
+  background-color: var(--project-color, transparent);
 }
 
 /* Active state styles */
@@ -17,6 +22,7 @@
   color: var(--color-text-default, #000);
   text-transform: uppercase;
   font-family: var(--font-bold, "museo_bold", sans-serif);
+  background-color: var(--project-color, transparent);
 }
 
 .center {
@@ -53,11 +59,12 @@
 
 /* Details section (shown when active) */
 .details {
-  background-color: var(--details-background-color, #c1ccc6);
+  background-color: var(--details-background-color, red);
 }
 
-.active .details {
-  display: block;
+.active .list-item-details {
+  display: none;
+  background-color: var(--details-background-color, red);
 }
 
 .paragraph {

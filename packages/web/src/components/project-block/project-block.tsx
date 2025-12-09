@@ -1,98 +1,124 @@
 "use client";
 
+import type { FC } from "react";
+
 import clsx from "clsx";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 
-import type { Project } from "@/lib/graphql/generated/graphql";
+import type { HomepageProjectItem } from "@/lib";
+import type { ProjectImagesPanel, ProjectPanel, ProjectRow } from "@/lib/features/projects/types";
 
+import { useHomeProjectPanels, usePrefetchHomeProjectPanels } from "@/lib";
+
+import { ImageBlock } from "../image-block";
 import styles from "./project-block.module.css";
 
-function parseOpenParam(param: string | null) {
-  if (!param)
-    return [];
-  return String(param)
-    .split(",")
-    .map(s => s.trim())
-    .filter(Boolean);
-}
+function buildContent(panel: ProjectPanel) {
+  // if (!rows)
+  //   return null;
 
-function scrollToElementEdge(element: HTMLElement) {
-  const elementRect = element.getBoundingClientRect();
-  const elementTop = elementRect.top + window.scrollY;
+  switch (panel.type) {
+    case "ImagesPanel":
+      return <ImageBlock key={panel.id} {...panel as ProjectImagesPanel} />;
+      // case "VideosPanel":
+      //   return <VideoBlock key={panel.id} videoBlock={panel.previewImages} projectId={panel.id} />;
+      // case "TextPanel":
+      //   return <TextBlock key={panel.id} textBlock={panel.text} projectId={panel.id} />;
+      // case "TextPage":
+      //   return null;
 
-  const currentScroll = window.scrollY;
-  const targetScroll = elementTop;
-
-  if (targetScroll !== currentScroll) {
-    window.scrollTo({
-      top: targetScroll,
-      behavior: "smooth",
-    });
+    default:
+      return null;
   }
 }
 
-export default function ProjectBlock({ data }: { data: Project }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const openParam = searchParams?.get("open") ?? "";
-  const openList = React.useMemo(() => parseOpenParam(openParam), [openParam]);
+function buildProjectBlockList(row: ProjectRow) {
+  return (
+    <div className={styles.details}>
+      {row.map((item: ProjectPanel) => {
+        return (
+          <article key={item.id} className="paragraph clearfix">
+            {buildContent(item)}
+          </article>
+        );
+      })}
+    </div>
+  );
+}
 
-  const showParagraphs = openList.includes(data._id);
+// function parseOpenParam(param: string | null) {
+//   if (!param)
+//     return [];
+//   return String(param)
+//     .split(",")
+//     .map(s => s.trim())
+//     .filter(Boolean);
+// }
+
+const ProjectBlock: FC<HomepageProjectItem
+  & { activeSlug?: string }> = ({ sys, title, year, slug, activeSlug, category }) => {
+  const isProjectActive = slug === activeSlug;
   const liRef = React.useRef<HTMLLIElement | null>(null);
+  const hasScrolledRef = useRef(false);
+  const prefetchPanels = usePrefetchHomeProjectPanels();
+  const { data: homeProjectPanels } = useHomeProjectPanels(slug ?? "", { enabled: isProjectActive });
+  const categoryColor = category?.color;
 
-  useEffect(() => {
-    if (showParagraphs && liRef.current) {
-      if ("scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
-      }
-      const timeout = setTimeout(() => {
-        if (liRef.current) {
-          scrollToElementEdge(liRef.current);
-        }
-      }, 100);
-      return () => clearTimeout(timeout);
-    }
-  }, [showParagraphs]);
+  useLayoutEffect(() => {
+    if (!isProjectActive || !liRef.current || hasScrolledRef.current)
+      return;
 
-  const computeToggledHref = () => {
-    const params = new URLSearchParams(searchParams?.toString() ?? "");
-    const current = parseOpenParam(params.get("open"));
-    const idx = current.indexOf(data._id);
-    const newList = [...current];
-    if (idx === -1)
-      newList.push(data._id);
-    else newList.splice(idx, 1);
+    hasScrolledRef.current = true;
+    liRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
 
-    if (newList.length)
-      params.set("open", newList.join(","));
-    else params.delete("open");
+    const timeout = setTimeout(() => {
+      hasScrolledRef.current = false;
+    }, 1000);
 
-    const q = params.toString();
-    return `${pathname}${q ? `?${q}` : ""}`;
-  };
+    return () => clearTimeout(timeout);
+  }, [isProjectActive]);
 
-  const href = computeToggledHref();
+  if (!slug) {
+    return null;
+  }
 
   return (
-    <li id={data._id} ref={liRef} className={clsx(styles.item, showParagraphs && styles.active)}>
+    <li
+      id={sys.id}
+      ref={liRef}
+      className={
+        clsx(styles.item, isProjectActive && styles.active,
+        )
+      }
+      style={{
+        ...(categoryColor && {
+          "--project-color": categoryColor,
+        } as React.CSSProperties),
+      }}
+      onMouseEnter={() => prefetchPanels(slug)}
+    >
       <header className={styles.header}>
         <Link
-          href={href}
+          href={`${slug}`}
           className={styles.link}
-          aria-expanded={showParagraphs}
+          aria-expanded={isProjectActive}
           scroll={false}
         >
           <span aria-hidden />
         </Link>
 
-        <span className={styles.center}>{data.title}</span>
-        <div className={styles.left}>{data.year}</div>
+        <span className={styles.center}>{title}</span>
+        <div className={styles.left}>{year}</div>
         <div className={clsx(styles.right, "hidden md:block")} />
       </header>
 
-      {/* {showParagraphs && buildProjectBlockList(data.paragraphs, data._id)} */}
+      {isProjectActive && homeProjectPanels?.rows.map(row => buildProjectBlockList(row))}
     </li>
   );
-}
+};
+
+export default ProjectBlock;

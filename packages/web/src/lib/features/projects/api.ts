@@ -5,29 +5,29 @@
 
 import { execute } from "@/lib/graphql/client";
 
-import { GetProjectBySlugDocument, GetProjectPanelsDocument } from "./queries";
+import { getProjectPanels as getProjectPanelsQuery } from "./queries";
 
 /**
  * Fetches a project by slug with all its panel data.
  * Uses ISR with 1 hour revalidation by default.
  */
-export async function getProjectBySlug(slug: string) {
-  const response = await execute({
-    query: GetProjectBySlugDocument,
-    variables: { slug },
-    options: { revalidate: 3600, tags: ["contentful", `project-${slug}`] },
-  });
+// export async function getProjectBySlug(slug: string) {
+//   const response = await execute({
+//     query: GetProjectBySlugDocument,
+//     variables: { slug },
+//     options: { revalidate: 3600, tags: ["contentful", `project-${slug}`] },
+//   });
 
-  return response.projectCollection?.items[0] ?? null;
-}
+//   return response.projectCollection?.items[0] ?? null;
+// }
 
 /**
  * Fetches project panels by slug.
  * This is used for prefetching panel data on hover.
  */
-export async function getProjectPanels(slug: string) {
+export async function getProjectPanelsData(slug: string) {
   const response = await execute({
-    query: GetProjectPanelsDocument,
+    query: getProjectPanelsQuery,
     variables: { slug },
     options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
   });

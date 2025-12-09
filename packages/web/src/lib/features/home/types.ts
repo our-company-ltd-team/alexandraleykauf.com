@@ -20,4 +20,10 @@ export type Homepage = CollectionItems<HomepageData>;
 export type ContentCollection = SafeGet<Homepage, "contentCollection">;
 
 /** A single content item (Link | Project | Separator) */
-export type ContentItem = CollectionItems<ContentCollection>;
+export type HomepageContentItem = CollectionItems<ContentCollection>;
+
+/** A single project item */
+export type HomepageProjectItem = Extract<HomepageContentItem, { __typename: "Project" }>;
+
+/** A single link item */
+export type HomepageLinkItem = Extract<HomepageContentItem, { __typename: "Link" }>;
