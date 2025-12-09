@@ -3,7 +3,7 @@ import type { CodegenConfig } from "@graphql-codegen/cli";
 import { config as dotenvConfig } from "dotenv";
 
 // Load .env.local BEFORE importing env (must be synchronous, before any imports that use process.env)
-dotenvConfig({ path: ".env.local" });
+dotenvConfig({ path: [".env.local", ".env.development.local"] });
 
 // Now we can safely use dynamic import since env vars are loaded
 const { env } = await import("./src/env");

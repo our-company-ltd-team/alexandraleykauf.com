@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { ImagesBlock as ImageBlockType } from "@/types";
+import type { ProjectImagesPanel, ProjectPreviewImage } from "@/lib/features/projects/types";
 
 import styles from "./image-block.module.css";
 
@@ -12,28 +12,28 @@ export type Thumbnail = {
 
 const THUMB_HEIGHT = 50;
 
-function buildThumbnails(imageBlock: ImageBlockType): Thumbnail[] {
-  if (!imageBlock?.images || !Array.isArray(imageBlock.images) || imageBlock.images.length === 0)
+function buildThumbnails(previewImages: ProjectPreviewImage[]): Thumbnail[] {
+  if (previewImages.length === 0) {
     return [];
+  }
 
-  const altBase = imageBlock.title || imageBlock.description || "";
-
-  return imageBlock.images.map((img, idx) => {
-    const ref = img?.asset?.asset._ref ?? "";
-    if (!ref)
+  return previewImages.map(({ image, altText, id }) => {
+    const ref = image.url;
+    if (!ref) {
       return null;
-    const thumbSrc = `${ref}?height=${THUMB_HEIGHT}`;
+    }
+
     return {
-      src: thumbSrc,
+      src: ref,
       srcFull: ref,
-      alt: altBase,
-      id: `${imageBlock._key ?? "img"}-${idx}`,
+      alt: altText ?? "",
+      id: id ?? "",
     } as Thumbnail;
   }).filter(Boolean) as Thumbnail[];
 }
 
-export default function ImageBlock({ imageBlock, projectId }: { imageBlock: ImageBlockType; projectId: string }) {
-  const thumbs = buildThumbnails(imageBlock);
+export default function ImageBlock({ previewImages, title, slug }: ProjectImagesPanel) {
+  const thumbs = buildThumbnails(previewImages);
 
   if (!thumbs.length)
     return null;
@@ -43,8 +43,9 @@ export default function ImageBlock({ imageBlock, projectId }: { imageBlock: Imag
       {thumbs.map(t => (
         <Link
           key={t.id ?? t.src}
-          href={`/i/${projectId}/${t.id}`}
-          title={imageBlock.title || imageBlock.description || ""}
+          // href={`/i/${projectId}/${t.id}`}
+          href={`${slug}`}
+          title={title ?? ""}
           rel="noopener noreferrer"
           className={styles.thumbnailLink}
         >

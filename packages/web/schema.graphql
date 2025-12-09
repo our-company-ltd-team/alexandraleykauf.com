@@ -107,6 +107,13 @@ type AssetLinkingCollections {
     skip: Int = 0
     useFallbackLocale: Boolean
   ): EntryCollection
+  generalConfigCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+    useFallbackLocale: Boolean
+  ): GeneralConfigCollection
   homepageCollection(
     limit: Int = 100
     locale: String
@@ -485,6 +492,121 @@ input EntryFilter {
 }
 
 enum EntryOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+"""
+The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig)
+"""
+type GeneralConfig implements Entry & _Node {
+  _id: ID!
+  activeColor(locale: String, useFallbackLocale: Boolean): String
+  contentfulDescription(locale: String, useFallbackLocale: Boolean): String
+  contentfulMetadata: ContentfulMetadata!
+  detailsBackgroundColor(locale: String, useFallbackLocale: Boolean): String
+  googleAnalyticsCode(locale: String, useFallbackLocale: Boolean): String
+  hoverColor(locale: String, useFallbackLocale: Boolean): String
+  linkedFrom(allowedLocales: [String]): GeneralConfigLinkingCollections
+  seoDescription(locale: String, useFallbackLocale: Boolean): String
+  seoImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  seoTitle(locale: String, useFallbackLocale: Boolean): String
+  sys: Sys!
+}
+
+type GeneralConfigCollection {
+  items: [GeneralConfig]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input GeneralConfigFilter {
+  AND: [GeneralConfigFilter]
+  OR: [GeneralConfigFilter]
+  activeColor: String
+  activeColor_contains: String
+  activeColor_exists: Boolean
+  activeColor_in: [String]
+  activeColor_not: String
+  activeColor_not_contains: String
+  activeColor_not_in: [String]
+  contentfulDescription: String
+  contentfulDescription_contains: String
+  contentfulDescription_exists: Boolean
+  contentfulDescription_in: [String]
+  contentfulDescription_not: String
+  contentfulDescription_not_contains: String
+  contentfulDescription_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  detailsBackgroundColor: String
+  detailsBackgroundColor_contains: String
+  detailsBackgroundColor_exists: Boolean
+  detailsBackgroundColor_in: [String]
+  detailsBackgroundColor_not: String
+  detailsBackgroundColor_not_contains: String
+  detailsBackgroundColor_not_in: [String]
+  googleAnalyticsCode: String
+  googleAnalyticsCode_contains: String
+  googleAnalyticsCode_exists: Boolean
+  googleAnalyticsCode_in: [String]
+  googleAnalyticsCode_not: String
+  googleAnalyticsCode_not_contains: String
+  googleAnalyticsCode_not_in: [String]
+  hoverColor: String
+  hoverColor_contains: String
+  hoverColor_exists: Boolean
+  hoverColor_in: [String]
+  hoverColor_not: String
+  hoverColor_not_contains: String
+  hoverColor_not_in: [String]
+  seoDescription: String
+  seoDescription_contains: String
+  seoDescription_exists: Boolean
+  seoDescription_in: [String]
+  seoDescription_not: String
+  seoDescription_not_contains: String
+  seoDescription_not_in: [String]
+  seoImage_exists: Boolean
+  seoTitle: String
+  seoTitle_contains: String
+  seoTitle_exists: Boolean
+  seoTitle_in: [String]
+  seoTitle_not: String
+  seoTitle_not_contains: String
+  seoTitle_not_in: [String]
+  sys: SysFilter
+}
+
+type GeneralConfigLinkingCollections {
+  entryCollection(
+    limit: Int = 100
+    locale: String
+    preview: Boolean
+    skip: Int = 0
+    useFallbackLocale: Boolean
+  ): EntryCollection
+}
+
+enum GeneralConfigOrder {
+  activeColor_ASC
+  activeColor_DESC
+  contentfulDescription_ASC
+  contentfulDescription_DESC
+  detailsBackgroundColor_ASC
+  detailsBackgroundColor_DESC
+  googleAnalyticsCode_ASC
+  googleAnalyticsCode_DESC
+  hoverColor_ASC
+  hoverColor_DESC
+  seoTitle_ASC
+  seoTitle_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1460,6 +1582,16 @@ type Query {
     useFallbackLocale: Boolean
     where: EntryFilter
   ): EntryCollection
+  generalConfig(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): GeneralConfig
+  generalConfigCollection(
+    limit: Int = 100
+    locale: String
+    order: [GeneralConfigOrder]
+    preview: Boolean
+    skip: Int = 0
+    useFallbackLocale: Boolean
+    where: GeneralConfigFilter
+  ): GeneralConfigCollection
   homepage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Homepage
   homepageCollection(
     limit: Int = 100

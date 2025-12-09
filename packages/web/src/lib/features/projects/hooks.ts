@@ -9,7 +9,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { clientExecute } from "@/lib/graphql/client";
 
-import { GetProjectPanelsDocument } from "./queries";
+import { getProjectPanels } from "./queries";
+import { transformProject } from "./transformers";
 
 /**
  * Query key factory for projects.
@@ -28,13 +29,13 @@ export const projectKeys = {
  * Fetches project panels by slug.
  * Used internally by useProjectPanels and usePrefetchProjectPanels.
  */
-async function fetchProjectPanels(slug: string) {
+async function fetchHomeProjectPanels(slug: string) {
   const response = await clientExecute({
-    query: GetProjectPanelsDocument,
+    query: getProjectPanels,
     variables: { slug },
   });
-  const project = response.projectCollection?.items[0];
-  return project?.projectRowsCollection?.items ?? [];
+
+  return transformProject(response);
 }
 
 /**
@@ -44,10 +45,10 @@ async function fetchProjectPanels(slug: string) {
  * @param options - Query options
  * @param options.enabled - Whether the query should run (default: true)
  */
-export function useProjectPanels(slug: string, options?: { enabled?: boolean }) {
+export function useHomeProjectPanels(slug: string, options?: { enabled?: boolean }) {
   return useQuery({
     queryKey: projectKeys.panels(slug),
-    queryFn: () => fetchProjectPanels(slug),
+    queryFn: () => fetchHomeProjectPanels(slug),
     enabled: options?.enabled ?? true,
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
@@ -66,13 +67,13 @@ export function useProjectPanels(slug: string, options?: { enabled?: boolean }) 
  * </li>
  * ```
  */
-export function usePrefetchProjectPanels() {
+export function usePrefetchHomeProjectPanels() {
   const queryClient = useQueryClient();
 
   return (slug: string) => {
     queryClient.prefetchQuery({
       queryKey: projectKeys.panels(slug),
-      queryFn: () => fetchProjectPanels(slug),
+      queryFn: () => fetchHomeProjectPanels(slug),
       staleTime: 5 * 60 * 1000, // Consider fresh for 5 mins
     });
   };
