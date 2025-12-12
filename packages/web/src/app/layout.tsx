@@ -32,6 +32,7 @@ export default async function RootLayout({
         <style
           precedence="default"
           href="theme-colors"
+          // eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
           dangerouslySetInnerHTML={{
             __html: `:root {
               --hover-color: ${hoverColor};

@@ -203,7 +203,10 @@ export function transformRow(row: ContentfulProjectRow): ProjectRow | null {
     return null;
   }
 
-  return transformedPanels;
+  return {
+    title: row.title ?? "",
+    panels: transformedPanels,
+  };
 }
 
 export function transformProject(data: GetProjectPanelsQuery): HomeProjectPanels | null {

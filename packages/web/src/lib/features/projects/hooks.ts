@@ -7,6 +7,7 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
+import { env } from "@/env";
 import { clientExecute } from "@/lib/graphql/client";
 
 import { getProjectPanels } from "./queries";
@@ -30,9 +31,10 @@ export const projectKeys = {
  * Used internally by useProjectPanels and usePrefetchProjectPanels.
  */
 async function fetchHomeProjectPanels(slug: string) {
+  const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
   const response = await clientExecute({
     query: getProjectPanels,
-    variables: { slug },
+    variables: { preview: isPreview, slug },
   });
 
   return transformProject(response);

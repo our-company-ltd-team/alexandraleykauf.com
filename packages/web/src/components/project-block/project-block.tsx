@@ -1,7 +1,9 @@
 "use client";
 
+import type { Options } from "@contentful/rich-text-react-renderer";
 import type { FC } from "react";
 
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import clsx from "clsx";
 import Link from "next/link";
 import React, { useLayoutEffect, useRef } from "react";
@@ -14,17 +16,29 @@ import { useHomeProjectPanels, usePrefetchHomeProjectPanels } from "@/lib";
 import { ImageBlock } from "../image-block";
 import styles from "./project-block.module.css";
 
-function buildContent(panel: ProjectPanel) {
-  // if (!rows)
-  //   return null;
+function buildContent(panel: ProjectPanel, projectSlug: string) {
+  const renderOptions: Options = {
+    renderText: (text) => {
+      // Split text by newlines and insert <br> tags
+      return text.split("\n").reduce((children, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment];
+      }, [] as React.ReactNode[]);
+    },
+  };
 
   switch (panel.type) {
     case "ImagesPanel":
-      return <ImageBlock key={panel.id} {...panel as ProjectImagesPanel} />;
+      return <ImageBlock key={panel.id} {...panel as ProjectImagesPanel} projectSlug={projectSlug} />;
       // case "VideosPanel":
       //   return <VideoBlock key={panel.id} videoBlock={panel.previewImages} projectId={panel.id} />;
-      // case "TextPanel":
-      //   return <TextBlock key={panel.id} textBlock={panel.text} projectId={panel.id} />;
+    case "TextPanel":
+      return <div key={panel.id} className={styles.text}>{documentToReactComponents(panel.text, renderOptions)}</div>;
+    case "TextPage":
+      return (
+        <Link key={panel.id} href={`/${projectSlug}/${panel.slug}`}>
+          {panel.title}
+        </Link>
+      );
       // case "TextPage":
       //   return null;
 
@@ -33,17 +47,15 @@ function buildContent(panel: ProjectPanel) {
   }
 }
 
-function buildProjectBlockList(row: ProjectRow) {
+function buildProjectBlockList(row: ProjectRow, projectSlug: string) {
+  const panels = row.panels.map((panel: ProjectPanel) => <div key={panel.id} className={styles.detailsRowPanel}>{buildContent(panel, projectSlug)}</div>);
   return (
-    <div className={styles.details}>
-      {row.map((item: ProjectPanel) => {
-        return (
-          <article key={item.id} className="paragraph clearfix">
-            {buildContent(item)}
-          </article>
-        );
-      })}
-    </div>
+    <section className={styles.detailsRow}>
+      <div className={styles.detailsRowTitle}>{row.title}</div>
+      <div className={styles.detailsRowPanelWrapper}>
+        {panels}
+      </div>
+    </section>
   );
 }
 
@@ -57,7 +69,7 @@ function buildProjectBlockList(row: ProjectRow) {
 // }
 
 const ProjectBlock: FC<HomepageProjectItem
-  & { activeSlug?: string }> = ({ sys, title, year, slug, activeSlug, category }) => {
+  & { activeSlug?: string }> = ({ sys, title, year, slug, activeSlug, category, place }) => {
   const isProjectActive = slug === activeSlug;
   const liRef = React.useRef<HTMLLIElement | null>(null);
   const hasScrolledRef = useRef(false);
@@ -87,13 +99,10 @@ const ProjectBlock: FC<HomepageProjectItem
   }
 
   return (
-    <li
-      id={sys.id}
+    <article
+      key={sys.id}
       ref={liRef}
-      className={
-        clsx(styles.item, isProjectActive && styles.active,
-        )
-      }
+      className={clsx(styles.item, isProjectActive && styles.active)}
       style={{
         ...(categoryColor && {
           "--project-color": categoryColor,
@@ -111,13 +120,13 @@ const ProjectBlock: FC<HomepageProjectItem
           <span aria-hidden />
         </Link>
 
-        <span className={styles.center}>{title}</span>
         <div className={styles.left}>{year}</div>
-        <div className={clsx(styles.right, "hidden md:block")} />
+        <h3 className={styles.center}>{title}</h3>
+        <div className={styles.right}>{place}</div>
       </header>
 
-      {isProjectActive && homeProjectPanels?.rows.map(row => buildProjectBlockList(row))}
-    </li>
+      {isProjectActive && homeProjectPanels?.rows.map(row => buildProjectBlockList(row, slug))}
+    </article>
   );
 };
 

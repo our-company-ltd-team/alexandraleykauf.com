@@ -3596,14 +3596,15 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
   slug: Scalars['String']['input'];
 }>;
 
 
-export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPanel', text?: { __typename: 'TextPanelText', json: any } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', altText?: string | null, previewImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null } | null> } | null };
+export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', title?: string | null, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPanel', text?: { __typename: 'TextPanelText', json: any } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', altText?: string | null, previewImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3683,6 +3684,7 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
             title
             slug
             year
+            place
             category {
               ...ContentfulSysId
               color
@@ -3713,8 +3715,8 @@ fragment Seo on Homepage {
   }
 }`) as unknown as TypedDocumentString<GetHomepageQueryQuery, GetHomepageQueryQueryVariables>;
 export const GetProjectPanelsDocument = new TypedDocumentString(`
-    query GetProjectPanels($slug: String!) {
-  projectCollection(where: {slug: $slug}, limit: 1) {
+    query GetProjectPanels($preview: Boolean!, $slug: String!) {
+  projectCollection(preview: $preview, where: {slug: $slug}, limit: 1) {
     items {
       category {
         ...ContentfulSysId
@@ -3723,6 +3725,7 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
       projectRowsCollection(limit: 8) {
         items {
           ...ContentfulSysId
+          title
           rowCollection(limit: 8) {
             items {
               __typename

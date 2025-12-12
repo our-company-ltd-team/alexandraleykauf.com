@@ -41,16 +41,6 @@
 .categoriesSelector a:last-child {
   margin-right: 0;
 }
-
-/* List section */
-.list {
-  border-top: var(--border-dotted, 1px dotted #929292);
-}
-
-.listUl {
-  /* Reset */
-}
-
 /* Footer */
 .footer {
   text-align: right;
