@@ -44,13 +44,11 @@ export function OpenedProjectsProvider({ children }: { children: React.ReactNode
     return () => window.removeEventListener("popstate", handlePopState);
   }, [openedProjects]);
 
-  // Toggle a project: expand/collapse + set as active
+  // Toggle a project: expand/collapse
   const toggleProject = useCallback((slug: string) => {
     setOpenedProjects((prev) => {
       const isOpen = prev.includes(slug);
       if (isOpen) {
-        // Collapse: remove from opened, clear active if it was this one
-        setActiveSlug(current => current === slug ? null : current);
         return prev.filter(s => s !== slug);
       }
       else {

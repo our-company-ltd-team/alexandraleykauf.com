@@ -23,16 +23,8 @@ export type ProjectPreviewImage = {
   image: ProjectImage;
 };
 
-export type ProjectImagesPanel = {
-  type: ImagesPanel["__typename"];
-  id: string;
-  title: string;
-  slug: string;
-  previewImages: ProjectPreviewImage[];
-};
-
-export type ProjectVideosPanel = {
-  type: VideosPanel["__typename"];
+export type ProjectImagesOrVideosPanel = {
+  type: ImagesPanel["__typename"] | VideosPanel["__typename"];
   id: string;
   title: string;
   slug: string;
@@ -52,14 +44,16 @@ export type ProjectTextPage = {
   slug: string;
 };
 
-export type ProjectPanel = ProjectImagesPanel | ProjectVideosPanel | ProjectTextPanel | ProjectTextPage;
+export type ProjectPanel = ProjectImagesOrVideosPanel | ProjectTextPanel | ProjectTextPage;
 
 export type ProjectRow = {
+  id: string;
   title: string;
   panels: ProjectPanel[];
 };
 
 export type HomeProjectPanels = {
+  id: string;
   categoryColor: string;
   rows: ProjectRow[];
 };

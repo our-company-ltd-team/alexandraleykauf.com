@@ -15,13 +15,12 @@ import { isNotNull } from "@/lib/graphql";
 import type {
   HomeProjectPanels,
   ProjectImage,
-  ProjectImagesPanel,
+  ProjectImagesOrVideosPanel,
   ProjectPanel,
   ProjectPreviewImage,
   ProjectRow,
   ProjectTextPage,
   ProjectTextPanel,
-  ProjectVideosPanel,
 } from "./types";
 
 export function transformImage(data: Asset): ProjectImage | null {
@@ -55,7 +54,7 @@ export function transformImagePreview(data: Image | Video): ProjectPreviewImage 
   };
 }
 
-export function transformImagesPanel(panel: ImagesPanel): ProjectImagesPanel | null {
+export function transformImagesPanel(panel: ImagesPanel): ProjectImagesOrVideosPanel | null {
   if (!panel.slug || !panel.title) {
     return null;
   }
@@ -78,7 +77,7 @@ export function transformImagesPanel(panel: ImagesPanel): ProjectImagesPanel | n
   };
 }
 
-export function transformVideosPanel(panel: VideosPanel): ProjectVideosPanel | null {
+export function transformVideosPanel(panel: VideosPanel): ProjectImagesOrVideosPanel | null {
   if (!panel.slug || !panel.title) {
     return null;
   }
@@ -204,6 +203,7 @@ export function transformRow(row: ContentfulProjectRow): ProjectRow | null {
   }
 
   return {
+    id: row.sys.id,
     title: row.title ?? "",
     panels: transformedPanels,
   };
@@ -228,6 +228,7 @@ export function transformProject(data: GetProjectPanelsQuery): HomeProjectPanels
   }
 
   return {
+    id: project.sys.id,
     categoryColor: project.category?.color ?? "",
     rows: transformedRows,
   };

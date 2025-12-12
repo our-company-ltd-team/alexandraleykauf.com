@@ -5,6 +5,14 @@ import "./src/env";
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.ctfassets.net",
+      },
+    ],
+  },
   experimental: {
     // swcPlugins: [["@graphql-codegen/client-preset-swc-plugin", {}]],
   },

@@ -1,0 +1,56 @@
+:root {
+  --project-color: transparent;
+}
+
+.item {
+  /* background-color: var(--details-background-color); */
+}
+
+.header {
+  align-items: center;
+  border-bottom: var(--border-dotted, 1px dotted #929292);
+  display: flex;
+  padding-block: 5px;
+  padding-inline: 10px;
+  position: relative;
+
+  .active & {
+    color: var(--color-text-default, #000);
+    text-transform: uppercase;
+    font-family: var(--font-bold, "museo_bold", sans-serif);
+    background-color: var(--project-color, transparent);
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text-default, #000);
+      background-color: var(--project-color, transparent);
+    }
+  }
+}
+
+.left {
+  flex: 0 0 var(--list-item-left-element-width);
+}
+
+.center {
+  color: currentColor;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+.right {
+  flex: 0 0 var(--list-item-right-element-width);
+  text-align: end;
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: block;
+}
