@@ -6,7 +6,7 @@ import "../styles/variables.css";
 import "../styles/base.css";
 import "../styles/legacy.clean.css";
 import { getGeneralConfigData } from "@/lib/features/general-config";
-import { QueryProvider } from "@/providers";
+import { OpenedProjectsProvider, QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
 export const metadata: Metadata = {
@@ -44,9 +44,11 @@ export default async function RootLayout({
       </head>
       <body id="body">
         <QueryProvider>
-          <div className={layoutStyles.container}>
-            {children}
-          </div>
+          <OpenedProjectsProvider>
+            <div className={layoutStyles.container}>
+              {children}
+            </div>
+          </OpenedProjectsProvider>
         </QueryProvider>
       </body>
     </html>

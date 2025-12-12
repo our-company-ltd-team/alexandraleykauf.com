@@ -1,16 +1,15 @@
 import NextLink from "next/link";
 import * as React from "react";
 
-import { Homepage } from "@/components";
+import { ProjectList } from "@/components/project-list";
 import { getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql";
 import layoutStyles from "@/styles/layout.module.css";
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProjectPage() {
   const { homepageCollection } = await getHomePageData();
   const homepage = getFirstItem(homepageCollection);
   const contentItems = getCollectionItems(homepage?.contentCollection);
-  const { slug } = await params;
 
   return (
     <>
@@ -19,7 +18,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <NextLink href="/">ALEXANDRA LEYKAUF</NextLink>
         </h1>
       </header>
-      <Homepage items={contentItems} activeSlug={slug} />
+      <ProjectList items={contentItems} />
       <footer className={layoutStyles.footer}>
         <NextLink
           href="https://www.ourcompany.ch/"

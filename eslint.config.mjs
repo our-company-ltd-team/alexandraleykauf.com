@@ -41,11 +41,9 @@ export const sharedRules = {
 // Root ESLint config (for root-level files and default settings)
 export default antfu(
   {
-    // Enable TypeScript linting rules
     typescript: true,
-    // Enable auto-formatting for CSS, JSON, Markdown, etc.
     formatters: true,
-    // Code style preferences
+    react: true,
     stylistic: sharedStylistic,
   },
   {

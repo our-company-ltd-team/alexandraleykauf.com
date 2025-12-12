@@ -3,6 +3,7 @@
  * Use these functions in Server Components.
  */
 
+import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
 import { getProjectPanels as getProjectPanelsQuery } from "./queries";
@@ -26,9 +27,11 @@ import { getProjectPanels as getProjectPanelsQuery } from "./queries";
  * This is used for prefetching panel data on hover.
  */
 export async function getProjectPanelsData(slug: string) {
+  const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
+
   const response = await execute({
     query: getProjectPanelsQuery,
-    variables: { slug },
+    variables: { preview: isPreview, slug },
     options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
   });
 
