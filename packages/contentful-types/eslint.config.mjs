@@ -23,10 +23,14 @@ export default antfu(
     },
   },
   {
-    "ts/consistent-type-definitions": "off",
+    rules: {
+      "ts/consistent-type-definitions": "off",
+    },
+  },
+  {
     // Allow require() in getContentfulEnvironment.ts (needed for contentful-typescript-codegen)
-    "files": ["getContentfulEnvironment.ts"],
-    "rules": {
+    files: ["getContentfulEnvironment.ts"],
+    rules: {
       "ts/no-require-imports": "off",
       "unicorn/prefer-module": "off",
       "unicorn/filename-case": "off",

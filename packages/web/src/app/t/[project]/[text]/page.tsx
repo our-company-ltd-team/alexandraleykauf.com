@@ -42,7 +42,11 @@ export default async function TextPage({
           </Link>
         </header>
 
-        <div className="text-content" dangerouslySetInnerHTML={{ __html: textBlock.text || "" }} />
+        <div
+          className="text-content"
+          // eslint-disable-next-line react-dom/no-dangerously-set-innerhtml
+          dangerouslySetInnerHTML={{ __html: textBlock.text || "" }}
+        />
       </article>
     </div>
   );

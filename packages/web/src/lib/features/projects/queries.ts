@@ -152,8 +152,8 @@ import { graphql } from "@/lib/graphql/generated";
  * Fetches project panels for prefetching on hover.
  */
 export const getProjectPanels = graphql(`
-  query GetProjectPanels($slug: String!) {
-    projectCollection(where: { slug: $slug }, limit: 1) {
+  query GetProjectPanels($preview: Boolean!, $slug: String!) {
+    projectCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
       items {
         category {
           ...ContentfulSysId
@@ -162,6 +162,7 @@ export const getProjectPanels = graphql(`
         projectRowsCollection(limit: 8) {
           items {
             ...ContentfulSysId
+            title
             rowCollection(limit: 8) {
               items {
                 __typename

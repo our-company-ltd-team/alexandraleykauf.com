@@ -4,11 +4,10 @@ import type { FC } from "react";
 import type { HomepageContentItem, HomepageProjectItem } from "@/lib";
 import type { Link } from "@/lib/graphql/generated/graphql";
 
-import layoutStyles from "@/styles/layout.module.css";
-
-import { LinkBlock } from "./link-block";
-import { ProjectBlock } from "./project-block";
-import { SeparatorBlock } from "./separator-block";
+import { LinkBlock } from "../link-block";
+import { ProjectBlock } from "../project-block";
+import { SeparatorBlock } from "../separator-block";
+import homepageStyles from "./homepage.module.css";
 
 /**
  * Builds a React element for a single content item based on its __typename.
@@ -24,7 +23,6 @@ function buildBlock(block: HomepageContentItem, activeSlug?: string) {
       if (block.projectRowsCollection?.total && block.projectRowsCollection.total! > 0) {
         return (
           <ProjectBlock
-            key={block.sys.id}
             activeSlug={activeSlug}
             {...block as HomepageProjectItem}
           />
@@ -42,23 +40,22 @@ export const Homepage: FC<{
   items: HomepageContentItem[];
   activeSlug?: string;
 }> = ({ items, activeSlug }) => {
-  // const { data: projectData, isLoading } = useProjectPanels(activeSlug ?? "", { enabled: !!activeSlug });
-
-  // console.log({ projectData });
-
-  // if (!projectData || isLoading) {
-  //   return null;
-  // }
-
   return (
-    <div>
-      <section className={layoutStyles.list}>
-        <ul className={layoutStyles.listUl}>
-          {items
-            .map(block => buildBlock(block, activeSlug))}
-        </ul>
-      </section>
-    </div>
+    <section className={homepageStyles.listWrapper}>
+      <ul className={homepageStyles.list}>
+        {items
+          .map((block) => {
+            return (
+              <li
+                key={block.sys.id}
+                className={homepageStyles.listItem}
+              >
+                {buildBlock(block, activeSlug)}
+              </li>
+            );
+          })}
+      </ul>
+    </section>
   );
 };
 

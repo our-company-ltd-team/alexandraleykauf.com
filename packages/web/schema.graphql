@@ -1105,6 +1105,8 @@ enum ImagesPanelLinkingCollectionsProjectRowCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum ImagesPanelOrder {
@@ -1414,6 +1416,8 @@ enum ProjectProjectRowsCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
@@ -1433,6 +1437,7 @@ type ProjectRow implements Entry & _Node {
     where: ProjectRowRowFilter
   ): ProjectRowRowCollection
   sys: Sys!
+  title(locale: String, useFallbackLocale: Boolean): String
 }
 
 type ProjectRowCollection {
@@ -1456,6 +1461,13 @@ input ProjectRowFilter {
   row: cfrowMultiTypeNestedFilter
   rowCollection_exists: Boolean
   sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
 }
 
 type ProjectRowLinkingCollections {
@@ -1510,6 +1522,8 @@ enum ProjectRowOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 type ProjectRowRowCollection {
@@ -1941,6 +1955,8 @@ enum TextPageLinkingCollectionsProjectRowCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum TextPageOrder {
@@ -2067,6 +2083,8 @@ enum TextPanelLinkingCollectionsProjectRowCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum TextPanelOrder {
@@ -2357,6 +2375,8 @@ enum VideosPanelLinkingCollectionsProjectRowCollectionOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 enum VideosPanelOrder {
@@ -2495,6 +2515,13 @@ input cfProjectRowNestedFilter {
   contentfulMetadata: ContentfulMetadataFilter
   rowCollection_exists: Boolean
   sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
 }
 
 input cfVideoNestedFilter {

@@ -54,7 +54,10 @@ export type ProjectTextPage = {
 
 export type ProjectPanel = ProjectImagesPanel | ProjectVideosPanel | ProjectTextPanel | ProjectTextPage;
 
-export type ProjectRow = ProjectPanel[];
+export type ProjectRow = {
+  title: string;
+  panels: ProjectPanel[];
+};
 
 export type HomeProjectPanels = {
   categoryColor: string;

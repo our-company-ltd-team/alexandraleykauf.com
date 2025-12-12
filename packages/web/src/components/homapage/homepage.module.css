@@ -1,0 +1,14 @@
+:root {
+  --list-item-left-element-width: 100px;
+  --list-item-right-element-width: 100px;
+}
+
+.listWrapper {
+  border-block-start: var(--border-dotted, 1px dotted #929292);
+}
+
+.list {
+}
+
+.listItem {
+}

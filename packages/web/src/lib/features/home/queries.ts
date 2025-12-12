@@ -50,6 +50,7 @@ export const getHomepageQuery = graphql(`
               title
               slug
               year
+              place
               category {
                 ...ContentfulSysId
                 color

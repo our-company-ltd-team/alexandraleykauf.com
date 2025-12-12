@@ -68,7 +68,11 @@ type ClientExecuteArgs<TResult, TVariables> = {
  * Used by React Query hooks.
  */
 export async function clientExecute<TResult, TVariables>({ query, variables }: ClientExecuteArgs<TResult, TVariables>): Promise<TResult> {
-  const token = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW ? env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN : env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN;
+  const token
+    = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW
+      ? env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN
+      : env.NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN;
+
   const response = await fetch(CONTENTFUL_GRAPHQL_ENDPOINT, {
     method: "POST",
     headers: {

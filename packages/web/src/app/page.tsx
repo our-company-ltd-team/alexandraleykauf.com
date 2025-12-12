@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 
-import { Homepage } from "@/components/homepage";
+import { Homepage } from "@/components/homapage/homepage";
 import { getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql/type-utils";
 import layoutStyles from "@/styles/layout.module.css";
