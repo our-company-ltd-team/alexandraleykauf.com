@@ -1,0 +1,30 @@
+.detailsRow {
+  background-color: var(--details-background-color);
+  display: flex;
+  padding: 10px;
+  border-bottom: var(--border-dotted, 1px dotted #929292);
+}
+
+.detailsRowTitle {
+  flex: 0 0 var(--list-item-left-element-width);
+  color: var(--color-text-default, #000);
+}
+
+.detailsRowPanelWrapper {
+  flex: 1;
+  position: relative;
+}
+
+.detailsRowPanel {
+  &:not(:first-child) {
+    margin-block-start: 10px;
+  }
+}
+
+.text {
+  color: var(--color-text-default, #000);
+
+  p {
+    color: var(--color-text-default, #000);
+  }
+}

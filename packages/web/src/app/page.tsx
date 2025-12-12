@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 
-import { ProjectList } from "@/components/project-list";
+import { ContentList } from "@/components/content-list";
 import { getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql/type-utils";
 import layoutStyles from "@/styles/layout.module.css";
@@ -17,7 +17,7 @@ export default async function Page() {
           <NextLink href="/">ALEXANDRA LEYKAUF</NextLink>
         </h1>
       </header>
-      <ProjectList items={contentItems} />
+      <ContentList items={contentItems} />
       <footer className={layoutStyles.footer}>
         <NextLink
           href="https://www.ourcompany.ch/"

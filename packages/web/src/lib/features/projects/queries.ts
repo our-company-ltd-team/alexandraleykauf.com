@@ -155,22 +155,23 @@ export const getProjectPanels = graphql(`
   query GetProjectPanels($preview: Boolean!, $slug: String!) {
     projectCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
       items {
+        ...ContentfulSysId
         category {
           ...ContentfulSysId
           color
         }
-        projectRowsCollection(limit: 8) {
+        projectRowsCollection(preview: $preview, limit: 8) {
           items {
             ...ContentfulSysId
             title
-            rowCollection(limit: 8) {
+            rowCollection(preview: $preview,limit: 8) {
               items {
                 __typename
                 ... on ImagesPanel {
                   ...ContentfulSysId
                   title
                   slug
-                  imagesCollection(limit: 30) {
+                  imagesCollection(preview: $preview,limit: 30) {
                     items {
                       ...ContentfulSysId
                       __typename
@@ -179,7 +180,7 @@ export const getProjectPanels = graphql(`
                         sys {
                           id
                         }
-                        url
+                        url(transform: { height: 50, format: WEBP})
                         width
                         height
                       }
@@ -190,7 +191,7 @@ export const getProjectPanels = graphql(`
                   ...ContentfulSysId
                   title
                   slug
-                  videosCollection(limit: 15) {
+                  videosCollection(preview: $preview,limit: 15) {
                     items {
                       ...ContentfulSysId
                       __typename
@@ -199,7 +200,7 @@ export const getProjectPanels = graphql(`
                         sys {
                           id
                         }
-                        url
+                        url(transform: { height: 50, format: WEBP})
                         width
                         height
                       }
