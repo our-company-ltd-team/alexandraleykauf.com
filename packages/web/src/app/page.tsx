@@ -1,6 +1,21 @@
+import { Suspense } from "react";
+
 import { MainPageWrapperClient } from "@/components/main-page-wrapper/main-page-wrapper.client";
 import { getHeaderData, getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql/type-utils";
+
+export const revalidate = 3600; // 1 hour
+
+export async function generateStaticParams() {
+  const homepageData = await getHomePageData();
+  const firstItem = getFirstItem(homepageData?.homepageCollection);
+  const contentItems = getCollectionItems(firstItem?.contentCollection);
+  const projects = contentItems.filter(item => item.__typename === "Project");
+
+  const projectSlugs = projects.map(project => project.slug ?? "");
+
+  return projectSlugs;
+}
 
 export default async function Page() {
   const [homepageCollection, headerData] = await Promise.allSettled([getHomePageData(), getHeaderData()]);
@@ -11,6 +26,8 @@ export default async function Page() {
   const categories = header?.categories ?? [];
 
   return (
-    <MainPageWrapperClient categories={categories} contentItems={contentItems} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <MainPageWrapperClient categories={categories} contentItems={contentItems} />
+    </Suspense>
   );
 }
