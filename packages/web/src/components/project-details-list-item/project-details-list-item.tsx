@@ -35,7 +35,7 @@ export const ProjectDetailsListItem: FC<{ row: ProjectRow; projectSlug: string }
         break;
       case "TextPage":
         panelElement = (
-          <Link key={panel.id} href={`/${projectSlug}/${panel.slug}`}>
+          <Link key={panel.id} className={styles.textPageLink} href={`/${projectSlug}/${panel.slug}`}>
             {panel.title}
           </Link>
         );

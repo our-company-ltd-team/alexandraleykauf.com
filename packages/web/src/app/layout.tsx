@@ -6,7 +6,7 @@ import "../styles/variables.css";
 import "../styles/base.css";
 import "../styles/legacy.clean.css";
 import { getGeneralConfigData } from "@/lib/features/general-config";
-import { OpenedProjectsProvider, QueryProvider } from "@/providers";
+import { QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
 export const metadata: Metadata = {
@@ -25,6 +25,8 @@ export default async function RootLayout({
   const activeColor = generalConfigData?.activeColor ?? "";
   const detailsBackgroundColor = generalConfigData?.detailsBackgroundColor ?? "";
 
+  console.log("ROOT LAYOUT!");
+
   return (
     <html lang="en">
       <head>
@@ -42,13 +44,11 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body id="body">
+      <body>
         <QueryProvider>
-          <OpenedProjectsProvider>
-            <div className={layoutStyles.container}>
-              {children}
-            </div>
-          </OpenedProjectsProvider>
+          <div className={layoutStyles.container}>
+            {children}
+          </div>
         </QueryProvider>
       </body>
     </html>

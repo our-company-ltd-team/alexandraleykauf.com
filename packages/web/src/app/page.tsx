@@ -1,8 +1,9 @@
 import NextLink from "next/link";
 
-import { ContentList } from "@/components/content-list";
+import { ContentList, Header } from "@/components";
 import { getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql/type-utils";
+import { OpenedProjectsProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
 export default async function Page() {
@@ -11,12 +12,8 @@ export default async function Page() {
   const contentItems = getCollectionItems(homepage?.contentCollection);
 
   return (
-    <>
-      <header className={layoutStyles.mainHeader}>
-        <h1 className={layoutStyles.mainTitle}>
-          <NextLink href="/">ALEXANDRA LEYKAUF</NextLink>
-        </h1>
-      </header>
+    <OpenedProjectsProvider>
+      <Header categories={[]} />
       <ContentList items={contentItems} />
       <footer className={layoutStyles.footer}>
         <NextLink
@@ -27,6 +24,6 @@ export default async function Page() {
           Our Company Ltd. / © A.L. 2025
         </NextLink>
       </footer>
-    </>
+    </OpenedProjectsProvider>
   );
 }

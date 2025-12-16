@@ -3558,6 +3558,13 @@ export type GetGeneralConfigQueryVariables = Exact<{
 
 export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoDescription?: string | null, seoTitle?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
+export type GetHeaderQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+}>;
+
+
+export type GetHeaderQuery = { __typename: 'Query', categoryCollection?: { __typename: 'CategoryCollection', items: Array<{ __typename: 'Category', slug?: string | null, title?: string | null, showOnStartPage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+
 type ContentfulSysId_Category_Fragment = { __typename: 'Category', sys: { __typename: 'Sys', id: string } };
 
 type ContentfulSysId_ContentModelVersion_Fragment = { __typename: 'ContentModelVersion', sys: { __typename: 'Sys', id: string } };
@@ -3660,6 +3667,21 @@ export const GetGeneralConfigDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetGeneralConfigQuery, GetGeneralConfigQueryVariables>;
+export const GetHeaderDocument = new TypedDocumentString(`
+    query getHeader($preview: Boolean!) {
+  categoryCollection(preview: $preview) {
+    items {
+      sys {
+        id
+      }
+      slug
+      title
+      showOnStartPage
+      color
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetHeaderQuery, GetHeaderQueryVariables>;
 export const GetHomepageQueryDocument = new TypedDocumentString(`
     query getHomepageQuery($preview: Boolean!, $limit: Int = 1) {
   homepageCollection(preview: $preview, limit: $limit) {

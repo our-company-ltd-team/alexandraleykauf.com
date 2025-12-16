@@ -1,23 +1,23 @@
 import NextLink from "next/link";
 import * as React from "react";
 
-import { ContentList } from "@/components/content-list";
-import { getHomePageData } from "@/lib";
+import { ContentList, Header } from "@/components";
+import { getHeaderData, getHomePageData } from "@/lib";
 import { getCollectionItems, getFirstItem } from "@/lib/graphql";
+import { OpenedProjectsProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
 export default async function ProjectPage() {
-  const { homepageCollection } = await getHomePageData();
-  const homepage = getFirstItem(homepageCollection);
-  const contentItems = getCollectionItems(homepage?.contentCollection);
+  const [homepageCollection, headerData] = await Promise.allSettled([getHomePageData(), getHeaderData()]);
+  const homepageData = homepageCollection.status === "fulfilled" ? getFirstItem(homepageCollection.value.homepageCollection) : null;
+  const contentItems = getCollectionItems(homepageData?.contentCollection);
+
+  const header = headerData.status === "fulfilled" ? headerData.value : null;
+  const categories = header?.categories.filter(category => category.showOnStartPage) ?? [];
 
   return (
-    <>
-      <header className={layoutStyles.mainHeader}>
-        <h1 className={layoutStyles.mainTitle}>
-          <NextLink href="/">ALEXANDRA LEYKAUF</NextLink>
-        </h1>
-      </header>
+    <OpenedProjectsProvider>
+      <Header categories={categories} />
       <ContentList items={contentItems} />
       <footer className={layoutStyles.footer}>
         <NextLink
@@ -28,6 +28,7 @@ export default async function ProjectPage() {
           Our Company Ltd. / © A.L. 2025
         </NextLink>
       </footer>
-    </>
+
+    </OpenedProjectsProvider>
   );
 }
