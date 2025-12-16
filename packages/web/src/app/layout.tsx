@@ -25,8 +25,6 @@ export default async function RootLayout({
   const activeColor = generalConfigData?.activeColor ?? "";
   const detailsBackgroundColor = generalConfigData?.detailsBackgroundColor ?? "";
 
-  console.log("ROOT LAYOUT!");
-
   return (
     <html lang="en">
       <head>

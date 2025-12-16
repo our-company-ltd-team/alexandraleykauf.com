@@ -17,6 +17,7 @@ export const getHeader = graphql(`
         slug
         title
         showOnStartPage
+        showItemsInHomepage
         color
       }
     }

@@ -30,5 +30,10 @@
   }
 }
 
+.categoryActive {
+  background-color: var(--category-color, transparent);
+  color: var(--color-text-default);
+}
+
 /* .mainTitle {
 } */

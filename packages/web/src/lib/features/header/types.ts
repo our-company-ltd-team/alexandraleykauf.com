@@ -3,6 +3,7 @@ export type Category = {
   color?: string;
   id: string;
   showOnStartPage: boolean;
+  showItemsInHomepage: boolean;
   slug: string;
   title: string;
 };

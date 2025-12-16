@@ -1,4 +1,4 @@
-import type { Category, GeneralConfig, Project } from "@/types";
+import type { GeneralConfig, Project } from "@/types";
 
 export const MockGeneralConfig: GeneralConfig = {
   _id: "general-config",
@@ -29,7 +29,7 @@ export const MockGeneralConfig: GeneralConfig = {
   },
 };
 
-export const MockCategories: Category[] = [
+export const MockCategories = [
   {
     _id: "cat-work",
     _type: "category",

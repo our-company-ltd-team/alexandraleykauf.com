@@ -176,6 +176,7 @@ type Category implements Entry & _Node {
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): CategoryLinkingCollections
+  showItemsInHomepage(locale: String, useFallbackLocale: Boolean): Boolean
   showOnStartPage(locale: String, useFallbackLocale: Boolean): Boolean
   slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
@@ -207,6 +208,9 @@ input CategoryFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  showItemsInHomepage: Boolean
+  showItemsInHomepage_exists: Boolean
+  showItemsInHomepage_not: Boolean
   showOnStartPage: Boolean
   showOnStartPage_exists: Boolean
   showOnStartPage_not: Boolean
@@ -323,6 +327,8 @@ enum CategoryOrder {
   color_DESC
   contentfulDescription_ASC
   contentfulDescription_DESC
+  showItemsInHomepage_ASC
+  showItemsInHomepage_DESC
   showOnStartPage_ASC
   showOnStartPage_DESC
   slug_ASC
@@ -2446,6 +2452,9 @@ input cfCategoryNestedFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  showItemsInHomepage: Boolean
+  showItemsInHomepage_exists: Boolean
+  showItemsInHomepage_not: Boolean
   showOnStartPage: Boolean
   showOnStartPage_exists: Boolean
   showOnStartPage_not: Boolean
