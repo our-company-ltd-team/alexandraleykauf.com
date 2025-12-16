@@ -12,7 +12,7 @@ export async function generateStaticParams() {
   const contentItems = getCollectionItems(firstItem?.contentCollection);
   const projects = contentItems.filter(item => item.__typename === "Project");
 
-  const projectSlugs = projects.map(project => project.slug ?? "");
+  const projectSlugs = projects.map(project => project.slug ? { projectSlug: project.slug } : null).filter(Boolean);
 
   return projectSlugs;
 }

@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   // eslint-disable-next-line no-console
   console.log({ projects: projects.length });
 
-  const projectSlugs = projects.map(project => project.slug ?? "");
+  const projectSlugs = projects.map(project => project.slug ? { projectSlug: project.slug } : null).filter(Boolean);
 
   return projectSlugs;
 }
