@@ -28,3 +28,9 @@
     color: var(--color-text-default, #000);
   }
 }
+
+@media (hover: hover) {
+  .textPageLink:hover {
+    color: var(--color-text-default, #000);
+  }
+}

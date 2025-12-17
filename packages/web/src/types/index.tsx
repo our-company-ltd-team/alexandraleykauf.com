@@ -1,3 +1,5 @@
+// TODO: make sure these types belong here or in the features folder
+
 export type FooterLink = {
   text: string;
   url: string;
@@ -19,14 +21,6 @@ export type GeneralConfig = {
   activeColor?: string;
   detailsBackgroundColor?: string;
   footer?: FooterLink;
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  title: string;
-  showOnStartPage: boolean;
-  color?: string;
 };
 
 export type Project = ProjectItem | ProjectLink | ProjectSeparator;

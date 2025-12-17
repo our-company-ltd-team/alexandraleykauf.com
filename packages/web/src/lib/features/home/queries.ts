@@ -43,6 +43,11 @@ export const getHomepageQuery = graphql(`
               pdfLink {
                 url
               }
+              category {
+                ...ContentfulSysId
+                slug
+                color
+              }
             }
             ... on Project {
               __typename
@@ -53,6 +58,7 @@ export const getHomepageQuery = graphql(`
               place
               category {
                 ...ContentfulSysId
+                slug
                 color
               }
               projectRowsCollection(preview: $preview, limit: 0) {
@@ -62,6 +68,11 @@ export const getHomepageQuery = graphql(`
             ... on Separator {
               __typename
               ...ContentfulSysId
+              category {
+                ...ContentfulSysId
+                slug
+                color
+              }
             }
           }
         }

@@ -283,6 +283,7 @@ export type Category = Entry & _Node & {
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<CategoryLinkingCollections>;
+  showItemsInHomepage?: Maybe<Scalars['Boolean']['output']>;
   showOnStartPage?: Maybe<Scalars['Boolean']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   sys: Sys;
@@ -307,6 +308,13 @@ export type CategoryContentfulDescriptionArgs = {
 /** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+export type CategoryShowItemsInHomepageArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -356,6 +364,9 @@ export type CategoryFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  showItemsInHomepage?: InputMaybe<Scalars['Boolean']['input']>;
+  showItemsInHomepage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  showItemsInHomepage_not?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage_not?: InputMaybe<Scalars['Boolean']['input']>;
@@ -488,6 +499,8 @@ export const CategoryOrder = {
   ColorDesc: 'color_DESC',
   ContentfulDescriptionAsc: 'contentfulDescription_ASC',
   ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  ShowItemsInHomepageAsc: 'showItemsInHomepage_ASC',
+  ShowItemsInHomepageDesc: 'showItemsInHomepage_DESC',
   ShowOnStartPageAsc: 'showOnStartPage_ASC',
   ShowOnStartPageDesc: 'showOnStartPage_DESC',
   SlugAsc: 'slug_ASC',
@@ -3396,6 +3409,9 @@ export type CfCategoryNestedFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  showItemsInHomepage?: InputMaybe<Scalars['Boolean']['input']>;
+  showItemsInHomepage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  showItemsInHomepage_not?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   showOnStartPage_not?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3558,6 +3574,13 @@ export type GetGeneralConfigQueryVariables = Exact<{
 
 export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoDescription?: string | null, seoTitle?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
+export type GetHeaderQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+}>;
+
+
+export type GetHeaderQuery = { __typename: 'Query', categoryCollection?: { __typename: 'CategoryCollection', items: Array<{ __typename: 'Category', slug?: string | null, title?: string | null, showOnStartPage?: boolean | null, showItemsInHomepage?: boolean | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+
 type ContentfulSysId_Category_Fragment = { __typename: 'Category', sys: { __typename: 'Sys', id: string } };
 
 type ContentfulSysId_ContentModelVersion_Fragment = { __typename: 'ContentModelVersion', sys: { __typename: 'Sys', id: string } };
@@ -3596,7 +3619,7 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3660,6 +3683,22 @@ export const GetGeneralConfigDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetGeneralConfigQuery, GetGeneralConfigQueryVariables>;
+export const GetHeaderDocument = new TypedDocumentString(`
+    query getHeader($preview: Boolean!) {
+  categoryCollection(preview: $preview) {
+    items {
+      sys {
+        id
+      }
+      slug
+      title
+      showOnStartPage
+      showItemsInHomepage
+      color
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetHeaderQuery, GetHeaderQueryVariables>;
 export const GetHomepageQueryDocument = new TypedDocumentString(`
     query getHomepageQuery($preview: Boolean!, $limit: Int = 1) {
   homepageCollection(preview: $preview, limit: $limit) {
@@ -3677,6 +3716,11 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
             pdfLink {
               url
             }
+            category {
+              ...ContentfulSysId
+              slug
+              color
+            }
           }
           ... on Project {
             __typename
@@ -3687,6 +3731,7 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
             place
             category {
               ...ContentfulSysId
+              slug
               color
             }
             projectRowsCollection(preview: $preview, limit: 0) {
@@ -3696,6 +3741,11 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
           ... on Separator {
             __typename
             ...ContentfulSysId
+            category {
+              ...ContentfulSysId
+              slug
+              color
+            }
           }
         }
       }

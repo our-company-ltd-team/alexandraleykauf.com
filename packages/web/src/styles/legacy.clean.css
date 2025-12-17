@@ -146,23 +146,23 @@ sub {
   bottom: -0.25em;
 }
 
-ul,
+/* ul,
 ol {
   margin: 1em 0;
   padding: 0 0 0 40px;
-}
+} */
 
 dd {
   margin: 0 0 0 40px;
 }
 
-nav ul,
+/* nav ul,
 nav ol {
   list-style: none;
   list-style-image: none;
   margin: 0;
   padding: 0;
-}
+} */
 
 img {
   border: 0;
@@ -288,7 +288,7 @@ td {
 /* ==========================================================================
    Main Styles
    ========================================================================== */
-
+/*
 html,
 body {
   background-color: white;
@@ -317,8 +317,8 @@ ol {
   font-size: 12px;
   list-style: none;
   color: #929292;
-}
-
+} */
+/*
 h1 {
   font-size: 12px;
   font-family: "museo_bold";
@@ -506,6 +506,7 @@ footer {
 }
 
 /* Image loader states */
+/*
 .img-loader-loading {
   opacity: 0;
   transition: opacity 0.1s linear;
@@ -520,6 +521,7 @@ footer {
 .text p {
   color: black;
 }
+*/
 
 /* ==========================================================================
    Detail Page
