@@ -8,7 +8,7 @@
 
 import type { Document } from "@contentful/rich-text-types";
 
-import type { ImagesPanel, TextPage, TextPanel, VideosPanel } from "@/lib/graphql/generated/graphql";
+import type { Image as ContentfulImage, Video as ContentfulVideo, ImagesPanel, TextPage, TextPanel, VideosPanel } from "@/lib/graphql/generated/graphql";
 
 export type ProjectImage = {
   id: string;
@@ -56,4 +56,53 @@ export type HomeProjectPanels = {
   id: string;
   categoryColor: string;
   rows: ProjectRow[];
+};
+
+/**
+ * A single image.
+ */
+export type Image = {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+};
+
+export type ProjectDetailImage = {
+  id: string;
+  type: ContentfulImage["__typename"];
+  title: string | undefined;
+  description: string | undefined;
+  altText: string | undefined;
+  image: Image | undefined;
+};
+
+export type ProjectDetailImagesPanel = {
+  type: ImagesPanel["__typename"];
+  id: string;
+  title: string | undefined;
+  slug: string;
+  images: Array<ProjectDetailImage> | undefined;
+};
+
+export type Video = {
+  id: string;
+  url: string;
+};
+
+export type ProjectDetailVideo = {
+  autoStart: boolean | undefined;
+  description: string | undefined;
+  id: string;
+  type: ContentfulVideo["__typename"];
+  video: Video | undefined;
+  videoUrl: string | undefined;
+};
+
+export type ProjectDetailVideosPanel = {
+  type: VideosPanel["__typename"];
+  id: string;
+  title: string | undefined;
+  slug: string | undefined;
+  videos: Array<ProjectDetailVideo> | undefined;
 };

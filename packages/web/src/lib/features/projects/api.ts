@@ -6,7 +6,8 @@
 import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
-import { getProjectPanels as getProjectPanelsQuery } from "./queries";
+import { getProjectPanelBySlug } from "./queries";
+import { transformImagesPanelBySlug } from "./transformers";
 
 /**
  * Fetches a project by slug with all its panel data.
@@ -26,15 +27,27 @@ import { getProjectPanels as getProjectPanelsQuery } from "./queries";
  * Fetches project panels by slug.
  * This is used for prefetching panel data on hover.
  */
-export async function getProjectPanelsData(slug: string) {
+// export async function getProjectPanelsData(slug: string) {
+//   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
+
+//   const response = await execute({
+//     query: getProjectPanelsQuery,
+//     variables: { preview: isPreview, slug },
+//     options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
+//   });
+
+//   const project = response.projectCollection?.items[0];
+//   return project?.projectRowsCollection?.items ?? [];
+// }
+
+export async function getProjectPanelBySlugData(slug: string) {
   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
 
   const response = await execute({
-    query: getProjectPanelsQuery,
+    query: getProjectPanelBySlug,
     variables: { preview: isPreview, slug },
-    options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
+    options: { revalidate: 3600, tags: ["contentful", `panel-${slug}`] },
   });
 
-  const project = response.projectCollection?.items[0];
-  return project?.projectRowsCollection?.items ?? [];
+  return transformImagesPanelBySlug(response);
 }

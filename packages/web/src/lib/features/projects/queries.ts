@@ -228,3 +228,76 @@ export const getProjectPanels = graphql(`
     }
   }
 `);
+
+/**
+ * Fetches a single project panel by slug.
+ */
+export const getProjectPanelBySlug = graphql(`
+  query GetProjectPanelBySlug($preview: Boolean!, $slug: String!) {
+    imagesPanelCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+      items {
+        __typename
+        ... on ImagesPanel {
+          ...ContentfulSysId
+          title
+          slug
+          imagesCollection(preview: $preview,limit: 30) {
+            items {
+              ...ContentfulSysId
+              __typename
+              title
+              description
+              altText
+              image {
+                sys {
+                  id
+                }
+                url
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+    videosPanelCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+      items {
+        __typename
+          ... on VideosPanel {
+            ...ContentfulSysId
+          title
+          slug
+          videosCollection(preview: $preview,limit: 30) {
+            items {
+              ...ContentfulSysId
+              __typename
+              video {
+                sys {
+                  id
+                }
+                url
+              }
+              description
+              videoUrl
+              autoStart
+            }
+          }
+        }
+      }
+    }
+    textPageCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+      items {
+        __typename
+        ... on TextPage {
+          ...ContentfulSysId
+          title
+          slug
+          text {
+            json
+          }
+        }
+      }
+    }
+  }
+`);

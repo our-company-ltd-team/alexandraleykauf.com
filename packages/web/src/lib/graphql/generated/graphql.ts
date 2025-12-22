@@ -3629,6 +3629,14 @@ export type GetProjectPanelsQueryVariables = Exact<{
 
 export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', title?: string | null, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPanel', text?: { __typename: 'TextPanelText', json: any } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', altText?: string | null, previewImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
+export type GetProjectPanelBySlugQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', description?: string | null, videoUrl?: string | null, autoStart?: boolean | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -3845,3 +3853,76 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
     id
   }
 }`) as unknown as TypedDocumentString<GetProjectPanelsQuery, GetProjectPanelsQueryVariables>;
+export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
+    query GetProjectPanelBySlug($preview: Boolean!, $slug: String!) {
+  imagesPanelCollection(preview: $preview, where: {slug: $slug}, limit: 1) {
+    items {
+      __typename
+      ... on ImagesPanel {
+        ...ContentfulSysId
+        title
+        slug
+        imagesCollection(preview: $preview, limit: 30) {
+          items {
+            ...ContentfulSysId
+            __typename
+            title
+            description
+            altText
+            image {
+              sys {
+                id
+              }
+              url
+              width
+              height
+            }
+          }
+        }
+      }
+    }
+  }
+  videosPanelCollection(preview: $preview, where: {slug: $slug}, limit: 1) {
+    items {
+      __typename
+      ... on VideosPanel {
+        ...ContentfulSysId
+        title
+        slug
+        videosCollection(preview: $preview, limit: 30) {
+          items {
+            ...ContentfulSysId
+            __typename
+            video {
+              sys {
+                id
+              }
+              url
+            }
+            description
+            videoUrl
+            autoStart
+          }
+        }
+      }
+    }
+  }
+  textPageCollection(preview: $preview, where: {slug: $slug}, limit: 1) {
+    items {
+      __typename
+      ... on TextPage {
+        ...ContentfulSysId
+        title
+        slug
+        text {
+          json
+        }
+      }
+    }
+  }
+}
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
+  }
+}`) as unknown as TypedDocumentString<GetProjectPanelBySlugQuery, GetProjectPanelBySlugQueryVariables>;
