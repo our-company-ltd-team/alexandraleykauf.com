@@ -3,7 +3,7 @@ import type { FC } from "react";
 import NextImage from "next/image";
 import Link from "next/link";
 
-import projectDetailStyles from "../project-detail-page.module.css";
+import projectDetailStyles from "./project-detail-image.module.css";
 
 type ProjectDetailImageProps = {
   imageUrl: string;

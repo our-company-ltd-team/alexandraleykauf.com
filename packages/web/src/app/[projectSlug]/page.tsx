@@ -15,8 +15,6 @@ export default async function ProjectPage() {
   const header = headerData.status === "fulfilled" ? headerData.value : null;
   const categories = header?.categories ?? [];
 
-  console.log({ contentItems: contentItems.filter(item => item.__typename === "Project") });
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <MainPageWrapperClient categories={categories} contentItems={contentItems} />

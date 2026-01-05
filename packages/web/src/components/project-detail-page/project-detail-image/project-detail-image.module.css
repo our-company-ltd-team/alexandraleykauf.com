@@ -1,0 +1,15 @@
+.figure {
+  flex: 1;
+  position: relative;
+}
+
+.imageLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.image {
+  object-position: top;
+  object-fit: contain;
+}
