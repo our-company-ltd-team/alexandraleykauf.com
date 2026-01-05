@@ -1,0 +1,186 @@
+/* ==========================================================================
+   Detail Page Module - Styles for image/text detail pages
+   ========================================================================== */
+
+.detailPage {
+  color: var(--color-text-default, #000);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom: 0; */
+}
+
+.detailPage p,
+.detailPage li,
+.detailPage ul,
+.detailPage ol {
+  color: var(--color-text-default, #000);
+  font-size: var(--font-size-large, 20px);
+}
+
+/* .textContent {
+  padding: 0 125px 75px 125px;
+  font-size: var(--font-size-large, 20px);
+} */
+
+.header {
+  color: var(--color-text-muted, #929292);
+  padding: 20px 0 10px;
+}
+/*
+.year,
+.subtitle {
+  font-size: var(--font-size-base, 12px);
+} */
+
+.back {
+  font-size: var(--font-size-base, 12px);
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.figure,
+.videoContainer {
+  /* text-align: center; */
+  flex: 1;
+  position: relative;
+}
+
+.imageLink {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-position: top;
+  object-fit: contain;
+}
+
+.videoWrapper {
+  min-width: 350px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.videoContainer {
+  position: relative;
+  padding-bottom: 63%;
+  height: 0;
+  overflow: hidden;
+}
+
+.videoContainer iframe,
+.videoContainer object,
+.videoContainer embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* .figure a {
+  display: inline-block;
+} */
+
+.nav {
+  text-align: center;
+  font-family: var(--font-bold, "museo_bold", sans-serif);
+  font-size: var(--font-size-base, 12px);
+  margin-block-end: 5px;
+  color: var(--color-text-muted, #929292);
+
+  .arrow {
+    font-size: 17px;
+    padding-inline: 5px;
+  }
+}
+
+.bottom {
+  padding-block: 10px;
+}
+
+.legend {
+  margin: 0 auto;
+  width: 500px;
+  text-align: center;
+  font-size: var(--font-size-base, 12px);
+}
+
+.legend p {
+  font-size: var(--font-size-base, 12px);
+}
+
+.title {
+  font-family: var(--font-regular, "museo_regular", sans-serif);
+}
+
+/* ==========================================================================
+     Responsive
+     ========================================================================== */
+
+/* Mobile small (max 320px) */
+@media only screen and (max-width: 320px) {
+  /* .textContent {
+    padding: 75px 0;
+  } */
+
+  .header {
+    text-align: center;
+  }
+
+  .back {
+    float: none;
+    position: relative;
+    right: auto;
+    top: auto;
+  }
+
+  .title {
+    float: none;
+    text-align: center;
+    padding-bottom: 12px;
+  }
+
+  .subtitle {
+    display: block;
+  }
+
+  .legend {
+    width: inherit;
+  }
+}
+
+/* Phone (319px - 767px) */
+@media only screen and (min-width: 319px) and (max-width: 767px) {
+  /* .textContent {
+    padding: 75px 0;
+  } */
+
+  .header {
+    text-align: center;
+  }
+
+  .back {
+    float: none;
+    position: relative;
+    right: auto;
+    top: auto;
+  }
+
+  .title {
+    float: none;
+    text-align: center;
+    padding-bottom: 12px;
+  }
+
+  .subtitle {
+    display: block;
+  }
+
+  .legend {
+    width: inherit;
+  }
+}

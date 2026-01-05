@@ -1,19 +1,25 @@
 import type {
   Asset,
+  Image as ContentfulImage,
   ProjectRow as ContentfulProjectRow,
+  Video as ContentfulVideo,
+  GetProjectPanelBySlugQuery,
   GetProjectPanelsQuery,
-  Image,
   ImagesPanel,
   TextPage,
   TextPanel,
-  Video,
   VideosPanel,
 } from "@/lib/graphql/generated/graphql";
 
-import { isNotNull } from "@/lib/graphql";
+import { getFirstItem, isNotNull } from "@/lib/graphql";
 
 import type {
   HomeProjectPanels,
+  Image,
+  ProjectDetailImage,
+  ProjectDetailImagesPanel,
+  ProjectDetailVideo,
+  ProjectDetailVideosPanel,
   ProjectImage,
   ProjectImagesOrVideosPanel,
   ProjectPanel,
@@ -21,6 +27,7 @@ import type {
   ProjectRow,
   ProjectTextPage,
   ProjectTextPanel,
+  Video,
 } from "./types";
 
 export function transformImage(data: Asset): ProjectImage | null {
@@ -36,7 +43,7 @@ export function transformImage(data: Asset): ProjectImage | null {
   };
 }
 
-export function transformImagePreview(data: Image | Video): ProjectPreviewImage | null {
+export function transformImagePreview(data: ContentfulImage | ContentfulVideo): ProjectPreviewImage | null {
   const image = data.__typename === "Image" ? data.image : data.previewImage;
   if (!image) {
     return null;
@@ -232,4 +239,118 @@ export function transformProject(data: GetProjectPanelsQuery): HomeProjectPanels
     categoryColor: project.category?.color ?? "",
     rows: transformedRows,
   };
+}
+
+function transformImageAsset(data: Asset): Image | null {
+  if (!data.url || !data.sys.id) {
+    return null;
+  }
+
+  return {
+    id: data.sys.id,
+    url: data.url,
+    width: data.width || 0,
+    height: data.height || 0,
+  };
+}
+
+function transformImageEntry(imageEntry: ContentfulImage): ProjectDetailImage | null {
+  if (!imageEntry.sys.id || !imageEntry.__typename || !imageEntry.image) {
+    return null;
+  }
+
+  const image = transformImageAsset(imageEntry.image);
+  if (!image) {
+    return null;
+  }
+
+  return {
+    id: imageEntry.sys.id,
+    type: imageEntry.__typename,
+    title: imageEntry.title ?? undefined,
+    description: imageEntry.description ?? undefined,
+    altText: imageEntry.altText ?? undefined,
+    image,
+  };
+}
+
+function transformImagesPanelForDetail(panel: ImagesPanel): ProjectDetailImagesPanel | null {
+  if (!panel.slug) {
+    return null;
+  }
+
+  return {
+    type: panel.__typename,
+    id: panel.sys.id,
+    title: panel.title ?? undefined,
+    slug: panel.slug,
+    images: panel.imagesCollection?.items.filter(isNotNull).map(transformImageEntry).filter(isNotNull),
+  };
+}
+
+function transformVideoAsset(data: Asset): Video | null {
+  if (!data.url || !data.sys.id) {
+    return null;
+  }
+
+  return {
+    id: data.sys.id,
+    url: data.url,
+  };
+}
+
+function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | null {
+  if (!videoEntry.sys.id || !videoEntry.__typename || !videoEntry.video) {
+    return null;
+  }
+
+  const video = transformVideoAsset(videoEntry.video);
+  if (!video) {
+    return null;
+  }
+
+  return {
+    id: videoEntry.sys.id,
+    type: videoEntry.__typename,
+    video,
+    videoUrl: videoEntry.videoUrl ?? undefined,
+    autoStart: videoEntry.autoStart ?? undefined,
+    description: videoEntry.description ?? undefined,
+  };
+}
+
+function transformVideosPanelForDetail(panel: VideosPanel): ProjectDetailVideosPanel | null {
+  if (!panel.slug) {
+    return null;
+  }
+
+  return {
+    type: panel.__typename,
+    id: panel.sys.id,
+    title: panel.title ?? undefined,
+    slug: panel.slug,
+    videos: panel.videosCollection?.items.filter(isNotNull).map(transformVideoEntry).filter(isNotNull),
+  };
+}
+
+// Transformers for single project panels
+export function transformImagesPanelBySlug(panel: GetProjectPanelBySlugQuery): ProjectDetailImagesPanel | ProjectDetailVideosPanel | null {
+  if (panel.imagesPanelCollection?.items.length) {
+    const ImagesPanel = getFirstItem(panel.imagesPanelCollection);
+    if (!ImagesPanel) {
+      return null;
+    }
+
+    return transformImagesPanelForDetail(ImagesPanel as ImagesPanel);
+  }
+
+  if (panel.videosPanelCollection?.items?.[0]?.__typename === "VideosPanel") {
+    const panelItem = getFirstItem(panel.videosPanelCollection);
+    if (!panelItem) {
+      return null;
+    }
+    return transformVideosPanelForDetail(panelItem as VideosPanel);
+  }
+
+  return null;
 }
