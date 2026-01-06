@@ -1,3 +1,4 @@
+/* eslint-disable react-dom/no-missing-iframe-sandbox */
 import type { FC } from "react";
 
 import projectDetailStyles from "./project-detail-video.module.css";
@@ -6,6 +7,7 @@ type ProjectDetailVideoProps = {
   videoUrl?: string;
   uploadedVideoUrl?: string;
   autoStart?: boolean;
+  title?: string;
 };
 
 /**
@@ -24,45 +26,45 @@ function getVimeoEmbedUrl(url: string): string | null {
   }
 
   const videoId = match[1];
-  return `https://player.vimeo.com/video/${videoId}`;
+  return `http://player.vimeo.com/video/${videoId}`;
 }
 
 export const ProjectDetailVideo: FC<ProjectDetailVideoProps> = ({
   videoUrl,
   uploadedVideoUrl,
   autoStart = false,
+  title,
 }) => {
   // Determine if we have a Vimeo URL or an uploaded video
   const vimeoEmbedUrl = videoUrl ? getVimeoEmbedUrl(videoUrl) : null;
   const hasUploadedVideo = !!uploadedVideoUrl;
 
   return (
-    <figure className={projectDetailStyles.figure}>
-      {vimeoEmbedUrl
+    <div className={projectDetailStyles.videoWrapper}>
+      {hasUploadedVideo
         ? (
             <div className={projectDetailStyles.videoContainer}>
-              <iframe
-                src={`${vimeoEmbedUrl}${autoStart ? "?autoplay=1" : ""}`}
+              <video
                 className={projectDetailStyles.video}
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Video player"
+                src={uploadedVideoUrl}
+                controls
+                autoPlay={autoStart}
+                playsInline
               />
             </div>
           )
-        : hasUploadedVideo
+        : vimeoEmbedUrl
           ? (
               <div className={projectDetailStyles.videoContainer}>
-                <video
-                  className={projectDetailStyles.video}
-                  src={uploadedVideoUrl}
-                  controls
-                  autoPlay={autoStart}
-                  playsInline
+                <iframe
+                  src={`${vimeoEmbedUrl}?title=0&byline=0&portrait=0${autoStart ? "&autoplay=1" : ""}`}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  title={title ?? "Video player"}
                 />
               </div>
             )
           : null}
-    </figure>
+    </div>
   );
 };

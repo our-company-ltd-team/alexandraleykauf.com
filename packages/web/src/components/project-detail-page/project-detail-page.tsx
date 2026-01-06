@@ -40,6 +40,7 @@ export default function ProjectDetailPage({
       );
   }
   else if (asset.type === "Video" && (asset.video || asset.videoUrl)) {
+    title = asset.title;
     description = asset.description;
     assetToRender
       = (

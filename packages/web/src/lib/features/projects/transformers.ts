@@ -314,6 +314,7 @@ function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | 
   return {
     id: videoEntry.sys.id,
     type: videoEntry.__typename,
+    title: videoEntry.title ?? undefined,
     video,
     videoUrl: videoEntry.videoUrl ?? undefined,
     autoStart: videoEntry.autoStart ?? undefined,
