@@ -107,3 +107,11 @@ export type ProjectDetailVideosPanel = {
   slug: string | undefined;
   videos: Array<ProjectDetailVideo> | undefined;
 };
+
+export type ProjectDetailTextPage = {
+  type: TextPage["__typename"];
+  id: string;
+  title: string;
+  slug: string;
+  text: Document;
+};

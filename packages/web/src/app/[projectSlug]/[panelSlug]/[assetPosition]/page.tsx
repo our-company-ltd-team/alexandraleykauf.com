@@ -8,9 +8,14 @@ export default async function AssetPage({ params }: PageProps<"/[projectSlug]/[p
   const assetPositionInt = Number(assetPosition);
 
   const panel = await getProjectPanelBySlugData(panelSlug);
-  const asset = panel?.type === "ImagesPanel" ? panel.images?.[assetPositionInt - 1] : panel?.videos?.[assetPositionInt - 1];
 
-  if (!panel || !asset || Number.isNaN(assetPositionInt)) {
+  // TextPage panels should not reach this route (they render directly)
+  if (!panel || panel.type === "TextPage" || Number.isNaN(assetPositionInt)) {
+    return notFound();
+  }
+
+  const asset = panel.type === "ImagesPanel" ? panel.images?.[assetPositionInt - 1] : panel.videos?.[assetPositionInt - 1];
+  if (!asset) {
     return notFound();
   }
 

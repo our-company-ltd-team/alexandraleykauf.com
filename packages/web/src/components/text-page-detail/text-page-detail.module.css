@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Text Page Detail Module - Styles for text page detail pages
+   ========================================================================== */
+
+.detailPage {
+  color: var(--color-text-default, #000);
+  padding-bottom: 0;
+}
+
+.detailPage p,
+.detailPage li,
+.detailPage ul,
+.detailPage ol {
+  color: var(--color-text-default, #000);
+  font-size: var(--font-size-large, 20px);
+}
+
+.textContent {
+  padding: 0 125px 75px 125px;
+  font-size: var(--font-size-large, 20px);
+
+  a {
+    color: var(--color-text-muted, #929292);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-text-default, #000);
+    text-decoration: none;
+  }
+}
+
+.header {
+  color: var(--color-text-muted, #929292);
+  padding: 20px 0 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+.back {
+  font-size: var(--font-size-base, 12px);
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+/* Mobile small (max 320px) */
+@media only screen and (max-width: 320px) {
+  .textContent {
+    padding: 75px 0;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .back {
+    float: none;
+    position: relative;
+    right: auto;
+    top: auto;
+  }
+}
+
+/* Phone (319px - 767px) */
+@media only screen and (min-width: 319px) and (max-width: 767px) {
+  .textContent {
+    padding: 75px 0;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .back {
+    float: none;
+    position: relative;
+    right: auto;
+    top: auto;
+  }
+}

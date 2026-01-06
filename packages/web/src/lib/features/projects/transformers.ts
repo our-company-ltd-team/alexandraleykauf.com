@@ -18,6 +18,7 @@ import type {
   Image,
   ProjectDetailImage,
   ProjectDetailImagesPanel,
+  ProjectDetailTextPage,
   ProjectDetailVideo,
   ProjectDetailVideosPanel,
   ProjectImage,
@@ -336,8 +337,22 @@ function transformVideosPanelForDetail(panel: VideosPanel): ProjectDetailVideosP
   };
 }
 
+function transformTextPageForDetail(panel: TextPage): ProjectDetailTextPage | null {
+  if (!panel.title || !panel.slug || !panel.text?.json) {
+    return null;
+  }
+
+  return {
+    type: panel.__typename,
+    id: panel.sys.id,
+    title: panel.title,
+    slug: panel.slug,
+    text: panel.text.json,
+  };
+}
+
 // Transformers for single project panels
-export function transformImagesPanelBySlug(panel: GetProjectPanelBySlugQuery): ProjectDetailImagesPanel | ProjectDetailVideosPanel | null {
+export function transformImagesPanelBySlug(panel: GetProjectPanelBySlugQuery): ProjectDetailImagesPanel | ProjectDetailVideosPanel | ProjectDetailTextPage | null {
   if (panel.imagesPanelCollection?.items.length) {
     const ImagesPanel = getFirstItem(panel.imagesPanelCollection);
     if (!ImagesPanel) {
@@ -353,6 +368,14 @@ export function transformImagesPanelBySlug(panel: GetProjectPanelBySlugQuery): P
       return null;
     }
     return transformVideosPanelForDetail(panelItem as VideosPanel);
+  }
+
+  if (panel.textPageCollection?.items?.[0]?.__typename === "TextPage") {
+    const panelItem = getFirstItem(panel.textPageCollection);
+    if (!panelItem) {
+      return null;
+    }
+    return transformTextPageForDetail(panelItem as TextPage);
   }
 
   return null;
