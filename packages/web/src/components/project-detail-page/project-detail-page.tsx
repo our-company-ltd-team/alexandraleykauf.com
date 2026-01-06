@@ -4,6 +4,7 @@ import type { ProjectDetailImage, ProjectDetailVideo } from "@/lib/features/proj
 
 import { ProjectDetailImage as ProjectDetailImageComponent } from "./project-detail-image";
 import projectDetailStyles from "./project-detail-page.module.css";
+import { ProjectDetailVideo as ProjectDetailVideoComponent } from "./project-detail-video";
 
 type ProjectDetailPageProps = {
   backHref: string;
@@ -38,10 +39,19 @@ export default function ProjectDetailPage({
         />
       );
   }
+  else if (asset.type === "Video" && (asset.video || asset.videoUrl)) {
+    title = asset.title;
+    description = asset.description;
+    assetToRender
+      = (
+        <ProjectDetailVideoComponent
+          uploadedVideoUrl={asset.video?.url}
+          videoUrl={asset.videoUrl}
+          autoStart={asset.autoStart}
+        />
+      );
+  }
 
-  //   if (asset.type === "Video" && asset.video) {
-  //     assetToRender = <ProjectDetailVideo videoUrl={asset.video.url} altText={asset.altText} nextUrl={nextUrl} />;
-  //   }
   return (
     <article className={projectDetailStyles.detailPage}>
       <header className={projectDetailStyles.header}>

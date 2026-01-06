@@ -91,6 +91,7 @@ export type Video = {
 };
 
 export type ProjectDetailVideo = {
+  title: string | undefined;
   autoStart: boolean | undefined;
   description: string | undefined;
   id: string;

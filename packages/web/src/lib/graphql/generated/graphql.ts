@@ -3635,7 +3635,7 @@ export type GetProjectPanelBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', description?: string | null, videoUrl?: string | null, autoStart?: boolean | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, videoUrl?: string | null, autoStart?: boolean | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -3893,6 +3893,7 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
           items {
             ...ContentfulSysId
             __typename
+            title
             video {
               sys {
                 id

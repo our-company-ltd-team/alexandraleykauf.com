@@ -272,6 +272,7 @@ export const getProjectPanelBySlug = graphql(`
             items {
               ...ContentfulSysId
               __typename
+              title
               video {
                 sys {
                   id

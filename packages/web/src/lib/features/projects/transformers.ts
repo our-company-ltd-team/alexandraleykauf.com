@@ -288,9 +288,9 @@ function transformImagesPanelForDetail(panel: ImagesPanel): ProjectDetailImagesP
   };
 }
 
-function transformVideoAsset(data: Asset): Video | null {
+function transformVideoAsset(data: Asset): Video | undefined {
   if (!data.url || !data.sys.id) {
-    return null;
+    return undefined;
   }
 
   return {
@@ -300,18 +300,21 @@ function transformVideoAsset(data: Asset): Video | null {
 }
 
 function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | null {
-  if (!videoEntry.sys.id || !videoEntry.__typename || !videoEntry.video) {
+  if (!videoEntry.sys.id || !videoEntry.__typename) {
     return null;
   }
 
-  const video = transformVideoAsset(videoEntry.video);
-  if (!video) {
+  // Video must have either an uploaded video or a videoUrl
+  if (!videoEntry.video && !videoEntry.videoUrl) {
     return null;
   }
+
+  const video = videoEntry.video ? transformVideoAsset(videoEntry.video) : undefined;
 
   return {
     id: videoEntry.sys.id,
     type: videoEntry.__typename,
+    title: videoEntry.title ?? undefined,
     video,
     videoUrl: videoEntry.videoUrl ?? undefined,
     autoStart: videoEntry.autoStart ?? undefined,
