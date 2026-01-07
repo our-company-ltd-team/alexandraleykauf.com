@@ -19,6 +19,7 @@ import z from "zod/v4";
  */
 export const env = createEnv({
   server: {
+    CONTENTFUL_WEBHOOK_SECRET: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string().min(1),
@@ -34,6 +35,7 @@ export const env = createEnv({
   // For Next.js, we need to explicitly list the env vars
   // that should be included in the runtime
   runtimeEnv: {
+    CONTENTFUL_WEBHOOK_SECRET: process.env.CONTENTFUL_WEBHOOK_SECRET,
     NEXT_PUBLIC_CONTENTFUL_SPACE_ID: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
     NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW: process.env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW,

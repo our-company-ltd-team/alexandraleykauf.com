@@ -37,7 +37,7 @@ export async function execute<TResult, TVariables>({ query, variables, options }
       ? { cache: "no-store" }
       : {
           next: {
-            revalidate: options?.revalidate ?? 3600,
+            revalidate: options?.revalidate ?? 86400, // 24 hours fallback
             tags: options?.tags,
           },
         }
