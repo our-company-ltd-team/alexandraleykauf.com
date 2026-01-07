@@ -22,7 +22,6 @@
     "migrate:old-site-data": "tsx old-site-data/import-xml-data.ts"
   },
   "dependencies": {
-    "@alexandraleykauf/env-schemas": "workspace:*",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "contentful-management": "^11.47.2",
