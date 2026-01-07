@@ -13,9 +13,13 @@ import { getHomepageQuery } from "./queries";
  * Uses ISR with 1 hour revalidation by default.
  */
 export async function getHomePageData() {
-  return execute({
+  const data = await execute({
     query: getHomepageQuery,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
     options: { revalidate: 3600, tags: ["home"] },
   });
+
+  console.log(data);
+
+  return data;
 }

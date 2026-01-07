@@ -241,6 +241,25 @@ function formatError(error: unknown): string {
   return String(error);
 }
 
+/**
+ * Convert year string to ISO date format (YYYY-MM-DD)
+ * Tracks occurrences of each year to assign different days for projects with the same year
+ * Handles year ranges (e.g., "2003-2004") by using the start year
+ */
+function yearToDate(yearStr: string, yearDayCounter: Map<string, number>): string {
+  // Handle year ranges like "2003-2004" - use start year
+  const year = yearStr.split("-")[0].trim();
+
+  // Get and increment the day counter for this year
+  const dayCount = (yearDayCounter.get(year) || 0) + 1;
+  yearDayCounter.set(year, dayCount);
+
+  // Format as ISO date: YYYY-MM-DD
+  // Using January as the month, with incrementing days
+  const day = String(dayCount).padStart(2, "0");
+  return `${year}-01-${day}`;
+}
+
 const MAX_SYMBOL_LENGTH = 255;
 
 function truncateSymbol(text: string | undefined): string | undefined {
@@ -466,6 +485,7 @@ function decodeHtmlEntities(text: string): string {
     .replace(/&quot;/g, "\"")
     .replace(/&#43;/g, "+")
     .replace(/&apos;/g, "'")
+    .replace(/&nbsp;/g, "\u00A0")
     .replace(/<br\s*\/?>/gi, "\n");
 }
 
@@ -553,7 +573,17 @@ function parseHtmlContent(html: string): RichTextNode[] {
       case "p":
       case "div": {
         const inlineContent = parseInlineContent(content);
-        if (inlineContent.length > 0) {
+        // Skip empty paragraphs (only whitespace/nbsp - old spacing hack)
+        // Check if paragraph has any non-whitespace content
+        const hasRealContent = inlineContent.some((node) => {
+          if (node.nodeType === "text") {
+            // Check if text has any non-whitespace characters (including \u00A0)
+            return node.value && /\S/.test(node.value);
+          }
+          // Non-text nodes (like links) are considered real content
+          return true;
+        });
+        if (inlineContent.length > 0 && hasRealContent) {
           nodes.push({
             nodeType: "paragraph",
             data: {},
@@ -685,8 +715,21 @@ function parseInlineContent(html: string): RichTextNode[] {
 
   for (const segment of segments) {
     if (segment.type === "text") {
-      const text = stripTags(segment.content).trim();
-      if (text) {
+      // Normalize whitespace (collapse multiple spaces/newlines to single space) but preserve single spaces
+      const text = stripTags(segment.content).replace(/\s+/g, " ");
+      // Only skip completely empty strings, but preserve single spaces and text with spaces
+      if (text && text.length > 0) {
+        // If this segment is just whitespace and we have a previous text node, merge it
+        if (text === " " && nodes.length > 0) {
+          const lastNode = nodes[nodes.length - 1];
+          if (lastNode.nodeType === "text" && lastNode.value) {
+            // Only append space if the last node doesn't already end with a space
+            if (!lastNode.value.endsWith(" ")) {
+              lastNode.value += " ";
+            }
+            continue;
+          }
+        }
         nodes.push({
           nodeType: "text",
           value: text,
@@ -736,10 +779,11 @@ function splitInlineElements(html: string): InlineSegment[] {
   let match: RegExpExecArray | null = inlinePattern.exec(html);
 
   while (match !== null) {
-    // Text before this element
+    // Text before this element (preserve whitespace)
     if (match.index > lastIndex) {
       const text = html.substring(lastIndex, match.index);
-      if (text.trim()) {
+      // Include segment even if it's just whitespace to preserve spaces around tags
+      if (text) {
         segments.push({ type: "text", content: text, marks: [] });
       }
     }
@@ -774,10 +818,10 @@ function splitInlineElements(html: string): InlineSegment[] {
     match = inlinePattern.exec(html);
   }
 
-  // Remaining text
+  // Remaining text (preserve whitespace)
   if (lastIndex < html.length) {
     const text = html.substring(lastIndex);
-    if (text.trim()) {
+    if (text) {
       segments.push({ type: "text", content: text, marks: [] });
     }
   }
@@ -1315,17 +1359,23 @@ async function createProjectRow(
   panelIds: string[],
   index: number,
   projectTitle: string,
+  paragraphTitle?: string,
 ): Promise<Entry | null> {
   if (panelIds.length === 0)
     return null;
 
   try {
-    const entry = await env.createEntry("projectRow", {
-      fields: {
-        contentfulDescription: localizedField(`Row ${index}: ${projectTitle.substring(0, 50)}`),
-        row: localizedField(panelIds.map(id => createEntryRef(id))),
-      },
-    });
+    const fields: Record<string, unknown> = {
+      contentfulDescription: localizedField(`Row ${index}: ${projectTitle.substring(0, 50)}`),
+      row: localizedField(panelIds.map(id => createEntryRef(id))),
+    };
+
+    // Use paragraph title if available, truncate to Symbol field limit
+    if (paragraphTitle && paragraphTitle.trim()) {
+      fields.title = localizedField(truncateSymbol(paragraphTitle));
+    }
+
+    const entry = await env.createEntry("projectRow", { fields });
 
     await entry.publish();
     return entry;
@@ -1341,6 +1391,7 @@ async function createProject(
   project: XmlProject,
   categoryId: string,
   projectRowIds: string[],
+  yearDayCounter: Map<string, number>,
 ): Promise<Entry | null> {
   try {
     // Truncate title to 255 chars (Symbol field limit)
@@ -1355,7 +1406,7 @@ async function createProject(
     };
 
     if (project.year) {
-      fields.year = localizedField(project.year);
+      fields.year = localizedField(yearToDate(project.year, yearDayCounter));
     }
 
     if (project.place) {
@@ -1386,6 +1437,9 @@ async function migrateProjects(
   categoryMap: Map<string, string>,
 ): Promise<void> {
   logger.header("Creating projects...");
+
+  // Track year occurrences to assign different days for projects with the same year
+  const yearDayCounter = new Map<string, number>();
 
   let projectIndex = 0;
   let globalImageIndex = 0;
@@ -1581,6 +1635,7 @@ async function migrateProjects(
           rowPanelIds,
           globalRowIndex,
           project.title,
+          paragraph.title,
         );
 
         if (projectRow) {
@@ -1592,7 +1647,7 @@ async function migrateProjects(
     }
 
     // Create the project
-    const projectEntry = await createProject(env, project, categoryId, projectRowIds);
+    const projectEntry = await createProject(env, project, categoryId, projectRowIds, yearDayCounter);
 
     if (projectEntry) {
       logger.success(`    Created project: ${project.title}`);

@@ -10,10 +10,23 @@ import { SeparatorListItem } from "../separator-list-item";
 import contentListStyles from "./content-list.module.css";
 
 export const ContentList: FC<{ items: HomepageContentItem[] }> = ({ items }) => {
+  console.log({ items });
   return (
     <section className={contentListStyles.listWrapper}>
       <ul className={contentListStyles.list}>
         {items
+          .sort((a, b) => {
+            if (a.__typename === "Project" && b.__typename === "Project") {
+              const yearDiff = new Date(b.year ?? "").getFullYear() - new Date(a.year ?? "").getFullYear();
+              if (yearDiff !== 0) {
+                return yearDiff;
+              }
+              // If years are the same, sort by day of month (ascending)
+              return new Date(a.year ?? "").getDate() - new Date(b.year ?? "").getDate();
+            }
+            // keep other types in their original order
+            return 0;
+          })
           .map((block) => {
             let blockElement: React.ReactNode | null = null;
 

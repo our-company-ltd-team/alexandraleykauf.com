@@ -1702,7 +1702,7 @@ export type Project = Entry & _Node & {
   slug?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
-  year?: Maybe<Scalars['String']['output']>;
+  year?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
@@ -1826,13 +1826,15 @@ export type ProjectFilter = {
   title_not?: InputMaybe<Scalars['String']['input']>;
   title_not_contains?: InputMaybe<Scalars['String']['input']>;
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  year?: InputMaybe<Scalars['String']['input']>;
-  year_contains?: InputMaybe<Scalars['String']['input']>;
+  year?: InputMaybe<Scalars['DateTime']['input']>;
   year_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  year_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  year_not?: InputMaybe<Scalars['String']['input']>;
-  year_not_contains?: InputMaybe<Scalars['String']['input']>;
-  year_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  year_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  year_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  year_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  year_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  year_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  year_not?: InputMaybe<Scalars['DateTime']['input']>;
+  year_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
 };
 
 export type ProjectLinkingCollections = {
@@ -3619,7 +3621,7 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: string | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: any | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];

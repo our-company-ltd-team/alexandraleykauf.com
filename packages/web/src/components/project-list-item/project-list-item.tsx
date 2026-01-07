@@ -25,6 +25,7 @@ export const ProjectListItem: FC<HomepageProjectItem> = ({
   const hasScrolledRef = useRef(false);
   const prefetchPanels = usePrefetchHomeProjectPanels();
   const categoryColor = category?.color;
+  const parsedYear = year ? new Date(year).getFullYear() : undefined;
 
   const { openedProjects, activeSlug, toggleProject } = useOpenedProjects();
 
@@ -90,7 +91,7 @@ export const ProjectListItem: FC<HomepageProjectItem> = ({
         onMouseEnter={() => prefetchPanels(slug)}
         onClick={handleProjectClick}
       >
-        <div className={styles.left}>{year}</div>
+        <div className={styles.left}>{parsedYear}</div>
         <h3 className={styles.center}>{title}</h3>
         <div className={styles.right}>{place}</div>
       </header>

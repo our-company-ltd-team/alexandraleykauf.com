@@ -1094,7 +1094,7 @@ type Project implements Entry & _Node {
   slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
   title(locale: String, useFallbackLocale: Boolean): String
-  year(locale: String, useFallbackLocale: Boolean): String
+  year(locale: String, useFallbackLocale: Boolean): DateTime
 }
 
 type ProjectCollection {
@@ -1148,13 +1148,15 @@ input ProjectFilter {
   title_not: String
   title_not_contains: String
   title_not_in: [String]
-  year: String
-  year_contains: String
+  year: DateTime
   year_exists: Boolean
-  year_in: [String]
-  year_not: String
-  year_not_contains: String
-  year_not_in: [String]
+  year_gt: DateTime
+  year_gte: DateTime
+  year_in: [DateTime]
+  year_lt: DateTime
+  year_lte: DateTime
+  year_not: DateTime
+  year_not_in: [DateTime]
 }
 
 type ProjectLinkingCollections {
