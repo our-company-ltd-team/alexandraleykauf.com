@@ -28,7 +28,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* <link rel="icon" href={smallPageIcon?.asset._ref} sizes="any" /> */}
         <style
           precedence="default"
           href="theme-colors"
