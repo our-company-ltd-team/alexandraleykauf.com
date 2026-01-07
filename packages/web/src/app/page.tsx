@@ -2,19 +2,22 @@ import { Suspense } from "react";
 
 import { HomepageShell } from "@/components";
 import { getHeaderData, getHomePageData } from "@/lib";
-import { getCollectionItems, getFirstItem } from "@/lib/graphql/type-utils";
 
 export default async function Page() {
-  const [homepageCollection, headerData] = await Promise.allSettled([getHomePageData(), getHeaderData()]);
-  const homepageData = homepageCollection.status === "fulfilled" ? getFirstItem(homepageCollection.value.homepageCollection) : null;
-  const contentItems = getCollectionItems(homepageData?.contentCollection);
+  const [homepageData, headerData] = await Promise.allSettled([
+    getHomePageData(),
+    getHeaderData(),
+  ]);
 
+  const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
   const header = headerData.status === "fulfilled" ? headerData.value : null;
-  const categories = header?.categories ?? [];
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <HomepageShell categories={categories} contentItems={contentItems} />
+      <HomepageShell
+        categories={header?.categories ?? []}
+        contentItems={homepage?.contentItems ?? []}
+      />
     </Suspense>
   );
 }

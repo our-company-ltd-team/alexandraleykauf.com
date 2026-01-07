@@ -9,13 +9,12 @@ export function transformGeneralConfig(data: GetGeneralConfigQuery): GeneralConf
 
   return {
     id: generalConfig.sys.id,
-    __typename: generalConfig.__typename,
-    activeColor: generalConfig.activeColor ?? "",
-    detailsBackgroundColor: generalConfig.detailsBackgroundColor ?? "",
-    googleAnalyticsCode: generalConfig.googleAnalyticsCode ?? "",
-    hoverColor: generalConfig.hoverColor ?? "",
-    seoDescription: generalConfig.seoDescription ?? "",
-    seoImage: generalConfig.seoImage?.url ?? "",
-    seoTitle: generalConfig.seoTitle ?? "",
+    activeColor: generalConfig.activeColor ?? undefined,
+    detailsBackgroundColor: generalConfig.detailsBackgroundColor ?? undefined,
+    googleAnalyticsCode: generalConfig.googleAnalyticsCode ?? undefined,
+    hoverColor: generalConfig.hoverColor ?? undefined,
+    seoDescription: generalConfig.seoDescription ?? undefined,
+    seoImage: generalConfig.seoImage?.url ?? undefined,
+    seoTitle: generalConfig.seoTitle ?? undefined,
   };
 }

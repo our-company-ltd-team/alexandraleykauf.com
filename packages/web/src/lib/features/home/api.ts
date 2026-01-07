@@ -7,6 +7,7 @@ import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
 import { getHomepageQuery } from "./queries";
+import { transformHomepage } from "./transformers";
 
 /**
  * Fetches all data needed for the home page.
@@ -19,5 +20,5 @@ export async function getHomePageData() {
     options: { revalidate: 3600, tags: ["home"] },
   });
 
-  return data;
+  return transformHomepage(data);
 }

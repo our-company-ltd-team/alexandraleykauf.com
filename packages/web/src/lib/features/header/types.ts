@@ -1,6 +1,5 @@
 export type Category = {
-  typename: string;
-  color?: string;
+  color: string | undefined;
   id: string;
   showOnStartPage: boolean;
   showItemsInHomepage: boolean;

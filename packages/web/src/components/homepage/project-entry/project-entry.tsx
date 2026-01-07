@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import React, { useLayoutEffect, useRef } from "react";
 
-import type { HomepageProjectItem } from "@/lib";
+import type { HomepageProject } from "@/lib";
 
 import { useOpenedProjects } from "@/hooks";
 import { useHomeProjectPanels, usePrefetchHomeProjectPanels } from "@/lib";
@@ -12,34 +12,28 @@ import styles from "./project-entry.module.css";
 import { ProjectRow } from "./project-row";
 
 export function ProjectEntry({
-  sys,
+  id,
   title,
   year,
   slug,
-  category,
+  categoryColor,
   place,
-}: HomepageProjectItem) {
-  const liRef = React.useRef<HTMLLIElement | null>(null);
+}: HomepageProject) {
+  const liRef = useRef<HTMLLIElement | null>(null);
   const hasScrolledRef = useRef(false);
   const prefetchPanels = usePrefetchHomeProjectPanels();
-  const categoryColor = category?.color;
-  const parsedYear = year ? new Date(year).getFullYear() : undefined;
 
   const { openedProjects, activeSlug, toggleProject } = useOpenedProjects();
 
   const isProjectActive = slug === activeSlug;
-  const isProjectExpanded = openedProjects.includes(slug!);
+  const isProjectExpanded = openedProjects.includes(slug);
 
   // Enable query when project is expanded
-  const { data: homeProjectPanels } = useHomeProjectPanels(slug ?? "", {
+  const { data: homeProjectPanels } = useHomeProjectPanels(slug, {
     enabled: isProjectExpanded,
   });
 
   const handleProjectClick = () => {
-    if (!slug) {
-      return;
-    }
-
     // Toggle expansion and set active (URL updates via effect in provider)
     toggleProject(slug);
 
@@ -69,13 +63,9 @@ export function ProjectEntry({
     return () => clearTimeout(timeout);
   }, [isProjectActive]);
 
-  if (!slug) {
-    return null;
-  }
-
   return (
     <article
-      key={sys.id}
+      key={id}
       ref={liRef}
       className={clsx(styles.item, isProjectExpanded && styles.active)}
       style={{
@@ -89,7 +79,7 @@ export function ProjectEntry({
         onMouseEnter={() => prefetchPanels(slug)}
         onClick={handleProjectClick}
       >
-        <div className={styles.left}>{parsedYear}</div>
+        <div className={styles.left}>{year}</div>
         <h3 className={styles.center}>{title}</h3>
         <div className={styles.right}>{place}</div>
       </header>

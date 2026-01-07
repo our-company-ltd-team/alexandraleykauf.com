@@ -1,29 +1,61 @@
 /**
- * Type definitions for the home page feature.
+ * Domain types for the home page feature.
  *
- * These types are derived from the GetHomepageQueryQuery and provide
- * convenient type aliases for working with homepage data.
- *
- * Colocated with queries.ts to keep related code together.
+ * These types are decoupled from GraphQL and represent the domain model
+ * used throughout the application. Transformers convert GraphQL types
+ * to these domain types.
  */
 
-import type { GetHomepageQueryQuery } from "@/lib/graphql/generated/graphql";
-import type { CollectionItems, SafeGet } from "@/lib/graphql/type-utils";
+import type { Link, Project, Separator } from "@/lib/graphql/generated/graphql";
 
-/** The homepage data from the collection */
-export type HomepageData = SafeGet<GetHomepageQueryQuery, "homepageCollection">;
+/**
+ * A project item on the homepage.
+ */
+export type HomepageProject = {
+  type: Project["__typename"];
+  id: string;
+  title: string;
+  slug: string;
+  year: number | undefined;
+  place: string | undefined;
+  categorySlug: string;
+  categoryColor: string | undefined;
+  hasRows: boolean;
+};
 
-/** A single homepage entry */
-export type Homepage = CollectionItems<HomepageData>;
+/**
+ * A link item on the homepage.
+ */
+export type HomepageLink = {
+  type: Link["__typename"];
+  id: string;
+  title: string;
+  emailLink: string | undefined;
+  externalLink: string | undefined;
+  pdfUrl: string | undefined;
+  categorySlug: string;
+};
 
-/** The content collection within a homepage */
-export type ContentCollection = SafeGet<Homepage, "contentCollection">;
+/**
+ * A separator item on the homepage.
+ */
+export type HomepageSeparator = {
+  type: Separator["__typename"];
+  id: string;
+  categorySlug: string;
+};
 
-/** A single content item (Link | Project | Separator) */
-export type HomepageContentItem = CollectionItems<ContentCollection>;
+/**
+ * A content item on the homepage (discriminated union).
+ */
+export type HomepageContentItem = HomepageProject | HomepageLink | HomepageSeparator;
 
-/** A single project item */
-export type HomepageProjectItem = Extract<HomepageContentItem, { __typename: "Project" }>;
-
-/** A single link item */
-export type HomepageLinkItem = Extract<HomepageContentItem, { __typename: "Link" }>;
+/**
+ * Complete homepage data including SEO and content items.
+ */
+export type HomepageData = {
+  seoTitle: string | undefined;
+  seoDescription: string | undefined;
+  seoImageUrl: string | undefined;
+  contentItems: HomepageContentItem[];
+};

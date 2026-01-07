@@ -47,7 +47,7 @@ export function HomepageShell({ categories, contentItems }: HomepageShellProps) 
   );
 
   const contentItemsToRender = useMemo(() => {
-    return contentItems.filter(item => activeCategories.some(category => category.slug === item?.category?.slug));
+    return contentItems.filter(item => activeCategories.some(category => category.slug === item.categorySlug));
   }, [contentItems, activeCategories]);
 
   const toggleCategory = (category: Category) => {

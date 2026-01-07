@@ -1,7 +1,6 @@
 "use client";
 
-import type { HomepageContentItem, HomepageProjectItem } from "@/lib";
-import type { Link } from "@/lib/graphql/generated/graphql";
+import type { HomepageContentItem } from "@/lib";
 
 import { LinkEntry } from "../link-entry";
 import { ProjectEntry } from "../project-entry";
@@ -13,32 +12,26 @@ export function HomepageContentList({ items }: { items: HomepageContentItem[] })
     <section className={homepageContentListStyles.listWrapper}>
       <ul className={homepageContentListStyles.list}>
         {items
-          .map((block) => {
+          .map((item) => {
             let blockElement: React.ReactNode | null = null;
 
-            switch (block.__typename) {
+            switch (item.type) {
               case "Link":
-                blockElement = <LinkEntry key={block.sys.id} data={block as Link} />;
+                blockElement = <LinkEntry key={item.id} data={item} />;
                 break;
               case "Project":
-                if (block.projectRowsCollection?.total && block.projectRowsCollection.total! > 0) {
-                  blockElement = (
-                    <ProjectEntry
-                      key={block.sys.id}
-                      {...block as HomepageProjectItem}
-                    />
-                  );
+                // Only render projects that have rows
+                if (item.hasRows) {
+                  blockElement = <ProjectEntry key={item.id} {...item} />;
                 }
                 break;
               case "Separator":
-                blockElement = <SeparatorEntry key={block.sys.id} />;
+                blockElement = <SeparatorEntry key={item.id} />;
                 break;
-              default:
-                blockElement = null;
             }
 
             return (
-              <li key={block.sys.id} className={homepageContentListStyles.listItem}>
+              <li key={item.id} className={homepageContentListStyles.listItem}>
                 {blockElement}
               </li>
             );

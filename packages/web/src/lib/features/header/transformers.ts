@@ -9,17 +9,14 @@ export function transformHeader(data: GetHeaderQuery): HeaderData | null {
     return null;
   }
 
-  const categoryTypename = categories[0]?.__typename ?? "";
-
   return {
     categories: categories.filter(isNotNull).map(category => ({
-      color: category.color ?? "",
+      color: category.color ?? undefined,
       id: category.sys.id,
       showOnStartPage: category.showOnStartPage ?? false,
       showItemsInHomepage: category.showItemsInHomepage ?? false,
       slug: category.slug ?? "",
       title: category.title ?? "",
-      typename: categoryTypename,
     })),
   };
 }

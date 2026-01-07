@@ -11,6 +11,7 @@ import { env } from "@/env";
 import { clientExecute } from "@/lib/graphql/client";
 
 import { getHomepageQuery } from "./queries";
+import { transformHomepage } from "./transformers";
 
 /**
  * Query key factory for home page.
@@ -29,10 +30,13 @@ export const homeKeys = {
 export function useHomePageData() {
   return useQuery({
     queryKey: homeKeys.data(),
-    queryFn: () => clientExecute({
-      query: getHomepageQuery,
-      variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
-    }),
+    queryFn: async () => {
+      const data = await clientExecute({
+        query: getHomepageQuery,
+        variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
+      });
+      return transformHomepage(data);
+    },
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 }

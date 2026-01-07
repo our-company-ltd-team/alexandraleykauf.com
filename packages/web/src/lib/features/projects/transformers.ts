@@ -15,7 +15,6 @@ import { getFirstItem, isNotNull } from "@/lib/graphql";
 
 import type {
   HomeProjectPanels,
-  Image,
   ProjectDetailImage,
   ProjectDetailImagesPanel,
   ProjectDetailTextPage,
@@ -134,69 +133,18 @@ export function transformTextPage(panel: TextPage): ProjectTextPage | null {
 }
 
 export function transformPanel(panel: ImagesPanel | VideosPanel | TextPanel | TextPage): ProjectPanel | null {
-  if (panel.__typename === "ImagesPanel") {
-    if (!panel.title || !panel.slug) {
+  switch (panel.__typename) {
+    case "ImagesPanel":
+      return transformImagesPanel(panel);
+    case "VideosPanel":
+      return transformVideosPanel(panel);
+    case "TextPanel":
+      return transformTextPanel(panel);
+    case "TextPage":
+      return transformTextPage(panel);
+    default:
       return null;
-    }
-
-    const previewImages = panel.imagesCollection?.items
-      .filter(isNotNull)
-      .map(transformImagePreview)
-      .filter(isNotNull);
-
-    if (!previewImages || previewImages.length === 0) {
-      return null;
-    }
-
-    return {
-      type: panel.__typename,
-      id: panel.sys.id,
-      title: panel.title,
-      slug: panel.slug,
-      previewImages,
-    };
   }
-
-  if (panel.__typename === "VideosPanel") {
-    if (!panel.title || !panel.slug) {
-      return null;
-    }
-
-    const previewImages = panel.videosCollection?.items
-      .filter(isNotNull)
-      .map(transformImagePreview)
-      .filter(isNotNull);
-
-    if (!previewImages || previewImages.length === 0) {
-      return null;
-    }
-
-    return {
-      type: panel.__typename,
-      id: panel.sys.id,
-      title: panel.title,
-      slug: panel.slug,
-      previewImages,
-    };
-  }
-
-  if (panel.__typename === "TextPanel") {
-    if (!panel.text?.json) {
-      return null;
-    }
-
-    return transformTextPanel(panel);
-  }
-
-  if (panel.__typename === "TextPage") {
-    if (!panel.title || !panel.slug) {
-      return null;
-    }
-
-    return transformTextPage(panel);
-  }
-
-  return null;
 }
 
 export function transformRow(row: ContentfulProjectRow): ProjectRow | null {
@@ -242,7 +190,7 @@ export function transformProject(data: GetProjectPanelsQuery): HomeProjectPanels
   };
 }
 
-function transformImageAsset(data: Asset): Image | null {
+function transformImageAsset(data: Asset): ProjectImage | null {
   if (!data.url || !data.sys.id) {
     return null;
   }
@@ -289,9 +237,9 @@ function transformImagesPanelForDetail(panel: ImagesPanel): ProjectDetailImagesP
   };
 }
 
-function transformVideoAsset(data: Asset): Video | undefined {
+function transformVideoAsset(data: Asset): Video | null {
   if (!data.url || !data.sys.id) {
-    return undefined;
+    return null;
   }
 
   return {
@@ -310,13 +258,13 @@ function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | 
     return null;
   }
 
-  const video = videoEntry.video ? transformVideoAsset(videoEntry.video) : undefined;
+  const video = videoEntry.video ? transformVideoAsset(videoEntry.video) : null;
 
   return {
     id: videoEntry.sys.id,
     type: videoEntry.__typename,
     title: videoEntry.title ?? undefined,
-    video,
+    video: video ?? undefined,
     videoUrl: videoEntry.videoUrl ?? undefined,
     autoStart: videoEntry.autoStart ?? undefined,
     description: videoEntry.description ?? undefined,
@@ -352,7 +300,7 @@ function transformTextPageForDetail(panel: TextPage): ProjectDetailTextPage | nu
 }
 
 // Transformers for single project panels
-export function transformImagesPanelBySlug(panel: GetProjectPanelBySlugQuery): ProjectDetailImagesPanel | ProjectDetailVideosPanel | ProjectDetailTextPage | null {
+export function transformPanelBySlug(panel: GetProjectPanelBySlugQuery): ProjectDetailImagesPanel | ProjectDetailVideosPanel | ProjectDetailTextPage | null {
   if (panel.imagesPanelCollection?.items.length) {
     const ImagesPanel = getFirstItem(panel.imagesPanelCollection);
     if (!ImagesPanel) {

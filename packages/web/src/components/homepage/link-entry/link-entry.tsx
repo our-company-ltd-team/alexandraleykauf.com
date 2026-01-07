@@ -1,30 +1,29 @@
 "use client";
 
 import clsx from "clsx";
+import NextLink from "next/link";
 
-import type { Link } from "@/lib/graphql/generated/graphql";
+import type { HomepageLink } from "@/lib";
 
 import styles from "./link-entry.module.css";
 
-export function LinkEntry({ data }: { data: Link }) {
-  // TODO: Check if this is still needed
-  // function getLink() {
-  //   switch (data.linkType) {
-  //     case "email":
-  //       return `mailto:${data.email}`;
-  //     case "url":
-  //       return data.url || "#";
-  //     case "file":
-  //       return data.file?.asset._ref || "#";
-  //     default:
-  //       return "#";
-  //   }
-  // }
+export function LinkEntry({ data }: { data: HomepageLink }) {
+  function getLink(): string {
+    if (data.emailLink) {
+      return `mailto:${data.emailLink}`;
+    }
+    if (data.externalLink) {
+      return data.externalLink;
+    }
+    if (data.pdfUrl) {
+      return data.pdfUrl;
+    }
+    return "#";
+  }
 
   return (
-
     <div className={styles.header} data-visible="true">
-      {/* <NextLink target="_blank" href={getLink()} className={styles.link}></NextLink> */}
+      <NextLink target="_blank" href={getLink()} className={styles.link} />
       <div className={styles.center}>
         {data.title}
       </div>

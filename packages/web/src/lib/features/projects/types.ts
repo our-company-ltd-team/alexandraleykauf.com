@@ -58,23 +58,13 @@ export type HomeProjectPanels = {
   rows: ProjectRow[];
 };
 
-/**
- * A single image.
- */
-export type Image = {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-};
-
 export type ProjectDetailImage = {
   id: string;
   type: ContentfulImage["__typename"];
   title: string | undefined;
   description: string | undefined;
   altText: string | undefined;
-  image: Image | undefined;
+  image: ProjectImage | undefined;
 };
 
 export type ProjectDetailImagesPanel = {

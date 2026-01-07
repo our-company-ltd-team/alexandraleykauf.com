@@ -7,7 +7,7 @@ import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
 import { getProjectPanelBySlug } from "./queries";
-import { transformImagesPanelBySlug } from "./transformers";
+import { transformPanelBySlug } from "./transformers";
 
 /**
  * Fetches a project by slug with all its panel data.
@@ -49,5 +49,5 @@ export async function getProjectPanelBySlugData(slug: string) {
     options: { revalidate: 3600, tags: ["contentful", `panel-${slug}`] },
   });
 
-  return transformImagesPanelBySlug(response);
+  return transformPanelBySlug(response);
 }
