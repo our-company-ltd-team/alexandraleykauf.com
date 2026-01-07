@@ -102,7 +102,17 @@ export async function POST(request: NextRequest) {
   try {
     // Verify webhook secret
     const secret = request.headers.get("x-contentful-webhook-secret");
-    if (!secret || secret !== env.CONTENTFUL_WEBHOOK_SECRET) {
+    const expectedSecret = env.CONTENTFUL_WEBHOOK_SECRET;
+
+    if (!expectedSecret) {
+      console.error("CONTENTFUL_WEBHOOK_SECRET is not configured");
+      return NextResponse.json(
+        { error: "Webhook secret not configured" },
+        { status: 500 },
+      );
+    }
+
+    if (!secret || secret !== expectedSecret) {
       console.error("Invalid or missing webhook secret");
       return NextResponse.json(
         { error: "Unauthorized" },

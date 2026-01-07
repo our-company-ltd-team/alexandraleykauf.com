@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import type { ProjectDetailImage, ProjectDetailVideo } from "@/lib/features/projects";
+
+import { useKeyboardNavigation, useSwipeGesture } from "@/hooks";
 
 import { ImageView } from "./image-view";
 import mediaPageStyles from "./media-page.module.css";
@@ -23,6 +28,20 @@ export default function MediaPage({
   currentIndex,
   totalCount,
 }: MediaPageProps) {
+  const router = useRouter();
+
+  // Keyboard navigation
+  useKeyboardNavigation({
+    onLeft: () => router.push(previousUrl),
+    onRight: () => router.push(nextUrl),
+  });
+
+  // Swipe gesture for mobile
+  const swipeRef = useSwipeGesture<HTMLElement>({
+    onSwipeLeft: () => router.push(nextUrl),
+    onSwipeRight: () => router.push(previousUrl),
+  });
+
   let assetToRender: React.ReactNode = null;
   let title: string | undefined;
   let description: string | undefined;
@@ -53,7 +72,7 @@ export default function MediaPage({
   }
 
   return (
-    <article className={mediaPageStyles.detailPage}>
+    <article ref={swipeRef} className={mediaPageStyles.detailPage}>
       <header className={mediaPageStyles.header}>
         <Link href={backHref} className={mediaPageStyles.back}>
           zurück

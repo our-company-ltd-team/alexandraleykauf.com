@@ -8,6 +8,7 @@ import type { HomepageContentItem } from "@/lib";
 import type { Category } from "@/lib/features/header";
 
 import { SiteHeader } from "@/components/shared/site-header";
+import { useKeyboardNavigation, useOpenedProjects } from "@/hooks";
 import { OpenedProjectsProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
@@ -50,6 +51,12 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
   const contentItemsToRender = useMemo(() => {
     return contentItems.filter(item => activeCategories.some(category => category.slug === item.categorySlug));
   }, [contentItems, activeCategories]);
+
+  // Extract visible project slugs for keyboard navigation
+  const visibleProjectSlugs = useMemo(() =>
+    contentItemsToRender
+      .filter((item): item is Extract<HomepageContentItem, { type: "Project" }> => item.type === "Project")
+      .map(item => item.slug), [contentItemsToRender]);
 
   const toggleCategory = (category: Category) => {
     setActiveToggleableCategories((prev) => {
@@ -94,6 +101,46 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
 
   return (
     <OpenedProjectsProvider initialSlug={initialSlug}>
+      <HomepageShellContent
+        toggleableCategories={toggleableCategories}
+        activeCategories={activeCategories}
+        toggleCategory={toggleCategory}
+        contentItemsToRender={contentItemsToRender}
+        visibleProjectSlugs={visibleProjectSlugs}
+      />
+    </OpenedProjectsProvider>
+  );
+};
+
+// Inner component that has access to OpenedProjectsContext
+function HomepageShellContent({
+  toggleableCategories,
+  activeCategories,
+  toggleCategory,
+  contentItemsToRender,
+  visibleProjectSlugs,
+}: {
+  toggleableCategories: Category[];
+  activeCategories: Category[];
+  toggleCategory: (category: Category) => void;
+  contentItemsToRender: HomepageContentItem[];
+  visibleProjectSlugs: string[];
+}) {
+  const { navigateToNext, navigateToPrevious, setVisibleProjectSlugs } = useOpenedProjects();
+
+  // Update visible project slugs in context when they change
+  useEffect(() => {
+    setVisibleProjectSlugs(visibleProjectSlugs);
+  }, [visibleProjectSlugs, setVisibleProjectSlugs]);
+
+  // Wire up keyboard navigation
+  useKeyboardNavigation({
+    onRight: navigateToNext,
+    onLeft: navigateToPrevious,
+  });
+
+  return (
+    <>
       <SiteHeader
         categories={toggleableCategories}
         activeCategories={activeCategories.map(category => category.id)}
@@ -109,6 +156,6 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
           Our Company Ltd. / © A.L. 2025
         </NextLink>
       </footer>
-    </OpenedProjectsProvider>
+    </>
   );
-};
+}
