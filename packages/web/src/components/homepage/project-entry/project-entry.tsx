@@ -67,6 +67,7 @@ export function ProjectEntry({
     <article
       key={id}
       ref={liRef}
+      data-project-slug={slug}
       className={clsx(styles.item, isProjectExpanded && styles.active)}
       style={{
         ...(categoryColor && {

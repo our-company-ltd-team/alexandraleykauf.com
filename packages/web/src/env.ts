@@ -19,7 +19,7 @@ import z from "zod/v4";
  */
 export const env = createEnv({
   server: {
-    CONTENTFUL_WEBHOOK_SECRET: z.string().min(1),
+    CONTENTFUL_WEBHOOK_SECRET: z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string().min(1),
