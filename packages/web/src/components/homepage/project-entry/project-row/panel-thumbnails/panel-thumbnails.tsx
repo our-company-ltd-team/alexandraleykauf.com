@@ -28,6 +28,7 @@ export const PanelThumbnails: FC<PanelThumbnailsProps> = ({ previewImages, slug,
               height={previewImage.image.height}
               width={previewImage.image.width}
               className={styles.thumbnail}
+              sizes="(min-width: 1200px) 200px, (min-width: 768px) 150px, 100px"
             />
           </Link>
         );

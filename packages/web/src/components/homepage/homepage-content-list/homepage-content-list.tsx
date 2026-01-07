@@ -8,10 +8,23 @@ import { SeparatorEntry } from "../separator-entry";
 import homepageContentListStyles from "./homepage-content-list.module.css";
 
 export function HomepageContentList({ items }: { items: HomepageContentItem[] }) {
+  const sortedItems = items.sort((a, b) => {
+    if (a.type === "Project" && b.type === "Project") {
+      const yearDiff = new Date(b.year ?? "").getFullYear() - new Date(a.year ?? "").getFullYear();
+      if (yearDiff !== 0) {
+        return yearDiff;
+      }
+      // If years are the same, sort by day of month (ascending)
+      return new Date(a.year ?? "").getDate() - new Date(b.year ?? "").getDate();
+    }
+    // keep other types in their original order
+    return 0;
+  });
+
   return (
     <section className={homepageContentListStyles.listWrapper}>
       <ul className={homepageContentListStyles.list}>
-        {items
+        {sortedItems
           .map((item) => {
             let blockElement: React.ReactNode | null = null;
 

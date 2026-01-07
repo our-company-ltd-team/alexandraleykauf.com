@@ -4,8 +4,8 @@ import Link from "next/link";
 import imageViewStyles from "./image-view.module.css";
 
 type ImageViewProps = {
-  imageUrl: string;
   altText?: string;
+  imageUrl: string;
   nextUrl: string;
 };
 
@@ -17,7 +17,7 @@ export function ImageView({ imageUrl, altText = "", nextUrl }: ImageViewProps) {
         className={imageViewStyles.image}
         src={imageUrl}
         alt={altText}
-        sizes="100vw"
+        sizes="(min-width: 1200px) 966px, 100vw"
         fill
         loading="eager"
       />

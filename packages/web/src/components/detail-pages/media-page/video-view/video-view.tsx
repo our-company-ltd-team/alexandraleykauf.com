@@ -24,7 +24,7 @@ function getVimeoEmbedUrl(url: string): string | null {
   }
 
   const videoId = match[1];
-  return `http://player.vimeo.com/video/${videoId}`;
+  return `https://player.vimeo.com/video/${videoId}`;
 }
 
 export function VideoView({
@@ -48,6 +48,7 @@ export function VideoView({
                 controls
                 autoPlay={autoStart}
                 playsInline
+                preload={autoStart ? "auto" : "metadata"}
               />
             </div>
           )
@@ -59,6 +60,7 @@ export function VideoView({
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   title={title ?? "Video player"}
+                  loading="lazy"
                 />
               </div>
             )

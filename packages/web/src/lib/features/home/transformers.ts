@@ -24,7 +24,7 @@ export function transformProjectEntry(item: Project): HomepageProject | null {
     id: item.sys.id,
     title: item.title,
     slug: item.slug,
-    year: item.year ? new Date(item.year).getFullYear() : undefined,
+    year: item.year ? new Date(item.year).toISOString().split("T")[0] : undefined,
     place: item.place ?? undefined,
     categorySlug: item.category?.slug ?? "",
     categoryColor: item.category?.color ?? undefined,

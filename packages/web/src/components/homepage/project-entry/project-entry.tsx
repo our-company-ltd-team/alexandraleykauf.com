@@ -21,6 +21,7 @@ export function ProjectEntry({
 }: HomepageProject) {
   const liRef = useRef<HTMLLIElement | null>(null);
   const hasScrolledRef = useRef(false);
+  const parsedYear = year ? new Date(year).getFullYear() : undefined;
   const prefetchPanels = usePrefetchHomeProjectPanels();
 
   const { openedProjects, activeSlug, toggleProject } = useOpenedProjects();
@@ -80,7 +81,7 @@ export function ProjectEntry({
         onMouseEnter={() => prefetchPanels(slug)}
         onClick={handleProjectClick}
       >
-        <div className={styles.left}>{year}</div>
+        <div className={styles.left}>{parsedYear}</div>
         <h3 className={styles.center}>{title}</h3>
         <div className={styles.right}>{place}</div>
       </header>

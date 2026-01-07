@@ -16,7 +16,7 @@ export type HomepageProject = {
   id: string;
   title: string;
   slug: string;
-  year: number | undefined;
+  year: string | undefined;
   place: string | undefined;
   categorySlug: string;
   categoryColor: string | undefined;
