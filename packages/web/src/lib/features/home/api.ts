@@ -19,7 +19,5 @@ export async function getHomePageData() {
     options: { revalidate: 3600, tags: ["home"] },
   });
 
-  console.log(data);
-
   return data;
 }
