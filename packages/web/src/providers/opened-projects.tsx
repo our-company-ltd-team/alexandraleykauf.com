@@ -3,24 +3,35 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { OpenedProjectsContext } from "@/contexts";
 
-export function OpenedProjectsProvider({ children }: { children: React.ReactNode }) {
+type OpenedProjectsProviderProps = {
+  children: React.ReactNode;
+  initialSlug?: string | null;
+};
+
+export function OpenedProjectsProvider({ children, initialSlug = null }: OpenedProjectsProviderProps) {
   // Get initial slug from URL pathname
-  const getSlugFromPath = () => {
-    if (typeof window === "undefined") {
-      return null;
-    }
+  // const getSlugFromPath = () => {
+  //   if (typeof window === "undefined") {
+  //     return null;
+  //   }
 
-    const path = window.location.pathname;
-    // Assuming URLs like "/" or "/project-slug"
-    const slug = path.replace(/^\//, "") || null;
-    return slug;
-  };
+  //   const path = window.location.pathname;
+  //   // Assuming URLs like "/" or "/project-slug"
+  //   const slug = path.replace(/^\//, "") || null;
+  //   return slug;
+  // };
 
-  const [activeSlug, setActiveSlug] = useState<string | null>(getSlugFromPath);
-  const [openedProjects, setOpenedProjects] = useState<string[]>(() => {
-    const initial = getSlugFromPath();
-    return initial ? [initial] : [];
-  });
+  // const [activeSlug, setActiveSlug] = useState<string | null>(getSlugFromPath);
+  // const [openedProjects, setOpenedProjects] = useState<string[]>(() => {
+  //   const initial = getSlugFromPath();
+  //   return initial ? [initial] : [];
+  // });
+
+  // Use the server-provided initial slug (no window access needed for initial state)
+  const [activeSlug, setActiveSlug] = useState<string | null>(initialSlug);
+  const [openedProjects, setOpenedProjects] = useState<string[]>(() =>
+    initialSlug ? [initialSlug] : [],
+  );
 
   // Sync URL when activeSlug changes (shallow update, no navigation)
   useEffect(() => {
@@ -32,6 +43,12 @@ export function OpenedProjectsProvider({ children }: { children: React.ReactNode
 
   // Handle browser back/forward buttons
   useEffect(() => {
+    const getSlugFromPath = () => {
+      const path = window.location.pathname;
+      const slug = path.replace(/^\//, "") || null;
+      return slug;
+    };
+
     const handlePopState = () => {
       const slug = getSlugFromPath();
       setActiveSlug(slug);

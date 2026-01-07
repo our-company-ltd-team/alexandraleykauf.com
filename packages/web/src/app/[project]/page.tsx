@@ -4,7 +4,13 @@ import { Suspense } from "react";
 import { HomepageShell } from "@/components";
 import { getHeaderData, getHomePageData } from "@/lib";
 
-export default async function ProjectPage() {
+type ProjectPageProps = {
+  params: Promise<{ project?: string }>;
+};
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { project: initialSlug } = await params;
+
   const [homepageData, headerData] = await Promise.allSettled([
     getHomePageData(),
     getHeaderData(),
@@ -18,6 +24,7 @@ export default async function ProjectPage() {
       <HomepageShell
         categories={header?.categories ?? []}
         contentItems={homepage?.contentItems ?? []}
+        initialSlug={initialSlug}
       />
     </Suspense>
   );

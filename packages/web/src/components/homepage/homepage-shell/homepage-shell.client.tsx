@@ -16,9 +16,10 @@ import { HomepageContentList } from "../homepage-content-list";
 export type HomepageShellProps = {
   categories: Category[];
   contentItems: HomepageContentItem[];
+  initialSlug?: string;
 };
 
-export function HomepageShell({ categories, contentItems }: HomepageShellProps) {
+export function HomepageShell({ categories, contentItems, initialSlug }: HomepageShellProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -92,7 +93,7 @@ export function HomepageShell({ categories, contentItems }: HomepageShellProps) 
   }, [searchParams, toggleableCategories]);
 
   return (
-    <OpenedProjectsProvider>
+    <OpenedProjectsProvider initialSlug={initialSlug}>
       <SiteHeader
         categories={toggleableCategories}
         activeCategories={activeCategories.map(category => category.id)}
