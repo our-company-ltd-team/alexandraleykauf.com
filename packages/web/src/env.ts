@@ -1,8 +1,6 @@
 /* eslint-disable node/no-process-env */
-import {
-  createEnv,
-} from "@alexandraleykauf/env-schemas";
-import z from "zod/v4";
+import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 /**
  * Type-safe environment variables for the web package.
@@ -15,7 +13,7 @@ import z from "zod/v4";
  *
  * Usage:
  *   import { env } from "@/env";
- *   console.log(env.CONTENTFUL_SPACE_ID);
+ *   console.log(env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID);
  */
 export const env = createEnv({
   server: {

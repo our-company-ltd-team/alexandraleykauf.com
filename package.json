@@ -14,10 +14,7 @@
     "migrate:generate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:generate",
     "migrate:run": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:run",
     "migrate:one-off": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:one-off",
-    "migrate:status": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:status",
-    "migrate:validate": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:validate",
-    "generate:types": "pnpm --filter @alexandraleykauf/contentful-types generate",
-    "generate:types:watch": "pnpm --filter @alexandraleykauf/contentful-types generate:watch"
+    "migrate:status": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:status"
   },
   "keywords": [],
   "author": "",
