@@ -35,7 +35,6 @@
   color: var(--color-text-default);
 }
 
-/* Phone (319px - 767px) */
 @media only screen and (max-width: 767px) {
   .header {
     flex-direction: column;

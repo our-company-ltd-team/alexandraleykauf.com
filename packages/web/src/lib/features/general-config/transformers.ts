@@ -15,6 +15,8 @@ export function transformGeneralConfig(data: GetGeneralConfigQuery): GeneralConf
     hoverColor: generalConfig.hoverColor ?? undefined,
     seoDescription: generalConfig.seoDescription ?? undefined,
     seoImage: generalConfig.seoImage?.url ?? undefined,
+    seoImageWidth: generalConfig.seoImage?.width ?? undefined,
+    seoImageHeight: generalConfig.seoImage?.height ?? undefined,
     seoTitle: generalConfig.seoTitle ?? undefined,
   };
 }

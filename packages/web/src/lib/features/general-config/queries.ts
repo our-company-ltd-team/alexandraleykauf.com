@@ -18,11 +18,13 @@ export const getGeneralConfig = graphql(`
         detailsBackgroundColor
         googleAnalyticsCode
         hoverColor
+        seoTitle
         seoDescription
         seoImage {
-          url
+          url(transform: { width: 1200, height: 630 })
+          width
+          height
         }
-        seoTitle
       }
     }
   }

@@ -6,9 +6,7 @@ directive @contentSourceMaps on QUERY
 
 directive @timeline(where: TimelineFilterInput!) on QUERY
 
-"""
-Represents a binary file in a space. An asset can be any file type.
-"""
+"""Represents a binary file in a space. An asset can be any file type."""
 type Asset {
   contentType(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
@@ -100,48 +98,12 @@ input AssetFilter {
 }
 
 type AssetLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  generalConfigCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): GeneralConfigCollection
-  homepageCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): HomepageCollection
-  imageCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ImageCollection
-  linkCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): LinkCollection
-  videoCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): VideoCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  generalConfigCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): GeneralConfigCollection
+  homepageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
+  imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ImageCollection
+  linkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): LinkCollection
+  videoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
 }
 
 enum AssetOrder {
@@ -232,37 +194,10 @@ input CategoryFilter {
 }
 
 type CategoryLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  linkCollection(
-    limit: Int = 100
-    locale: String
-    order: [CategoryLinkingCollectionsLinkCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): LinkCollection
-  projectCollection(
-    limit: Int = 100
-    locale: String
-    order: [CategoryLinkingCollectionsProjectCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectCollection
-  separatorCollection(
-    limit: Int = 100
-    locale: String
-    order: [CategoryLinkingCollectionsSeparatorCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): SeparatorCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  linkCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsLinkCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): LinkCollection
+  projectCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsProjectCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectCollection
+  separatorCollection(limit: Int = 100, locale: String, order: [CategoryLinkingCollectionsSeparatorCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): SeparatorCollection
 }
 
 enum CategoryLinkingCollectionsLinkCollectionOrder {
@@ -399,13 +334,7 @@ input ContentModelVersionFilter {
 }
 
 type ContentModelVersionLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum ContentModelVersionOrder {
@@ -591,13 +520,7 @@ input GeneralConfigFilter {
 }
 
 type GeneralConfigLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum GeneralConfigOrder {
@@ -623,9 +546,7 @@ enum GeneralConfigOrder {
   sys_publishedVersion_DESC
 }
 
-"""
-The 'HexColor' type represents color in `rgb:ffffff` string format.
-"""
+"""The 'HexColor' type represents color in `rgb:ffffff` string format."""
 scalar HexColor
 
 """
@@ -633,14 +554,7 @@ The homepage of the website [See type definition](https://app.contentful.com/spa
 """
 type Homepage implements Entry & _Node {
   _id: ID!
-  contentCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: HomepageContentFilter
-  ): HomepageContentCollection
+  contentCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: HomepageContentFilter): HomepageContentCollection
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): HomepageLinkingCollections
@@ -713,13 +627,7 @@ input HomepageFilter {
 }
 
 type HomepageLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
 }
 
 enum HomepageOrder {
@@ -796,13 +704,9 @@ input ImageFilter {
 }
 
 enum ImageFormat {
-  """
-  AVIF image format.
-  """
+  """AVIF image format."""
   AVIF
-  """
-  JPG image format.
-  """
+  """JPG image format."""
   JPG
   """
   Progressive JPG format stores multiple passes of an image in progressively higher detail.
@@ -811,37 +715,20 @@ enum ImageFormat {
           early as possible to make the layout look as designed.
   """
   JPG_PROGRESSIVE
-  """
-  PNG image format
-  """
+  """PNG image format"""
   PNG
   """
   8-bit PNG images support up to 256 colors and weigh less than the standard 24-bit PNG equivalent.
           The 8-bit PNG format is mostly used for simple images, such as icons or logos.
   """
   PNG8
-  """
-  WebP image format.
-  """
+  """WebP image format."""
   WEBP
 }
 
 type ImageLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  imagesPanelCollection(
-    limit: Int = 100
-    locale: String
-    order: [ImageLinkingCollectionsImagesPanelCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ImagesPanelCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  imagesPanelCollection(limit: Int = 100, locale: String, order: [ImageLinkingCollectionsImagesPanelCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ImagesPanelCollection
 }
 
 enum ImageLinkingCollectionsImagesPanelCollectionOrder {
@@ -879,49 +766,27 @@ enum ImageOrder {
 }
 
 enum ImageResizeFocus {
-  """
-  Focus the resizing on the bottom.
-  """
+  """Focus the resizing on the bottom."""
   BOTTOM
-  """
-  Focus the resizing on the bottom left.
-  """
+  """Focus the resizing on the bottom left."""
   BOTTOM_LEFT
-  """
-  Focus the resizing on the bottom right.
-  """
+  """Focus the resizing on the bottom right."""
   BOTTOM_RIGHT
-  """
-  Focus the resizing on the center.
-  """
+  """Focus the resizing on the center."""
   CENTER
-  """
-  Focus the resizing on the largest face.
-  """
+  """Focus the resizing on the largest face."""
   FACE
-  """
-  Focus the resizing on the area containing all the faces.
-  """
+  """Focus the resizing on the area containing all the faces."""
   FACES
-  """
-  Focus the resizing on the left.
-  """
+  """Focus the resizing on the left."""
   LEFT
-  """
-  Focus the resizing on the right.
-  """
+  """Focus the resizing on the right."""
   RIGHT
-  """
-  Focus the resizing on the top.
-  """
+  """Focus the resizing on the top."""
   TOP
-  """
-  Focus the resizing on the top left.
-  """
+  """Focus the resizing on the top left."""
   TOP_LEFT
-  """
-  Focus the resizing on the top right.
-  """
+  """Focus the resizing on the top right."""
   TOP_RIGHT
 }
 
@@ -934,9 +799,7 @@ enum ImageResizeStrategy {
   Resizes the image to the specified dimensions, cropping the image if needed.
   """
   FILL
-  """
-  Resizes the image to fit into the specified dimensions.
-  """
+  """Resizes the image to fit into the specified dimensions."""
   FIT
   """
   Resizes the image to the specified dimensions, padding the image if needed.
@@ -947,9 +810,7 @@ enum ImageResizeStrategy {
   Resizes the image to the specified dimensions, changing the original aspect ratio if needed.
   """
   SCALE
-  """
-  Creates a thumbnail from the image.
-  """
+  """Creates a thumbnail from the image."""
   THUMB
 }
 
@@ -966,30 +827,20 @@ input ImageTransformOptions {
           unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
   """
   cornerRadius: Int
-  """
-  Desired image format. Defaults to the original image format.
-  """
+  """Desired image format. Defaults to the original image format."""
   format: ImageFormat
-  """
-  Desired height in pixels. Defaults to the original image height.
-  """
+  """Desired height in pixels. Defaults to the original image height."""
   height: Dimension
   """
   Desired quality of the image in percents.
           Used for `PNG8`, `JPG`, `JPG_PROGRESSIVE` and `WEBP` formats.
   """
   quality: Quality
-  """
-  Desired resize focus area. Defaults to `CENTER`.
-  """
+  """Desired resize focus area. Defaults to `CENTER`."""
   resizeFocus: ImageResizeFocus
-  """
-  Desired resize strategy. Defaults to `FIT`.
-  """
+  """Desired resize strategy. Defaults to `FIT`."""
   resizeStrategy: ImageResizeStrategy
-  """
-  Desired width in pixels. Defaults to the original image width.
-  """
+  """Desired width in pixels. Defaults to the original image width."""
   width: Dimension
 }
 
@@ -1000,15 +851,7 @@ type ImagesPanel implements Entry & _Node {
   _id: ID!
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  imagesCollection(
-    limit: Int = 100
-    locale: String
-    order: [ImagesPanelImagesCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ImageFilter
-  ): ImagesPanelImagesCollection
+  imagesCollection(limit: Int = 100, locale: String, order: [ImagesPanelImagesCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ImageFilter): ImagesPanelImagesCollection
   linkedFrom(allowedLocales: [String]): ImagesPanelLinkingCollections
   oldSlug(locale: String, useFallbackLocale: Boolean): String
   slug(locale: String, useFallbackLocale: Boolean): String
@@ -1083,21 +926,8 @@ enum ImagesPanelImagesCollectionOrder {
 }
 
 type ImagesPanelLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  projectRowCollection(
-    limit: Int = 100
-    locale: String
-    order: [ImagesPanelLinkingCollectionsProjectRowCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectRowCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  projectRowCollection(limit: Int = 100, locale: String, order: [ImagesPanelLinkingCollectionsProjectRowCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectRowCollection
 }
 
 enum ImagesPanelLinkingCollectionsProjectRowCollectionOrder {
@@ -1209,21 +1039,8 @@ input LinkFilter {
 }
 
 type LinkLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  homepageCollection(
-    limit: Int = 100
-    locale: String
-    order: [LinkLinkingCollectionsHomepageCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): HomepageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [LinkLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
 }
 
 enum LinkLinkingCollectionsHomepageCollectionOrder {
@@ -1273,15 +1090,7 @@ type Project implements Entry & _Node {
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
   oldSlug(locale: String, useFallbackLocale: Boolean): String
   place(locale: String, useFallbackLocale: Boolean): String
-  projectRowsCollection(
-    limit: Int = 100
-    locale: String
-    order: [ProjectProjectRowsCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ProjectRowFilter
-  ): ProjectProjectRowsCollection
+  projectRowsCollection(limit: Int = 100, locale: String, order: [ProjectProjectRowsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ProjectRowFilter): ProjectProjectRowsCollection
   slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
   title(locale: String, useFallbackLocale: Boolean): String
@@ -1351,21 +1160,8 @@ input ProjectFilter {
 }
 
 type ProjectLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  homepageCollection(
-    limit: Int = 100
-    locale: String
-    order: [ProjectLinkingCollectionsHomepageCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): HomepageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [ProjectLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
 }
 
 enum ProjectLinkingCollectionsHomepageCollectionOrder {
@@ -1436,14 +1232,7 @@ type ProjectRow implements Entry & _Node {
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectRowLinkingCollections
-  rowCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ProjectRowRowFilter
-  ): ProjectRowRowCollection
+  rowCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ProjectRowRowFilter): ProjectRowRowCollection
   sys: Sys!
   title(locale: String, useFallbackLocale: Boolean): String
 }
@@ -1479,21 +1268,8 @@ input ProjectRowFilter {
 }
 
 type ProjectRowLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  projectCollection(
-    limit: Int = 100
-    locale: String
-    order: [ProjectRowLinkingCollectionsProjectCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, order: [ProjectRowLinkingCollectionsProjectCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectCollection
 }
 
 enum ProjectRowLinkingCollectionsProjectCollectionOrder {
@@ -1566,164 +1342,36 @@ type Query {
   _node(id: ID!, locale: String, preview: Boolean, useFallbackLocale: Boolean): _Node
   _nodes(ids: [ID!]!, locale: String, preview: Boolean, useFallbackLocale: Boolean): [_Node]!
   asset(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
-  assetCollection(
-    limit: Int = 100
-    locale: String
-    order: [AssetOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: AssetFilter
-  ): AssetCollection
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: AssetFilter): AssetCollection
   category(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Category
-  categoryCollection(
-    limit: Int = 100
-    locale: String
-    order: [CategoryOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: CategoryFilter
-  ): CategoryCollection
+  categoryCollection(limit: Int = 100, locale: String, order: [CategoryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: CategoryFilter): CategoryCollection
   contentModelVersion(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ContentModelVersion
-  contentModelVersionCollection(
-    limit: Int = 100
-    locale: String
-    order: [ContentModelVersionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ContentModelVersionFilter
-  ): ContentModelVersionCollection
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    order: [EntryOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: EntryFilter
-  ): EntryCollection
+  contentModelVersionCollection(limit: Int = 100, locale: String, order: [ContentModelVersionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ContentModelVersionFilter): ContentModelVersionCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: EntryFilter): EntryCollection
   generalConfig(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): GeneralConfig
-  generalConfigCollection(
-    limit: Int = 100
-    locale: String
-    order: [GeneralConfigOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: GeneralConfigFilter
-  ): GeneralConfigCollection
+  generalConfigCollection(limit: Int = 100, locale: String, order: [GeneralConfigOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: GeneralConfigFilter): GeneralConfigCollection
   homepage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Homepage
-  homepageCollection(
-    limit: Int = 100
-    locale: String
-    order: [HomepageOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: HomepageFilter
-  ): HomepageCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [HomepageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: HomepageFilter): HomepageCollection
   image(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Image
-  imageCollection(
-    limit: Int = 100
-    locale: String
-    order: [ImageOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ImageFilter
-  ): ImageCollection
+  imageCollection(limit: Int = 100, locale: String, order: [ImageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ImageFilter): ImageCollection
   imagesPanel(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ImagesPanel
-  imagesPanelCollection(
-    limit: Int = 100
-    locale: String
-    order: [ImagesPanelOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ImagesPanelFilter
-  ): ImagesPanelCollection
+  imagesPanelCollection(limit: Int = 100, locale: String, order: [ImagesPanelOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ImagesPanelFilter): ImagesPanelCollection
   link(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Link
-  linkCollection(
-    limit: Int = 100
-    locale: String
-    order: [LinkOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: LinkFilter
-  ): LinkCollection
+  linkCollection(limit: Int = 100, locale: String, order: [LinkOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: LinkFilter): LinkCollection
   project(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Project
-  projectCollection(
-    limit: Int = 100
-    locale: String
-    order: [ProjectOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ProjectFilter
-  ): ProjectCollection
+  projectCollection(limit: Int = 100, locale: String, order: [ProjectOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ProjectFilter): ProjectCollection
   projectRow(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): ProjectRow
-  projectRowCollection(
-    limit: Int = 100
-    locale: String
-    order: [ProjectRowOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: ProjectRowFilter
-  ): ProjectRowCollection
+  projectRowCollection(limit: Int = 100, locale: String, order: [ProjectRowOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ProjectRowFilter): ProjectRowCollection
   separator(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Separator
-  separatorCollection(
-    limit: Int = 100
-    locale: String
-    order: [SeparatorOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: SeparatorFilter
-  ): SeparatorCollection
+  separatorCollection(limit: Int = 100, locale: String, order: [SeparatorOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: SeparatorFilter): SeparatorCollection
   textPage(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): TextPage
-  textPageCollection(
-    limit: Int = 100
-    locale: String
-    order: [TextPageOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: TextPageFilter
-  ): TextPageCollection
+  textPageCollection(limit: Int = 100, locale: String, order: [TextPageOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: TextPageFilter): TextPageCollection
   textPanel(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): TextPanel
-  textPanelCollection(
-    limit: Int = 100
-    locale: String
-    order: [TextPanelOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: TextPanelFilter
-  ): TextPanelCollection
+  textPanelCollection(limit: Int = 100, locale: String, order: [TextPanelOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: TextPanelFilter): TextPanelCollection
   video(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): Video
-  videoCollection(
-    limit: Int = 100
-    locale: String
-    order: [VideoOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: VideoFilter
-  ): VideoCollection
+  videoCollection(limit: Int = 100, locale: String, order: [VideoOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VideoFilter): VideoCollection
   videosPanel(id: String!, locale: String, preview: Boolean, useFallbackLocale: Boolean): VideosPanel
-  videosPanelCollection(
-    limit: Int = 100
-    locale: String
-    order: [VideosPanelOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: VideosPanelFilter
-  ): VideosPanelCollection
+  videosPanelCollection(limit: Int = 100, locale: String, order: [VideosPanelOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VideosPanelFilter): VideosPanelCollection
 }
 
 interface ResourceLink {
@@ -1771,21 +1419,8 @@ input SeparatorFilter {
 }
 
 type SeparatorLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  homepageCollection(
-    limit: Int = 100
-    locale: String
-    order: [SeparatorLinkingCollectionsHomepageCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): HomepageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  homepageCollection(limit: Int = 100, locale: String, order: [SeparatorLinkingCollectionsHomepageCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
 }
 
 enum SeparatorLinkingCollectionsHomepageCollectionOrder {
@@ -1820,9 +1455,7 @@ type Sys {
   environmentId: String!
   firstPublishedAt: DateTime
   id: String!
-  """
-  The locale that was requested.
-  """
+  """The locale that was requested."""
   locale: String
   publishedAt: DateTime
   publishedVersion: Int
@@ -1935,21 +1568,8 @@ input TextPageFilter {
 }
 
 type TextPageLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  projectRowCollection(
-    limit: Int = 100
-    locale: String
-    order: [TextPageLinkingCollectionsProjectRowCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectRowCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  projectRowCollection(limit: Int = 100, locale: String, order: [TextPageLinkingCollectionsProjectRowCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectRowCollection
 }
 
 enum TextPageLinkingCollectionsProjectRowCollectionOrder {
@@ -2063,21 +1683,8 @@ input TextPanelFilter {
 }
 
 type TextPanelLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  projectRowCollection(
-    limit: Int = 100
-    locale: String
-    order: [TextPanelLinkingCollectionsProjectRowCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectRowCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  projectRowCollection(limit: Int = 100, locale: String, order: [TextPanelLinkingCollectionsProjectRowCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectRowCollection
 }
 
 enum TextPanelLinkingCollectionsProjectRowCollectionOrder {
@@ -2149,13 +1756,9 @@ type TextPanelTextResourcesInline implements ResourceLink {
 }
 
 input TimelineFilterInput {
-  """
-  Preview content starting from a given release date
-  """
+  """Preview content starting from a given release date"""
   release_lte: String
-  """
-  Preview content starting from a given timestamp
-  """
+  """Preview content starting from a given timestamp"""
   timestamp_lte: DateTime
 }
 
@@ -2232,21 +1835,8 @@ input VideoFilter {
 }
 
 type VideoLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  videosPanelCollection(
-    limit: Int = 100
-    locale: String
-    order: [VideoLinkingCollectionsVideosPanelCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): VideosPanelCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  videosPanelCollection(limit: Int = 100, locale: String, order: [VideoLinkingCollectionsVideosPanelCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideosPanelCollection
 }
 
 enum VideoLinkingCollectionsVideosPanelCollectionOrder {
@@ -2299,15 +1889,7 @@ type VideosPanel implements Entry & _Node {
   slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
   title(locale: String, useFallbackLocale: Boolean): String
-  videosCollection(
-    limit: Int = 100
-    locale: String
-    order: [VideosPanelVideosCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-    where: VideoFilter
-  ): VideosPanelVideosCollection
+  videosCollection(limit: Int = 100, locale: String, order: [VideosPanelVideosCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: VideoFilter): VideosPanelVideosCollection
 }
 
 type VideosPanelCollection {
@@ -2355,21 +1937,8 @@ input VideosPanelFilter {
 }
 
 type VideosPanelLinkingCollections {
-  entryCollection(
-    limit: Int = 100
-    locale: String
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): EntryCollection
-  projectRowCollection(
-    limit: Int = 100
-    locale: String
-    order: [VideosPanelLinkingCollectionsProjectRowCollectionOrder]
-    preview: Boolean
-    skip: Int = 0
-    useFallbackLocale: Boolean
-  ): ProjectRowCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): EntryCollection
+  projectRowCollection(limit: Int = 100, locale: String, order: [VideosPanelLinkingCollectionsProjectRowCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectRowCollection
 }
 
 enum VideosPanelLinkingCollectionsProjectRowCollectionOrder {

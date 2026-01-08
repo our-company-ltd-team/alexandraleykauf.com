@@ -3574,7 +3574,7 @@ export type GetGeneralConfigQueryVariables = Exact<{
 }>;
 
 
-export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoDescription?: string | null, seoTitle?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoTitle?: string | null, seoDescription?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | null> } | null };
 
 export type GetHeaderQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3684,11 +3684,13 @@ export const GetGeneralConfigDocument = new TypedDocumentString(`
       detailsBackgroundColor
       googleAnalyticsCode
       hoverColor
+      seoTitle
       seoDescription
       seoImage {
-        url
+        url(transform: {width: 1200, height: 630})
+        width
+        height
       }
-      seoTitle
     }
   }
 }
