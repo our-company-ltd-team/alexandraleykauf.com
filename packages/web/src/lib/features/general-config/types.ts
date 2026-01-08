@@ -1,12 +1,18 @@
+export type SeoImage = {
+  description: string | undefined;
+  height: number;
+  id: string;
+  url: string;
+  width: number;
+};
+
 export type GeneralConfig = {
+  seoImages: SeoImage[] | undefined;
   activeColor: string | undefined;
   detailsBackgroundColor: string | undefined;
   googleAnalyticsCode: string | undefined;
   hoverColor: string | undefined;
   id: string;
   seoDescription: string | undefined;
-  seoImage: string | undefined;
-  seoImageHeight: number | undefined;
-  seoImageWidth: number | undefined;
-  seoTitle: string | undefined;
+  seoTitle: string;
 };

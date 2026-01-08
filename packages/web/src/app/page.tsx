@@ -8,18 +8,43 @@ import { getGeneralConfigData, getHeaderData, getHomePageData } from "@/lib";
 export async function generateMetadata(): Promise<Metadata> {
   const generalConfigData = await getGeneralConfigData();
 
-  const ogImage = generalConfigData?.seoImage
-    ? {
-        url: generalConfigData.seoImage,
-        width: generalConfigData.seoImageWidth ?? 1200,
-        height: generalConfigData.seoImageHeight ?? 630,
-      }
+  if (!generalConfigData) {
+    return {
+      title: "Alexandra Leykauf",
+      description: "Portfolio of Alexandra Leykauf",
+    };
+  }
+
+  const title = generalConfigData.seoTitle ?? "Alexandra Leykauf";
+  const description = generalConfigData.seoDescription ?? "Portfolio of Alexandra Leykauf";
+  const siteName = generalConfigData.seoTitle ?? "Alexandra Leykauf";
+
+  const seoImages = generalConfigData.seoImages !== undefined
+    ? generalConfigData.seoImages.map(image => ({
+        url: image.url,
+        width: image.width,
+        height: image.height,
+        alt: image.description ?? undefined,
+      }))
     : undefined;
 
   return {
-    title: generalConfigData?.seoTitle ?? "Alexandra Leykauf",
+    title,
     description: generalConfigData?.seoDescription ?? "Portfolio of Alexandra Leykauf",
-    openGraph: { images: ogImage ? [ogImage] : undefined },
+    openGraph: {
+      title,
+      description,
+      url: "https://www.alexandra-leykauf.com",
+      siteName,
+      type: "website",
+      images: seoImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: seoImages,
+    },
   };
 }
 

@@ -2,10 +2,26 @@ import "./globals.css";
 import "../styles/fonts.css";
 import "../styles/variables.css";
 import "../styles/base.css";
+import type { Metadata } from "next";
+
 // import "../styles/legacy.clean.css";
 import { getGeneralConfigData } from "@/lib/features/general-config";
 import { QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.alexandra-leykauf.com"),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      "index": true,
+      "follow": true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
 
 export default async function RootLayout({
   children,

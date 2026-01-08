@@ -103,6 +103,7 @@ type AssetLinkingCollections {
   homepageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): HomepageCollection
   imageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ImageCollection
   linkCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): LinkCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): ProjectCollection
   videoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): VideoCollection
 }
 
@@ -228,6 +229,8 @@ enum CategoryLinkingCollectionsProjectCollectionOrder {
   oldSlug_DESC
   place_ASC
   place_DESC
+  seoTitle_ASC
+  seoTitle_DESC
   slug_ASC
   slug_DESC
   sys_firstPublishedAt_ASC
@@ -450,7 +453,7 @@ type GeneralConfig implements Entry & _Node {
   hoverColor(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): GeneralConfigLinkingCollections
   seoDescription(locale: String, useFallbackLocale: Boolean): String
-  seoImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
+  seoImagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): AssetCollection
   seoTitle(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
 }
@@ -508,7 +511,7 @@ input GeneralConfigFilter {
   seoDescription_not: String
   seoDescription_not_contains: String
   seoDescription_not_in: [String]
-  seoImage_exists: Boolean
+  seoImagesCollection_exists: Boolean
   seoTitle: String
   seoTitle_contains: String
   seoTitle_exists: Boolean
@@ -1091,6 +1094,9 @@ type Project implements Entry & _Node {
   oldSlug(locale: String, useFallbackLocale: Boolean): String
   place(locale: String, useFallbackLocale: Boolean): String
   projectRowsCollection(limit: Int = 100, locale: String, order: [ProjectProjectRowsCollectionOrder], preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean, where: ProjectRowFilter): ProjectProjectRowsCollection
+  seoDescription(locale: String, useFallbackLocale: Boolean): String
+  seoImagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0, useFallbackLocale: Boolean): AssetCollection
+  seoTitle(locale: String, useFallbackLocale: Boolean): String
   slug(locale: String, useFallbackLocale: Boolean): String
   sys: Sys!
   title(locale: String, useFallbackLocale: Boolean): String
@@ -1133,6 +1139,21 @@ input ProjectFilter {
   place_not_in: [String]
   projectRows: cfProjectRowNestedFilter
   projectRowsCollection_exists: Boolean
+  seoDescription: String
+  seoDescription_contains: String
+  seoDescription_exists: Boolean
+  seoDescription_in: [String]
+  seoDescription_not: String
+  seoDescription_not_contains: String
+  seoDescription_not_in: [String]
+  seoImagesCollection_exists: Boolean
+  seoTitle: String
+  seoTitle_contains: String
+  seoTitle_exists: Boolean
+  seoTitle_in: [String]
+  seoTitle_not: String
+  seoTitle_not_contains: String
+  seoTitle_not_in: [String]
   slug: String
   slug_contains: String
   slug_exists: Boolean
@@ -1186,6 +1207,8 @@ enum ProjectOrder {
   oldSlug_DESC
   place_ASC
   place_DESC
+  seoTitle_ASC
+  seoTitle_DESC
   slug_ASC
   slug_DESC
   sys_firstPublishedAt_ASC
@@ -1279,6 +1302,8 @@ enum ProjectRowLinkingCollectionsProjectCollectionOrder {
   oldSlug_DESC
   place_ASC
   place_DESC
+  seoTitle_ASC
+  seoTitle_DESC
   slug_ASC
   slug_DESC
   sys_firstPublishedAt_ASC

@@ -194,6 +194,7 @@ export type AssetLinkingCollections = {
   homepageCollection?: Maybe<HomepageCollection>;
   imageCollection?: Maybe<ImageCollection>;
   linkCollection?: Maybe<LinkCollection>;
+  projectCollection?: Maybe<ProjectCollection>;
   videoCollection?: Maybe<VideoCollection>;
 };
 
@@ -235,6 +236,15 @@ export type AssetLinkingCollectionsImageCollectionArgs = {
 
 
 export type AssetLinkingCollectionsLinkCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type AssetLinkingCollectionsProjectCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -463,6 +473,8 @@ export const CategoryLinkingCollectionsProjectCollectionOrder = {
   OldSlugDesc: 'oldSlug_DESC',
   PlaceAsc: 'place_ASC',
   PlaceDesc: 'place_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
   SlugAsc: 'slug_ASC',
   SlugDesc: 'slug_DESC',
   SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
@@ -723,7 +735,7 @@ export type GeneralConfig = Entry & _Node & {
   hoverColor?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<GeneralConfigLinkingCollections>;
   seoDescription?: Maybe<Scalars['String']['output']>;
-  seoImage?: Maybe<Asset>;
+  seoImagesCollection?: Maybe<AssetCollection>;
   seoTitle?: Maybe<Scalars['String']['output']>;
   sys: Sys;
 };
@@ -778,9 +790,11 @@ export type GeneralConfigSeoDescriptionArgs = {
 
 
 /** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
-export type GeneralConfigSeoImageArgs = {
+export type GeneralConfigSeoImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -845,7 +859,7 @@ export type GeneralConfigFilter = {
   seoDescription_not?: InputMaybe<Scalars['String']['input']>;
   seoDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   seoDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  seoImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoImagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   seoTitle?: InputMaybe<Scalars['String']['input']>;
   seoTitle_contains?: InputMaybe<Scalars['String']['input']>;
   seoTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1699,6 +1713,9 @@ export type Project = Entry & _Node & {
   oldSlug?: Maybe<Scalars['String']['output']>;
   place?: Maybe<Scalars['String']['output']>;
   projectRowsCollection?: Maybe<ProjectProjectRowsCollection>;
+  seoDescription?: Maybe<Scalars['String']['output']>;
+  seoImagesCollection?: Maybe<AssetCollection>;
+  seoTitle?: Maybe<Scalars['String']['output']>;
   slug?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
@@ -1751,6 +1768,30 @@ export type ProjectProjectRowsCollectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ProjectRowFilter>;
+};
+
+
+/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+export type ProjectSeoDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+export type ProjectSeoImagesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+export type ProjectSeoTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
@@ -1811,6 +1852,21 @@ export type ProjectFilter = {
   place_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   projectRows?: InputMaybe<CfProjectRowNestedFilter>;
   projectRowsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoDescription?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoDescription_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoDescription_not?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoImagesCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  seoTitle_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  seoTitle_not?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_contains?: InputMaybe<Scalars['String']['input']>;
+  seoTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   slug?: InputMaybe<Scalars['String']['input']>;
   slug_contains?: InputMaybe<Scalars['String']['input']>;
   slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1885,6 +1941,8 @@ export const ProjectOrder = {
   OldSlugDesc: 'oldSlug_DESC',
   PlaceAsc: 'place_ASC',
   PlaceDesc: 'place_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
   SlugAsc: 'slug_ASC',
   SlugDesc: 'slug_DESC',
   SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
@@ -2032,6 +2090,8 @@ export const ProjectRowLinkingCollectionsProjectCollectionOrder = {
   OldSlugDesc: 'oldSlug_DESC',
   PlaceAsc: 'place_ASC',
   PlaceDesc: 'place_DESC',
+  SeoTitleAsc: 'seoTitle_ASC',
+  SeoTitleDesc: 'seoTitle_DESC',
   SlugAsc: 'slug_ASC',
   SlugDesc: 'slug_DESC',
   SysFirstPublishedAtAsc: 'sys_firstPublishedAt_ASC',
@@ -3574,7 +3634,7 @@ export type GetGeneralConfigQueryVariables = Exact<{
 }>;
 
 
-export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoTitle?: string | null, seoDescription?: string | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null } | null } | null> } | null };
+export type GetGeneralConfigQuery = { __typename: 'Query', generalConfigCollection?: { __typename: 'GeneralConfigCollection', items: Array<{ __typename: 'GeneralConfig', activeColor?: string | null, detailsBackgroundColor?: string | null, googleAnalyticsCode?: string | null, hoverColor?: string | null, seoTitle?: string | null, seoDescription?: string | null, sys: { __typename: 'Sys', id: string }, seoImagesCollection?: { __typename: 'AssetCollection', items: Array<{ __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, description?: string | null, sys: { __typename: 'Sys', id: string } } | null> } | null } | null> } | null };
 
 export type GetHeaderQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3686,10 +3746,16 @@ export const GetGeneralConfigDocument = new TypedDocumentString(`
       hoverColor
       seoTitle
       seoDescription
-      seoImage {
-        url(transform: {width: 1200, height: 630})
-        width
-        height
+      seoImagesCollection(limit: 3) {
+        items {
+          sys {
+            id
+          }
+          url(transform: {width: 1200, height: 630})
+          width
+          height
+          description
+        }
       }
     }
   }

@@ -20,10 +20,16 @@ export const getGeneralConfig = graphql(`
         hoverColor
         seoTitle
         seoDescription
-        seoImage {
-          url(transform: { width: 1200, height: 630 })
-          width
-          height
+        seoImagesCollection(limit: 3) {
+          items {
+            sys {
+              id
+            }
+            url(transform: { width: 1200, height: 630 })
+            width
+            height
+            description
+          }
         }
       }
     }
