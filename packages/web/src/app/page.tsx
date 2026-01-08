@@ -22,8 +22,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const seoImages = generalConfigData.seoImages !== undefined
     ? generalConfigData.seoImages.map(image => ({
         url: image.url,
-        width: image.width,
-        height: image.height,
+        width: 1200,
+        height: 630,
         alt: image.description ?? undefined,
       }))
     : undefined;
