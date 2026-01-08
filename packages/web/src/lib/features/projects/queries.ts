@@ -230,6 +230,33 @@ export const getProjectPanels = graphql(`
 `);
 
 /**
+ * Fetches project metadata by slug for SEO purposes.
+ */
+export const getProjectMetadata = graphql(`
+  query GetProjectMetadata($preview: Boolean!, $slug: String!) {
+    projectCollection(preview: $preview, where: { slug: $slug }, limit: 1) {
+      items {
+        ...ContentfulSysId
+        title
+        seoTitle
+        seoDescription
+        seoImagesCollection(limit: 3) {
+          items {
+            sys {
+              id
+            }
+            url(transform: { width: 1200, height: 630 })
+            width
+            height
+            description
+          }
+        }
+      }
+    }
+  }
+`);
+
+/**
  * Fetches a single project panel by slug.
  */
 export const getProjectPanelBySlug = graphql(`

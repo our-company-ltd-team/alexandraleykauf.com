@@ -6,39 +6,24 @@
 import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
-import { getProjectPanelBySlug } from "./queries";
-import { transformPanelBySlug } from "./transformers";
+import { getProjectMetadata, getProjectPanelBySlug } from "./queries";
+import { transformPanelBySlug, transformProjectMetadata } from "./transformers";
 
 /**
- * Fetches a project by slug with all its panel data.
+ * Fetches project metadata by slug for SEO purposes.
  * Uses ISR with 1 hour revalidation by default.
  */
-// export async function getProjectBySlug(slug: string) {
-//   const response = await execute({
-//     query: GetProjectBySlugDocument,
-//     variables: { slug },
-//     options: { revalidate: 3600, tags: ["contentful", `project-${slug}`] },
-//   });
+export async function getProjectMetadataData(slug: string) {
+  const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
 
-//   return response.projectCollection?.items[0] ?? null;
-// }
+  const response = await execute({
+    query: getProjectMetadata,
+    variables: { preview: isPreview, slug },
+    options: { revalidate: 3600, tags: [`project-metadata-${slug}`] },
+  });
 
-/**
- * Fetches project panels by slug.
- * This is used for prefetching panel data on hover.
- */
-// export async function getProjectPanelsData(slug: string) {
-//   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
-
-//   const response = await execute({
-//     query: getProjectPanelsQuery,
-//     variables: { preview: isPreview, slug },
-//     options: { revalidate: 3600, tags: ["contentful", `panels-${slug}`] },
-//   });
-
-//   const project = response.projectCollection?.items[0];
-//   return project?.projectRowsCollection?.items ?? [];
-// }
+  return transformProjectMetadata(response);
+}
 
 export async function getProjectPanelBySlugData(slug: string) {
   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;

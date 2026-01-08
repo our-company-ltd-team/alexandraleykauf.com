@@ -3,6 +3,7 @@ import type {
   Image as ContentfulImage,
   ProjectRow as ContentfulProjectRow,
   Video as ContentfulVideo,
+  GetProjectMetadataQuery,
   GetProjectPanelBySlugQuery,
   GetProjectPanelsQuery,
   ImagesPanel,
@@ -22,6 +23,7 @@ import type {
   ProjectDetailVideosPanel,
   ProjectImage,
   ProjectImagesOrVideosPanel,
+  ProjectMetadata,
   ProjectPanel,
   ProjectPreviewImage,
   ProjectRow,
@@ -327,4 +329,36 @@ export function transformPanelBySlug(panel: GetProjectPanelBySlugQuery): Project
   }
 
   return null;
+}
+
+export function transformProjectMetadata(data: GetProjectMetadataQuery): ProjectMetadata | null {
+  const project = data.projectCollection?.items?.[0];
+  if (!project || !project.sys.id || !project.title) {
+    return null;
+  }
+
+  const seoImages = project.seoImagesCollection?.items
+    .filter(isNotNull)
+    .map((image) => {
+      if (!image.url || !image.sys.id) {
+        return null;
+      }
+
+      return {
+        id: image.sys.id,
+        url: image.url,
+        width: image.width ?? 0,
+        height: image.height ?? 0,
+        description: image.description ?? undefined,
+      };
+    })
+    .filter(isNotNull);
+
+  return {
+    id: project.sys.id,
+    title: project.title,
+    seoTitle: project.seoTitle ?? undefined,
+    seoDescription: project.seoDescription ?? undefined,
+    seoImages: seoImages && seoImages.length > 0 ? seoImages : undefined,
+  };
 }

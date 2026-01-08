@@ -1,7 +1,66 @@
+import type { Metadata } from "next";
+
 import { notFound } from "next/navigation";
 
 import { MediaPage } from "@/components";
-import { getProjectPanelBySlugData } from "@/lib/features/projects/api";
+import { getGeneralConfigData } from "@/lib/features/general-config/api";
+import { getProjectMetadataData, getProjectPanelBySlugData } from "@/lib/features/projects/api";
+
+export async function generateMetadata({ params }: PageProps<"/[project]/[panel]/[index]">): Promise<Metadata> {
+  const { project: slug, panel, index } = await params;
+
+  const [projectMetadata, generalConfigData] = await Promise.allSettled([
+    getProjectMetadataData(slug),
+    getGeneralConfigData(),
+  ]);
+
+  const project = projectMetadata.status === "fulfilled" ? projectMetadata.value : null;
+  const generalConfig = generalConfigData.status === "fulfilled" ? generalConfigData.value : null;
+
+  const title = project?.seoTitle ?? project?.title ?? generalConfig?.seoTitle ?? "Alexandra Leykauf";
+  const description = project?.seoDescription ?? generalConfig?.seoDescription ?? "Portfolio of Alexandra Leykauf";
+  const siteName = generalConfig?.seoTitle ?? "Alexandra Leykauf";
+
+  // Use project images if available, otherwise fall back to general config images
+  const seoImages = project?.seoImages && project.seoImages.length > 0
+    ? project.seoImages.map(image => ({
+        url: image.url,
+        width: image.width || 1200,
+        height: image.height || 630,
+        alt: image.description ?? undefined,
+      }))
+    : generalConfig?.seoImages?.map(image => ({
+        url: image.url,
+        width: image.width || 1200,
+        height: image.height || 630,
+        alt: image.description ?? undefined,
+      }));
+
+  const url = `https://www.alexandra-leykauf.com/${slug}/${panel}/${index}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName,
+      type: "website",
+      images: seoImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: seoImages?.map(img => img.url),
+    },
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+}
 
 export default async function AssetPage({ params }: PageProps<"/[project]/[panel]/[index]">) {
   const { project, panel, index } = await params;

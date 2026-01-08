@@ -3,6 +3,8 @@
  * Use these functions in Server Components.
  */
 
+import { cache } from "react";
+
 import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
@@ -13,7 +15,7 @@ import { transformGeneralConfig } from "./transformers";
  * Fetches all data needed for the general config.
  * Uses ISR with 1 hour revalidation by default.
  */
-export async function getGeneralConfigData() {
+export const getGeneralConfigData = cache(async () => {
   const data = await execute({
     query: getGeneralConfig,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
@@ -21,4 +23,4 @@ export async function getGeneralConfigData() {
   });
 
   return transformGeneralConfig(data);
-}
+});

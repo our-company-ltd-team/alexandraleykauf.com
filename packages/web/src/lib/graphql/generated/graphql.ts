@@ -3691,6 +3691,14 @@ export type GetProjectPanelsQueryVariables = Exact<{
 
 export type GetProjectPanelsQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', category?: { __typename: 'Category', color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', title?: string | null, rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPage', title?: string | null, slug?: string | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'TextPanel', text?: { __typename: 'TextPanelText', json: any } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', altText?: string | null, previewImage?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
+export type GetProjectMetadataQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type GetProjectMetadataQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', items: Array<{ __typename: 'Project', title?: string | null, seoTitle?: string | null, seoDescription?: string | null, seoImagesCollection?: { __typename: 'AssetCollection', items: Array<{ __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, description?: string | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+
 export type GetProjectPanelBySlugQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
   slug: Scalars['String']['input'];
@@ -3923,6 +3931,33 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
     id
   }
 }`) as unknown as TypedDocumentString<GetProjectPanelsQuery, GetProjectPanelsQueryVariables>;
+export const GetProjectMetadataDocument = new TypedDocumentString(`
+    query GetProjectMetadata($preview: Boolean!, $slug: String!) {
+  projectCollection(preview: $preview, where: {slug: $slug}, limit: 1) {
+    items {
+      ...ContentfulSysId
+      title
+      seoTitle
+      seoDescription
+      seoImagesCollection(limit: 3) {
+        items {
+          sys {
+            id
+          }
+          url(transform: {width: 1200, height: 630})
+          width
+          height
+          description
+        }
+      }
+    }
+  }
+}
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
+  }
+}`) as unknown as TypedDocumentString<GetProjectMetadataQuery, GetProjectMetadataQueryVariables>;
 export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
     query GetProjectPanelBySlug($preview: Boolean!, $slug: String!) {
   imagesPanelCollection(preview: $preview, where: {slug: $slug}, limit: 1) {

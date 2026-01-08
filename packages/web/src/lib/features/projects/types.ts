@@ -8,6 +8,7 @@
 
 import type { Document } from "@contentful/rich-text-types";
 
+import type { SeoImage } from "@/lib/features/general-config/types";
 import type { Image as ContentfulImage, Video as ContentfulVideo, ImagesPanel, TextPage, TextPanel, VideosPanel } from "@/lib/graphql/generated/graphql";
 
 export type ProjectImage = {
@@ -104,4 +105,12 @@ export type ProjectDetailTextPage = {
   title: string;
   slug: string;
   text: Document;
+};
+
+export type ProjectMetadata = {
+  id: string;
+  title: string;
+  seoTitle: string | undefined;
+  seoDescription: string | undefined;
+  seoImages: SeoImage[] | undefined;
 };
