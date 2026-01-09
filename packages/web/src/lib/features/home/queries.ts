@@ -48,6 +48,7 @@ export const getHomepageQuery = graphql(`
                 slug
                 color
               }
+              place
             }
             ... on Project {
               __typename

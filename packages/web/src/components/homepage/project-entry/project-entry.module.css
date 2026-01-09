@@ -2,10 +2,6 @@
   --project-color: transparent;
 }
 
-.item {
-  /* background-color: var(--details-background-color); */
-}
-
 .header {
   align-items: center;
   border-bottom: var(--border-dotted, 1px dotted #929292);

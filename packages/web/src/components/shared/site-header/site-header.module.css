@@ -1,5 +1,5 @@
 .header {
-  padding: 55px 10px 40px;
+  padding: 57px 10px 54px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +9,7 @@
   font-family: var(--font-bold, "museo_bold", sans-serif);
   font-size: var(--font-size-title, 24px);
   letter-spacing: var(--letter-spacing-title, 3px);
-  padding-bottom: 10px;
+  text-box: trim-both;
 }
 
 .categoriesWrapper {
@@ -42,5 +42,10 @@
 
   .title {
     font-size: 20px;
+    padding-block-end: 16px;
+  }
+
+  .categoriesWrapper {
+    gap: 20px;
   }
 }

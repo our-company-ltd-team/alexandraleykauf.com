@@ -30,14 +30,14 @@ export async function generateMetadata({ params }: PageProps<"/[project]">): Pro
   const seoImages = project?.seoImages && project.seoImages.length > 0
     ? project.seoImages.map(image => ({
         url: image.url,
-        width: image.width || 1200,
-        height: image.height || 630,
+        width: 1200,
+        height: 630,
         alt: image.description ?? undefined,
       }))
     : generalConfig?.seoImages?.map(image => ({
         url: image.url,
-        width: image.width || 1200,
-        height: image.height || 630,
+        width: 1200,
+        height: 630,
         alt: image.description ?? undefined,
       }));
 

@@ -222,6 +222,8 @@ function transformImageEntry(imageEntry: ContentfulImage): ProjectDetailImage | 
     description: imageEntry.description ?? undefined,
     altText: imageEntry.altText ?? undefined,
     image,
+    width: imageEntry.image.width ?? 0,
+    height: imageEntry.image.height ?? 0,
   };
 }
 

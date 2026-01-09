@@ -3681,7 +3681,7 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: any | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, place?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: any | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3807,6 +3807,7 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
               slug
               color
             }
+            place
           }
           ... on Project {
             __typename

@@ -1,8 +1,4 @@
-.item {
-  /* Base list item styles */
-}
-
-.header {
+/* .header {
   position: relative;
   padding: 5px 110px;
   border-bottom: var(--border-dotted, 1px dotted #929292);
@@ -46,4 +42,68 @@
   top: 0;
   z-index: 50;
   display: block;
+} */
+
+:root {
+  --link-color: transparent;
+}
+
+.header {
+  align-items: center;
+  border-bottom: var(--border-dotted, 1px dotted #929292);
+  display: flex;
+  padding-block: 5px;
+  padding-inline: 10px;
+  position: relative;
+
+  .active & {
+    color: var(--color-text-default, #000);
+    text-transform: uppercase;
+    font-family: var(--font-bold, "museo_bold", sans-serif);
+    background-color: var(--link-color, transparent);
+  }
+
+  @media (hover: hover) {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-text-default, #000);
+      background-color: var(--link-color, transparent);
+    }
+  }
+}
+
+.left {
+  flex: 0 0 var(--list-item-left-element-width);
+  align-self: flex-start;
+}
+
+.center {
+  color: currentColor;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 1;
+}
+
+.right {
+  flex: 0 0 var(--list-item-right-element-width);
+  text-align: end;
+}
+
+.link {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: block;
+}
+
+@media only screen and (max-width: 767px) {
+  .header {
+    padding-inline-end: 13px;
+  }
+
+  .right {
+    display: none;
+  }
 }

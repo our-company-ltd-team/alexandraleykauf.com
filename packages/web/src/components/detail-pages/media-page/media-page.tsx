@@ -55,6 +55,8 @@ export default function MediaPage({
           imageUrl={asset.image.url}
           altText={asset.altText}
           nextUrl={nextUrl}
+          width={asset.width}
+          height={asset.height}
         />
       );
   }
@@ -78,13 +80,17 @@ export default function MediaPage({
           zurück
         </Link>
       </header>
-      {assetToRender}
+      <div className={mediaPageStyles.assetContainer}>
+        {assetToRender}
+      </div>
       <div className={mediaPageStyles.bottom}>
-        <nav className={mediaPageStyles.nav}>
-          <Link href={previousUrl} className={mediaPageStyles.arrow}>‹</Link>
-          <span className={mediaPageStyles.arrowSeparator}>{`${currentIndex} / ${totalCount}`}</span>
-          <Link href={nextUrl} className={mediaPageStyles.arrow}>›</Link>
-        </nav>
+        {totalCount > 1 && (
+          <nav className={mediaPageStyles.nav}>
+            <Link href={previousUrl} className={mediaPageStyles.arrow}>‹</Link>
+            <span className={mediaPageStyles.arrowSeparator}>{`${currentIndex} / ${totalCount}`}</span>
+            <Link href={nextUrl} className={mediaPageStyles.arrow}>›</Link>
+          </nav>
+        )}
         <div className={mediaPageStyles.legend}>
           <p>{title}</p>
           <p>{description}</p>

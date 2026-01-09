@@ -1,36 +1,40 @@
 "use client";
 
-import clsx from "clsx";
 import NextLink from "next/link";
 
 import type { HomepageLink } from "@/lib";
 
 import styles from "./link-entry.module.css";
 
-export function LinkEntry({ data }: { data: HomepageLink }) {
-  function getLink(): string {
-    if (data.emailLink) {
-      return `mailto:${data.emailLink}`;
-    }
-    if (data.externalLink) {
-      return data.externalLink;
-    }
-    if (data.pdfUrl) {
-      return data.pdfUrl;
-    }
-    return "#";
+function getLink(link: HomepageLink): string {
+  if (link.externalLink) {
+    return link.externalLink;
   }
+  if (link.emailLink) {
+    return `mailto:${link.emailLink}`;
+  }
+  if (link.pdfUrl) {
+    return link.pdfUrl;
+  }
+  return "";
+}
 
+export function LinkEntry({ data }: { data: HomepageLink }) {
   return (
-    <div className={styles.header} data-visible="true">
-      <NextLink target="_blank" href={getLink()} className={styles.link} />
+    <div
+      className={styles.header}
+      style={{
+        "--link-color": data.categoryColor,
+      } as React.CSSProperties}
+    >
+      <NextLink target="_blank" href={getLink(data)} className={styles.link} />
+      <div className={styles.left}>@</div>
       <div className={styles.center}>
         {data.title}
       </div>
-      <div className={styles.left}>
-        <span className={styles.at}>@</span>
+      <div className={styles.right}>
+        {data.place}
       </div>
-      <div className={clsx(styles.right, "hidden md:block")} />
     </div>
   );
 };

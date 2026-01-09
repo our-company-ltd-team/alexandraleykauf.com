@@ -66,6 +66,8 @@ export type ProjectDetailImage = {
   description: string | undefined;
   altText: string | undefined;
   image: ProjectImage | undefined;
+  width: number;
+  height: number;
 };
 
 export type ProjectDetailImagesPanel = {

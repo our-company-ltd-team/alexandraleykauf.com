@@ -49,6 +49,8 @@ export function transformLinkEntry(item: Link): HomepageLink | null {
     externalLink: item.externalLink ?? undefined,
     pdfUrl: item.pdfLink?.url ?? undefined,
     categorySlug: item.category?.slug ?? "",
+    categoryColor: item.category?.color ?? undefined,
+    place: item.place ?? undefined,
   };
 }
 

@@ -34,6 +34,8 @@ export type HomepageLink = {
   externalLink: string | undefined;
   pdfUrl: string | undefined;
   categorySlug: string;
+  categoryColor: string | undefined;
+  place: string | undefined;
 };
 
 /**
