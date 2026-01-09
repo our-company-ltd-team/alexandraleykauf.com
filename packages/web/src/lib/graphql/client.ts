@@ -2,6 +2,8 @@ import { env } from "@/env";
 
 import type { TypedDocumentString } from "./generated/graphql";
 
+import { REVALIDATION_TIME } from "../constants";
+
 const CONTENTFUL_GRAPHQL_ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}`;
 
 type ExecuteArgs<TResult, TVariables> = {
@@ -37,7 +39,7 @@ export async function execute<TResult, TVariables>({ query, variables, options }
       ? { cache: "no-store" }
       : {
           next: {
-            revalidate: options?.revalidate ?? 86400, // 24 hours fallback
+            revalidate: options?.revalidate ?? REVALIDATION_TIME,
             tags: options?.tags,
           },
         }

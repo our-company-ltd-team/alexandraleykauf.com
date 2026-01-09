@@ -110,7 +110,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  console.log("sitemap", entries);
-
   return entries;
 }

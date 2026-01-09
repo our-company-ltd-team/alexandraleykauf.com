@@ -42,7 +42,8 @@ function getTagsForContentType(
       break;
 
     case "project":
-      tags.push("home"); // Projects appear on homepage
+      tags.push("home");
+      tags.push("sitemap");
       if (slug) {
         tags.push(`project-${slug}`);
       }
@@ -59,9 +60,7 @@ function getTagsForContentType(
     case "imagesPanel":
     case "videosPanel":
     case "textPage":
-      if (slug) {
-        tags.push(`panel-${slug}`);
-      }
+      tags.push("panels", "sitemap");
       break;
 
     case "link":
@@ -73,15 +72,14 @@ function getTagsForContentType(
       // Project rows affect their parent project
       // Note: We'd need to fetch the parent project to get its slug
       // For now, invalidate all projects (could be optimized later)
-      tags.push("home");
+      tags.push("home", "projects", "sitemap");
       break;
 
     case "image":
     case "video":
-      // Images/videos affect their parent panel
-      // Note: We'd need to fetch the parent panel to get its slug
-      // For now, invalidate all panels (could be optimized later)
-      // This is a broad invalidation, but acceptable for rare updates
+      // Images/videos affect their parent panel pages
+      // Invalidate broad panels tag to refresh all affected panel pages
+      tags.push("panels", "sitemap");
       break;
 
     default:

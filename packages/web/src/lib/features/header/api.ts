@@ -4,6 +4,7 @@
  */
 
 import { env } from "@/env";
+import { REVALIDATION_TIME } from "@/lib/constants";
 import { execute } from "@/lib/graphql/client";
 
 import { getHeader } from "./queries";
@@ -17,7 +18,7 @@ export async function getHeaderData() {
   const data = await execute({
     query: getHeader,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW },
-    options: { revalidate: 3600, tags: ["header"] },
+    options: { revalidate: REVALIDATION_TIME, tags: ["header"] },
   });
 
   return transformHeader(data);

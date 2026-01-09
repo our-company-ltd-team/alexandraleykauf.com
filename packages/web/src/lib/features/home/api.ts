@@ -4,6 +4,7 @@
  */
 
 import { env } from "@/env";
+import { REVALIDATION_TIME } from "@/lib/constants";
 import { execute } from "@/lib/graphql/client";
 
 import { getHomepageQuery } from "./queries";
@@ -17,7 +18,7 @@ export async function getHomePageData() {
   const data = await execute({
     query: getHomepageQuery,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
-    options: { revalidate: 3600, tags: ["home"] },
+    options: { revalidate: REVALIDATION_TIME, tags: ["projects", "home"] },
   });
 
   return transformHomepage(data);

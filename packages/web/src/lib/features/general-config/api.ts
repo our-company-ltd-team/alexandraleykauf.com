@@ -6,6 +6,7 @@
 import { cache } from "react";
 
 import { env } from "@/env";
+import { REVALIDATION_TIME } from "@/lib/constants";
 import { execute } from "@/lib/graphql/client";
 
 import { getGeneralConfig } from "./queries";
@@ -19,7 +20,7 @@ export const getGeneralConfigData = cache(async () => {
   const data = await execute({
     query: getGeneralConfig,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW, limit: 1 },
-    options: { revalidate: 3600, tags: ["general-config"] },
+    options: { revalidate: REVALIDATION_TIME, tags: ["general-config"] },
   });
 
   return transformGeneralConfig(data);

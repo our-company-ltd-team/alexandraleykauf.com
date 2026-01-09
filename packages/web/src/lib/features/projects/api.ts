@@ -6,6 +6,7 @@
 import type { GetSitemapDataQuery, GetSitemapDataQueryVariables } from "@/lib/graphql/generated/graphql";
 
 import { env } from "@/env";
+import { REVALIDATION_TIME } from "@/lib/constants";
 import { execute } from "@/lib/graphql/client";
 
 import { getProjectMetadata, getProjectPanelBySlug, getSitemapQuery as getSitemapDataQuery } from "./queries";
@@ -21,7 +22,7 @@ export async function getProjectMetadataData(slug: string) {
   const response = await execute({
     query: getProjectMetadata,
     variables: { preview: isPreview, slug },
-    options: { revalidate: 3600, tags: [`project-metadata-${slug}`] },
+    options: { revalidate: REVALIDATION_TIME, tags: [`project-${slug}`] },
   });
 
   return transformProjectMetadata(response);
@@ -33,7 +34,7 @@ export async function getProjectPanelBySlugData(slug: string) {
   const response = await execute({
     query: getProjectPanelBySlug,
     variables: { preview: isPreview, slug },
-    options: { revalidate: 3600, tags: [`panel-${slug}`] },
+    options: { revalidate: REVALIDATION_TIME, tags: [`panel`] },
   });
 
   return transformPanelBySlug(response);
@@ -81,7 +82,7 @@ export async function getSitemapData() {
     const response = await execute<GetSitemapDataQuery, GetSitemapDataQueryVariables>({
       query: getSitemapDataQuery,
       variables: { preview: isPreview, skip, limit },
-      options: { revalidate: 3600, tags: ["sitemap"] },
+      options: { revalidate: REVALIDATION_TIME, tags: ["projects", "panels", "sitemap"] },
     });
 
     const projects = response.projectCollection?.items ?? [];
