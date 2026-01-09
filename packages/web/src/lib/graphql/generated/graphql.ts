@@ -3731,6 +3731,15 @@ export type GetProjectPanelBySlugQueryVariables = Exact<{
 
 export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, videoUrl?: string | null, autoStart?: boolean | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
+export type GetSitemapDataQueryVariables = Exact<{
+  preview: Scalars['Boolean']['input'];
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetSitemapDataQuery = { __typename: 'Query', projectCollection?: { __typename: 'ProjectCollection', total: number, items: Array<{ __typename: 'Project', slug?: string | null, sys: { __typename: 'Sys', publishedAt?: any | null, id: string }, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', items: Array<{ __typename: 'ProjectRow', rowCollection?: { __typename: 'ProjectRowRowCollection', items: Array<{ __typename: 'ImagesPanel', slug?: string | null, sys: { __typename: 'Sys', publishedAt?: any | null, id: string }, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', total: number } | null } | { __typename: 'TextPage', slug?: string | null, sys: { __typename: 'Sys', publishedAt?: any | null, id: string } } | { __typename: 'TextPanel' } | { __typename: 'VideosPanel', slug?: string | null, sys: { __typename: 'Sys', publishedAt?: any | null, id: string }, videosCollection?: { __typename: 'VideosPanelVideosCollection', total: number } | null } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null } | null> } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -4054,3 +4063,58 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
     id
   }
 }`) as unknown as TypedDocumentString<GetProjectPanelBySlugQuery, GetProjectPanelBySlugQueryVariables>;
+export const GetSitemapDataDocument = new TypedDocumentString(`
+    query GetSitemapData($preview: Boolean!, $skip: Int = 0, $limit: Int = 100) {
+  projectCollection(preview: $preview, skip: $skip, limit: $limit) {
+    total
+    items {
+      ...ContentfulSysId
+      slug
+      sys {
+        publishedAt
+      }
+      projectRowsCollection(preview: $preview, limit: 100) {
+        items {
+          ...ContentfulSysId
+          rowCollection(preview: $preview, limit: 100) {
+            items {
+              __typename
+              ... on ImagesPanel {
+                ...ContentfulSysId
+                slug
+                sys {
+                  publishedAt
+                }
+                imagesCollection(preview: $preview, limit: 0) {
+                  total
+                }
+              }
+              ... on VideosPanel {
+                ...ContentfulSysId
+                slug
+                sys {
+                  publishedAt
+                }
+                videosCollection(preview: $preview, limit: 0) {
+                  total
+                }
+              }
+              ... on TextPage {
+                ...ContentfulSysId
+                slug
+                sys {
+                  publishedAt
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    fragment ContentfulSysId on Entry {
+  sys {
+    id
+  }
+}`) as unknown as TypedDocumentString<GetSitemapDataQuery, GetSitemapDataQueryVariables>;

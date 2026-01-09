@@ -329,3 +329,59 @@ export const getProjectPanelBySlug = graphql(`
     }
   }
 `);
+
+/**
+ * Fetches all projects with their panels for sitemap generation.
+ * Includes pagination support for projects with more than 100 items.
+ */
+export const getSitemapQuery = graphql(`
+  query GetSitemapData($preview: Boolean!, $skip: Int = 0, $limit: Int = 100) {
+    projectCollection(preview: $preview, skip: $skip, limit: $limit) {
+      total
+      items {
+        ...ContentfulSysId
+        slug
+        sys {
+          publishedAt
+        }
+        projectRowsCollection(preview: $preview, limit: 100) {
+          items {
+            ...ContentfulSysId
+            rowCollection(preview: $preview, limit: 100) {
+              items {
+                __typename
+                ... on ImagesPanel {
+                  ...ContentfulSysId
+                  slug
+                  sys {
+                    publishedAt
+                  }
+                  imagesCollection(preview: $preview, limit: 0) {
+                    total
+                  }
+                }
+                ... on VideosPanel {
+                  ...ContentfulSysId
+                  slug
+                  sys {
+                    publishedAt
+                  }
+                  videosCollection(preview: $preview, limit: 0) {
+                    total
+                  }
+                }
+                ... on TextPage {
+                  ...ContentfulSysId
+                  slug
+                  sys {
+                    publishedAt
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`);

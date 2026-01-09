@@ -3,10 +3,12 @@
  * Use these functions in Server Components.
  */
 
+import type { GetSitemapDataQuery, GetSitemapDataQueryVariables } from "@/lib/graphql/generated/graphql";
+
 import { env } from "@/env";
 import { execute } from "@/lib/graphql/client";
 
-import { getProjectMetadata, getProjectPanelBySlug } from "./queries";
+import { getProjectMetadata, getProjectPanelBySlug, getSitemapQuery as getSitemapDataQuery } from "./queries";
 import { transformPanelBySlug, transformProjectMetadata } from "./transformers";
 
 /**
@@ -35,4 +37,34 @@ export async function getProjectPanelBySlugData(slug: string) {
   });
 
   return transformPanelBySlug(response);
+}
+
+/**
+ * Fetches all projects with panels for sitemap generation.
+ * Handles pagination automatically if there are more than 100 projects.
+ */
+export async function getSitemapData() {
+  const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
+  const allProjects: NonNullable<GetSitemapDataQuery["projectCollection"]>["items"] = [];
+
+  let skip = 0;
+  const limit = 100;
+  let hasMore = true;
+
+  while (hasMore) {
+    const response = await execute<GetSitemapDataQuery, GetSitemapDataQueryVariables>({
+      query: getSitemapDataQuery,
+      variables: { preview: isPreview, skip, limit },
+      options: { revalidate: 3600, tags: ["sitemap"] },
+    });
+
+    const projects = response.projectCollection?.items ?? [];
+    allProjects.push(...projects);
+
+    const total = response.projectCollection?.total ?? 0;
+    hasMore = skip + limit < total;
+    skip += limit;
+  }
+
+  return allProjects;
 }
