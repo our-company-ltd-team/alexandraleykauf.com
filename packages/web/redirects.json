@@ -1,0 +1,897 @@
+[
+  {
+    "source": "/i/_Entre_Deux_-_MRAC__/i_15/:index(\\d+)",
+    "destination": "/entre-deux-mrac-srignan/entre-deux-mrac-srignan-images-29/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/5_1/i_IMG_1/:index(\\d+)",
+    "destination": "/chateau-de-bagatelle/chateau-de-bagatelle-images-2/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/7_1/i_Bilder/:index(\\d+)",
+    "destination": "/based-in-berlin-group-show-kw-berlin/based-in-berlin-group-show-kw-berlin-images-1/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Alexandra_Leykauf____1/i_3/:index(\\d+)",
+    "destination": "/alexandra-leykauf-lisa-oppenheim-foam-fotografiemuseum-amsterdam/alexandra-leykauf-lisa-oppenheim-foam-fotografiemuseum-amsterdam-images-24/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Alexandra_Leykauf___/i_IMG_21/:index(\\d+)",
+    "destination": "/alexandra-leykauf-michelle-di-menna-kunstverein-nuernberg/alexandra-leykauf-michelle-di-menna-kunstverein-nuernberg-images-21/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Alexandra_Leykauf__G/i_13/:index(\\d+)",
+    "destination": "/alexandra-leykauf-galerie-martin-van-zomeren-amsterdam/alexandra-leykauf-galerie-martin-van-zomeren-amsterdam-images-33/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Alexandra_Leykauf__P/i_30/:index(\\d+)",
+    "destination": "/alexandra-leykauf-publication/alexandra-leykauf-publication-images-48/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Animus___Kunstverein/i_45/:index(\\d+)",
+    "destination": "/animus-kunstverein-springhornhof-in-der-lueneburger-heide/animus-kunstverein-springhornhof-in-der-lueneburger-heide-images-66/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Artforum_Berlin/i_IMG_20/:index(\\d+)",
+    "destination": "/artforum-berlin/artforum-berlin-images-20/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Artocene__group_show/i_48/:index(\\d+)",
+    "destination": "/artocne-le-vide-comme-repre-group-show-muse-alpin-chamonix-mont-blanc/artocne-le-vide-comme-repre-group-show-muse-alpin-chamonix-mont-blanc-images-70/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Both_Sides_Now___Vil/i_40/:index(\\d+)",
+    "destination": "/both-sides-now-villa-du-parc-annemasse-france/both-sides-now-villa-du-parc-annemasse-france-images-64/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Brute_-_The_Carpente/i_10/:index(\\d+)",
+    "destination": "/brute-group-show-the-carpenter-center-for-the-visual-arts-at-harvard-university-cambridge/brute-group-show-the-carpenter-center-for-the-visual-arts-at-harvard-university-cambridge-images-31/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/cache_cadre__Sassa_T/i_1/:index(\\d+)",
+    "destination": "/cachecadre-sassa-truelzsch-berlin/cachecadre-sassa-truelzsch-berlin-images-22/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/cadre_cache__Galerie/i_2/:index(\\d+)",
+    "destination": "/cadrecache-galerie-barbara-wien-berlin/cadrecache-galerie-barbara-wien-berlin-images-23/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Candid_Etui_-_Galeri/i_16/:index(\\d+)",
+    "destination": "/candid-etui-galerie-martin-van-zomeren-amsterdam/candid-etui-galerie-martin-van-zomeren-amsterdam-images-44/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Caprona/i_33/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-images-58/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Caprona/i_34/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-images-56/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Caprona/i_35/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-images-57/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Caprona/i_https___artistsres/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-images-55/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/CAVE_MYTHS__endless_/i_38/:index(\\d+)",
+    "destination": "/cave-myths-endless-spelunking-group-show-quinta-do-quetzal-portugal/cave-myths-endless-spelunking-group-show-quinta-do-quetzal-portugal-images-62/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Cerveau_Morille__gro/i_7/:index(\\d+)",
+    "destination": "/cerveau-morille-group-show-can-centre-dart-neuchtel/cerveau-morille-group-show-can-centre-dart-neuchtel-images-27/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/cliche_verre_-_KM_Ga/i_37/:index(\\d+)",
+    "destination": "/clich-verre-km-galerie-berlin/clich-verre-km-galerie-berlin-images-54/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Constructions__Carl_/i_IMG_10/:index(\\d+)",
+    "destination": "/constructions-together-with-barbara-kasten-carl-freedman-gallery-london/constructions-together-with-barbara-kasten-carl-freedman-gallery-london-images-10/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Contemporary_Obsessi/i_42/:index(\\d+)",
+    "destination": "/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen-images-59/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Contemporary_Obsessi/i_43/:index(\\d+)",
+    "destination": "/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen-images-60/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Contemporary_Obsessi/i_44/:index(\\d+)",
+    "destination": "/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen-images-61/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Crossing_Media_-_Der/i_22/:index(\\d+)",
+    "destination": "/crossing-media-der-kunst-die-buehne-group-show-villa-merkel-esslingen/crossing-media-der-kunst-die-buehne-group-show-villa-merkel-esslingen-images-40/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Das_gro_e_Gehege___K/i_17/:index(\\d+)",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen/das-grosse-gehege-kunstverein-langenhagen-images-35/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Das_gro_e_Gehege___K/i_18/:index(\\d+)",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen/das-grosse-gehege-kunstverein-langenhagen-images-36/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Das_gro_e_Gehege___K/i_19/:index(\\d+)",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen/das-grosse-gehege-kunstverein-langenhagen-images-39/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Das_gro_e_Gehege___K/i_20/:index(\\d+)",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen/das-grosse-gehege-kunstverein-langenhagen-images-37/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Das_gro_e_Gehege___K/i_21/:index(\\d+)",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen/das-grosse-gehege-kunstverein-langenhagen-images-38/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Dealing_with_Surface/i_28/:index(\\d+)",
+    "destination": "/dealing-with-surfaces-group-show-gak-bremen/dealing-with-surfaces-group-show-gak-bremen-images-46/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Dear_Aby_Warburg____/i_IMG_13/:index(\\d+)",
+    "destination": "/lieber-aby-warburg-was-tun-mit-den-bildern-group-show-museum-fuer-gegenwartskunst-siegen/lieber-aby-warburg-was-tun-mit-den-bildern-group-show-museum-fuer-gegenwartskunst-siegen-images-13/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Die_Kunst_der_Faltun/i_29/:index(\\d+)",
+    "destination": "/die-kunst-der-faltung-group-show-kunstraum-alexander-buerkle-freiburgmuseum-fuer-konkrete-kunst-ingo/die-kunst-der-faltung-group-show-kunstraum-alexander-buerkle-freiburgmuseum-fuer-konkrete-kunst-ingo-images-47/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Dorothea-von-Setten-/i_IMG_11/:index(\\d+)",
+    "destination": "/dorothea-von-setten-kunstpreis-group-show-kunstmuseum-bonn/dorothea-von-setten-kunstpreis-group-show-kunstmuseum-bonn-images-11/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Everybody_s_Autobiog_1/i_Everybody_s_Autobi/:index(\\d+)",
+    "destination": "/everybodys-autobiography/everybodys-autobiography-images-50/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Frieze_Art_Fair__Fra/i_14/:index(\\d+)",
+    "destination": "/frieze-art-fair-frame-london/frieze-art-fair-frame-london-images-34/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Grey_Peak_of_the_Wav/i_IMG_19/:index(\\d+)",
+    "destination": "/grey-peak-of-the-wave-group-show-harris-lieberman-new-york/grey-peak-of-the-wave-group-show-harris-lieberman-new-york-images-19/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Heart_of_Chambers__S/i_4/:index(\\d+)",
+    "destination": "/heart-of-chambers-sassa-truelzsch-berlin/heart-of-chambers-sassa-truelzsch-berlin-images-5/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Heart_of_Chambers__S/i_IMG_4/:index(\\d+)",
+    "destination": "/heart-of-chambers-sassa-truelzsch-berlin/heart-of-chambers-sassa-truelzsch-berlin-images-3/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Heart_of_Chambers__S/i_IMG_7/:index(\\d+)",
+    "destination": "/heart-of-chambers-sassa-truelzsch-berlin/heart-of-chambers-sassa-truelzsch-berlin-images-4/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/hors_serie___18_ALEX/i_12/:index(\\d+)",
+    "destination": "/hors-srie-18-alexandra-leykauf-spanische-wand-katoptrische-experimente/hors-srie-18-alexandra-leykauf-spanische-wand-katoptrische-experimente-images-30/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/I_ve_looked_at_cloud/i_41/:index(\\d+)",
+    "destination": "/ive-looked-at-clouds-from-up-and-down-km-berlin/ive-looked-at-clouds-from-up-and-down-km-berlin-images-65/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/La_Statue_Interieure/i_31/:index(\\d+)",
+    "destination": "/la-statue-interieure-statsion-berlin/la-statue-interieure-statsion-berlin-images-49/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Les_images_constella/i_26/:index(\\d+)",
+    "destination": "/les-images-constellantes-group-show-villa-du-parc-centre-dart-contemporain-annemasse/les-images-constellantes-group-show-villa-du-parc-centre-dart-contemporain-annemasse-images-45/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Les_Rencontres_d_Arl/i_32/:index(\\d+)",
+    "destination": "/il-y-a-de-lautre-les-rencontres-de-la-photographie-arles/il-y-a-de-lautre-les-rencontres-de-la-photographie-arles-images-52/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Literacy_-_Illiterac/i_23/:index(\\d+)",
+    "destination": "/literacy-illiteracy-tallinn-print-triennial-kumu-art-museum-tallinn/literacy-illiteracy-tallinn-print-triennial-kumu-art-museum-tallinn-images-43/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Mimicry_-_Empathy__L/i_36/:index(\\d+)",
+    "destination": "/mimicry-empathy-group-show-lajevardi-foundation-teheran/mimicry-empathy-group-show-lajevardi-foundation-teheran-images-53/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Mimicry_Empathy__gro/i_47/:index(\\d+)",
+    "destination": "/mimicry-empathy-groupshow-with-caroline-achaintre-bless-ulla-von-brandenburg-susanne-buerner-berta-f/mimicry-empathy-groupshow-with-caroline-achaintre-bless-ulla-von-brandenburg-susanne-buerner-berta-f-images-69/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Papiertheater/i_IMG_9/:index(\\d+)",
+    "destination": "/papiertheater/papiertheater-images-9/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Posterbuch/i_IMG_18/:index(\\d+)",
+    "destination": "/posterbuch/posterbuch-images-18/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Prospect/i_49/:index(\\d+)",
+    "destination": "/prospect-camera-austria-graz/prospect-camera-austria-graz-images-71/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/re_turn_350_Jahre_Ad/i_9/:index(\\d+)",
+    "destination": "/return350-jahre-adbk-nuernberg-group-show-aeg-nuernberg-2012/return350-jahre-adbk-nuernberg-group-show-aeg-nuernberg-2012-images-28/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Re-Search__group_sho/i_IMG_16/:index(\\d+)",
+    "destination": "/re-search-group-show-foam-fotografiemuseum-amsterdam/re-search-group-show-foam-fotografiemuseum-amsterdam-images-16/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Rehabilitation__grou/i_5/:index(\\d+)",
+    "destination": "/rehabilitation-group-show-wiels-brussels/rehabilitation-group-show-wiels-brussels-images-7/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Rehabilitation__grou/i_IMG_5/:index(\\d+)",
+    "destination": "/rehabilitation-group-show-wiels-brussels/rehabilitation-group-show-wiels-brussels-images-6/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Ritual_Residue/i_50/:index(\\d+)",
+    "destination": "/ritual-residue-km-galerie-berlin/ritual-residue-km-galerie-berlin-images-72/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/room_with_a_view__gr/i_39/:index(\\d+)",
+    "destination": "/room-with-a-view-group-show-kuenstlerhaus-dortmund/room-with-a-view-group-show-kuenstlerhaus-dortmund-images-63/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Rosinen/i_IMG_14/:index(\\d+)",
+    "destination": "/rosinen/rosinen-images-14/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/salle_noire__Musee_d/i_IMG_8/:index(\\d+)",
+    "destination": "/salle-noire-muse-dart-moderne-de-la-ville-de-paris-paris/salle-noire-muse-dart-moderne-de-la-ville-de-paris-paris-images-8/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/The_order_of_the_pre/i_6/:index(\\d+)",
+    "destination": "/the-order-of-the-present-is-the-disorder-of-the-future-group-show-museum-de-hallen-haarlem/the-order-of-the-present-is-the-disorder-of-the-future-group-show-museum-de-hallen-haarlem-images-25/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/The_Serial_Universe_/i_27/:index(\\d+)",
+    "destination": "/the-serial-universe-motto-berlin/the-serial-universe-motto-berlin-images-41/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/The_Tenant_Galerie_M/i_11/:index(\\d+)",
+    "destination": "/the-tenant-galerie-martin-van-zomeren-amsterdam/the-tenant-galerie-martin-van-zomeren-amsterdam-images-32/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/These_are_flat_thing/i/:index(\\d+)",
+    "destination": "/these-are-flat-things-and-things-which-are-not-flat-group-show-koppe-astner-glasgow/these-are-flat-things-and-things-which-are-not-flat-group-show-koppe-astner-glasgow-images-51/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/This_Would_Be_a_Cat_/i_IMG_17/:index(\\d+)",
+    "destination": "/this-would-be-a-cat-if-there-would-be-a-face-group-show-dpendance-brussels/this-would-be-a-cat-if-there-would-be-a-face-group-show-dpendance-brussels-images-17/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Two_Faced_Mirror__to/i_8/:index(\\d+)",
+    "destination": "/two-faced-mirror-together-with-alicja-kwade-souterrain-berlin/two-faced-mirror-together-with-alicja-kwade-souterrain-berlin-images-26/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Vitrinen__Galerie_Ma/i_IMG_12/:index(\\d+)",
+    "destination": "/vitrinen-galerie-martin-van-zomeren-amsterdam/vitrinen-galerie-martin-van-zomeren-amsterdam-images-12/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Was_Warum/i_IMG_15/:index(\\d+)",
+    "destination": "/was-warum/was-warum-images-15/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/What_We_Do_in_the_Sh/i_46/:index(\\d+)",
+    "destination": "/what-we-do-in-the-shadows-with-dominik-styk-gak-gesellschaft-fuer-aktuelle-kunst-bremen/what-we-do-in-the-shadows-with-dominik-styk-gak-gesellschaft-fuer-aktuelle-kunst-bremen-images-68/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Wiederholen__group_s/i_25/:index(\\d+)",
+    "destination": "/wiederholen-group-show-westfaelischer-kunstverein-muenster/wiederholen-group-show-westfaelischer-kunstverein-muenster-images-42/:index",
+    "permanent": true
+  },
+  {
+    "source": "/i/Window_Shopping__wit/i_24/:index(\\d+)",
+    "destination": "/window-shopping-with-eva-berendes-kunstverein-siegen/window-shopping-with-eva-berendes-kunstverein-siegen-images-67/:index",
+    "permanent": true
+  },
+  {
+    "source": "/p/_Entre_Deux_-_MRAC__",
+    "destination": "/entre-deux-mrac-srignan",
+    "permanent": true
+  },
+  {
+    "source": "/p/5_1",
+    "destination": "/chateau-de-bagatelle",
+    "permanent": true
+  },
+  {
+    "source": "/p/7_1",
+    "destination": "/based-in-berlin-group-show-kw-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Abitur",
+    "destination": "/abitur",
+    "permanent": true
+  },
+  {
+    "source": "/p/Akademie_der_Bildend",
+    "destination": "/akademie-der-bildenden-kuenste-nuernberg-staatsexamen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Alexandra_Leykauf___",
+    "destination": "/alexandra-leykauf-michelle-di-menna-kunstverein-nuernberg",
+    "permanent": true
+  },
+  {
+    "source": "/p/Alexandra_Leykauf____1",
+    "destination": "/alexandra-leykauf-lisa-oppenheim-foam-fotografiemuseum-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Alexandra_Leykauf__G",
+    "destination": "/alexandra-leykauf-galerie-martin-van-zomeren-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Alexandra_Leykauf__P",
+    "destination": "/alexandra-leykauf-publication",
+    "permanent": true
+  },
+  {
+    "source": "/p/Animus___Kunstverein",
+    "destination": "/animus-kunstverein-springhornhof-in-der-lueneburger-heide",
+    "permanent": true
+  },
+  {
+    "source": "/p/Arbeitsstipendium_Ku",
+    "destination": "/arbeitsstipendium-kunstfonds-bonn",
+    "permanent": true
+  },
+  {
+    "source": "/p/Artforum_Berlin",
+    "destination": "/artforum-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Artocene__group_show",
+    "destination": "/artocne-le-vide-comme-repre-group-show-muse-alpin-chamonix-mont-blanc",
+    "permanent": true
+  },
+  {
+    "source": "/p/Both_Sides_Now___Vil",
+    "destination": "/both-sides-now-villa-du-parc-annemasse-france",
+    "permanent": true
+  },
+  {
+    "source": "/p/Brute_-_The_Carpente",
+    "destination": "/brute-group-show-the-carpenter-center-for-the-visual-arts-at-harvard-university-cambridge",
+    "permanent": true
+  },
+  {
+    "source": "/p/cache_cadre__Sassa_T",
+    "destination": "/cachecadre-sassa-truelzsch-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/cadre_cache__Galerie",
+    "destination": "/cadrecache-galerie-barbara-wien-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Candid_Etui_-_Galeri",
+    "destination": "/candid-etui-galerie-martin-van-zomeren-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Caprona",
+    "destination": "/caprona-focal-point-gallery-southend-gb",
+    "permanent": true
+  },
+  {
+    "source": "/p/CAVE_MYTHS__endless_",
+    "destination": "/cave-myths-endless-spelunking-group-show-quinta-do-quetzal-portugal",
+    "permanent": true
+  },
+  {
+    "source": "/p/Cerveau_Morille__gro",
+    "destination": "/cerveau-morille-group-show-can-centre-dart-neuchtel",
+    "permanent": true
+  },
+  {
+    "source": "/p/cliche_verre_-_KM_Ga",
+    "destination": "/clich-verre-km-galerie-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Constructions__Carl_",
+    "destination": "/constructions-together-with-barbara-kasten-carl-freedman-gallery-london",
+    "permanent": true
+  },
+  {
+    "source": "/p/Contemporary_Obsessi",
+    "destination": "/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Creative_Libraries_P",
+    "destination": "/creative-libraries-programme-artists-research-centre-uk",
+    "permanent": true
+  },
+  {
+    "source": "/p/Crossing_Media_-_Der",
+    "destination": "/crossing-media-der-kunst-die-buehne-group-show-villa-merkel-esslingen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Das_gro_e_Gehege___K",
+    "destination": "/das-grosse-gehege-kunstverein-langenhagen",
+    "permanent": true
+  },
+  {
+    "source": "/p/de_Aubette__16mm__3m",
+    "destination": "/geometrie-variable-architectures-de-film-group-show-centre-pompidou-paris",
+    "permanent": true
+  },
+  {
+    "source": "/p/Dead_of_Night",
+    "destination": "/dead-of-night",
+    "permanent": true
+  },
+  {
+    "source": "/p/Dealing_with_Surface",
+    "destination": "/dealing-with-surfaces-group-show-gak-bremen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Dear_Aby_Warburg____",
+    "destination": "/lieber-aby-warburg-was-tun-mit-den-bildern-group-show-museum-fuer-gegenwartskunst-siegen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Die_Kunst_der_Faltun",
+    "destination": "/die-kunst-der-faltung-group-show-kunstraum-alexander-buerkle-freiburgmuseum-fuer-konkrete-kunst-ingo",
+    "permanent": true
+  },
+  {
+    "source": "/p/Dorothea-von-Setten-",
+    "destination": "/dorothea-von-setten-kunstpreis-group-show-kunstmuseum-bonn",
+    "permanent": true
+  },
+  {
+    "source": "/p/Everybody_s_Autobiog_1",
+    "destination": "/everybodys-autobiography",
+    "permanent": true
+  },
+  {
+    "source": "/p/Frieze_Art_Fair__Fra",
+    "destination": "/frieze-art-fair-frame-london",
+    "permanent": true
+  },
+  {
+    "source": "/p/geboren_in_Nurnberg",
+    "destination": "/geboren-in-nuernberg",
+    "permanent": true
+  },
+  {
+    "source": "/p/Gerrit_Rietveld_Akad",
+    "destination": "/gerrit-rietveld-akademie-amsterdam-abteilungen-audiovisuelle-medien-und-fotografie-diplom",
+    "permanent": true
+  },
+  {
+    "source": "/p/Grey_Peak_of_the_Wav",
+    "destination": "/grey-peak-of-the-wave-group-show-harris-lieberman-new-york",
+    "permanent": true
+  },
+  {
+    "source": "/p/Heart_of_Chambers__S",
+    "destination": "/heart-of-chambers-sassa-truelzsch-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/hors_serie___18_ALEX",
+    "destination": "/hors-srie-18-alexandra-leykauf-spanische-wand-katoptrische-experimente",
+    "permanent": true
+  },
+  {
+    "source": "/p/I_ve_looked_at_cloud",
+    "destination": "/ive-looked-at-clouds-from-up-and-down-km-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Illy-award__Rotterda",
+    "destination": "/illy-award-rotterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Kerman__35mm__2min__",
+    "destination": "/cimetire-dixelles-group-show-art-in-general-new-york",
+    "permanent": true
+  },
+  {
+    "source": "/p/La_Statue_Interieure",
+    "destination": "/la-statue-interieure-statsion-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Le_Film_comme_Exposi",
+    "destination": "/le-film-comme-exposition-screening-centre-pompidou-paris",
+    "permanent": true
+  },
+  {
+    "source": "/p/Les_images_constella",
+    "destination": "/les-images-constellantes-group-show-villa-du-parc-centre-dart-contemporain-annemasse",
+    "permanent": true
+  },
+  {
+    "source": "/p/Les_Rencontres_d_Arl",
+    "destination": "/il-y-a-de-lautre-les-rencontres-de-la-photographie-arles",
+    "permanent": true
+  },
+  {
+    "source": "/p/Literacy_-_Illiterac",
+    "destination": "/literacy-illiteracy-tallinn-print-triennial-kumu-art-museum-tallinn",
+    "permanent": true
+  },
+  {
+    "source": "/p/Mimicry_-_Empathy__L",
+    "destination": "/mimicry-empathy-group-show-lajevardi-foundation-teheran",
+    "permanent": true
+  },
+  {
+    "source": "/p/Mimicry_Empathy__gro",
+    "destination": "/mimicry-empathy-groupshow-with-caroline-achaintre-bless-ulla-von-brandenburg-susanne-buerner-berta-f",
+    "permanent": true
+  },
+  {
+    "source": "/p/Papiertheater",
+    "destination": "/papiertheater",
+    "permanent": true
+  },
+  {
+    "source": "/p/Posterbuch",
+    "destination": "/posterbuch",
+    "permanent": true
+  },
+  {
+    "source": "/p/Prospect",
+    "destination": "/prospect-camera-austria-graz",
+    "permanent": true
+  },
+  {
+    "source": "/p/re_turn_350_Jahre_Ad",
+    "destination": "/return350-jahre-adbk-nuernberg-group-show-aeg-nuernberg-2012",
+    "permanent": true
+  },
+  {
+    "source": "/p/Re-Search__group_sho",
+    "destination": "/re-search-group-show-foam-fotografiemuseum-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Rehabilitation__grou",
+    "destination": "/rehabilitation-group-show-wiels-brussels",
+    "permanent": true
+  },
+  {
+    "source": "/p/Rijksakademie_van_Be",
+    "destination": "/rijksakademie-van-beeldende-kunsten-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Ritual_Residue",
+    "destination": "/ritual-residue-km-galerie-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/room_with_a_view__gr",
+    "destination": "/room-with-a-view-group-show-kuenstlerhaus-dortmund",
+    "permanent": true
+  },
+  {
+    "source": "/p/Rosinen",
+    "destination": "/rosinen",
+    "permanent": true
+  },
+  {
+    "source": "/p/salle_noire__Musee_d",
+    "destination": "/salle-noire-muse-dart-moderne-de-la-ville-de-paris-paris",
+    "permanent": true
+  },
+  {
+    "source": "/p/Startstipendium_Fond",
+    "destination": "/startstipendium-fonds-bkvb-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Stipendium_Akademie_",
+    "destination": "/stipendium-akademie-schloss-solitude",
+    "permanent": true
+  },
+  {
+    "source": "/p/The_order_of_the_pre",
+    "destination": "/the-order-of-the-present-is-the-disorder-of-the-future-group-show-museum-de-hallen-haarlem",
+    "permanent": true
+  },
+  {
+    "source": "/p/The_Serial_Universe_",
+    "destination": "/the-serial-universe-motto-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/The_Tenant_Galerie_M",
+    "destination": "/the-tenant-galerie-martin-van-zomeren-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/These_are_flat_thing",
+    "destination": "/these-are-flat-things-and-things-which-are-not-flat-group-show-koppe-astner-glasgow",
+    "permanent": true
+  },
+  {
+    "source": "/p/This_Would_Be_a_Cat_",
+    "destination": "/this-would-be-a-cat-if-there-would-be-a-face-group-show-dpendance-brussels",
+    "permanent": true
+  },
+  {
+    "source": "/p/Two_Faced_Mirror__to",
+    "destination": "/two-faced-mirror-together-with-alicja-kwade-souterrain-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Uit_de_bibliotheek_v",
+    "destination": "/forum-expanded-film-festival-berlinale-berlin",
+    "permanent": true
+  },
+  {
+    "source": "/p/Vitrinen__Galerie_Ma",
+    "destination": "/vitrinen-galerie-martin-van-zomeren-amsterdam",
+    "permanent": true
+  },
+  {
+    "source": "/p/Was_Warum",
+    "destination": "/was-warum",
+    "permanent": true
+  },
+  {
+    "source": "/p/What_We_Do_in_the_Sh",
+    "destination": "/what-we-do-in-the-shadows-with-dominik-styk-gak-gesellschaft-fuer-aktuelle-kunst-bremen",
+    "permanent": true
+  },
+  {
+    "source": "/p/Wiederholen__group_s",
+    "destination": "/wiederholen-group-show-westfaelischer-kunstverein-muenster",
+    "permanent": true
+  },
+  {
+    "source": "/p/Window_Shopping__wit",
+    "destination": "/window-shopping-with-eva-berendes-kunstverein-siegen",
+    "permanent": true
+  },
+  {
+    "source": "/t/5_1/20121126015045",
+    "destination": "/chateau-de-bagatelle/alexandra-leykauf-im-gespraech-mit-kathleen-rahn",
+    "permanent": true
+  },
+  {
+    "source": "/t/5_1/Alexandra_Leykauf_in_1",
+    "destination": "/chateau-de-bagatelle/alexandra-leykauf-in-conversation-with-kathleen-rahn",
+    "permanent": true
+  },
+  {
+    "source": "/t/5_1/Le_sens_de_la_perte_",
+    "destination": "/chateau-de-bagatelle/le-sens-de-la-perte-by-franois-michaud",
+    "permanent": true
+  },
+  {
+    "source": "/t/5_1/The_Sense_of_Loss___",
+    "destination": "/chateau-de-bagatelle/the-sense-of-loss-by-franois-michaud",
+    "permanent": true
+  },
+  {
+    "source": "/t/Candid_Etui_-_Galeri/Candid_Etui_by_Isabe",
+    "destination": "/candid-etui-galerie-martin-van-zomeren-amsterdam/candid-etui-by-isabella-dagostino-and-alexandra-leykauf",
+    "permanent": true
+  },
+  {
+    "source": "/t/Caprona/Gallery_text_by_Ben_",
+    "destination": "/caprona-focal-point-gallery-southend-gb/exhibition-text-by-ben-roberts",
+    "permanent": true
+  },
+  {
+    "source": "/t/Caprona/The_landscape_within",
+    "destination": "/caprona-focal-point-gallery-southend-gb/the-landscape-within-a-text-by-julie-jones-commissioned-to-accompany-alexandra-leykaufs-exhibition-c",
+    "permanent": true
+  },
+  {
+    "source": "/t/Dear_Aby_Warburg____/Die_Nahtstellen_der_",
+    "destination": "/lieber-aby-warburg-was-tun-mit-den-bildern-group-show-museum-fuer-gegenwartskunst-siegen/die-nahtstellen-der-bilder-sichtbar-machen-von-sophie-berribi",
+    "permanent": true
+  },
+  {
+    "source": "/t/Dear_Aby_Warburg____/Exposing_the_seams_o",
+    "destination": "/lieber-aby-warburg-was-tun-mit-den-bildern-group-show-museum-fuer-gegenwartskunst-siegen/exposing-the-seams-of-pictures-by-sophie-berrebi",
+    "permanent": true
+  },
+  {
+    "source": "/t/Dorothea-von-Setten-/A_Library_of_Possibi",
+    "destination": "/dorothea-von-setten-kunstpreis-group-show-kunstmuseum-bonn/a-library-of-possibilities-by-anders-kold",
+    "permanent": true
+  },
+  {
+    "source": "/t/Prospect/Prospect_br___Ausste",
+    "destination": "/prospect-camera-austria-graz/prospect-ausstellungstext-von-anna-voswinckel",
+    "permanent": true
+  },
+  {
+    "source": "/t/Prospect/Prospect_br___Exhibi",
+    "destination": "/prospect-camera-austria-graz/prospect-exhibition-text-by-anny-voswinckel",
+    "permanent": true
+  },
+  {
+    "source": "/t/Re-Search__group_sho/Interview_between_Ki",
+    "destination": "/re-search-group-show-foam-fotografiemuseum-amsterdam/interview-between-kim-knoppers-and-alexandra-leykauf",
+    "permanent": true
+  },
+  {
+    "source": "/v/Animus___Kunstverein/v_videos/:index(\\d+)",
+    "destination": "/animus-kunstverein-springhornhof-in-der-lueneburger-heide/animus-kunstverein-springhornhof-in-der-lueneburger-heide-videos-18/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/cache_cadre__Sassa_T/v_film_1/:index(\\d+)",
+    "destination": "/cachecadre-sassa-truelzsch-berlin/cachecadre-sassa-truelzsch-berlin-videos-4/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Caprona/v_3/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-videos-15/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Caprona/v_video_1/:index(\\d+)",
+    "destination": "/caprona-focal-point-gallery-southend-gb/caprona-focal-point-gallery-southend-gb-videos-14/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Contemporary_Obsessi/v_video_3/:index(\\d+)",
+    "destination": "/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen/contemporary-obsessions-group-show-galeri-bo-bjerggaard-copenhagen-videos-16/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Crossing_Media_-_Der/v_film_6/:index(\\d+)",
+    "destination": "/crossing-media-der-kunst-die-buehne-group-show-villa-merkel-esslingen/crossing-media-der-kunst-die-buehne-group-show-villa-merkel-esslingen-videos-11/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/de_Aubette__16mm__3m/v/:index(\\d+)",
+    "destination": "/geometrie-variable-architectures-de-film-group-show-centre-pompidou-paris/geometrie-variable-architectures-de-film-group-show-centre-pompidou-paris-videos-2/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Dead_of_Night/v_Film_3/:index(\\d+)",
+    "destination": "/dead-of-night/dead-of-night-videos-8/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Everybody_s_Autobiog_1/v_film_7/:index(\\d+)",
+    "destination": "/everybodys-autobiography/everybodys-autobiography-videos-12/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Frieze_Art_Fair__Fra/v_film_4/:index(\\d+)",
+    "destination": "/frieze-art-fair-frame-london/frieze-art-fair-frame-london-videos-9/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Kerman__35mm__2min__/v_FLM_1/:index(\\d+)",
+    "destination": "/cimetire-dixelles-group-show-art-in-general-new-york/cimetire-dixelles-group-show-art-in-general-new-york-videos-3/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Le_Film_comme_Exposi/v_film_5/:index(\\d+)",
+    "destination": "/le-film-comme-exposition-screening-centre-pompidou-paris/le-film-comme-exposition-screening-centre-pompidou-paris-videos-10/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Rehabilitation__grou/v_film/:index(\\d+)",
+    "destination": "/rehabilitation-group-show-wiels-brussels/rehabilitation-group-show-wiels-brussels-videos-1/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/room_with_a_view__gr/v_video_2/:index(\\d+)",
+    "destination": "/room-with-a-view-group-show-kuenstlerhaus-dortmund/room-with-a-view-group-show-kuenstlerhaus-dortmund-videos-17/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/The_order_of_the_pre/v_Film_2/:index(\\d+)",
+    "destination": "/the-order-of-the-present-is-the-disorder-of-the-future-group-show-museum-de-hallen-haarlem/the-order-of-the-present-is-the-disorder-of-the-future-group-show-museum-de-hallen-haarlem-videos-6/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/These_are_flat_thing/v_2/:index(\\d+)",
+    "destination": "/these-are-flat-things-and-things-which-are-not-flat-group-show-koppe-astner-glasgow/these-are-flat-things-and-things-which-are-not-flat-group-show-koppe-astner-glasgow-videos-13/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Two_Faced_Mirror__to/v_5/:index(\\d+)",
+    "destination": "/two-faced-mirror-together-with-alicja-kwade-souterrain-berlin/two-faced-mirror-together-with-alicja-kwade-souterrain-berlin-videos-7/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/Uit_de_bibliotheek_v/v_1/:index(\\d+)",
+    "destination": "/forum-expanded-film-festival-berlinale-berlin/forum-expanded-film-festival-berlinale-berlin-videos-5/:index",
+    "permanent": true
+  },
+  {
+    "source": "/v/What_We_Do_in_the_Sh/v_video_4/:index(\\d+)",
+    "destination": "/what-we-do-in-the-shadows-with-dominik-styk-gak-gesellschaft-fuer-aktuelle-kunst-bremen/what-we-do-in-the-shadows-with-dominik-styk-gak-gesellschaft-fuer-aktuelle-kunst-bremen-videos-19/:index",
+    "permanent": true
+  }
+]
