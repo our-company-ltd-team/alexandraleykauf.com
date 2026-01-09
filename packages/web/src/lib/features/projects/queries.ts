@@ -4,150 +4,6 @@
 
 import { graphql } from "@/lib/graphql/generated";
 
-// /**
-//  * Fetches a list of all projects.
-//  */
-// export const GetProjectsListDocument = graphql(`
-//   query GetProjectsList {
-//     projectCollection(order: sys_firstPublishedAt_DESC) {
-//       items {
-//         sys {
-//           id
-//         }
-//         title
-//         slug
-//         year
-//         place
-//         category {
-//           sys {
-//             id
-//           }
-//           title
-//           slug
-//           showOnStartPage
-//           color
-//         }
-//       }
-//     }
-//   }
-// `);
-
-// /**
-//  * Fetches a single project by slug with all panel data.
-//  */
-// export const GetProjectBySlugDocument = graphql(`
-//   query GetProjectBySlug($slug: String!) {
-//     projectCollection(where: { slug: $slug }, limit: 1) {
-//       items {
-//         sys {
-//           id
-//         }
-//         title
-//         slug
-//         year
-//         place
-//         category {
-//           sys {
-//             id
-//           }
-//           title
-//           slug
-//           showOnStartPage
-//           color
-//         }
-//         projectRowsCollection {
-//           items {
-//             sys {
-//               id
-//             }
-//             rowCollection {
-//               items {
-//                 __typename
-//                 ... on ImagesPanel {
-//                   sys {
-//                     id
-//                   }
-//                   title
-//                   slug
-//                   imagesCollection {
-//                     items {
-//                       sys {
-//                         id
-//                       }
-//                       title
-//                       description
-//                       altText
-//                       image {
-//                         sys {
-//                           id
-//                         }
-//                         url
-//                         title
-//                         description
-//                         width
-//                         height
-//                       }
-//                     }
-//                   }
-//                 }
-//                 ... on VideosPanel {
-//                   sys {
-//                     id
-//                   }
-//                   title
-//                   slug
-//                   videosCollection {
-//                     items {
-//                       sys {
-//                         id
-//                       }
-//                       title
-//                       description
-//                       altText
-//                       previewImage {
-//                         sys {
-//                           id
-//                         }
-//                         url
-//                         title
-//                         width
-//                         height
-//                       }
-//                       video {
-//                         url
-//                       }
-//                       videoUrl
-//                       autoStart
-//                     }
-//                   }
-//                 }
-//                 ... on TextPanel {
-//                   sys {
-//                     id
-//                   }
-//                   text {
-//                     json
-//                   }
-//                 }
-//                 ... on TextPage {
-//                   sys {
-//                     id
-//                   }
-//                   title
-//                   slug
-//                   text {
-//                     json
-//                   }
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `);
-
 /**
  * Fetches project panels for prefetching on hover.
  */
@@ -160,11 +16,11 @@ export const getProjectPanels = graphql(`
           ...ContentfulSysId
           color
         }
-        projectRowsCollection(preview: $preview, limit: 8) {
+        projectRowsCollection(preview: $preview, limit: 10) {
           items {
             ...ContentfulSysId
             title
-            rowCollection(preview: $preview,limit: 8) {
+            rowCollection(preview: $preview,limit: 10) {
               items {
                 __typename
                 ... on ImagesPanel {
@@ -279,7 +135,7 @@ export const getProjectPanelBySlug = graphql(`
                 sys {
                   id
                 }
-                url
+                url(transform: { format: WEBP})
                 width
                 height
               }
@@ -304,7 +160,7 @@ export const getProjectPanelBySlug = graphql(`
                 sys {
                   id
                 }
-                url
+                url(transform: { format: WEBP})
               }
               description
               videoUrl
@@ -344,10 +200,10 @@ export const getSitemapQuery = graphql(`
         sys {
           publishedAt
         }
-        projectRowsCollection(preview: $preview, limit: 100) {
+        projectRowsCollection(preview: $preview, limit: 15) {
           items {
             ...ContentfulSysId
-            rowCollection(preview: $preview, limit: 100) {
+            rowCollection(preview: $preview, limit: 15) {
               items {
                 __typename
                 ... on ImagesPanel {
@@ -356,7 +212,7 @@ export const getSitemapQuery = graphql(`
                   sys {
                     publishedAt
                   }
-                  imagesCollection(preview: $preview, limit: 0) {
+                  imagesCollection(preview: $preview, limit: 1) { 
                     total
                   }
                 }
@@ -366,7 +222,7 @@ export const getSitemapQuery = graphql(`
                   sys {
                     publishedAt
                   }
-                  videosCollection(preview: $preview, limit: 0) {
+                  videosCollection(preview: $preview, limit: 1) {
                     total
                   }
                 }

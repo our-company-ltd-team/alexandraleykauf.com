@@ -3890,11 +3890,11 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
         ...ContentfulSysId
         color
       }
-      projectRowsCollection(preview: $preview, limit: 8) {
+      projectRowsCollection(preview: $preview, limit: 10) {
         items {
           ...ContentfulSysId
           title
-          rowCollection(preview: $preview, limit: 8) {
+          rowCollection(preview: $preview, limit: 10) {
             items {
               __typename
               ... on ImagesPanel {
@@ -4009,7 +4009,7 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
               sys {
                 id
               }
-              url
+              url(transform: {format: WEBP})
               width
               height
             }
@@ -4034,7 +4034,7 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
               sys {
                 id
               }
-              url
+              url(transform: {format: WEBP})
             }
             description
             videoUrl
@@ -4073,10 +4073,10 @@ export const GetSitemapDataDocument = new TypedDocumentString(`
       sys {
         publishedAt
       }
-      projectRowsCollection(preview: $preview, limit: 100) {
+      projectRowsCollection(preview: $preview, limit: 15) {
         items {
           ...ContentfulSysId
-          rowCollection(preview: $preview, limit: 100) {
+          rowCollection(preview: $preview, limit: 15) {
             items {
               __typename
               ... on ImagesPanel {
@@ -4085,7 +4085,7 @@ export const GetSitemapDataDocument = new TypedDocumentString(`
                 sys {
                   publishedAt
                 }
-                imagesCollection(preview: $preview, limit: 0) {
+                imagesCollection(preview: $preview, limit: 1) {
                   total
                 }
               }
@@ -4095,7 +4095,7 @@ export const GetSitemapDataDocument = new TypedDocumentString(`
                 sys {
                   publishedAt
                 }
-                videosCollection(preview: $preview, limit: 0) {
+                videosCollection(preview: $preview, limit: 1) {
                   total
                 }
               }

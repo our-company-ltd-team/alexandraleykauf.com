@@ -10,7 +10,9 @@
     "lint:fix": "eslint --fix",
     "typecheck": "tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen --config codegen.ts --watch"
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch",
+    "list-projects": "NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW=true pnpm dlx tsx scripts/list-projects.ts",
+    "generate-redirects": "pnpm dlx tsx scripts/generate-redirects.ts"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.6",
@@ -41,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "19.2.5",
     "@types/react-dom": "19.2.3",
+    "contentful": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "eslint-plugin-format": "^1.0.2",
