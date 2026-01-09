@@ -1,8 +1,8 @@
 .detailPage {
   color: var(--color-text-default, #000);
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100dvh;
 }
 
 .detailPage p,
@@ -16,6 +16,7 @@
 .header {
   color: var(--color-text-muted, #929292);
   padding: 20px 0 10px;
+  flex: 0 0 auto;
 }
 
 .back {
@@ -26,7 +27,8 @@
 }
 
 .assetContainer {
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
   position: relative;
 }
 
@@ -45,6 +47,7 @@
 
 .bottom {
   padding-block: 10px;
+  flex: 0 0 auto;
 }
 
 .legend {
