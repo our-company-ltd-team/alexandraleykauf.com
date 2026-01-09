@@ -292,6 +292,7 @@ export type Category = Entry & _Node & {
   color?: Maybe<Scalars['String']['output']>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
+  fadedColor?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<CategoryLinkingCollections>;
   showItemsInHomepage?: Maybe<Scalars['Boolean']['output']>;
   showOnStartPage?: Maybe<Scalars['Boolean']['output']>;
@@ -310,6 +311,13 @@ export type CategoryColorArgs = {
 
 /** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryContentfulDescriptionArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+  useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+export type CategoryFadedColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
@@ -374,6 +382,13 @@ export type CategoryFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  fadedColor?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_contains?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  fadedColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  fadedColor_not?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   showItemsInHomepage?: InputMaybe<Scalars['Boolean']['input']>;
   showItemsInHomepage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   showItemsInHomepage_not?: InputMaybe<Scalars['Boolean']['input']>;
@@ -511,6 +526,8 @@ export const CategoryOrder = {
   ColorDesc: 'color_DESC',
   ContentfulDescriptionAsc: 'contentfulDescription_ASC',
   ContentfulDescriptionDesc: 'contentfulDescription_DESC',
+  FadedColorAsc: 'fadedColor_ASC',
+  FadedColorDesc: 'fadedColor_DESC',
   ShowItemsInHomepageAsc: 'showItemsInHomepage_ASC',
   ShowItemsInHomepageDesc: 'showItemsInHomepage_DESC',
   ShowOnStartPageAsc: 'showOnStartPage_ASC',
@@ -3471,6 +3488,13 @@ export type CfCategoryNestedFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  fadedColor?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_contains?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  fadedColor_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  fadedColor_not?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_not_contains?: InputMaybe<Scalars['String']['input']>;
+  fadedColor_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   showItemsInHomepage?: InputMaybe<Scalars['Boolean']['input']>;
   showItemsInHomepage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   showItemsInHomepage_not?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3681,7 +3705,7 @@ export type GetHomepageQueryQueryVariables = Exact<{
 }>;
 
 
-export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, place?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: any | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', category?: { __typename: 'Category', slug?: string | null, color?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
+export type GetHomepageQueryQuery = { __typename: 'Query', homepageCollection?: { __typename: 'HomepageCollection', items: Array<{ __typename: 'Homepage', seoTitle?: string | null, seoDescription?: string | null, contentCollection?: { __typename: 'HomepageContentCollection', items: Array<{ __typename: 'Link', title?: string | null, emailLink?: string | null, externalLink?: string | null, place?: string | null, pdfLink?: { __typename: 'Asset', url?: string | null } | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, fadedColor?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Project', title?: string | null, slug?: string | null, year?: any | null, place?: string | null, category?: { __typename: 'Category', slug?: string | null, color?: string | null, fadedColor?: string | null, sys: { __typename: 'Sys', id: string } } | null, projectRowsCollection?: { __typename: 'ProjectProjectRowsCollection', total: number } | null, sys: { __typename: 'Sys', id: string } } | { __typename: 'Separator', sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string }, seoImage?: { __typename: 'Asset', url?: string | null } | null } | null> } | null };
 
 export type GetProjectPanelsQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3806,6 +3830,7 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
               ...ContentfulSysId
               slug
               color
+              fadedColor
             }
             place
           }
@@ -3820,6 +3845,7 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
               ...ContentfulSysId
               slug
               color
+              fadedColor
             }
             projectRowsCollection(preview: $preview, limit: 0) {
               total
@@ -3828,11 +3854,6 @@ export const GetHomepageQueryDocument = new TypedDocumentString(`
           ... on Separator {
             __typename
             ...ContentfulSysId
-            category {
-              ...ContentfulSysId
-              slug
-              color
-            }
           }
         }
       }

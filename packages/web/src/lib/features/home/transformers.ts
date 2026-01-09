@@ -28,6 +28,7 @@ export function transformProjectEntry(item: Project): HomepageProject | null {
     place: item.place ?? undefined,
     categorySlug: item.category?.slug ?? "",
     categoryColor: item.category?.color ?? undefined,
+    categoryFadedColor: item.category?.fadedColor ?? undefined,
     hasRows: (item.projectRowsCollection?.total ?? 0) > 0,
   };
 }
@@ -50,6 +51,7 @@ export function transformLinkEntry(item: Link): HomepageLink | null {
     pdfUrl: item.pdfLink?.url ?? undefined,
     categorySlug: item.category?.slug ?? "",
     categoryColor: item.category?.color ?? undefined,
+    categoryFadedColor: item.category?.fadedColor ?? undefined,
     place: item.place ?? undefined,
   };
 }

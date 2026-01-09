@@ -1,5 +1,6 @@
 :root {
-  --project-color: transparent;
+  --project-background-color: transparent;
+  --project-faded-background-color: transparent;
 }
 
 .header {
@@ -9,12 +10,13 @@
   padding-block: 5px;
   padding-inline: 10px;
   position: relative;
+  background-color: var(--project-faded-background-color, transparent);
 
   .active & {
     color: var(--color-text-default, #000);
     text-transform: uppercase;
     font-family: var(--font-bold, "museo_bold", sans-serif);
-    background-color: var(--project-color, transparent);
+    background-color: var(--project-background-color, transparent);
   }
 
   @media (hover: hover) {
@@ -22,7 +24,7 @@
 
     &:hover {
       color: var(--color-text-default, #000);
-      background-color: var(--project-color, transparent);
+      background-color: var(--project-background-color, transparent);
     }
   }
 }

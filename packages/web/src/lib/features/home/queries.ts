@@ -47,6 +47,7 @@ export const getHomepageQuery = graphql(`
                 ...ContentfulSysId
                 slug
                 color
+                fadedColor
               }
               place
             }
@@ -61,6 +62,7 @@ export const getHomepageQuery = graphql(`
                 ...ContentfulSysId
                 slug
                 color
+                fadedColor
               }
               projectRowsCollection(preview: $preview, limit: 0) {
                 total
@@ -69,11 +71,6 @@ export const getHomepageQuery = graphql(`
             ... on Separator {
               __typename
               ...ContentfulSysId
-              category {
-                ...ContentfulSysId
-                slug
-                color
-              }
             }
           }
         }

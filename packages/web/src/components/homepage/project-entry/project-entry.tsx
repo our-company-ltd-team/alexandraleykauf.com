@@ -17,6 +17,7 @@ export function ProjectEntry({
   year,
   slug,
   categoryColor,
+  categoryFadedColor,
   place,
 }: HomepageProject) {
   const liRef = useRef<HTMLLIElement | null>(null);
@@ -71,7 +72,8 @@ export function ProjectEntry({
       className={clsx(styles.item, isProjectExpanded && styles.active)}
       style={{
         ...(categoryColor && {
-          "--project-color": categoryColor,
+          "--project-background-color": categoryColor,
+          "--project-faded-background-color": categoryFadedColor,
         } as React.CSSProperties),
       }}
     >

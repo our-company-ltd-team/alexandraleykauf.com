@@ -182,6 +182,7 @@ type Category implements Entry & _Node {
   color(locale: String, useFallbackLocale: Boolean): String
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
+  fadedColor(locale: String, useFallbackLocale: Boolean): String
   linkedFrom(allowedLocales: [String]): CategoryLinkingCollections
   showItemsInHomepage(locale: String, useFallbackLocale: Boolean): Boolean
   showOnStartPage(locale: String, useFallbackLocale: Boolean): Boolean
@@ -215,6 +216,13 @@ input CategoryFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  fadedColor: String
+  fadedColor_contains: String
+  fadedColor_exists: Boolean
+  fadedColor_in: [String]
+  fadedColor_not: String
+  fadedColor_not_contains: String
+  fadedColor_not_in: [String]
   showItemsInHomepage: Boolean
   showItemsInHomepage_exists: Boolean
   showItemsInHomepage_not: Boolean
@@ -336,6 +344,8 @@ enum CategoryOrder {
   color_DESC
   contentfulDescription_ASC
   contentfulDescription_DESC
+  fadedColor_ASC
+  fadedColor_DESC
   showItemsInHomepage_ASC
   showItemsInHomepage_DESC
   showOnStartPage_ASC
@@ -2497,6 +2507,13 @@ input cfCategoryNestedFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  fadedColor: String
+  fadedColor_contains: String
+  fadedColor_exists: Boolean
+  fadedColor_in: [String]
+  fadedColor_not: String
+  fadedColor_not_contains: String
+  fadedColor_not_in: [String]
   showItemsInHomepage: Boolean
   showItemsInHomepage_exists: Boolean
   showItemsInHomepage_not: Boolean

@@ -20,6 +20,7 @@ export type HomepageProject = {
   place: string | undefined;
   categorySlug: string;
   categoryColor: string | undefined;
+  categoryFadedColor: string | undefined;
   hasRows: boolean;
 };
 
@@ -35,6 +36,7 @@ export type HomepageLink = {
   pdfUrl: string | undefined;
   categorySlug: string;
   categoryColor: string | undefined;
+  categoryFadedColor: string | undefined;
   place: string | undefined;
 };
 

@@ -24,7 +24,8 @@ export function LinkEntry({ data }: { data: HomepageLink }) {
     <div
       className={styles.header}
       style={{
-        "--link-color": data.categoryColor,
+        "--link-background-color": data.categoryColor,
+        "--link-faded-background-color": data.categoryFadedColor,
       } as React.CSSProperties}
     >
       <NextLink target="_blank" href={getLink(data)} className={styles.link} />
