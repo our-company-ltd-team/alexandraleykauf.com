@@ -56,6 +56,20 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
   const visibleProjectSlugs = useMemo(() =>
     contentItemsToRender
       .filter((item): item is Extract<HomepageContentItem, { type: "Project" }> => item.type === "Project")
+      .sort((a, b) => {
+        const dateA = new Date(a.year ?? "");
+        const dateB = new Date(b.year ?? "");
+
+        // 1. Primary sort: Year descending (Newest first)
+        const yearDiff = dateB.getFullYear() - dateA.getFullYear();
+        if (yearDiff !== 0) {
+          return yearDiff;
+        }
+
+        // 2. Secondary sort: Full date ascending (Oldest to newest within that year)
+        // Use getTime() to compare the full date including month and day
+        return dateA.getTime() - dateB.getTime();
+      })
       .map(item => item.slug), [contentItemsToRender]);
 
   const toggleCategory = (category: Category) => {

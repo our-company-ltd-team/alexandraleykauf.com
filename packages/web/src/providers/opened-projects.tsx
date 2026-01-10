@@ -9,24 +9,6 @@ type OpenedProjectsProviderProps = {
 };
 
 export function OpenedProjectsProvider({ children, initialSlug = null }: OpenedProjectsProviderProps) {
-  // Get initial slug from URL pathname
-  // const getSlugFromPath = () => {
-  //   if (typeof window === "undefined") {
-  //     return null;
-  //   }
-
-  //   const path = window.location.pathname;
-  //   // Assuming URLs like "/" or "/project-slug"
-  //   const slug = path.replace(/^\//, "") || null;
-  //   return slug;
-  // };
-
-  // const [activeSlug, setActiveSlug] = useState<string | null>(getSlugFromPath);
-  // const [openedProjects, setOpenedProjects] = useState<string[]>(() => {
-  //   const initial = getSlugFromPath();
-  //   return initial ? [initial] : [];
-  // });
-
   // Use the server-provided initial slug (no window access needed for initial state)
   const [activeSlug, setActiveSlug] = useState<string | null>(initialSlug);
   const [openedProjects, setOpenedProjects] = useState<string[]>(() =>
