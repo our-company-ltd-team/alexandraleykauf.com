@@ -54,5 +54,11 @@
   "overrides": {
     "@types/react": "19.2.5",
     "@types/react-dom": "19.2.3"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 0.5%",
+    "not dead",
+    "not ie 11"
+  ]
 }

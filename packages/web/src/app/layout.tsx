@@ -4,7 +4,6 @@ import "../styles/variables.css";
 import "../styles/base.css";
 import type { Metadata } from "next";
 
-// import "../styles/legacy.clean.css";
 import { getGeneralConfigData } from "@/lib/features/general-config";
 import { QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
