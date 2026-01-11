@@ -5,6 +5,7 @@ import { Suspense } from "react";
 
 import { HomepageShell } from "@/components";
 import { getGeneralConfigData, getHeaderData, getHomePageData, getProjectMetadataData } from "@/lib";
+import { QueryProvider } from "@/providers";
 
 export default async function ProjectPage({ params }: PageProps<"/[project]">) {
   const { project: initialSlug } = await params;
@@ -22,11 +23,14 @@ export default async function ProjectPage({ params }: PageProps<"/[project]">) {
       <a href="#main-content" className="sr-only sr-only-focusable">
         Skip to main content
       </a>
-      <HomepageShell
-        categories={header?.categories ?? []}
-        contentItems={homepage?.contentItems ?? []}
-        initialSlug={initialSlug}
-      />
+
+      <QueryProvider>
+        <HomepageShell
+          categories={header?.categories ?? []}
+          contentItems={homepage?.contentItems ?? []}
+          initialSlug={initialSlug}
+        />
+      </QueryProvider>
     </Suspense>
   );
 }

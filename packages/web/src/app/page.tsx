@@ -4,6 +4,7 @@ import { Suspense } from "react";
 
 import { HomepageShell } from "@/components";
 import { getGeneralConfigData, getHeaderData, getHomePageData } from "@/lib";
+import { QueryProvider } from "@/providers";
 
 export default async function Page() {
   const [homepageData, headerData] = await Promise.allSettled([
@@ -19,10 +20,13 @@ export default async function Page() {
       <a href="#main-content" className="sr-only sr-only-focusable">
         Skip to main content
       </a>
-      <HomepageShell
-        categories={header?.categories ?? []}
-        contentItems={homepage?.contentItems ?? []}
-      />
+
+      <QueryProvider>
+        <HomepageShell
+          categories={header?.categories ?? []}
+          contentItems={homepage?.contentItems ?? []}
+        />
+      </QueryProvider>
     </Suspense>
   );
 }

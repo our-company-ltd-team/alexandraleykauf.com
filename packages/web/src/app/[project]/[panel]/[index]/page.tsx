@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { notFound } from "next/navigation";
 
-import { MediaPage } from "@/components";
+import { MediaPage } from "@/components/detail-pages/media-page";
 import { getGeneralConfigData } from "@/lib/features/general-config/api";
 import { getProjectMetadataData, getProjectPanelBySlugData } from "@/lib/features/projects/api";
 

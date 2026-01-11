@@ -1,4 +1,5 @@
 import antfu from "@antfu/eslint-config";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 import { sharedRules, sharedStylistic } from "../../eslint.config.mjs";
 
@@ -19,6 +20,13 @@ export default antfu(
   },
   {
     rules: sharedRules,
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
+    ...jsxA11y.flatConfigs.recommended,
+    languageOptions: {
+      ...jsxA11y.flatConfigs.recommended.languageOptions,
+    },
   },
   // Global ignores for generated files (must be separate config object)
   {

@@ -1,3 +1,5 @@
+"use server";
+
 /**
  * Server-side data fetching for the header.
  * Use these functions in Server Components.

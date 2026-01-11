@@ -1,6 +1,7 @@
 /* eslint-disable node/no-process-env */
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from "@t3-oss/env-core";
+// import { vercel } from "@t3-oss/env-core/presets-valibot";
+import * as v from "valibot";
 
 /**
  * Type-safe environment variables for the web package.
@@ -17,18 +18,18 @@ import { z } from "zod";
  */
 export const env = createEnv({
   server: {
-    CONTENTFUL_WEBHOOK_SECRET: z.string().min(1).optional(),
+    CONTENTFUL_WEBHOOK_SECRET: v.pipe(v.string(), v.minLength(1)),
   },
+  clientPrefix: "NEXT_PUBLIC_",
   client: {
-    NEXT_PUBLIC_CONTENTFUL_SPACE_ID: z.string().min(1),
-    NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: z.string().min(1),
-    NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW: z
-      .enum(["true", "false"], {
-        error: "NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW must be 'true' or 'false'",
-      })
-      .transform(val => val === "true"),
-    NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: z.string().min(1),
-    NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN: z.string().min(1),
+    NEXT_PUBLIC_CONTENTFUL_SPACE_ID: v.pipe(v.string(), v.minLength(1)),
+    NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: v.pipe(v.string(), v.minLength(1)),
+    NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW: v.pipe(
+      v.picklist(["true", "false"], "NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW must be 'true' or 'false'"),
+      v.transform(val => val === "true"),
+    ),
+    NEXT_PUBLIC_CONTENTFUL_DELIVERY_TOKEN: v.pipe(v.string(), v.minLength(1)),
+    NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN: v.pipe(v.string(), v.minLength(1)),
   },
   // For Next.js, we need to explicitly list the env vars
   // that should be included in the runtime

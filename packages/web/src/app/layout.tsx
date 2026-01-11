@@ -6,7 +6,6 @@ import type { Metadata } from "next";
 
 import { WebVitals } from "@/components/shared/web-vitals";
 import { getGeneralConfigData } from "@/lib/features/general-config";
-import { QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
 
 export const metadata: Metadata = {
@@ -51,11 +50,9 @@ export default async function RootLayout({
         />
       </head>
       <body>
-        <QueryProvider>
-          <div className={layoutStyles.container}>
-            {children}
-          </div>
-        </QueryProvider>
+        <div className={layoutStyles.container}>
+          {children}
+        </div>
         <WebVitals />
       </body>
     </html>

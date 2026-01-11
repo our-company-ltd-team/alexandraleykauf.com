@@ -1,3 +1,4 @@
+"use server";
 /**
  * Server-side data fetching for projects.
  * Use these functions in Server Components.
