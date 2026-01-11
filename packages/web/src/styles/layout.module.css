@@ -8,24 +8,6 @@
   min-height: 100%;
 }
 
-/* Categories selector */
-/* .categoriesSelector {
-  float: right;
-  padding-top: 6px;
-}
-
-.categoriesSelector a {
-  padding: 0 0 10px 16px;
-  margin-right: 24px;
-  position: relative;
-  display: block;
-  float: left;
-}
-
-.categoriesSelector a:last-child {
-  margin-right: 0;
-} */
-
 /* Footer */
 .footer {
   text-align: right;

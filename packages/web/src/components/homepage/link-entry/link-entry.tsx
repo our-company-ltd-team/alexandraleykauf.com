@@ -28,8 +28,12 @@ export function LinkEntry({ data }: { data: HomepageLink }) {
         "--link-faded-background-color": data.categoryFadedColor,
       } as React.CSSProperties}
     >
-      <NextLink target="_blank" href={getLink(data)} className={styles.link} />
-      <div className={styles.left}>@</div>
+      <NextLink target="_blank" href={getLink(data)} className={styles.link}>
+        <div className="sr-only">{data.title}</div>
+      </NextLink>
+      <div className={styles.left}>
+        <span className={styles.at}>@</span>
+      </div>
       <div className={styles.center}>
         {data.title}
       </div>

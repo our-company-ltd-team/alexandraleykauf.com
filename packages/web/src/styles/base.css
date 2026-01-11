@@ -82,6 +82,13 @@ nav ol {
   list-style-image: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
 /* ==========================================================================
    Media Reset
    ========================================================================== */
@@ -153,13 +160,14 @@ table {
    Focus
    ========================================================================== */
 
-a:focus {
-  outline: thin dotted;
+a:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
 }
 
-a:hover,
-a:active {
-  outline: 0;
+/* Keep outline removal only for mouse clicks */
+a:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ==========================================================================
@@ -171,12 +179,27 @@ a:active {
   visibility: hidden;
 }
 
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-.clearfix::after {
-  clear: both;
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
 }

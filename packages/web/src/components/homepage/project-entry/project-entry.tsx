@@ -82,13 +82,24 @@ export function ProjectEntry({
         className={styles.header}
         onMouseEnter={() => prefetchPanels(slug)}
         onClick={handleProjectClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleProjectClick();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-expanded={isProjectExpanded}
+        aria-controls={`project-content-${id}`}
       >
         <div className={styles.left}>{parsedYear}</div>
         <h3 className={styles.center}>{title}</h3>
         <div className={styles.right}>{place}</div>
       </header>
-
-      {isProjectExpanded && homeProjectPanels?.rows.map(row => <ProjectRow key={row.id} row={row} projectSlug={slug} />)}
+      <div id={`project-content-${id}`} aria-live="polite" aria-atomic="true">
+        {isProjectExpanded && homeProjectPanels?.rows.map(row => <ProjectRow key={row.id} row={row} projectSlug={slug} />)}
+      </div>
     </article>
   );
 }

@@ -49,6 +49,8 @@ export function VideoView({
                 autoPlay={autoStart}
                 playsInline
                 preload={autoStart ? "auto" : "metadata"}
+                aria-label="Video player"
+                muted
               />
             </div>
           )

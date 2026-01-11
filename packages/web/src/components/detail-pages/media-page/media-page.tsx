@@ -86,9 +86,9 @@ export default function MediaPage({
       <div className={mediaPageStyles.bottom}>
         {totalCount > 1 && (
           <nav className={mediaPageStyles.nav}>
-            <Link href={previousUrl} className={mediaPageStyles.arrow}>‹</Link>
+            <Link href={previousUrl} className={mediaPageStyles.arrow} aria-label="Previous image">‹</Link>
             <span className={mediaPageStyles.arrowSeparator}>{`${currentIndex} / ${totalCount}`}</span>
-            <Link href={nextUrl} className={mediaPageStyles.arrow}>›</Link>
+            <Link href={nextUrl} className={mediaPageStyles.arrow} aria-label="Next image">›</Link>
           </nav>
         )}
         <div className={mediaPageStyles.legend}>

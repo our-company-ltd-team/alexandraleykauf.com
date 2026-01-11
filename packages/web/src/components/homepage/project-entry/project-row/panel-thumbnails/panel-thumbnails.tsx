@@ -11,11 +11,17 @@ export type PanelThumbnailsProps = ProjectImagesOrVideosPanel & {
   projectSlug: string;
 };
 
-export const PanelThumbnails: FC<PanelThumbnailsProps> = ({ previewImages, slug, projectSlug }: PanelThumbnailsProps) => {
+export const PanelThumbnails: FC<PanelThumbnailsProps> = ({
+  previewImages,
+  slug,
+  projectSlug,
+  title,
+}: PanelThumbnailsProps) => {
   return (
     <div className={styles.container}>
       {previewImages.map((previewImage, index) => {
         const imagePosition = index + 1;
+        const altText = previewImage.altText ?? `${title} - Image ${index + 1}`;
 
         return (
           <Link
@@ -24,7 +30,7 @@ export const PanelThumbnails: FC<PanelThumbnailsProps> = ({ previewImages, slug,
           >
             <Image
               src={previewImage.image.url}
-              alt={previewImage.altText ?? ""}
+              alt={altText}
               height={previewImage.image.height}
               width={previewImage.image.width}
               className={styles.thumbnail}

@@ -10,6 +10,7 @@
     url("/assets/fonts/museosans_500-webfont.svg#museo_sans_500regular") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -22,6 +23,7 @@
     url("/assets/fonts/museosans_700-webfont.svg#museo_sans_700regular") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -34,4 +36,5 @@
     url("/assets/fonts/ourwebfont-webfont.svg#our_webfontregular") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }

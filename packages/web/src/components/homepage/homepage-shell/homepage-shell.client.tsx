@@ -160,7 +160,9 @@ function HomepageShellContent({
         activeCategories={activeCategories.map(category => category.id)}
         toggleCategory={toggleCategory}
       />
-      <HomepageContentList items={contentItemsToRender} />
+      <main id="main-content">
+        <HomepageContentList items={contentItemsToRender} />
+      </main>
       <footer className={layoutStyles.footer}>
         <NextLink
           href="https://www.ourcompany.ch/"

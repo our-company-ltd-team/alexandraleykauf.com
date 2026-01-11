@@ -23,11 +23,17 @@ export const SiteHeader: FC<SiteHeaderProps> = ({ categories, toggleCategory, ac
         {categories.map(category => (
           <li
             key={category.id}
-            className={clsx(siteHeaderStyles.category, activeCategories.includes(category.id) && siteHeaderStyles.categoryActive)}
-            style={{ "--category-color": category.color } as React.CSSProperties}
-            onClick={() => toggleCategory(category)}
+
           >
-            {category.title}
+            <button
+              type="button"
+              className={clsx(siteHeaderStyles.category, activeCategories.includes(category.id) && siteHeaderStyles.categoryActive)}
+              onClick={() => toggleCategory(category)}
+              aria-pressed={activeCategories.includes(category.id)}
+              style={{ "--category-color": category.color } as React.CSSProperties}
+            >
+              {category.title}
+            </button>
           </li>
         ))}
       </ul>
