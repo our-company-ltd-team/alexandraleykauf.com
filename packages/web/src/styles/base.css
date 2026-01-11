@@ -125,6 +125,7 @@ textarea {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 button[disabled] {
@@ -159,6 +160,10 @@ table {
 /* ==========================================================================
    Focus
    ========================================================================== */
+a {
+  text-decoration: none;
+  color: #929292;
+}
 
 a:focus-visible {
   outline: 2px solid #000;

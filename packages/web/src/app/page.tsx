@@ -5,6 +5,28 @@ import { Suspense } from "react";
 import { HomepageShell } from "@/components";
 import { getGeneralConfigData, getHeaderData, getHomePageData } from "@/lib";
 
+export default async function Page() {
+  const [homepageData, headerData] = await Promise.allSettled([
+    getHomePageData(),
+    getHeaderData(),
+  ]);
+
+  const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
+  const header = headerData.status === "fulfilled" ? headerData.value : null;
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <a href="#main-content" className="sr-only sr-only-focusable">
+        Skip to main content
+      </a>
+      <HomepageShell
+        categories={header?.categories ?? []}
+        contentItems={homepage?.contentItems ?? []}
+      />
+    </Suspense>
+  );
+}
+
 export async function generateMetadata(): Promise<Metadata> {
   const generalConfigData = await getGeneralConfigData();
 
@@ -46,23 +68,4 @@ export async function generateMetadata(): Promise<Metadata> {
       images: seoImages,
     },
   };
-}
-
-export default async function Page() {
-  const [homepageData, headerData] = await Promise.allSettled([
-    getHomePageData(),
-    getHeaderData(),
-  ]);
-
-  const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
-  const header = headerData.status === "fulfilled" ? headerData.value : null;
-
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HomepageShell
-        categories={header?.categories ?? []}
-        contentItems={homepage?.contentItems ?? []}
-      />
-    </Suspense>
-  );
 }

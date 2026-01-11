@@ -4,6 +4,7 @@ import "../styles/variables.css";
 import "../styles/base.css";
 import type { Metadata } from "next";
 
+import { WebVitals } from "@/components/shared/web-vitals";
 import { getGeneralConfigData } from "@/lib/features/general-config";
 import { QueryProvider } from "@/providers";
 import layoutStyles from "@/styles/layout.module.css";
@@ -34,7 +35,7 @@ export default async function RootLayout({
   const detailsBackgroundColor = generalConfigData?.detailsBackgroundColor ?? "";
 
   return (
-    <html lang="en">
+    <html lang="de">
       <head>
         <style
           precedence="default"
@@ -55,6 +56,7 @@ export default async function RootLayout({
             {children}
           </div>
         </QueryProvider>
+        <WebVitals />
       </body>
     </html>
   );

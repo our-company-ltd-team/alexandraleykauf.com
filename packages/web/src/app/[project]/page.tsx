@@ -6,6 +6,31 @@ import { Suspense } from "react";
 import { HomepageShell } from "@/components";
 import { getGeneralConfigData, getHeaderData, getHomePageData, getProjectMetadataData } from "@/lib";
 
+export default async function ProjectPage({ params }: PageProps<"/[project]">) {
+  const { project: initialSlug } = await params;
+
+  const [homepageData, headerData] = await Promise.allSettled([
+    getHomePageData(),
+    getHeaderData(),
+  ]);
+
+  const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
+  const header = headerData.status === "fulfilled" ? headerData.value : null;
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <a href="#main-content" className="sr-only sr-only-focusable">
+        Skip to main content
+      </a>
+      <HomepageShell
+        categories={header?.categories ?? []}
+        contentItems={homepage?.contentItems ?? []}
+        initialSlug={initialSlug}
+      />
+    </Suspense>
+  );
+}
+
 export async function generateMetadata({ params }: PageProps<"/[project]">): Promise<Metadata> {
   const { project: slug } = await params;
 
@@ -61,26 +86,4 @@ export async function generateMetadata({ params }: PageProps<"/[project]">): Pro
       images: seoImages?.map(img => img.url),
     },
   };
-}
-
-export default async function ProjectPage({ params }: PageProps<"/[project]">) {
-  const { project: initialSlug } = await params;
-
-  const [homepageData, headerData] = await Promise.allSettled([
-    getHomePageData(),
-    getHeaderData(),
-  ]);
-
-  const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
-  const header = headerData.status === "fulfilled" ? headerData.value : null;
-
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HomepageShell
-        categories={header?.categories ?? []}
-        contentItems={homepage?.contentItems ?? []}
-        initialSlug={initialSlug}
-      />
-    </Suspense>
-  );
 }

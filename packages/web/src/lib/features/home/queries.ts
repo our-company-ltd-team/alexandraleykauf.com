@@ -71,6 +71,10 @@ export const getHomepageQuery = graphql(`
             ... on Separator {
               __typename
               ...ContentfulSysId
+              category {
+                ...ContentfulSysId
+                slug
+              }
             }
           }
         }

@@ -1,5 +1,7 @@
 .separator {
   height: 27px;
-  border-top: none;
+  border: none;
+  margin: 0;
+  padding: 0;
   border-bottom: var(--border-dotted, 1px dotted #929292);
 }
