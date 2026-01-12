@@ -24,6 +24,7 @@ export function ImageView({ imageUrl, altText = "", nextUrl, width, height }: Im
           sizes="(min-width: 1200px) 966px, 100vw"
           loading="eager"
           preload={true}
+          fetchPriority="high"
         />
       </Link>
     </figure>
