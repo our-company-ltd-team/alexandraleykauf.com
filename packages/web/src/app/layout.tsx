@@ -34,7 +34,7 @@ export default async function RootLayout({
   const detailsBackgroundColor = generalConfigData?.detailsBackgroundColor ?? "";
 
   return (
-    <html lang="de">
+    <html lang="en">
       <head>
         <style
           precedence="default"

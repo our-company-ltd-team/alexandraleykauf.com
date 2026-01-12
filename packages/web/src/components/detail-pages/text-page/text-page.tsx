@@ -53,7 +53,7 @@ type TextPageProps = {
 
 export const TextPage: FC<TextPageProps> = ({ textPage, backHref }) => {
   return (
-    <article className={styles.detailPage}>
+    <main className={styles.detailPage}>
       <header className={styles.header}>
         {textPage.title && <h2 className={styles.hidden}>{textPage.title}</h2>}
         <Link href={backHref} className={styles.back}>
@@ -64,7 +64,7 @@ export const TextPage: FC<TextPageProps> = ({ textPage, backHref }) => {
       <div className={styles.textContent}>
         {documentToReactComponents(textPage.text, renderOptions)}
       </div>
-    </article>
+    </main>
   );
 };
 

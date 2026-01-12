@@ -74,7 +74,7 @@ export default function MediaPage({
   }
 
   return (
-    <article ref={swipeRef} className={mediaPageStyles.detailPage}>
+    <main ref={swipeRef} className={mediaPageStyles.detailPage}>
       <header className={mediaPageStyles.header}>
         <Link href={backHref} className={mediaPageStyles.back}>
           zurück
@@ -96,6 +96,6 @@ export default function MediaPage({
           <p>{description}</p>
         </div>
       </div>
-    </article>
+    </main>
   );
 }
