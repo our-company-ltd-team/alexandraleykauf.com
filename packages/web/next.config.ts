@@ -32,6 +32,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   async redirects() {
     return legacyRedirects;
   },
