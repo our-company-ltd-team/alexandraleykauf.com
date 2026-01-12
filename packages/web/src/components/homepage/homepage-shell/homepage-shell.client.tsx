@@ -4,8 +4,8 @@ import NextLink from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
-import type { HomepageContentItem } from "@/lib";
-import type { Category } from "@/lib/features/header";
+import type { Category } from "@/lib/features/header/types";
+import type { HomepageContentItem } from "@/lib/features/home/types";
 
 import { SiteHeader } from "@/components/shared/site-header";
 import { useKeyboardNavigation, useOpenedProjects } from "@/hooks";

@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 
 import type { ProjectDetailImage, ProjectDetailVideo } from "@/lib/features/projects";
 
-import { useKeyboardNavigation, useSwipeGesture } from "@/hooks";
+import { useKeyboardNavigation } from "@/hooks/use-keyboard-navigation";
+import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 
 import { ImageView } from "./image-view";
 import mediaPageStyles from "./media-page.module.css";

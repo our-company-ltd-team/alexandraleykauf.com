@@ -5,6 +5,8 @@ import Link from "next/link";
 
 import type { ProjectImagesOrVideosPanel } from "@/lib/features/projects/types";
 
+import { Skeleton } from "@/components/shared/skeleton";
+
 import styles from "./panel-thumbnails.module.css";
 
 export type PanelThumbnailsProps = ProjectImagesOrVideosPanel & {
@@ -42,3 +44,11 @@ export const PanelThumbnails: FC<PanelThumbnailsProps> = ({
     </div>
   );
 };
+
+export function PanelThumbnailsSkeleton() {
+  return (
+    <div className={styles.container}>
+      <Skeleton />
+    </div>
+  );
+}

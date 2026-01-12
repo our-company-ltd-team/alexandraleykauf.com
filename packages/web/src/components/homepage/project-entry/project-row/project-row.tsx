@@ -1,55 +1,44 @@
-"use client";
-
-import type { Options } from "@contentful/rich-text-react-renderer";
-import type { FC } from "react";
-
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React from "react";
 
 import type { ProjectImagesOrVideosPanel, ProjectPanel, ProjectRow as ProjectRowType } from "@/lib/features/projects/types";
 
-import { PanelThumbnails } from "./panel-thumbnails";
+import { PanelTextSkeleton } from "./panel-text";
 import styles from "./project-row.module.css";
 
-const renderOptions: Options = {
-  renderMark: {
-    [MARKS.BOLD]: text => <strong>{text}</strong>,
-    [MARKS.ITALIC]: text => <em>{text}</em>,
-    [MARKS.UNDERLINE]: text => <u>{text}</u>,
+const DynamicPanelThumbnails = dynamic(
+  () => import("./panel-thumbnails/panel-thumbnails").then(mod => ({ default: mod.PanelThumbnails })),
+  {
+    ssr: false,
+    loading: () => <div className={styles.loading}>Loading...</div>,
   },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (_node, children) => <p>{children}</p>,
-    [INLINES.HYPERLINK]: (node, children) => {
-      const uri = node.data.uri as string;
-      return (
-        <a href={uri} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      );
-    },
-  },
+);
 
-  renderText: (text) => {
-    // Split text by newlines and insert <br> tags
-    return text.split("\n").reduce((children, textSegment, index) => {
-      return [...children, index > 0 && <br key={index} />, textSegment];
-    }, [] as React.ReactNode[]);
+const DynamicPanelText = dynamic(
+  () => import("./panel-text/panel-text").then(mod => ({ default: mod.PanelText })),
+  {
+    ssr: false,
+    loading: () => <PanelTextSkeleton />,
   },
+);
+
+type ProjectRowProps = {
+  row: ProjectRowType;
+  projectSlug: string;
 };
 
-export const ProjectRow: FC<{ row: ProjectRowType; projectSlug: string }> = ({ row, projectSlug }) => {
+export function ProjectRow({ row, projectSlug }: ProjectRowProps) {
   const panels = row.panels.map((panel: ProjectPanel) => {
     let panelElement: React.ReactNode | null = null;
 
     switch (panel.type) {
       case "ImagesPanel":
       case "VideosPanel":
-        panelElement = <PanelThumbnails key={panel.id} {...panel as ProjectImagesOrVideosPanel} projectSlug={projectSlug} />;
+        panelElement = <DynamicPanelThumbnails key={panel.id} {...panel as ProjectImagesOrVideosPanel} projectSlug={projectSlug} />;
         break;
       case "TextPanel":
-        panelElement = <div key={panel.id} className={styles.text}>{documentToReactComponents(panel.text, renderOptions)}</div>;
+        panelElement = <DynamicPanelText key={panel.id} text={panel.text} />;
         break;
       case "TextPage":
         panelElement = (
@@ -75,4 +64,4 @@ export const ProjectRow: FC<{ row: ProjectRowType; projectSlug: string }> = ({ r
       </div>
     </section>
   );
-};
+}

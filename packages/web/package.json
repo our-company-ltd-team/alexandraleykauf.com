@@ -12,7 +12,8 @@
     "codegen": "graphql-codegen --config codegen.ts",
     "codegen:watch": "graphql-codegen --config codegen.ts --watch",
     "list-projects": "NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW=true pnpm dlx tsx scripts/list-projects.ts",
-    "generate-redirects": "pnpm dlx tsx scripts/generate-redirects.ts"
+    "generate-redirects": "pnpm dlx tsx scripts/generate-redirects.ts",
+    "analyze": "next build --turbopack && next experimental-analyze"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.1.6",

@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 
 import { Suspense } from "react";
 
-import { HomepageShell } from "@/components";
-import { getGeneralConfigData, getHeaderData, getHomePageData } from "@/lib";
-import { QueryProvider } from "@/providers";
+import { HomepageShell } from "@/components/homepage/homepage-shell";
+import { getGeneralConfigData } from "@/lib/features/general-config/api";
+import { getHeaderData } from "@/lib/features/header/api";
+import { getHomePageData } from "@/lib/features/home/api";
+import { QueryProvider } from "@/providers/query-provider";
 
 export default async function Page() {
   const [homepageData, headerData] = await Promise.allSettled([

@@ -2,9 +2,28 @@ import type { Metadata } from "next";
 
 import { notFound, redirect, RedirectType } from "next/navigation";
 
-import { TextPage } from "@/components";
-import { getGeneralConfigData } from "@/lib";
+import { TextPage } from "@/components/detail-pages/text-page";
+import { getGeneralConfigData } from "@/lib/features/general-config/api";
 import { getProjectMetadataData, getProjectPanelBySlugData } from "@/lib/features/projects/api";
+
+export default async function PanelPage({ params }: PageProps<"/[project]/[panel]">) {
+  const { project, panel } = await params;
+
+  const panelData = await getProjectPanelBySlugData(panel);
+
+  if (!panelData) {
+    return notFound();
+  }
+
+  // If TextPage, render directly
+  if (panelData.type === "TextPage") {
+    const backHref = `/${project}`;
+    return <TextPage textPage={panelData} backHref={backHref} />;
+  }
+
+  // For ImagesPanel and VideosPanel, redirect to first asset
+  return redirect(`/${project}/${panel}/1`, RedirectType.replace);
+}
 
 export async function generateMetadata({ params }: PageProps<"/[project]/[panel]">): Promise<Metadata> {
   const { project: slug, panel } = await params;
@@ -56,23 +75,4 @@ export async function generateMetadata({ params }: PageProps<"/[project]/[panel]
       images: seoImages?.map(img => img.url),
     },
   };
-}
-
-export default async function PanelPage({ params }: PageProps<"/[project]/[panel]">) {
-  const { project, panel } = await params;
-
-  const panelData = await getProjectPanelBySlugData(panel);
-
-  if (!panelData) {
-    return notFound();
-  }
-
-  // If TextPage, render directly
-  if (panelData.type === "TextPage") {
-    const backHref = `/${project}`;
-    return <TextPage textPage={panelData} backHref={backHref} />;
-  }
-
-  // For ImagesPanel and VideosPanel, redirect to first asset
-  return redirect(`/${project}/${panel}/1`, RedirectType.replace);
 }
