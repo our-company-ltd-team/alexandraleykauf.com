@@ -35,7 +35,7 @@ export async function getProjectPanelBySlugData(slug: string) {
   const response = await execute({
     query: getProjectPanelBySlug,
     variables: { preview: isPreview, slug },
-    options: { revalidate: REVALIDATION_TIME, tags: [`panel`] },
+    options: { revalidate: REVALIDATION_TIME, tags: [`panel-${slug}`] },
   });
 
   return transformPanelBySlug(response);

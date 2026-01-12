@@ -59,8 +59,14 @@ function getTagsForContentType(
 
     case "imagesPanel":
     case "videosPanel":
+      tags.push("panels", "sitemap");
+      break;
+
     case "textPage":
       tags.push("panels", "sitemap");
+      if (slug) {
+        tags.push(`panel-${slug}`);
+      }
       break;
 
     case "link":
