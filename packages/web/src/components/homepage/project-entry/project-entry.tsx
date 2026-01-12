@@ -49,8 +49,9 @@ export function ProjectEntry({
 
   // Handle initial scroll when coming from URL
   useLayoutEffect(() => {
-    if (!isProjectActive || !liRef.current || hasScrolledRef.current)
+    if (!isProjectActive || !liRef.current || hasScrolledRef.current) {
       return;
+    }
 
     hasScrolledRef.current = true;
     liRef.current.scrollIntoView({
@@ -60,7 +61,7 @@ export function ProjectEntry({
 
     const timeout = setTimeout(() => {
       hasScrolledRef.current = false;
-    }, 1000);
+    }, 0);
 
     return () => clearTimeout(timeout);
   }, [isProjectActive]);

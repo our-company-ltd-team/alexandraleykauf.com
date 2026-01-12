@@ -4,6 +4,7 @@ import type { Options } from "@contentful/rich-text-react-renderer";
 import type { FC } from "react";
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, INLINES, MARKS } from "@contentful/rich-text-types";
 import Link from "next/link";
 import React from "react";
 
@@ -13,6 +14,23 @@ import { PanelThumbnails } from "./panel-thumbnails";
 import styles from "./project-row.module.css";
 
 const renderOptions: Options = {
+  renderMark: {
+    [MARKS.BOLD]: text => <strong>{text}</strong>,
+    [MARKS.ITALIC]: text => <em>{text}</em>,
+    [MARKS.UNDERLINE]: text => <u>{text}</u>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (_node, children) => <p>{children}</p>,
+    [INLINES.HYPERLINK]: (node, children) => {
+      const uri = node.data.uri as string;
+      return (
+        <a href={uri} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      );
+    },
+  },
+
   renderText: (text) => {
     // Split text by newlines and insert <br> tags
     return text.split("\n").reduce((children, textSegment, index) => {

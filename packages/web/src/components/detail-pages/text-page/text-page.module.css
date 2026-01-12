@@ -20,13 +20,15 @@
   font-size: var(--font-size-large, 20px);
 
   a {
-    color: var(--color-text-muted, #929292);
-    text-decoration: none;
+    color: #585858;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 
   a:hover {
     color: var(--color-text-default, #000);
-    text-decoration: none;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
 }
 
