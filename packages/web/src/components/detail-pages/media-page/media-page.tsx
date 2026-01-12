@@ -32,14 +32,14 @@ export default function MediaPage({
 
   // Keyboard navigation
   useKeyboardNavigation({
-    onLeft: () => router.push(previousUrl),
-    onRight: () => router.push(nextUrl),
+    onLeft: () => router.push(previousUrl, { scroll: false }),
+    onRight: () => router.push(nextUrl, { scroll: false }),
   });
 
   // Swipe gesture for mobile
   const swipeRef = useSwipeGesture<HTMLElement>({
-    onSwipeLeft: () => router.push(nextUrl),
-    onSwipeRight: () => router.push(previousUrl),
+    onSwipeLeft: () => router.push(nextUrl, { scroll: false }),
+    onSwipeRight: () => router.push(previousUrl, { scroll: false }),
   });
 
   let assetToRender: React.ReactNode = null;
@@ -76,7 +76,7 @@ export default function MediaPage({
   return (
     <main ref={swipeRef} className={mediaPageStyles.detailPage}>
       <header className={mediaPageStyles.header}>
-        <Link href={backHref} className={mediaPageStyles.back}>
+        <Link href={backHref} className={mediaPageStyles.back} scroll={false}>
           zurück
         </Link>
       </header>
@@ -86,9 +86,23 @@ export default function MediaPage({
       <div className={mediaPageStyles.bottom}>
         {totalCount > 1 && (
           <nav className={mediaPageStyles.nav}>
-            <Link href={previousUrl} className={mediaPageStyles.arrow} aria-label="Previous image">‹</Link>
+            <Link
+              href={previousUrl}
+              className={mediaPageStyles.arrow}
+              aria-label="Previous image"
+              scroll={false}
+            >
+              ‹
+            </Link>
             <span className={mediaPageStyles.arrowSeparator}>{`${currentIndex} / ${totalCount}`}</span>
-            <Link href={nextUrl} className={mediaPageStyles.arrow} aria-label="Next image">›</Link>
+            <Link
+              href={nextUrl}
+              className={mediaPageStyles.arrow}
+              aria-label="Next image"
+              scroll={false}
+            >
+              ›
+            </Link>
           </nav>
         )}
         <div className={mediaPageStyles.legend}>

@@ -14,7 +14,7 @@ type ImageViewProps = {
 export function ImageView({ imageUrl, altText = "", nextUrl, width, height }: ImageViewProps) {
   return (
     <figure className={imageViewStyles.figure}>
-      <Link href={nextUrl} aria-label="Next image">
+      <Link href={nextUrl} aria-label="Next image" scroll={false}>
         <NextImage
           className={imageViewStyles.image}
           src={imageUrl}

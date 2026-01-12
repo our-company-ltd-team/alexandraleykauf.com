@@ -56,7 +56,7 @@ export const TextPage: FC<TextPageProps> = ({ textPage, backHref }) => {
     <main className={styles.detailPage}>
       <header className={styles.header}>
         {textPage.title && <h2 className={styles.hidden}>{textPage.title}</h2>}
-        <Link href={backHref} className={styles.back}>
+        <Link href={backHref} className={styles.back} scroll={false}>
           zurück
         </Link>
       </header>
