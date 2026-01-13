@@ -24,10 +24,12 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const categoriesAlwaysActive = useMemo(
     () => categories.filter(c => c.showItemsInHomepage && !c.showOnStartPage),
     [categories],
   );
+
   const toggleableCategories = useMemo(
     () => categories.filter(category => category.showOnStartPage),
     [categories],
@@ -97,21 +99,6 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
       return next;
     });
   };
-
-  useEffect(() => {
-    const param = searchParams.get("categories");
-
-    if (!param) {
-      return;
-    }
-
-    const slugs = new Set(param?.split(",") ?? []);
-    // TODO: Revisit this useEffect to see if it can be simplified.
-    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks-extra/no-direct-set-state-in-use-effect
-    setActiveToggleableCategories(
-      toggleableCategories.filter(c => slugs.has(c.slug)),
-    );
-  }, [searchParams, toggleableCategories]);
 
   return (
     <OpenedProjectsProvider initialSlug={initialSlug}>
