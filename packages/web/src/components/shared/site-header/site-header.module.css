@@ -14,7 +14,7 @@
 
 .categoriesWrapper {
   display: flex;
-  gap: 40px;
+  gap: 15px;
 }
 
 .category {
@@ -43,9 +43,5 @@
   .title {
     font-size: 20px;
     padding-block-end: 16px;
-  }
-
-  .categoriesWrapper {
-    gap: 20px;
   }
 }
