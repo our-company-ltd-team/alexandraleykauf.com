@@ -56,6 +56,7 @@ export default function MediaPage({
           imageUrl={asset.image.url}
           altText={asset.altText}
           nextUrl={nextUrl}
+          previousUrl={previousUrl}
           width={asset.width}
           height={asset.height}
         />

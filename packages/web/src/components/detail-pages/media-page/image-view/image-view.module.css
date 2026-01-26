@@ -11,3 +11,18 @@
   object-fit: contain;
   object-position: top center;
 }
+
+.previousButton,
+.nextButton {
+  inset-block: 0;
+  position: absolute;
+  width: 50%;
+}
+
+.previousButton {
+  inset-inline-start: 0;
+}
+
+.nextButton {
+  inset-inline-end: 0;
+}
