@@ -138,6 +138,8 @@ function HomepageShellContent({
   useKeyboardNavigation({
     onRight: navigateToNext,
     onLeft: navigateToPrevious,
+    onUp: navigateToPrevious,
+    onDown: navigateToNext,
   });
 
   return (
