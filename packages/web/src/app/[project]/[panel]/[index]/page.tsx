@@ -6,6 +6,13 @@ import { MediaPage } from "@/components/detail-pages/media-page";
 import { getGeneralConfigData } from "@/lib/features/general-config/api";
 import { getProjectMetadataData, getProjectPanelBySlugData } from "@/lib/features/projects/api";
 
+export async function generateStaticParams() {
+  return []; // Enable on-demand ISR
+}
+
+export const dynamicParams = true; // Allow dynamic params
+export const revalidate = 86400; // 24 hours
+
 export default async function AssetPage({ params }: PageProps<"/[project]/[panel]/[index]">) {
   const { project, panel, index } = await params;
   const assetIndexInt = Number(index);

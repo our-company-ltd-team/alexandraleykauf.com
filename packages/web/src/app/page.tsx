@@ -8,6 +8,8 @@ import { getHeaderData } from "@/lib/features/header/api";
 import { getHomePageData } from "@/lib/features/home/api";
 import { QueryProvider } from "@/providers/query-provider";
 
+export const revalidate = 86400; // 24 hours
+
 export default async function Page() {
   const [homepageData, headerData] = await Promise.allSettled([
     getHomePageData(),

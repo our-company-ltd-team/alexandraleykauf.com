@@ -10,6 +10,19 @@ import { getHomePageData } from "@/lib/features/home/api";
 import { getProjectMetadataData } from "@/lib/features/projects/api";
 import { QueryProvider } from "@/providers/query-provider";
 
+export async function generateStaticParams() {
+  const homepage = await getHomePageData();
+
+  return homepage?.contentItems
+    .filter(item => item.type === "Project")
+    .map(project => ({
+      project: project.slug,
+    })) ?? [];
+}
+
+export const dynamicParams = true; // Allow new projects to be generated on-demand
+export const revalidate = 86400; // 24 hours
+
 export default async function ProjectPage({ params }: PageProps<"/[project]">) {
   const { project: initialSlug } = await params;
 

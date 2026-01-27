@@ -6,6 +6,13 @@ import { TextPage } from "@/components/detail-pages/text-page";
 import { getGeneralConfigData } from "@/lib/features/general-config/api";
 import { getProjectMetadataData, getProjectPanelBySlugData } from "@/lib/features/projects/api";
 
+export async function generateStaticParams() {
+  return []; // Enable on-demand ISR
+}
+
+export const dynamicParams = true; // Allow dynamic params
+export const revalidate = 86400; // 24 hours
+
 export default async function PanelPage({ params }: PageProps<"/[project]/[panel]">) {
   const { project, panel } = await params;
 
