@@ -54,10 +54,11 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
     return contentItems.filter(item => activeCategories.some(category => category.slug === item.categorySlug));
   }, [contentItems, activeCategories]);
 
-  // Extract visible project slugs for keyboard navigation
+  // Extract visible project slugs for keyboard navigation (only projects with rows)
   const visibleProjectSlugs = useMemo(() =>
     contentItemsToRender
-      .filter((item): item is Extract<HomepageContentItem, { type: "Project" }> => item.type === "Project")
+      .filter((item): item is Extract<HomepageContentItem, { type: "Project" }> =>
+        item.type === "Project" && item.hasRows)
       .sort((a, b) => {
         const dateA = new Date(a.year ?? "");
         const dateB = new Date(b.year ?? "");

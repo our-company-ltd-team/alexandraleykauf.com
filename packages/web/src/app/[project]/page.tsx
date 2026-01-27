@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
+import { notFound } from "next/navigation";
 import * as React from "react";
 import { Suspense } from "react";
+
+import type { HomepageProject } from "@/lib";
 
 import { HomepageShell } from "@/components/homepage/homepage-shell";
 import { getGeneralConfigData } from "@/lib/features/general-config/api";
@@ -14,7 +17,8 @@ export async function generateStaticParams() {
   const homepage = await getHomePageData();
 
   return homepage?.contentItems
-    .filter(item => item.type === "Project")
+    .filter((item): item is HomepageProject => item.type === "Project")
+    .filter(item => item.hasRows)
     .map(project => ({
       project: project.slug,
     })) ?? [];
@@ -33,6 +37,15 @@ export default async function ProjectPage({ params }: PageProps<"/[project]">) {
 
   const homepage = homepageData.status === "fulfilled" ? homepageData.value : null;
   const header = headerData.status === "fulfilled" ? headerData.value : null;
+
+  // Check if the project exists and has rows
+  const project = homepage?.contentItems.find(
+    item => item.type === "Project" && item.slug === initialSlug,
+  );
+
+  if (!project || (project.type === "Project" && !project.hasRows)) {
+    notFound();
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

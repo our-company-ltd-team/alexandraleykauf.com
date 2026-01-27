@@ -28,6 +28,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (!project?.slug)
       continue;
 
+    const projectRows = project.projectRowsCollection?.items ?? [];
+
+    // Skip projects without rows
+    if (projectRows.length === 0)
+      continue;
+
     const projectSlug = project.slug;
     const projectPublishedAt = project.sys?.publishedAt
       ? new Date(project.sys.publishedAt)
@@ -42,7 +48,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
 
     // Process project rows and panels
-    const projectRows = project.projectRowsCollection?.items ?? [];
     for (const projectRow of projectRows) {
       if (!projectRow)
         continue;

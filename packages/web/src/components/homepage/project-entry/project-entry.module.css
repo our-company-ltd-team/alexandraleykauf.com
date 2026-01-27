@@ -29,6 +29,16 @@
   }
 }
 
+.headerNonInteractive {
+  @media (hover: hover) {
+    cursor: default;
+
+    &:hover {
+      background-color: var(--project-faded-background-color, transparent);
+    }
+  }
+}
+
 .left {
   flex: 0 0 var(--list-item-left-element-width);
   align-self: flex-start;
