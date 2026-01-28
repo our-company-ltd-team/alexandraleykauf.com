@@ -26,6 +26,7 @@ export function ProjectEntry({
   categoryColor,
   categoryFadedColor,
   place,
+  hasRows,
 }: HomepageProject) {
   const liRef = useRef<HTMLLIElement | null>(null);
   const hasScrolledRef = useRef(false);
@@ -39,10 +40,12 @@ export function ProjectEntry({
 
   // Enable query when project is expanded
   const { data: homeProjectPanels } = useHomeProjectPanels(slug, {
-    enabled: isProjectExpanded,
+    enabled: isProjectExpanded && hasRows,
   });
 
   const handleProjectClick = () => {
+    if (!hasRows)
+      return;
     // Toggle expansion and set active (URL updates via effect in provider)
     toggleProject(slug);
 
@@ -56,7 +59,7 @@ export function ProjectEntry({
 
   // Handle initial scroll when coming from URL
   useLayoutEffect(() => {
-    if (!isProjectActive || !liRef.current || hasScrolledRef.current) {
+    if (!hasRows || !isProjectActive || !liRef.current || hasScrolledRef.current) {
       return;
     }
 
@@ -71,7 +74,7 @@ export function ProjectEntry({
     }, 0);
 
     return () => clearTimeout(timeout);
-  }, [isProjectActive]);
+  }, [isProjectActive, hasRows]);
 
   return (
     <article
@@ -87,19 +90,21 @@ export function ProjectEntry({
       }}
     >
       <header
-        className={styles.header}
-        onMouseEnter={() => prefetchPanels(slug)}
-        onClick={handleProjectClick}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleProjectClick();
-          }
-        }}
-        role="button"
-        tabIndex={0}
-        aria-expanded={isProjectExpanded}
-        aria-controls={`project-content-${id}`}
+        className={clsx(styles.header, !hasRows && styles.headerNonInteractive)}
+        onMouseEnter={hasRows ? () => prefetchPanels(slug) : undefined}
+        onClick={hasRows ? handleProjectClick : undefined}
+        onKeyDown={hasRows
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleProjectClick();
+              }
+            }
+          : undefined}
+        role={hasRows ? "button" : undefined}
+        tabIndex={hasRows ? 0 : undefined}
+        aria-expanded={hasRows ? isProjectExpanded : undefined}
+        aria-controls={hasRows ? `project-content-${id}` : undefined}
       >
         <div className={styles.left}>{parsedYear}</div>
         <h3 className={styles.center}>{title}</h3>

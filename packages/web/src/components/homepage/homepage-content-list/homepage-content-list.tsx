@@ -33,10 +33,7 @@ export function HomepageContentList({ items }: { items: HomepageContentItem[] })
                 blockElement = <LinkEntry key={item.id} data={item} />;
                 break;
               case "Project":
-                // Only render projects that have rows
-                if (item.hasRows) {
-                  blockElement = <ProjectEntry key={item.id} {...item} />;
-                }
+                blockElement = <ProjectEntry key={item.id} {...item} />;
                 break;
               case "Separator":
                 blockElement = <SeparatorEntry key={item.id} />;
