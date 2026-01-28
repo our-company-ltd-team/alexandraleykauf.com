@@ -8,6 +8,8 @@ import React from "react";
 
 import type { ProjectDetailTextPage } from "@/lib/features/projects/types";
 
+import { CloseIcon } from "@/components/shared/close-icon";
+
 import styles from "./text-page.module.css";
 
 const renderOptions: Options = {
@@ -57,7 +59,7 @@ export const TextPage: FC<TextPageProps> = ({ textPage, backHref }) => {
       <header className={styles.header}>
         {textPage.title && <h2 className={styles.hidden}>{textPage.title}</h2>}
         <Link href={backHref} className={styles.back} scroll={false}>
-          zurück
+          <CloseIcon />
         </Link>
       </header>
 

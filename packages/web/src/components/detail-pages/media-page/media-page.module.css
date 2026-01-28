@@ -25,12 +25,6 @@
   right: 20px;
   top: 10px;
 }
-
-.back svg {
-  fill: var(--color-text-muted, #929292);
-  width: 20px;
-  height: 20px;
-}
 .assetContainer {
   flex: 1 1 auto;
   min-height: 0;

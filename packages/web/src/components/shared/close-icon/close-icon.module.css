@@ -1,0 +1,5 @@
+.closeIcon {
+  fill: var(--color-text-muted, #929292);
+  width: 20px;
+  height: 20px;
+}
