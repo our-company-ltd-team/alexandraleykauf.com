@@ -6,20 +6,36 @@ import type { HomepageLink } from "@/lib";
 
 import styles from "./link-entry.module.css";
 
-function getLink(link: HomepageLink): string {
+function getLink(link: HomepageLink): React.ReactNode {
   if (link.externalLink) {
-    return link.externalLink;
+    return (
+      <NextLink target="_blank" href={link.externalLink} className={styles.link}>
+        <div className="sr-only">{link.title}</div>
+      </NextLink>
+    );
   }
+
   if (link.emailLink) {
-    return `mailto:${link.emailLink}`;
+    return (
+      <NextLink href={`mailto:${link.emailLink}`} className={styles.link}>
+        <div className="sr-only">{link.title}</div>
+      </NextLink>
+    );
   }
+
   if (link.pdfUrl) {
-    return link.pdfUrl;
+    return (
+      <NextLink target="_blank" href={link.pdfUrl} className={styles.link}>
+        <div className="sr-only">{link.title}</div>
+      </NextLink>
+    );
   }
   return "";
 }
 
 export function LinkEntry({ data }: { data: HomepageLink }) {
+  const linkElement = getLink(data);
+
   return (
     <div
       className={styles.header}
@@ -28,9 +44,7 @@ export function LinkEntry({ data }: { data: HomepageLink }) {
         "--link-faded-background-color": data.categoryFadedColor,
       } as React.CSSProperties}
     >
-      <NextLink target="_blank" href={getLink(data)} className={styles.link}>
-        <div className="sr-only">{data.title}</div>
-      </NextLink>
+      {linkElement}
       <div className={styles.left}>
         <span className={styles.at}>@</span>
       </div>
