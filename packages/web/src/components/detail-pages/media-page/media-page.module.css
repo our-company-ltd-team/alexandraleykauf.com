@@ -26,6 +26,11 @@
   top: 10px;
 }
 
+.back svg {
+  fill: var(--color-text-muted, #929292);
+  width: 20px;
+  height: 20px;
+}
 .assetContainer {
   flex: 1 1 auto;
   min-height: 0;
@@ -89,10 +94,10 @@
   }
 
   .back {
-    float: none;
-    position: relative;
-    right: auto;
-    top: auto;
+    position: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .assetContainer {
@@ -108,13 +113,16 @@
 @media only screen and (min-width: 319px) and (max-width: 767px) {
   .header {
     text-align: center;
+    padding-block: 20px;
   }
 
   .back {
-    float: none;
-    position: relative;
-    right: auto;
-    top: auto;
+    position: initial;
+    text-align: center;
+    position: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .assetContainer {

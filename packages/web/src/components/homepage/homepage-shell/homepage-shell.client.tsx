@@ -45,6 +45,35 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
     return toggleableCategories.filter(c => slugs.has(c.slug));
   });
 
+  const activeToggleableCategorySlugs = useMemo(() => {
+    return activeToggleableCategories
+      .map(c => c.slug)
+      .sort()
+      .join(",");
+  }, [activeToggleableCategories]);
+
+  // Keep the URL in sync with the selected categories.
+  // Important: do NOT call router.push inside setState, otherwise React can warn about updating Router during render.
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    const current = params.get("categories") ?? "";
+
+    if (activeToggleableCategorySlugs.length === 0) {
+      params.delete("categories");
+    }
+    else {
+      params.set("categories", activeToggleableCategorySlugs);
+    }
+
+    const next = params.get("categories") ?? "";
+    if (current === next) {
+      return;
+    }
+
+    const qs = params.toString();
+    router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+  }, [activeToggleableCategorySlugs, pathname, router, searchParams]);
+
   const activeCategories = useMemo(
     () => [...categoriesAlwaysActive, ...activeToggleableCategories],
     [categoriesAlwaysActive, activeToggleableCategories],
@@ -82,20 +111,6 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
       const next = isActive
         ? prev.filter(c => c.slug !== category.slug)
         : [...prev, category];
-
-      const params = new URLSearchParams(searchParams.toString());
-
-      if (next.length === 0) {
-        params.delete("categories");
-      }
-      else {
-        params.set(
-          "categories",
-          next.map(c => c.slug).join(","),
-        );
-      }
-
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
 
       return next;
     });
