@@ -1,8 +1,8 @@
 "use client";
 
 import NextLink from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { Category } from "@/lib/features/header/types";
 import type { HomepageContentItem } from "@/lib/features/home/types";
@@ -21,7 +21,6 @@ export type HomepageShellProps = {
 };
 
 export function HomepageShell({ categories, contentItems, initialSlug }: HomepageShellProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -52,9 +51,18 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
       .join(",");
   }, [activeToggleableCategories]);
 
+  // Track whether user has interacted with category toggles.
+  // Only sync URL when user explicitly toggles categories.
+  const hasUserInteracted = useRef(false);
+
   // Keep the URL in sync with the selected categories.
-  // Important: do NOT call router.push inside setState, otherwise React can warn about updating Router during render.
+  // Uses History API directly to avoid full page reload (router.push triggers server re-render).
   useEffect(() => {
+    // Only sync URL if user has explicitly interacted with category toggles
+    if (!hasUserInteracted.current) {
+      return;
+    }
+
     const params = new URLSearchParams(searchParams.toString());
     const current = params.get("categories") ?? "";
 
@@ -71,8 +79,10 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
     }
 
     const qs = params.toString();
-    router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-  }, [activeToggleableCategorySlugs, pathname, router, searchParams]);
+    const newUrl = qs ? `${pathname}?${qs}` : pathname;
+    // Use History API directly to update URL without triggering server re-render
+    window.history.replaceState(window.history.state, "", newUrl);
+  }, [activeToggleableCategorySlugs, pathname, searchParams]);
 
   const activeCategories = useMemo(
     () => [...categoriesAlwaysActive, ...activeToggleableCategories],
@@ -105,6 +115,7 @@ export function HomepageShell({ categories, contentItems, initialSlug }: Homepag
       .map(item => item.slug), [contentItemsToRender]);
 
   const toggleCategory = (category: Category) => {
+    hasUserInteracted.current = true;
     setActiveToggleableCategories((prev) => {
       const isActive = prev.some(c => c.slug === category.slug);
 
