@@ -1,8 +1,11 @@
 import type { MetadataRoute } from "next";
 
+import { REVALIDATION_TIME } from "@/lib/constants";
 import { getSitemapData } from "@/lib/features/projects/api";
 
 const BASE_URL = "https://www.alexandra-leykauf.com";
+
+export const revalidate = REVALIDATION_TIME;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 //   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;

@@ -7,11 +7,7 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { env } from "@/env";
-import { clientExecute } from "@/lib/graphql/client";
-
-import { getProjectPanels } from "./queries";
-import { transformProject } from "./transformers";
+import type { HomeProjectPanels } from "./types";
 
 /**
  * Query key factory for projects.
@@ -27,17 +23,20 @@ export const projectKeys = {
 };
 
 /**
- * Fetches project panels by slug.
- * Used internally by useProjectPanels and usePrefetchProjectPanels.
+ * Fetches project panels by slug from the Next.js API route.
+ * The API route handles server-side caching, reducing direct Contentful calls.
  */
-async function fetchHomeProjectPanels(slug: string) {
-  const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
-  const response = await clientExecute({
-    query: getProjectPanels,
-    variables: { preview: isPreview, slug },
-  });
+async function fetchHomeProjectPanels(slug: string): Promise<HomeProjectPanels> {
+  const response = await fetch(`/api/projects/${slug}/panels`);
 
-  return transformProject(response);
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error(`Project not found: ${slug}`);
+    }
+    throw new Error(`Failed to fetch project panels: ${response.statusText}`);
+  }
+
+  return response.json();
 }
 
 /**

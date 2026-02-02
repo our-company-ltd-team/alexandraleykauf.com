@@ -46,6 +46,7 @@ function getTagsForContentType(
       tags.push("sitemap");
       if (slug) {
         tags.push(`project-${slug}`);
+        tags.push(`project-panels-${slug}`);
       }
       break;
 
