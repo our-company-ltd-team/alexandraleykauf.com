@@ -42,11 +42,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       );
     }
 
-    return NextResponse.json(transformedData, {
-      headers: {
-        "Cache-Control": `public, s-maxage=${REVALIDATION_TIME}, stale-while-revalidate`,
-      },
-    });
+    return NextResponse.json(transformedData);
   }
   catch (error) {
     console.error("Error fetching project panels:", error);
