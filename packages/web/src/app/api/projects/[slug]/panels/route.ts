@@ -28,7 +28,7 @@ export async function GET(_request: Request, { params }: RouteParams) {
       variables: { preview: isPreview, slug },
       options: {
         revalidate: REVALIDATION_TIME,
-        tags: [`project-panels-${slug}`],
+        tags: ["projects", `project-panels-${slug}`],
       },
     });
 
