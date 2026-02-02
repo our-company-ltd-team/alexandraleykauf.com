@@ -6,7 +6,7 @@ import { getProjectPanels } from "@/lib/features/projects/queries";
 import { transformProject } from "@/lib/features/projects/transformers";
 import { execute } from "@/lib/graphql/client";
 
-export const revalidate = REVALIDATION_TIME;
+export const revalidate = 86400;
 
 type RouteParams = {
   params: Promise<{ slug: string }>;
