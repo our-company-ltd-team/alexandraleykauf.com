@@ -60,7 +60,7 @@ function getTagsForContentType(
 
     case "imagesPanel":
     case "videosPanel":
-      tags.push("panels", "sitemap");
+      tags.push("projects", "panels", "sitemap");
       break;
 
     case "textPage":
