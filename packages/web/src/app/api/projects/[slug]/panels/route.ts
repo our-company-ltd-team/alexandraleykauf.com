@@ -6,6 +6,10 @@ import { getProjectPanels } from "@/lib/features/projects/queries";
 import { transformProject } from "@/lib/features/projects/transformers";
 import { execute } from "@/lib/graphql/client";
 
+export async function generateStaticParams() {
+  return [];
+}
+
 export const revalidate = 86400;
 
 type RouteParams = {
