@@ -4,6 +4,8 @@
  * Use these functions in Server Components.
  */
 
+import { cache } from "react";
+
 import type { GetSitemapDataQuery, GetSitemapDataQueryVariables } from "@/lib/graphql/generated/graphql";
 
 import { env } from "@/env";
@@ -17,7 +19,7 @@ import { transformPanelBySlug, transformProjectMetadata } from "./transformers";
  * Fetches project metadata by slug for SEO purposes.
  * Uses ISR with 1 hour revalidation by default.
  */
-export async function getProjectMetadataData(slug: string) {
+export const getProjectMetadataData = cache(async (slug: string) => {
   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
 
   const response = await execute({
@@ -27,9 +29,9 @@ export async function getProjectMetadataData(slug: string) {
   });
 
   return transformProjectMetadata(response);
-}
+});
 
-export async function getProjectPanelBySlugData(slug: string) {
+export const getProjectPanelBySlugData = cache(async (slug: string) => {
   const isPreview = env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW;
 
   const response = await execute({
@@ -42,7 +44,7 @@ export async function getProjectPanelBySlugData(slug: string) {
   });
 
   return transformPanelBySlug(response);
-}
+});
 
 /**
  * Fetches all projects with panels for sitemap generation.

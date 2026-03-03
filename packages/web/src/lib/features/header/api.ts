@@ -5,6 +5,8 @@
  * Use these functions in Server Components.
  */
 
+import { cache } from "react";
+
 import { env } from "@/env";
 import { REVALIDATION_TIME } from "@/lib/constants";
 import { execute } from "@/lib/graphql/client";
@@ -16,7 +18,7 @@ import { transformHeader } from "./transformers";
  * Fetches all data needed for the Header.
  * Uses ISR with 1 hour revalidation by default.
  */
-export async function getHeaderData() {
+export const getHeaderData = cache(async () => {
   const data = await execute({
     query: getHeader,
     variables: { preview: env.NEXT_PUBLIC_CONTENTFUL_IS_PREVIEW },
@@ -24,4 +26,4 @@ export async function getHeaderData() {
   });
 
   return transformHeader(data);
-}
+});
