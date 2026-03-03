@@ -1,5 +1,7 @@
 "use client";
 
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -12,6 +14,20 @@ import { useSwipeGesture } from "@/hooks/use-swipe-gesture";
 import { ImageView } from "./image-view";
 import mediaPageStyles from "./media-page.module.css";
 import { VideoView } from "./video-view";
+
+const descriptionRenderOptions = {
+  renderMark: {
+    [MARKS.ITALIC]: (text: React.ReactNode) => <em>{text}</em>,
+  },
+  renderNode: {
+    [BLOCKS.PARAGRAPH]: (_node: unknown, children: React.ReactNode) => <p>{children}</p>,
+  },
+  renderText: (text: string) => {
+    return text.split("\n").reduce((children, textSegment, index) => {
+      return [...children, index > 0 && <br key={index} />, textSegment];
+    }, [] as React.ReactNode[]);
+  },
+};
 
 type MediaPageProps = {
   backHref: string;
@@ -46,7 +62,7 @@ export default function MediaPage({
 
   let assetToRender: React.ReactNode = null;
   let title: string | undefined;
-  let description: string | undefined;
+  let description: ProjectDetailImage["description"];
 
   if (asset.type === "Image" && asset.image) {
     title = asset.title;
@@ -110,7 +126,11 @@ export default function MediaPage({
         )}
         <div className={mediaPageStyles.legend}>
           <p>{title}</p>
-          <p>{description}</p>
+          {description
+            ? (
+                <div>{documentToReactComponents(description, descriptionRenderOptions)}</div>
+              )
+            : null}
         </div>
       </div>
     </main>

@@ -285,7 +285,7 @@ export const AssetOrder = {
 } as const;
 
 export type AssetOrder = typeof AssetOrder[keyof typeof AssetOrder];
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type Category = Entry & _Node & {
   __typename: 'Category';
   _id: Scalars['ID']['output'];
@@ -302,55 +302,55 @@ export type Category = Entry & _Node & {
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryFadedColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryShowItemsInHomepageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryShowOnStartPageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategorySlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category) */
 export type CategoryTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -547,7 +547,7 @@ export const CategoryOrder = {
 } as const;
 
 export type CategoryOrder = typeof CategoryOrder[keyof typeof CategoryOrder];
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersion = Entry & _Node & {
   __typename: 'ContentModelVersion';
   _id: Scalars['ID']['output'];
@@ -561,34 +561,34 @@ export type ContentModelVersion = Entry & _Node & {
 };
 
 
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersionContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersionLastMigrationArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersionLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersionMigrationsArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion) */
 export type ContentModelVersionUpdatedAtArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -740,7 +740,7 @@ export const EntryOrder = {
 } as const;
 
 export type EntryOrder = typeof EntryOrder[keyof typeof EntryOrder];
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfig = Entry & _Node & {
   __typename: 'GeneralConfig';
   _id: Scalars['ID']['output'];
@@ -758,55 +758,55 @@ export type GeneralConfig = Entry & _Node & {
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigActiveColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigDetailsBackgroundColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigGoogleAnalyticsCodeArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigHoverColorArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigSeoDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigSeoImagesCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -816,7 +816,7 @@ export type GeneralConfigSeoImagesCollectionArgs = {
 };
 
 
-/** The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig) */
 export type GeneralConfigSeoTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -925,7 +925,7 @@ export const GeneralConfigOrder = {
 } as const;
 
 export type GeneralConfigOrder = typeof GeneralConfigOrder[keyof typeof GeneralConfigOrder];
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type Homepage = Entry & _Node & {
   __typename: 'Homepage';
   _id: Scalars['ID']['output'];
@@ -940,7 +940,7 @@ export type Homepage = Entry & _Node & {
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageContentCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -951,27 +951,27 @@ export type HomepageContentCollectionArgs = {
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageSeoDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageSeoImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -979,7 +979,7 @@ export type HomepageSeoImageArgs = {
 };
 
 
-/** The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage) */
 export type HomepageSeoTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1079,14 +1079,14 @@ export const HomepageOrder = {
 } as const;
 
 export type HomepageOrder = typeof HomepageOrder[keyof typeof HomepageOrder];
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type Image = Entry & _Node & {
   __typename: 'Image';
   _id: Scalars['ID']['output'];
   altText?: Maybe<Scalars['String']['output']>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
-  description?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<ImageDescription>;
   image?: Maybe<Asset>;
   linkedFrom?: Maybe<ImageLinkingCollections>;
   sys: Sys;
@@ -1094,28 +1094,28 @@ export type Image = Entry & _Node & {
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageAltTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1123,13 +1123,13 @@ export type ImageImageArgs = {
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image) */
 export type ImageTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1141,6 +1141,54 @@ export type ImageCollection = {
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
+};
+
+export type ImageDescription = {
+  __typename: 'ImageDescription';
+  json: Scalars['JSON']['output'];
+  links: ImageDescriptionLinks;
+};
+
+export type ImageDescriptionAssets = {
+  __typename: 'ImageDescriptionAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ImageDescriptionEntries = {
+  __typename: 'ImageDescriptionEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ImageDescriptionLinks = {
+  __typename: 'ImageDescriptionLinks';
+  assets: ImageDescriptionAssets;
+  entries: ImageDescriptionEntries;
+  resources: ImageDescriptionResources;
+};
+
+export type ImageDescriptionResources = {
+  __typename: 'ImageDescriptionResources';
+  block: Array<ImageDescriptionResourcesBlock>;
+  hyperlink: Array<ImageDescriptionResourcesHyperlink>;
+  inline: Array<ImageDescriptionResourcesInline>;
+};
+
+export type ImageDescriptionResourcesBlock = ResourceLink & {
+  __typename: 'ImageDescriptionResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ImageDescriptionResourcesHyperlink = ResourceLink & {
+  __typename: 'ImageDescriptionResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ImageDescriptionResourcesInline = ResourceLink & {
+  __typename: 'ImageDescriptionResourcesInline';
+  sys: ResourceSys;
 };
 
 export type ImageFilter = {
@@ -1161,13 +1209,9 @@ export type ImageFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   image_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -1339,7 +1383,7 @@ export type ImageTransformOptions = {
   width?: InputMaybe<Scalars['Dimension']['input']>;
 };
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanel = Entry & _Node & {
   __typename: 'ImagesPanel';
   _id: Scalars['ID']['output'];
@@ -1354,14 +1398,14 @@ export type ImagesPanel = Entry & _Node & {
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelImagesCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1373,27 +1417,27 @@ export type ImagesPanelImagesCollectionArgs = {
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelOldSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel) */
 export type ImagesPanelTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1529,7 +1573,7 @@ export const ImagesPanelOrder = {
 } as const;
 
 export type ImagesPanelOrder = typeof ImagesPanelOrder[keyof typeof ImagesPanelOrder];
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type Link = Entry & _Node & {
   __typename: 'Link';
   _id: Scalars['ID']['output'];
@@ -1546,7 +1590,7 @@ export type Link = Entry & _Node & {
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkCategoryArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1555,34 +1599,34 @@ export type LinkCategoryArgs = {
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkEmailLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkExternalLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkPdfLinkArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1590,14 +1634,14 @@ export type LinkPdfLinkArgs = {
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkPlaceArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link) */
 export type LinkTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1719,7 +1763,7 @@ export const LinkOrder = {
 } as const;
 
 export type LinkOrder = typeof LinkOrder[keyof typeof LinkOrder];
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type Project = Entry & _Node & {
   __typename: 'Project';
   _id: Scalars['ID']['output'];
@@ -1740,7 +1784,7 @@ export type Project = Entry & _Node & {
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectCategoryArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1749,34 +1793,34 @@ export type ProjectCategoryArgs = {
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectOldSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectPlaceArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectProjectRowsCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1788,14 +1832,14 @@ export type ProjectProjectRowsCollectionArgs = {
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectSeoDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectSeoImagesCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1805,28 +1849,28 @@ export type ProjectSeoImagesCollectionArgs = {
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectSeoTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project) */
 export type ProjectYearArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2001,7 +2045,7 @@ export const ProjectProjectRowsCollectionOrder = {
 } as const;
 
 export type ProjectProjectRowsCollectionOrder = typeof ProjectProjectRowsCollectionOrder[keyof typeof ProjectProjectRowsCollectionOrder];
-/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRow = Entry & _Node & {
   __typename: 'ProjectRow';
   _id: Scalars['ID']['output'];
@@ -2014,20 +2058,20 @@ export type ProjectRow = Entry & _Node & {
 };
 
 
-/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRowContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRowLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRowRowCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -2038,7 +2082,7 @@ export type ProjectRowRowCollectionArgs = {
 };
 
 
-/** A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow) */
 export type ProjectRowTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2525,7 +2569,7 @@ export type ResourceSys = {
   urn: Scalars['String']['output'];
 };
 
-/** A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
 export type Separator = Entry & _Node & {
   __typename: 'Separator';
   _id: Scalars['ID']['output'];
@@ -2537,7 +2581,7 @@ export type Separator = Entry & _Node & {
 };
 
 
-/** A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
 export type SeparatorCategoryArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2546,14 +2590,14 @@ export type SeparatorCategoryArgs = {
 };
 
 
-/** A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
 export type SeparatorContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator) */
 export type SeparatorLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
@@ -2695,7 +2739,7 @@ export type TaxonomyConcept = {
   id?: Maybe<Scalars['String']['output']>;
 };
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPage = Entry & _Node & {
   __typename: 'TextPage';
   _id: Scalars['ID']['output'];
@@ -2710,41 +2754,41 @@ export type TextPage = Entry & _Node & {
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageOldSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage) */
 export type TextPageTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -2905,7 +2949,7 @@ export type TextPageTextResourcesInline = ResourceLink & {
   sys: ResourceSys;
 };
 
-/** A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
 export type TextPanel = Entry & _Node & {
   __typename: 'TextPanel';
   _id: Scalars['ID']['output'];
@@ -2917,20 +2961,20 @@ export type TextPanel = Entry & _Node & {
 };
 
 
-/** A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
 export type TextPanelContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
 export type TextPanelLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel) */
 export type TextPanelTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3071,7 +3115,7 @@ export type TimelineFilterInput = {
   timestamp_lte?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type Video = Entry & _Node & {
   __typename: 'Video';
   _id: Scalars['ID']['output'];
@@ -3079,7 +3123,7 @@ export type Video = Entry & _Node & {
   autoStart?: Maybe<Scalars['Boolean']['output']>;
   contentfulDescription?: Maybe<Scalars['String']['output']>;
   contentfulMetadata: ContentfulMetadata;
-  description?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<VideoDescription>;
   linkedFrom?: Maybe<VideoLinkingCollections>;
   previewImage?: Maybe<Asset>;
   sys: Sys;
@@ -3089,41 +3133,41 @@ export type Video = Entry & _Node & {
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoAltTextArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoAutoStartArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoPreviewImageArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3131,14 +3175,14 @@ export type VideoPreviewImageArgs = {
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoVideoArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3146,7 +3190,7 @@ export type VideoVideoArgs = {
 };
 
 
-/** A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video) */
 export type VideoVideoUrlArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
@@ -3158,6 +3202,54 @@ export type VideoCollection = {
   limit: Scalars['Int']['output'];
   skip: Scalars['Int']['output'];
   total: Scalars['Int']['output'];
+};
+
+export type VideoDescription = {
+  __typename: 'VideoDescription';
+  json: Scalars['JSON']['output'];
+  links: VideoDescriptionLinks;
+};
+
+export type VideoDescriptionAssets = {
+  __typename: 'VideoDescriptionAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type VideoDescriptionEntries = {
+  __typename: 'VideoDescriptionEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type VideoDescriptionLinks = {
+  __typename: 'VideoDescriptionLinks';
+  assets: VideoDescriptionAssets;
+  entries: VideoDescriptionEntries;
+  resources: VideoDescriptionResources;
+};
+
+export type VideoDescriptionResources = {
+  __typename: 'VideoDescriptionResources';
+  block: Array<VideoDescriptionResourcesBlock>;
+  hyperlink: Array<VideoDescriptionResourcesHyperlink>;
+  inline: Array<VideoDescriptionResourcesInline>;
+};
+
+export type VideoDescriptionResourcesBlock = ResourceLink & {
+  __typename: 'VideoDescriptionResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type VideoDescriptionResourcesHyperlink = ResourceLink & {
+  __typename: 'VideoDescriptionResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type VideoDescriptionResourcesInline = ResourceLink & {
+  __typename: 'VideoDescriptionResourcesInline';
+  sys: ResourceSys;
 };
 
 export type VideoFilter = {
@@ -3181,13 +3273,9 @@ export type VideoFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   previewImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -3272,7 +3360,7 @@ export const VideoOrder = {
 } as const;
 
 export type VideoOrder = typeof VideoOrder[keyof typeof VideoOrder];
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanel = Entry & _Node & {
   __typename: 'VideosPanel';
   _id: Scalars['ID']['output'];
@@ -3287,41 +3375,41 @@ export type VideosPanel = Entry & _Node & {
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelContentfulDescriptionArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelOldSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelTitleArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
   useFallbackLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 
-/** A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
+/** [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel) */
 export type VideosPanelVideosCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -3536,13 +3624,9 @@ export type CfImageNestedFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   image_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -3597,13 +3681,9 @@ export type CfVideoNestedFilter = {
   contentfulDescription_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulDescription_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
-  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   previewImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -3729,7 +3809,7 @@ export type GetProjectPanelBySlugQueryVariables = Exact<{
 }>;
 
 
-export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, description?: string | null, altText?: string | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, description?: string | null, videoUrl?: string | null, autoStart?: boolean | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
+export type GetProjectPanelBySlugQuery = { __typename: 'Query', imagesPanelCollection?: { __typename: 'ImagesPanelCollection', items: Array<{ __typename: 'ImagesPanel', title?: string | null, slug?: string | null, imagesCollection?: { __typename: 'ImagesPanelImagesCollection', items: Array<{ __typename: 'Image', title?: string | null, altText?: string | null, description?: { __typename: 'ImageDescription', json: any } | null, image?: { __typename: 'Asset', url?: string | null, width?: number | null, height?: number | null, sys: { __typename: 'Sys', id: string } } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, videosPanelCollection?: { __typename: 'VideosPanelCollection', items: Array<{ __typename: 'VideosPanel', title?: string | null, slug?: string | null, videosCollection?: { __typename: 'VideosPanelVideosCollection', items: Array<{ __typename: 'Video', title?: string | null, videoUrl?: string | null, autoStart?: boolean | null, previewImage?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, video?: { __typename: 'Asset', url?: string | null, sys: { __typename: 'Sys', id: string } } | null, description?: { __typename: 'VideoDescription', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, sys: { __typename: 'Sys', id: string } } | null> } | null, textPageCollection?: { __typename: 'TextPageCollection', items: Array<{ __typename: 'TextPage', title?: string | null, slug?: string | null, text?: { __typename: 'TextPageText', json: any } | null, sys: { __typename: 'Sys', id: string } } | null> } | null };
 
 export type GetSitemapDataQueryVariables = Exact<{
   preview: Scalars['Boolean']['input'];
@@ -3914,7 +3994,7 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
                       sys {
                         id
                       }
-                      url(transform: {height: 50, format: WEBP})
+                      url(transform: {height: 50})
                       width
                       height
                     }
@@ -3934,7 +4014,7 @@ export const GetProjectPanelsDocument = new TypedDocumentString(`
                       sys {
                         id
                       }
-                      url(transform: {height: 50, format: WEBP})
+                      url(transform: {height: 50})
                       width
                       height
                     }
@@ -4007,13 +4087,15 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
             ...ContentfulSysId
             __typename
             title
-            description
+            description {
+              json
+            }
             altText
             image {
               sys {
                 id
               }
-              url(transform: {format: WEBP})
+              url
               width
               height
             }
@@ -4034,13 +4116,21 @@ export const GetProjectPanelBySlugDocument = new TypedDocumentString(`
             ...ContentfulSysId
             __typename
             title
+            previewImage {
+              sys {
+                id
+              }
+              url
+            }
             video {
               sys {
                 id
               }
-              url(transform: {format: WEBP})
+              url
             }
-            description
+            description {
+              json
+            }
             videoUrl
             autoStart
           }

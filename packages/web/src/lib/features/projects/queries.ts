@@ -36,7 +36,7 @@ export const getProjectPanels = graphql(`
                         sys {
                           id
                         }
-                        url(transform: { height: 50, format: WEBP})
+                        url(transform: { height: 50 })
                         width
                         height
                       }
@@ -56,7 +56,7 @@ export const getProjectPanels = graphql(`
                         sys {
                           id
                         }
-                        url(transform: { height: 50, format: WEBP})
+                        url(transform: { height: 50 })
                         width
                         height
                       }
@@ -124,18 +124,20 @@ export const getProjectPanelBySlug = graphql(`
           ...ContentfulSysId
           title
           slug
-          imagesCollection(preview: $preview,limit: 30) {
+          imagesCollection(preview: $preview, limit: 30) {
             items {
               ...ContentfulSysId
               __typename
               title
-              description
+              description {
+                json
+              }
               altText
               image {
                 sys {
                   id
                 }
-                url(transform: { format: WEBP})
+                url
                 width
                 height
               }
@@ -156,13 +158,21 @@ export const getProjectPanelBySlug = graphql(`
               ...ContentfulSysId
               __typename
               title
+              previewImage {
+                sys {
+                  id
+                }
+                url
+              }
               video {
                 sys {
                   id
                 }
-                url(transform: { format: WEBP})
+                url
               }
-              description
+              description {
+                json
+              }
               videoUrl
               autoStart
             }

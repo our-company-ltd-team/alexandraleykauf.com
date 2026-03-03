@@ -63,7 +63,7 @@ export type ProjectDetailImage = {
   id: string;
   type: ContentfulImage["__typename"];
   title: string | undefined;
-  description: string | undefined;
+  description: Document | undefined;
   altText: string | undefined;
   image: ProjectImage | undefined;
   width: number;
@@ -86,7 +86,7 @@ export type Video = {
 export type ProjectDetailVideo = {
   title: string | undefined;
   autoStart: boolean | undefined;
-  description: string | undefined;
+  description: Document | undefined;
   id: string;
   type: ContentfulVideo["__typename"];
   video: Video | undefined;

@@ -4,7 +4,19 @@ schema {
 
 directive @contentSourceMaps on QUERY
 
+directive @contentfulSchemaMetadata(contentTypePublishedCounters: JSON) on SCHEMA
+
+directive @delegatedResourceLink(contentTypeId: String, field: JSON) on FIELD_DEFINITION | OBJECT
+
+directive @enumMapper(value: JSON) on ENUM_VALUE
+
+directive @featureFlag(featureName: String) on FIELD
+
+directive @fieldResolver(data: JSON, kind: String) on FIELD_DEFINITION
+
 directive @timeline(where: TimelineFilterInput!) on QUERY
+
+directive @typeIdentifier(contentTypeId: String) on OBJECT
 
 """
 Represents a binary file in a space. An asset can be any file type.
@@ -175,7 +187,7 @@ enum AssetOrder {
 }
 
 """
-A category for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/category)
 """
 type Category implements Entry & _Node {
   _id: ID!
@@ -365,7 +377,7 @@ enum CategoryOrder {
 }
 
 """
-Tracks the version of the content model and applied migrations [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/contentModelVersion)
 """
 type ContentModelVersion implements Entry & _Node {
   _id: ID!
@@ -528,7 +540,7 @@ enum EntryOrder {
 }
 
 """
-The general config of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/generalConfig)
 """
 type GeneralConfig implements Entry & _Node {
   _id: ID!
@@ -654,7 +666,7 @@ The 'HexColor' type represents color in `rgb:ffffff` string format.
 scalar HexColor
 
 """
-The homepage of the website [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/homepage)
 """
 type Homepage implements Entry & _Node {
   _id: ID!
@@ -763,14 +775,14 @@ enum HomepageOrder {
 }
 
 """
-An image is an entry that to be added to an images panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/image)
 """
 type Image implements Entry & _Node {
   _id: ID!
   altText(locale: String, useFallbackLocale: Boolean): String
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  description(locale: String, useFallbackLocale: Boolean): String
+  description(locale: String, useFallbackLocale: Boolean): ImageDescription
   image(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
   linkedFrom(allowedLocales: [String]): ImageLinkingCollections
   sys: Sys!
@@ -782,6 +794,46 @@ type ImageCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type ImageDescription {
+  json: JSON!
+  links: ImageDescriptionLinks!
+}
+
+type ImageDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type ImageDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type ImageDescriptionLinks {
+  assets: ImageDescriptionAssets!
+  entries: ImageDescriptionEntries!
+  resources: ImageDescriptionResources!
+}
+
+type ImageDescriptionResources {
+  block: [ImageDescriptionResourcesBlock!]!
+  hyperlink: [ImageDescriptionResourcesHyperlink!]!
+  inline: [ImageDescriptionResourcesInline!]!
+}
+
+type ImageDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ImageDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type ImageDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 input ImageFilter {
@@ -802,13 +854,9 @@ input ImageFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  description: String
   description_contains: String
   description_exists: Boolean
-  description_in: [String]
-  description_not: String
   description_not_contains: String
-  description_not_in: [String]
   image_exists: Boolean
   sys: SysFilter
   title: String
@@ -1019,7 +1067,7 @@ input ImageTransformOptions {
 }
 
 """
-An images panel is an entry that displays a list of images. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/imagesPanel)
 """
 type ImagesPanel implements Entry & _Node {
   _id: ID!
@@ -1165,7 +1213,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
-A link is an entry that allows to create a link for several purposes. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/link)
 """
 type Link implements Entry & _Node {
   _id: ID!
@@ -1288,7 +1336,7 @@ enum LinkOrder {
 }
 
 """
-A project is an entry that represents a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/project)
 """
 type Project implements Entry & _Node {
   _id: ID!
@@ -1480,7 +1528,7 @@ enum ProjectProjectRowsCollectionOrder {
 }
 
 """
-A project row is organizational entry to gather project panels. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/projectRow)
 """
 type ProjectRow implements Entry & _Node {
   _id: ID!
@@ -1789,7 +1837,7 @@ type ResourceSys {
 }
 
 """
-A separator for projects [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/separator)
 """
 type Separator implements Entry & _Node {
   _id: ID!
@@ -1928,7 +1976,7 @@ type TaxonomyConcept {
 }
 
 """
-A text page is an entry that allows to create a text page for a project. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPage)
 """
 type TextPage implements Entry & _Node {
   _id: ID!
@@ -2080,7 +2128,7 @@ type TextPageTextResourcesInline implements ResourceLink {
 }
 
 """
-A text panel is an entry that displays a text. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/textPanel)
 """
 type TextPanel implements Entry & _Node {
   _id: ID!
@@ -2213,7 +2261,7 @@ input TimelineFilterInput {
 }
 
 """
-A video is an entry that to be added to a videos panel. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/video)
 """
 type Video implements Entry & _Node {
   _id: ID!
@@ -2221,7 +2269,7 @@ type Video implements Entry & _Node {
   autoStart(locale: String, useFallbackLocale: Boolean): Boolean
   contentfulDescription(locale: String, useFallbackLocale: Boolean): String
   contentfulMetadata: ContentfulMetadata!
-  description(locale: String, useFallbackLocale: Boolean): String
+  description(locale: String, useFallbackLocale: Boolean): VideoDescription
   linkedFrom(allowedLocales: [String]): VideoLinkingCollections
   previewImage(locale: String, preview: Boolean, useFallbackLocale: Boolean): Asset
   sys: Sys!
@@ -2235,6 +2283,46 @@ type VideoCollection {
   limit: Int!
   skip: Int!
   total: Int!
+}
+
+type VideoDescription {
+  json: JSON!
+  links: VideoDescriptionLinks!
+}
+
+type VideoDescriptionAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type VideoDescriptionEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type VideoDescriptionLinks {
+  assets: VideoDescriptionAssets!
+  entries: VideoDescriptionEntries!
+  resources: VideoDescriptionResources!
+}
+
+type VideoDescriptionResources {
+  block: [VideoDescriptionResourcesBlock!]!
+  hyperlink: [VideoDescriptionResourcesHyperlink!]!
+  inline: [VideoDescriptionResourcesInline!]!
+}
+
+type VideoDescriptionResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type VideoDescriptionResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type VideoDescriptionResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 input VideoFilter {
@@ -2258,13 +2346,9 @@ input VideoFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  description: String
   description_contains: String
   description_exists: Boolean
-  description_in: [String]
-  description_not: String
   description_not_contains: String
-  description_not_in: [String]
   previewImage_exists: Boolean
   sys: SysFilter
   title: String
@@ -2341,7 +2425,7 @@ enum VideoOrder {
 }
 
 """
-A videos panel is an entry that displays a list of videos. [See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel)
+[See type definition](https://app.contentful.com/spaces/melrjm7oll9m/content_types/videosPanel)
 """
 type VideosPanel implements Entry & _Node {
   _id: ID!
@@ -2555,13 +2639,9 @@ input cfImageNestedFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  description: String
   description_contains: String
   description_exists: Boolean
-  description_in: [String]
-  description_not: String
   description_not_contains: String
-  description_not_in: [String]
   image_exists: Boolean
   sys: SysFilter
   title: String
@@ -2616,13 +2696,9 @@ input cfVideoNestedFilter {
   contentfulDescription_not_contains: String
   contentfulDescription_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  description: String
   description_contains: String
   description_exists: Boolean
-  description_in: [String]
-  description_not: String
   description_not_contains: String
-  description_not_in: [String]
   previewImage_exists: Boolean
   sys: SysFilter
   title: String

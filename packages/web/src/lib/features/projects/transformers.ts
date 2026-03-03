@@ -219,7 +219,7 @@ function transformImageEntry(imageEntry: ContentfulImage): ProjectDetailImage | 
     id: imageEntry.sys.id,
     type: imageEntry.__typename,
     title: imageEntry.title ?? undefined,
-    description: imageEntry.description ?? undefined,
+    description: imageEntry.description?.json ?? undefined,
     altText: imageEntry.altText ?? undefined,
     image,
     width: imageEntry.image.width ?? 0,
@@ -271,7 +271,7 @@ function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | 
     video: video ?? undefined,
     videoUrl: videoEntry.videoUrl ?? undefined,
     autoStart: videoEntry.autoStart ?? undefined,
-    description: videoEntry.description ?? undefined,
+    description: videoEntry.description?.json ?? undefined,
   };
 }
 
