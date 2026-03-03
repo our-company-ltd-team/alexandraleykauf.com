@@ -1,5 +1,6 @@
 "use client";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import React, { useLayoutEffect, useRef } from "react";
 
 import type { HomepageProject } from "@/lib/features/home/types";
@@ -8,15 +9,14 @@ import { useOpenedProjects } from "@/hooks";
 import { useHomeProjectPanels, usePrefetchHomeProjectPanels } from "@/lib/features/projects/hooks";
 
 import styles from "./project-entry.module.css";
-import { ProjectRow } from "./project-row";
 
-// const DynamicProjectRow = dynamic(
-//   () => import("./project-row/project-row").then(mod => ({ default: mod.ProjectRow })),
-//   {
-//     ssr: false,
-//     loading: () => <div className={styles.loading}>Loading...</div>,
-//   },
-// );
+const DynamicProjectRow = dynamic(
+  () => import("./project-row/project-row").then(mod => ({ default: mod.ProjectRow })),
+  {
+    ssr: false,
+    loading: () => <div>Loading...</div>,
+  },
+);
 
 export function ProjectEntry({
   id,
@@ -111,7 +111,7 @@ export function ProjectEntry({
         <div className={styles.right}>{place}</div>
       </header>
       <div id={`project-content-${id}`} aria-live="polite" aria-atomic="true">
-        {isProjectExpanded && homeProjectPanels?.rows.map(row => <ProjectRow key={row.id} row={row} projectSlug={slug} />)}
+        {isProjectExpanded && homeProjectPanels?.rows.map(row => <DynamicProjectRow key={row.id} row={row} projectSlug={slug} />)}
       </div>
     </article>
   );
