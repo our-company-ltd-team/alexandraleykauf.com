@@ -1,8 +1,12 @@
 {
-  "private": true,
   "name": "alexandraleykauf.com",
   "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.6.1",
   "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
@@ -16,10 +20,9 @@
     "migrate:one-off": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:one-off",
     "migrate:status": "pnpm --filter @alexandraleykauf/contentful-migrations migrate:status"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.6.1",
+  "dependencies": {
+    "@antfu/eslint-config": "^6.2.0"
+  },
   "devDependencies": {
     "eslint-plugin-react-dom": "^2.3.13",
     "eslint-plugin-react-hooks": "^7.0.1",
@@ -27,12 +30,9 @@
     "lint-staged": "^16.2.7",
     "turbo": "^2.6.1"
   },
-  "dependencies": {
-    "@antfu/eslint-config": "^6.2.0"
-  },
   "lint-staged": {
     "packages/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --ignore-pattern '**/generated/**'"
+      "npx eslint --fix --ignore-pattern '**/generated/**'"
     ]
   }
 }
