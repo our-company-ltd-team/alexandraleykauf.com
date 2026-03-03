@@ -3,7 +3,7 @@ import type { FC } from "react";
 import clsx from "clsx";
 import NextLink from "next/link";
 
-import type { Category } from "@/lib";
+import type { Category } from "@/lib/features/header/types";
 
 import siteHeaderStyles from "./site-header.module.css";
 

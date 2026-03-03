@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 
 import { WebVitals } from "@/components/shared/web-vitals";
-import { getGeneralConfigData } from "@/lib/features/general-config";
+import { getGeneralConfigData } from "@/lib/features/general-config/api";
 import layoutStyles from "@/styles/layout.module.css";
 
 const openSans = Open_Sans({

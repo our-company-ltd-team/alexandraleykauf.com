@@ -5,7 +5,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import type { ProjectDetailImage, ProjectDetailVideo } from "@/lib/features/projects";
+import type { ProjectDetailImage, ProjectDetailVideo } from "@/lib/features/projects/types";
 
 import { CloseIcon } from "@/components/shared/close-icon";
 import { useKeyboardNavigation } from "@/hooks/use-keyboard-navigation";

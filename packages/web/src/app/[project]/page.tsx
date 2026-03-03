@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import * as React from "react";
 import { Suspense } from "react";
 
-import type { HomepageProject } from "@/lib";
+import type { HomepageProject } from "@/lib/features/home/types";
 
 import { HomepageShell } from "@/components/homepage/homepage-shell";
 import { getGeneralConfigData } from "@/lib/features/general-config/api";

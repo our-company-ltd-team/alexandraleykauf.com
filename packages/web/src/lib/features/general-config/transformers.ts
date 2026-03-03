@@ -1,4 +1,4 @@
-import type { GeneralConfig } from "@/lib/features/general-config";
+import type { GeneralConfig } from "@/lib/features/general-config/types";
 import type { GetGeneralConfigQuery } from "@/lib/graphql/generated/graphql";
 
 import { isNotNull } from "@/lib/graphql";

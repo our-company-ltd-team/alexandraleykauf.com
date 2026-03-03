@@ -2,7 +2,7 @@
 
 import NextLink from "next/link";
 
-import type { HomepageLink } from "@/lib";
+import type { HomepageLink } from "@/lib/features/home/types";
 
 import styles from "./link-entry.module.css";
 

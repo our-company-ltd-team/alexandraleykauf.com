@@ -1,6 +1,6 @@
 "use client";
 
-import type { HomepageContentItem } from "@/lib";
+import type { HomepageContentItem } from "@/lib/features/home/types";
 
 import { LinkEntry } from "../link-entry";
 import { ProjectEntry } from "../project-entry";

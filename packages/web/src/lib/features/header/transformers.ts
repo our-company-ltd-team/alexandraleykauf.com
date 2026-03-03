@@ -1,4 +1,4 @@
-import type { HeaderData } from "@/lib/features/header";
+import type { HeaderData } from "@/lib/features/header/types";
 import type { GetHeaderQuery } from "@/lib/graphql/generated/graphql";
 
 import { isNotNull } from "@/lib/graphql/type-utils";
