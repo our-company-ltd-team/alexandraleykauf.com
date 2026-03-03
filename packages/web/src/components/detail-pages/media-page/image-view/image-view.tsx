@@ -27,6 +27,7 @@ export function ImageView({ imageUrl, altText = "", nextUrl, previousUrl, width,
         loading="eager"
         preload={true}
         fetchPriority="high"
+        quality={85}
       />
     </figure>
   );
