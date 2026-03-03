@@ -4,9 +4,19 @@ import "../styles/variables.css";
 import "../styles/base.css";
 import type { Metadata } from "next";
 
+import { Open_Sans } from "next/font/google";
+
 import { WebVitals } from "@/components/shared/web-vitals";
 import { getGeneralConfigData } from "@/lib/features/general-config";
 import layoutStyles from "@/styles/layout.module.css";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-open-sans",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alexandra-leykauf.com"),
@@ -49,7 +59,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className={openSans.className}>
         <div className={layoutStyles.container}>
           {children}
         </div>
