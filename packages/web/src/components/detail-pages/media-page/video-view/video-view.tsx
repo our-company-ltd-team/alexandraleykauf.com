@@ -62,7 +62,6 @@ export function VideoView({
                   allow="autoplay; fullscreen; picture-in-picture"
                   allowFullScreen
                   title={title ?? "Video player"}
-                  loading="lazy"
                 />
               </div>
             )
