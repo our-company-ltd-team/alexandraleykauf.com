@@ -6,6 +6,7 @@ type VideoViewProps = {
   uploadedVideoUrl?: string;
   autoStart?: boolean;
   title?: string;
+  poster?: string;
 };
 
 /**
@@ -32,6 +33,7 @@ export function VideoView({
   uploadedVideoUrl,
   autoStart = false,
   title,
+  poster,
 }: VideoViewProps) {
   // Determine if we have a Vimeo URL or an uploaded video
   const vimeoEmbedUrl = videoUrl ? getVimeoEmbedUrl(videoUrl) : null;
@@ -45,6 +47,7 @@ export function VideoView({
               <video
                 className={videoViewStyles.video}
                 src={uploadedVideoUrl}
+                poster={poster}
                 controls
                 autoPlay={autoStart}
                 playsInline

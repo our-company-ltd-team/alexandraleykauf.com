@@ -83,6 +83,13 @@ export type Video = {
   url: string;
 };
 
+export type PreviewImage = {
+  id: string;
+  url: string;
+  width?: number;
+  height?: number;
+};
+
 export type ProjectDetailVideo = {
   title: string | undefined;
   autoStart: boolean | undefined;
@@ -91,6 +98,7 @@ export type ProjectDetailVideo = {
   type: ContentfulVideo["__typename"];
   video: Video | undefined;
   videoUrl: string | undefined;
+  previewImage: PreviewImage | undefined;
 };
 
 export type ProjectDetailVideosPanel = {

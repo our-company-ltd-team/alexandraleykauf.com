@@ -16,6 +16,7 @@ import { getFirstItem, isNotNull } from "@/lib/graphql";
 
 import type {
   HomeProjectPanels,
+  PreviewImage,
   ProjectDetailImage,
   ProjectDetailImagesPanel,
   ProjectDetailTextPage,
@@ -252,6 +253,19 @@ function transformVideoAsset(data: Asset): Video | null {
   };
 }
 
+function transformPreviewImageAsset(data: Asset): PreviewImage | null {
+  if (!data.url || !data.sys.id) {
+    return null;
+  }
+
+  return {
+    id: data.sys.id,
+    url: data.url,
+    width: data.width ?? undefined,
+    height: data.height ?? undefined,
+  };
+}
+
 function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | null {
   if (!videoEntry.sys.id || !videoEntry.__typename) {
     return null;
@@ -263,6 +277,7 @@ function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | 
   }
 
   const video = videoEntry.video ? transformVideoAsset(videoEntry.video) : null;
+  const previewImage = videoEntry.previewImage ? transformPreviewImageAsset(videoEntry.previewImage) : null;
 
   return {
     id: videoEntry.sys.id,
@@ -272,6 +287,7 @@ function transformVideoEntry(videoEntry: ContentfulVideo): ProjectDetailVideo | 
     videoUrl: videoEntry.videoUrl ?? undefined,
     autoStart: videoEntry.autoStart ?? undefined,
     description: videoEntry.description?.json ?? undefined,
+    previewImage: previewImage ?? undefined,
   };
 }
 

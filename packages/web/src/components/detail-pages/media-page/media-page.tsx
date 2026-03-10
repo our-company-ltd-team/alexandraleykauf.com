@@ -88,6 +88,7 @@ export default function MediaPage({
           uploadedVideoUrl={asset.video?.url}
           videoUrl={asset.videoUrl}
           autoStart={asset.autoStart}
+          poster={asset.previewImage?.url}
         />
       );
   }
