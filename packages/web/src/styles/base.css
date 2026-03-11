@@ -31,8 +31,50 @@ body {
 }
 
 /* ==========================================================================
-   Typography Reset
+   Typography Reset & Strict Fonts
    ========================================================================== */
+
+body,
+html {
+  font-family: var(--font-open-sans), sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Enforce strict italics */
+em,
+i,
+q,
+dfn {
+  font-family: var(--font-open-sans), sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Enforce strict bold */
+strong,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+  font-family: var(--font-open-sans), sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Enforce strict bold italic */
+strong em,
+em strong,
+b i,
+i b {
+  font-family: var(--font-open-sans), sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
 
 h1,
 h2,

@@ -21,9 +21,10 @@
 
 .back {
   font-size: var(--font-size-base, 12px);
-  position: absolute;
+  position: fixed;
   right: 25px;
   top: 25px;
+  z-index: 50;
 }
 .assetContainer {
   flex: 1 1 auto;
@@ -87,13 +88,6 @@
     text-align: center;
   }
 
-  .back {
-    position: initial;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .assetContainer {
     flex: 0;
   }
@@ -108,15 +102,6 @@
   .header {
     text-align: center;
     padding-block: 20px;
-  }
-
-  .back {
-    position: initial;
-    text-align: center;
-    position: initial;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .assetContainer {
