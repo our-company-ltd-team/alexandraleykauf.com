@@ -15,7 +15,7 @@
   .active & {
     color: var(--color-text-default, #000);
     text-transform: uppercase;
-    font-family: var(--font-bold, "museo_bold", sans-serif);
+    font-weight: 700;
     background-color: var(--project-background-color, transparent);
   }
 
@@ -42,6 +42,10 @@
 .left {
   flex: 0 0 var(--list-item-left-element-width);
   align-self: flex-start;
+
+  /* .active & {
+    font-weight: 700;
+  } */
 }
 
 .center {
@@ -50,11 +54,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 1;
+
+  /* .active & {
+    font-weight: 700;
+  } */
 }
 
 .right {
   flex: 0 0 var(--list-item-right-element-width);
   text-align: end;
+
+  /* .active & {
+    font-weight: 700;
+  } */
 }
 
 .link {

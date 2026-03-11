@@ -72,7 +72,7 @@
 
 .nav {
   text-align: center;
-  font-family: var(--font-bold, "museo_bold", sans-serif);
+  font-weight: 700;
   font-size: var(--font-size-base, 12px);
   margin-bottom: 5px;
   color: var(--color-text-muted, #929292);
@@ -99,7 +99,7 @@
 }
 
 .title {
-  font-family: var(--font-regular, "museo_regular", sans-serif);
+  font-weight: 400;
 }
 
 /* ==========================================================================

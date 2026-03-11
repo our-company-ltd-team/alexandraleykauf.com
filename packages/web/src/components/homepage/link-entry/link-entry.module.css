@@ -15,7 +15,7 @@
   .active & {
     color: var(--color-text-default, #000);
     text-transform: uppercase;
-    font-family: var(--font-bold, "museo_bold", sans-serif);
+    font-weight: 700;
     background-color: var(--link-background-color, transparent);
   }
 

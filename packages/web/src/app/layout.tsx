@@ -1,5 +1,4 @@
 import "./globals.css";
-import "../styles/fonts.css";
 import "../styles/variables.css";
 import "../styles/base.css";
 import type { Metadata } from "next";

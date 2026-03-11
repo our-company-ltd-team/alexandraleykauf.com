@@ -42,7 +42,7 @@
 
 .nav {
   text-align: center;
-  font-family: var(--font-bold, "museo_bold", sans-serif);
+  font-weight: 700;
   font-size: var(--font-size-base, 12px);
   margin-block-end: 5px;
   color: var(--color-text-muted, #929292);
