@@ -26,6 +26,7 @@
   top: 25px;
   z-index: 50;
 }
+
 .assetContainer {
   flex: 1 1 auto;
   min-height: 0;
@@ -82,21 +83,15 @@
      ========================================================================== */
 
 /* Mobile small (max 320px) */
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 1023px) {
   .header {
     text-align: center;
+    padding-block: 25px;
   }
 
-  .assetContainer {
-    flex: 0;
-  }
-}
-
-/* Phone (319px - 767px) */
-@media only screen and (min-width: 319px) and (max-width: 767px) {
-  .header {
-    text-align: center;
-    padding-block: 20px;
+  .back {
+    top: 15px;
+    right: calc(50% - 10px);
   }
 
   .assetContainer {
