@@ -3,6 +3,7 @@
   display: flex;
   padding: 10px;
   border-bottom: var(--border-dotted, 1px dotted #929292);
+  font-size: 13px;
 }
 
 .detailsRowTitle {
@@ -26,6 +27,7 @@
 
   p {
     color: var(--color-text-default, #000);
+    font-size: 13px;
   }
 }
 
