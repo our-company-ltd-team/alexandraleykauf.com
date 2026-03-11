@@ -13,10 +13,10 @@
   background-color: var(--link-faded-background-color, transparent);
 
   .active & {
-    color: var(--color-text-default, #000);
-    text-transform: uppercase;
-    font-weight: 700;
     background-color: var(--link-background-color, transparent);
+    color: var(--color-text-default, #000);
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   @media (hover: hover) {
@@ -30,17 +30,20 @@
 }
 
 .at {
+  font-size: 13px;
   padding-inline-start: 10px;
 }
 
 .left {
-  flex: 0 0 var(--list-item-left-element-width);
   align-self: flex-start;
+  flex: 0 0 var(--list-item-left-element-width);
+  font-size: 13px;
 }
 
 .center {
   color: currentColor;
   flex: 1;
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 1;
@@ -48,6 +51,7 @@
 
 .right {
   flex: 0 0 var(--list-item-right-element-width);
+  font-size: 13px;
   text-align: end;
 }
 
