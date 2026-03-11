@@ -5,18 +5,18 @@
 
 .header {
   align-items: center;
+  background-color: var(--project-faded-background-color, transparent);
   border-bottom: var(--border-dotted, 1px dotted #929292);
   display: flex;
   padding-block: 5px;
   padding-inline: 10px;
   position: relative;
-  background-color: var(--project-faded-background-color, transparent);
 
   .active & {
-    color: var(--color-text-default, #000);
-    text-transform: uppercase;
-    font-weight: 700;
     background-color: var(--project-background-color, transparent);
+    color: var(--color-text-default, #000);
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   @media (hover: hover) {
@@ -42,10 +42,6 @@
 .left {
   flex: 0 0 var(--list-item-left-element-width);
   align-self: flex-start;
-
-  /* .active & {
-    font-weight: 700;
-  } */
 }
 
 .center {
@@ -54,10 +50,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 1;
+  font-weight: 400;
 
-  /* .active & {
+  .active & {
     font-weight: 700;
-  } */
+  }
 }
 
 .right {

@@ -61,7 +61,6 @@
 
 .legend {
   margin: 0 auto;
-  width: 500px;
   text-align: center;
   font-size: var(--font-size-base, 12px);
 }
@@ -91,10 +90,6 @@
   .assetContainer {
     flex: 0;
   }
-
-  .legend {
-    width: inherit;
-  }
 }
 
 /* Phone (319px - 767px) */
@@ -106,9 +101,5 @@
 
   .assetContainer {
     flex: 0 auto;
-  }
-
-  .legend {
-    width: inherit;
   }
 }
